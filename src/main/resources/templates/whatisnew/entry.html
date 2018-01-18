@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Push stuff</title>
+</head>
+<body>
+<form action="save" method="post">
+    <input type="submit" value="Submit"/><br/>
+    <ul>
+        <li>Version:
+            <input type="text" name="version"></input>
+        </li>
+        <li>
+            Package:
+            <input type="text" name="package"></input>
+        </li>
+    </ul>
+    <textarea name="text" cols="200" rows="50"></textarea>
+    <input type="submit" value="Submit"/><br/>
+</form>
+</body>
+</html>
