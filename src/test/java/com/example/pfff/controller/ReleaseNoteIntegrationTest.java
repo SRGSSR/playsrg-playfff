@@ -23,17 +23,13 @@ public class ReleaseNoteIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void versionShouldReturnDefaultMessage() throws Exception {
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:" + port + "/whatisnew/save")
-                .queryParam("package", "package.A.B")
-                .queryParam("version", "0.1.2");
+    public void changeReleaseNoteTwice() throws Exception {
+        assertThat(this.restTemplate.postForObject("http://localhost:" + port + "/whatisnew/save?package=package.A.B&version=0.1.2&text=", null, String.class)).contains("pushed");
 
-        assertThat(this.restTemplate.postForObject("http://localhost:8080/whatisnew/save?package=package.A.B&version=0.1.2&text=", null, String.class)).contains("pushed");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/whatisnew/text?package=package.A.B&version=0.1.2", String.class)).contains("{\"text\":\"\",\"title\":null}");
 
-        assertThat(this.restTemplate.getForObject("http://localhost:8080/whatisnew/text?package=package.A.B&version=0.1.2", String.class)).contains("{\"text\":\"\",\"title\":null}");
+        assertThat(this.restTemplate.postForObject("http://localhost:" + port + "/whatisnew/save?package=package.A.B&version=0.1.2&text=test012OK", null, String.class)).contains("pushed");
 
-        assertThat(this.restTemplate.postForObject("http://localhost:8080/whatisnew/save?package=package.A.B&version=0.1.2&text=test012OK", null, String.class)).contains("pushed");
-
-        assertThat(this.restTemplate.getForObject("http://localhost:8080/whatisnew/text?package=package.A.B&version=0.1.2", String.class)).contains("{\"text\":\"test012OK\",\"title\":null}");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/whatisnew/text?package=package.A.B&version=0.1.2", String.class)).contains("{\"text\":\"test012OK\",\"title\":null}");
     }
 }
