@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add new update entry</title>
+</head>
+<body>
+<form action="save" method="post">
+    <input type="submit" value="Submit"/><br/>
+    <ul>
+        <li>Version:
+            <input type="text" name="version"></input>
+        </li>
+        <li>
+            Package:
+            <input type="text" name="package"></input>
+        </li>
+        <li>
+            Mandatory:
+            <input type="checkbox" name="mandatory"></input>
+        </li>
+    </ul>
+    <textarea name="text" cols="200" rows="30"></textarea>
+    <input type="submit" value="Submit"/><br/>
+</form>
+</body>
+</html>
