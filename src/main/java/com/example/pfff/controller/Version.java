@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class Version {
+    public static final String VERSION = "Pfff...";
+
     @RequestMapping("/version")
     @ResponseBody
     String home() {
-        return "Pfff...";
+        return VERSION;
     }
 }
