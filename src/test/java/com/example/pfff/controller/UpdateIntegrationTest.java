@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ReleaseNoteIntegrationTest {
+public class UpdateIntegrationTest {
     private MockMvc mvc;
 
     @Autowired
@@ -39,15 +38,21 @@ public class ReleaseNoteIntegrationTest {
 
     @Test
     @WithMockUser(username = "user", password = "password", roles = "USER")
-    public void changeReleaseNoteTwice() throws Exception {
-        mvc.perform(get("/whatisnew/admin")).andExpect(status().isOk());
+    public void updateChange() throws Exception {
+        mvc.perform(get("/update/admin")).andExpect(status().isOk());
 
-        mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
+        mvc.perform(post("/update/admin").param("package", "package.A.B").param("version", "0.1.2").param("mandatory", "false").param("text", "").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\"}"));
+        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\", \"type\":\"Optional\"}"));
 
-        mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "test012OK").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
+        mvc.perform(post("/update/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "test012OK").param("mandatory", "true").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
+        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\", \"type\":\"Mandatory\"}"));
+
+        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
+
+        mvc.perform(post("/update/remove").param("package", "package.A.B").param("version", "0.1.2").param("mandatory", "false").with(csrf())).andExpect(status().isOk()).andExpect(content().string("removed"));
+
+        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"type\":\"None\"}"));
     }
 }

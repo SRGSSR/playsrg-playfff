@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,13 +23,13 @@ public class UpdateController {
     @Autowired
     UpdateService updateService;
 
-    @RequestMapping("/update/admin")
+    @RequestMapping(value = "/update/admin", method = RequestMethod.GET)
     public String updateAdmin(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
         return "update/entry";
     }
 
-    @RequestMapping("/update/save")
+    @RequestMapping(value = "/update/admin", method = RequestMethod.POST)
     @ResponseBody
     public String updateSave(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version, @RequestParam(value = "text") String text, @RequestParam(value = "mandatory", required = false) boolean mandatory) {
         Update note = new Update();
@@ -38,6 +39,13 @@ public class UpdateController {
         note.mandatory = mandatory;
         updateService.save(note);
         return "pushed";
+    }
+
+    @RequestMapping(value = "/update/remove", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateRemove(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+        updateService.remove(packageName, version);
+        return "removed";
     }
 
     @RequestMapping("/update/check")
