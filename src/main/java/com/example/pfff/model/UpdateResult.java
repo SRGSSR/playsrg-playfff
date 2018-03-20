@@ -1,7 +1,6 @@
 package com.example.pfff.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sun.istack.internal.Nullable;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
