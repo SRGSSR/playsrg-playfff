@@ -2,9 +2,10 @@ package com.example.pfff.controller;
 
 import com.example.pfff.model.Update;
 import com.example.pfff.model.UpdateResult;
-import com.example.pfff.model.WhatIsNewResult;
 import com.example.pfff.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +41,8 @@ public class UpdateController {
     }
 
     @RequestMapping("/update/check")
-    @ResponseBody
-    public UpdateResult updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
-        return new UpdateResult(updateService.getUpdate(packageName, version));
+    public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+        Update update = updateService.getUpdate(packageName, version);
+        return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
     }
 }

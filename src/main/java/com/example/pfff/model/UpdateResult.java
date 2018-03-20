@@ -1,27 +1,37 @@
 package com.example.pfff.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UpdateResult {
     /**
      * Text to be displayed, may contain unicode characters.
      */
     public String text;
+
+    enum Type {
+        None,
+        Optional,
+        Mandatory
+    }
+
     /**
-     * Title. If null, client default string is displayed.
+     * Type of update.
      */
-    public String title;
-    /**
-     * Mandatory. Client must force update if true.
-     */
-    public boolean mandatory;
+    public Type type;
 
     public UpdateResult(Update update) {
-        this.text = update.text;
-        this.mandatory = update.mandatory;
+        if (update != null) {
+            this.text = update.text;
+            this.type = update.mandatory ? Type.Mandatory : Type.Optional;
+        } else {
+            type = Type.None;
+        }
     }
 
 }
