@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <title>Push stuff</title>
 </head>
 <body>
-<form action="save" method="post">
+<form th:action="@{/whatisnew/admin}" method="post">
     <input type="submit" value="Submit"/><br/>
     <ul>
         <li>Version:
@@ -14,6 +14,9 @@
             Package:
             <input type="text" name="package"></input>
         </li>
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
     </ul>
     <textarea name="text" cols="200" rows="50"></textarea>
     <input type="submit" value="Submit"/><br/>

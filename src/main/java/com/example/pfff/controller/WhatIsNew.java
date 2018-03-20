@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,13 +21,13 @@ public class WhatIsNew {
     @Autowired
     ReleaseNoteService releaseNoteService;
 
-    @RequestMapping("/whatisnew/admin")
+    @RequestMapping(value = "/whatisnew/admin", method = RequestMethod.GET)
     public String whatisnewAdmin(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
         return "whatisnew/entry";
     }
 
-    @RequestMapping("/whatisnew/save")
+    @RequestMapping(value = "/whatisnew/admin", method = RequestMethod.POST)
     @ResponseBody
     public String whatisnewSave(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version, @RequestParam(value = "text") String text) {
         ReleaseNote note = new ReleaseNote();
