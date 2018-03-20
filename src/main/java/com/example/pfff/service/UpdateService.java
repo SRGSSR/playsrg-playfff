@@ -1,8 +1,6 @@
 package com.example.pfff.service;
 
-import com.example.pfff.model.ReleaseNote;
 import com.example.pfff.model.Update;
-import com.example.pfff.repository.ReleaseNoteRepository;
 import com.example.pfff.repository.UpdateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +22,11 @@ public class UpdateService {
     public Update save(Update update) {
         repository.removeByPackageNameAndVersion(update.packageName, update.version);
         return repository.save(update);
+    }
+
+    @Transactional
+    public void remove(String packageName, String version) {
+        repository.removeByPackageNameAndVersion(packageName, version);
     }
 
     public Update getUpdate(String packageName, String version) {

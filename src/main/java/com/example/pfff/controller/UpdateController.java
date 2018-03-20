@@ -41,6 +41,13 @@ public class UpdateController {
         return "pushed";
     }
 
+    @RequestMapping(value = "/update/remove", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateRemove(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+        updateService.remove(packageName, version);
+        return "removed";
+    }
+
     @RequestMapping("/update/check")
     public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         Update update = updateService.getUpdate(packageName, version);
