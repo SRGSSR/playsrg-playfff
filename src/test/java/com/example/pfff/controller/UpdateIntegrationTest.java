@@ -43,16 +43,16 @@ public class UpdateIntegrationTest {
 
         mvc.perform(post("/update/admin").param("package", "package.A.B").param("version", "0.1.2").param("mandatory", "false").param("text", "").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\", \"type\":\"Optional\"}"));
+        mvc.perform(get("/api/v1/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\", \"type\":\"Optional\"}"));
 
         mvc.perform(post("/update/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "test012OK").param("mandatory", "true").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\", \"type\":\"Mandatory\"}"));
+        mvc.perform(get("/api/v1/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\", \"type\":\"Mandatory\"}"));
 
-        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
+        mvc.perform(get("/api/v1/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
 
         mvc.perform(post("/update/remove").param("package", "package.A.B").param("version", "0.1.2").param("mandatory", "false").with(csrf())).andExpect(status().isOk()).andExpect(content().string("removed"));
 
-        mvc.perform(get("/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"type\":\"None\"}"));
+        mvc.perform(get("/api/v1/update/check").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"type\":\"None\"}"));
     }
 }

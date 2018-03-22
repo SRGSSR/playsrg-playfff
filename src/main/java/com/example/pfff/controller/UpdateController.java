@@ -48,7 +48,7 @@ public class UpdateController {
         return "removed";
     }
 
-    @RequestMapping("/update/check")
+    @RequestMapping("/api/v1/update/check")
     public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         Update update = updateService.getUpdate(packageName, version);
         return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);

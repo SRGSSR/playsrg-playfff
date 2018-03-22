@@ -38,13 +38,13 @@ public class WhatIsNew {
         return "pushed";
     }
 
-    @RequestMapping("/whatisnew/text")
+    @RequestMapping("/api/v1/whatisnew/text")
     @ResponseBody
     public WhatIsNewResult whatisnewText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         return new WhatIsNewResult(releaseNoteService.getDisplayableText(packageName, version));
     }
 
-    @RequestMapping("/whatisnew/html")
+    @RequestMapping("/api/v1/whatisnew/html")
     @ResponseBody
     public String whatisnewHtml(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         return releaseNoteService.getDisplayableHtml(packageName, version);
