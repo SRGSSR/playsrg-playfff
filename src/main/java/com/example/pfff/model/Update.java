@@ -18,6 +18,7 @@ public class Update {
 
     public String packageName;
     public String version;
+    @Lob
     public String text;
     public boolean mandatory;
 }

@@ -20,5 +20,6 @@ public class ReleaseNote {
 
     public String packageName;
     public String version;
+    @Lob
     public String text;
 }

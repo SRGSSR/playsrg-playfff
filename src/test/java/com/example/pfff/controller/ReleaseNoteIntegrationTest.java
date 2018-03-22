@@ -50,4 +50,10 @@ public class ReleaseNoteIntegrationTest {
 
         mvc.perform(get("/api/v1/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
     }
+
+    @Test
+    @WithMockUser(username = "user", password = "password", roles = "USER")
+    public void largeText() throws Exception {
+        mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", Utils.LARGE_TEXT).with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
+    }
 }
