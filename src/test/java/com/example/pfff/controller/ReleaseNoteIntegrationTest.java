@@ -44,10 +44,10 @@ public class ReleaseNoteIntegrationTest {
 
         mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\"}"));
+        mvc.perform(get("/api/v1/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"\"}"));
 
         mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", "test012OK").with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
 
-        mvc.perform(get("/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
+        mvc.perform(get("/api/v1/whatisnew/text").param("package", "package.A.B").param("version", "0.1.2")).andExpect(status().isOk()).andExpect(content().json("{\"text\":\"test012OK\"}"));
     }
 }
