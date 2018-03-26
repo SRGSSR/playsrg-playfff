@@ -20,6 +20,7 @@ public class ReleaseNote {
 
     public String packageName;
     public String version;
-    @Lob
+
+    @Column(columnDefinition = "text")
     public String text;
 }
