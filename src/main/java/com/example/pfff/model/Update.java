@@ -18,7 +18,8 @@ public class Update {
 
     public String packageName;
     public String version;
-    @Lob
+
+    @Column(columnDefinition = "text")
     public String text;
     public boolean mandatory;
 }
