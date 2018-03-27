@@ -53,27 +53,27 @@ public class UpdateController {
 
 
     @PostMapping("/api/v1/update")
-    public Update create(@RequestBody Update update){
-        return updateService.create(update);
+    public ResponseEntity<Update> create(@RequestBody Update update) {
+        return new ResponseEntity<>(updateService.create(update), HttpStatus.OK);
     }
 
     @GetMapping(path = {"/api/v1/update/{id}"})
-    public Update findOne(@PathVariable("id") int id){
-        return updateService.findById(id);
+    public ResponseEntity<Update> findOne(@PathVariable("id") int id) {
+        return new ResponseEntity<>(updateService.findById(id), HttpStatus.OK);
     }
 
     @PutMapping("/api/v1/update")
-    public Update update(@RequestBody Update update){
-        return updateService.update(update);
+    public ResponseEntity<Update> update(@RequestBody Update update) {
+        return new ResponseEntity<>(updateService.update(update), HttpStatus.OK);
     }
 
-    @DeleteMapping(path ={"/api/v1/update/{id}"})
-    public Update delete(@PathVariable("id") int id) {
-        return updateService.delete(id);
+    @DeleteMapping(path = {"/api/v1/update/{id}"})
+    public ResponseEntity<Update> delete(@PathVariable("id") int id) {
+        return new ResponseEntity<>(updateService.delete(id), HttpStatus.OK);
     }
 
     @GetMapping("/api/v1/update")
-    public Iterable<Update> findAll(){
-        return updateService.findAll();
+    public ResponseEntity<Iterable<Update>> findAll() {
+        return new ResponseEntity<>(updateService.findAll(), HttpStatus.OK);
     }
 }

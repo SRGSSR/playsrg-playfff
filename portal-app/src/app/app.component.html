@@ -1,12 +1,15 @@
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <div class="container-fluid">
   <div class="col-md-offset-1">
     <h1>
-      Welcome to !
+      Pfff
     </h1>
   </div>
 
-  <a routerLink="/updates"> List Updates</a>
+  <a routerLink="/updates">List Updates</a>
   <a style="margin-left:10px" routerLink="/add_update">Add Update</a>
   <br/>
-  <!--<router-outlet></router-outlet>-->
+  <router-outlet></router-outlet>
 </div>

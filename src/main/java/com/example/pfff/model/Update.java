@@ -14,7 +14,7 @@ public class Update {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     public String packageName;
     public String version;

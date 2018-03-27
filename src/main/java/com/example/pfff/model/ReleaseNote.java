@@ -16,7 +16,7 @@ public class ReleaseNote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     public String packageName;
     public String version;
