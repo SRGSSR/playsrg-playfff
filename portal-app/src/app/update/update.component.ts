@@ -10,9 +10,8 @@ import { UpdateService } from './update.service';
   styles: []
 })
 export class UpdateComponent implements OnInit {
-
   updates: Update[];
-  private columns: string[];
+  columns: string[];
 
   constructor(private router: Router, private updateService: UpdateService) {
 
