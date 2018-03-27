@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -52,5 +49,31 @@ public class UpdateController {
     public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         Update update = updateService.getUpdate(packageName, version);
         return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
+    }
+
+
+    @PostMapping("/api/v1/update")
+    public ResponseEntity<Update> create(@RequestBody Update update) {
+        return new ResponseEntity<>(updateService.create(update), HttpStatus.OK);
+    }
+
+    @GetMapping(path = {"/api/v1/update/{id}"})
+    public ResponseEntity<Update> findOne(@PathVariable("id") int id) {
+        return new ResponseEntity<>(updateService.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/api/v1/update")
+    public ResponseEntity<Update> update(@RequestBody Update update) {
+        return new ResponseEntity<>(updateService.update(update), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = {"/api/v1/update/{id}"})
+    public ResponseEntity<Update> delete(@PathVariable("id") int id) {
+        return new ResponseEntity<>(updateService.delete(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/v1/update")
+    public ResponseEntity<Iterable<Update>> findAll() {
+        return new ResponseEntity<>(updateService.findAll(), HttpStatus.OK);
     }
 }

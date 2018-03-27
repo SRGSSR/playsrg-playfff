@@ -38,7 +38,7 @@ public class ReleaseNoteIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "user", password = "password", roles = "USER")
+    @WithMockUser(username = "update", password = "password", roles = "USER")
     public void changeReleaseNoteTwice() throws Exception {
         mvc.perform(get("/whatisnew/admin")).andExpect(status().isOk());
 
@@ -52,7 +52,7 @@ public class ReleaseNoteIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "user", password = "password", roles = "USER")
+    @WithMockUser(username = "update", password = "password", roles = "USER")
     public void largeText() throws Exception {
         mvc.perform(post("/whatisnew/admin").param("package", "package.A.B").param("version", "0.1.2").param("text", Utils.LARGE_TEXT).with(csrf())).andExpect(status().isOk()).andExpect(content().string("pushed"));
     }
