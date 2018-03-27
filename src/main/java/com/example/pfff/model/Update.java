@@ -1,7 +1,5 @@
 package com.example.pfff.model;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
 
 /**
@@ -10,8 +8,8 @@ import javax.persistence.*;
  * License information is available from the LICENSE file.
  */
 @Entity
-@Table(name = "releasenotes")
-public class ReleaseNote {
+@Table(name = "updates")
+public class Update {
     private static final long serialVersionUID = -3009157732242241606L;
 
     @Id
@@ -23,4 +21,5 @@ public class ReleaseNote {
 
     @Column(columnDefinition = "text")
     public String text;
+    public boolean mandatory;
 }

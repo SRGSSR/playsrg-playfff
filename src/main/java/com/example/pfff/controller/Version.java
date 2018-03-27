@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Version {
     public static final String VERSION = "Pfff...";
 
-    @RequestMapping("/version")
+    @RequestMapping("/api/v1/version")
     @ResponseBody
     String home() {
         return VERSION;

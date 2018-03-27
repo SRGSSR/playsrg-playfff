@@ -23,7 +23,7 @@ public class VersionHttpRequestTest {
 
     @Test
     public void versionShouldReturnDefaultMessage() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/version",
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/version",
                 String.class)).contains(Version.VERSION);
     }
 }
