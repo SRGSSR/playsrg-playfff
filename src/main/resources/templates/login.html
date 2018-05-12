@@ -2,19 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>Pfff - Login</title>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/css/font-awesome.min.css"></link>
 </head>
+
 <body>
-<div th:if="${param.error}">
+<div class="container">
+    <h2 class="text-center">Pfff - Login</h2>
+</div>
+<div class="alert alert-danger alert-dismissible" th:if="${param.error}">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     Invalid username and password.
 </div>
-<div th:if="${param.logout}">
+<div class="alert alert-success" th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<div class="container">
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="text">User Name :</label>
+            <input type="text" name="username" class="form-control" id="text"/>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" name="password" class="form-control" id="pwd"/>
+        </div>
+        <button type="submit" class="btn btn-default">Sign In</button>
+    </form>
+</div>
 </body>
 </html>
