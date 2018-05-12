@@ -1,23 +1,25 @@
 <div class="col-md-12">
   <h2 class="text-center">Update Details</h2>
 
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th *ngFor="let col of columns">
-        {{col}}
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let update of updates">
-      <td *ngFor="let col of columns">
-        {{update[col]}}
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="deleteUpdate(update)"> Delete Update</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let update of updates">
+        <td *ngFor="let col of columns">
+          {{update[col]}}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUpdate(update)"> Delete Update</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
