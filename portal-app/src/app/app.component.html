@@ -1,15 +1,15 @@
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-<div class="container-fluid">
-  <div class="col-md-offset-1">
-    <h1>
-      Pfff
-    </h1>
+<div class="container">
+  <div class="col-md-12">
+    <h1 class="text-center">Pfff - Admin</h1>
   </div>
 
-  <a routerLink="/updates">List Updates</a>
-  <a style="margin-left:10px" routerLink="/add_update">Add Update</a>
+  <div class="btn-group-justified">
+    <a routerLink="/updates" class="btn btn-primary">List Updates</a>
+    <a routerLink="/add_update" class="btn btn-success">Add Update</a>
+  </div>
   <br/>
   <router-outlet></router-outlet>
 </div>
