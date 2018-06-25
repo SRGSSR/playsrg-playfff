@@ -27,8 +27,8 @@ public class RecommendationController {
     ModelAndView recommendation(
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
-            @RequestParam("standAlone") Boolean standAlone) {
-        List<String> urns = service.getRecommendedUrns(purpose, urn, standAlone);
+            @RequestParam(value = "standalone", required = false) Boolean standalone) {
+        List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
         return new ModelAndView(new RedirectView("http://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
     }
 }

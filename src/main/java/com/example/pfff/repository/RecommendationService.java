@@ -17,7 +17,7 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
-    public List<String> getRecommendedUrns(String purpose, String urn, Boolean standAlone) {
+    public List<String> getRecommendedUrns(String purpose, String urn, Boolean standalone) {
         String url = "https://peach.ebu.io/api/v1/chrts/continuous_playback_mobile?urn=" + urn + "&pageSize=50";
 
         return restTemplate.exchange(url, HttpMethod.GET, null, RecommendationResult.class).getBody().getUrns();
