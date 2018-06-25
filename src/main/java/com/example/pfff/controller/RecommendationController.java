@@ -24,11 +24,16 @@ public class RecommendationController {
 
     @RequestMapping("/api/v1/recommendation/{purpose}/{urn}")
     @ResponseBody
-    ModelAndView recommendation(
+    Object recommendation(
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
-            @RequestParam(value = "standalone", required = false) Boolean standalone) {
+            @RequestParam(value = "standalone", required = false) Boolean standalone,
+            @RequestParam(value = "format", required = false) String format) {
         List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
-        return new ModelAndView(new RedirectView("http://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
+        if ("urn".equals(format)) {
+            return urns;
+        } else { //if ("media".equals(format)) {
+            return new ModelAndView(new RedirectView("http://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
+        }
     }
 }
