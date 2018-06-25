@@ -5,7 +5,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URL;
 import java.util.List;
 
 @Repository
@@ -18,8 +21,17 @@ public class RecommendationService {
     }
 
     public List<String> getRecommendedUrns(String purpose, String urn, Boolean standalone) {
-        String url = "https://peach.ebu.io/api/v1/chrts/continuous_playback_mobile?urn=" + urn + "&pageSize=50";
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http").host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
+        uriComponentsBuilder.queryParam("urn", urn);
+        uriComponentsBuilder.queryParam("purpose", purpose);
+        uriComponentsBuilder.queryParam("pageSize", 50);
+        if (standalone != null) {
+            uriComponentsBuilder.queryParam("standalone", standalone);
+        }
+        UriComponents url = uriComponentsBuilder.build();
 
-        return restTemplate.exchange(url, HttpMethod.GET, null, RecommendationResult.class).getBody().getUrns();
+        System.out.println(url.toUriString());
+
+        return restTemplate.exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody().getUrns();
     }
 }
