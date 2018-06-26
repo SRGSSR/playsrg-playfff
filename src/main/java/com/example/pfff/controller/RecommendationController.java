@@ -22,7 +22,7 @@ public class RecommendationController {
     @Autowired
     RecommendationService service;
 
-    @RequestMapping("/api/v1/recommendation/{purpose}/{urn}")
+    @RequestMapping("/api/v1/playlist/recommendation/{purpose}/{urn}")
     @ResponseBody
     Object recommendation(
             @PathVariable("purpose") String purpose,
@@ -30,6 +30,7 @@ public class RecommendationController {
             @RequestParam(value = "standalone", required = false) Boolean standalone,
             @RequestParam(value = "format", required = false) String format) {
         List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
+        urns.add(0, urn);
         if ("urn".equals(format)) {
             return urns;
         } else { //if ("media".equals(format)) {
