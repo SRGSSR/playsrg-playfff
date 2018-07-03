@@ -1,17 +1,15 @@
-package com.example.pfff.repository;
+package com.example.pfff.service;
 
 import com.example.pfff.model.peach.RecommendationResult;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URL;
 import java.util.List;
 
-@Repository
+@Service
 public class RecommendationService {
 
     private RestTemplate restTemplate;
@@ -25,9 +23,7 @@ public class RecommendationService {
         uriComponentsBuilder.queryParam("urn", urn);
         uriComponentsBuilder.queryParam("purpose", purpose);
         uriComponentsBuilder.queryParam("pageSize", 50);
-        if (standalone != null) {
-            uriComponentsBuilder.queryParam("standalone", standalone);
-        }
+        uriComponentsBuilder.queryParam("standalone", standalone);
         UriComponents url = uriComponentsBuilder.build();
 
         System.out.println(url.toUriString());
