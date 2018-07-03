@@ -27,8 +27,8 @@ public class RecommendationController {
     Object recommendation(
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
-            @RequestParam(value = "standalone", required = false) Boolean standalone,
-            @RequestParam(value = "format", required = false) String format) {
+            @RequestParam(value = "standalone", required = false, defaultValue = "false") Boolean standalone,
+            @RequestParam(value = "format", required = false, defaultValue = "media") String format) {
         List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
         urns.add(0, urn);
         if ("urn".equals(format)) {
