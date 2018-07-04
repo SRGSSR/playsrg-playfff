@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ public class RecommendationController {
     @RequestMapping("/api/v1/playlist/recommendation/{purpose}/{urn}")
     @ResponseBody
     Object recommendation(
+            HttpServletRequest request,
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
             @RequestParam(value = "standalone", required = false, defaultValue = "false") Boolean standalone,
@@ -34,7 +36,8 @@ public class RecommendationController {
         if ("urn".equals(format)) {
             return urns;
         } else { //if ("media".equals(format)) {
-            return new ModelAndView(new RedirectView("http://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
+            String scheme = request.getScheme();
+            return new ModelAndView(new RedirectView(scheme + "://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
         }
     }
 }
