@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -36,8 +37,12 @@ public class RecommendationController {
         if ("urn".equals(format)) {
             return urns;
         } else { //if ("media".equals(format)) {
-            String scheme = request.getScheme();
-            return new ModelAndView(new RedirectView(scheme + "://il.srgssr.ch/integrationlayer/2.0/mediaList/byUrns.json?urns=" + String.join(",", urns)));
+            UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
+            builder.scheme(request.getScheme());
+            builder.host("il.srgssr.ch");
+            builder.path("integrationlayer/2.0/mediaList/byUrns.json");
+            builder.queryParam("urns", String.join(",", urns));
+            return new ModelAndView(new RedirectView(builder.toUriString()));
         }
     }
 }
