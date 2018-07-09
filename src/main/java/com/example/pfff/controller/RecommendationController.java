@@ -29,7 +29,7 @@ public class RecommendationController {
             HttpServletRequest request,
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
-            @RequestParam(value = "standalone", required = false, defaultValue = "false") Boolean standalone,
+            @RequestParam(value = "standalone", required = false, defaultValue = "false") boolean standalone,
             @RequestParam(value = "format", required = false, defaultValue = "media") String format) {
         List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
         urns.add(0, urn);

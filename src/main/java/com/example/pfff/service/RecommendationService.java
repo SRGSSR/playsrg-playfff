@@ -18,7 +18,7 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
-    public List<String> getRecommendedUrns(String purpose, String urn, Boolean standalone) {
+    public List<String> getRecommendedUrns(String purpose, String urn, boolean standalone) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http").host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
         uriComponentsBuilder.queryParam("urn", urn);
         uriComponentsBuilder.queryParam("purpose", purpose);
