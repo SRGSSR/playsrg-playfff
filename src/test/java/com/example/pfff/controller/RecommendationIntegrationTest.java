@@ -38,9 +38,21 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
-    public void getRecommendation() throws Exception {
-        String purpose = "continuousplayback";
+    public void getRecommendationRTS() throws Exception {
         String mediaURN = "urn:rts:video:9691670";
+
+        getRecommendation(mediaURN);
+    }
+
+    @Test
+    public void getRecommendationSRF() throws Exception {
+        String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
+
+        getRecommendation(mediaURN);
+    }
+
+    public void getRecommendation(String mediaURN) throws Exception {
+        String purpose = "continuousplayback";
 
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isFound()).andExpect(content().string(""));
 
@@ -64,9 +76,21 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
-    public void getRecommendationURNFormat() throws Exception {
-        String purpose = "continuousplayback";
+    public void getRecommendationRTSURNFormat() throws Exception {
         String mediaURN = "urn:rts:video:9691670";
+
+        getRecommendationURNFormat(mediaURN);
+    }
+
+    @Test
+    public void getRecommendationSRFURNFormat() throws Exception {
+        String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
+
+        getRecommendationURNFormat(mediaURN);
+    }
+
+    private void getRecommendationURNFormat(String mediaURN) throws Exception {
+        String purpose = "continuousplayback";
         String format = "urn";
 
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
