@@ -87,7 +87,11 @@
 			<artifactId>font-awesome</artifactId>
 			<version>5.0.10</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
