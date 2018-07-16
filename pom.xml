@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>pfff</artifactId>
-	<version>2</version>
+	<version>3</version>
 	<packaging>jar</packaging>
 
 	<name>pfff</name>
@@ -87,7 +87,11 @@
 			<artifactId>font-awesome</artifactId>
 			<version>5.0.10</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

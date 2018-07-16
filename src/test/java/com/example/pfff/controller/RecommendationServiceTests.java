@@ -40,7 +40,7 @@ public class RecommendationServiceTests {
     @Test
     public void getRecommendedUrnsContinuousplaybackSRFTest() {
         String purpose = "continuousplayback";
-        String mediaURN = "urn:rts:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
+        String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
         boolean standalone = false;
         List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
@@ -50,7 +50,7 @@ public class RecommendationServiceTests {
     @Test
     public void getRecommendedUrnsContinuousplaybackStandaloneSRFTest() {
         String purpose = "continuousplayback";
-        String mediaURN = "urn:rts:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
+        String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
         boolean standalone = true;
         List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
