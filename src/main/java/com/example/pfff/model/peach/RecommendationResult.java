@@ -15,6 +15,8 @@ public class RecommendationResult {
     private static class Result {
         @JsonProperty("items")
         private Item[] items;
+        @JsonProperty("id")
+        private String id;
     }
 
     private static class Item {
@@ -40,5 +42,9 @@ public class RecommendationResult {
             }
         }
         return urns;
+    }
+
+    public String getRecommendationId() {
+        return result.id;
     }
 }
