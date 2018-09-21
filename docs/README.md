@@ -21,9 +21,12 @@ A wide list of parameters are available.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service. 
 
 ## API
- * `urn` : an unique identifier.
- * `package`: Android package name or iOS bundle identifier.
- * `version` : mobile application version.
+ * `urn` (string): an unique identifier.
+ * `recommendedList` (object): a recommended result list with proterties:
+ 	* `recommendationId` (string): the recommendation identifer from the service.
+ 	* `urns`(array): array of `urn`.
+ * `package` (string): Android package name or iOS bundle identifier.
+ * `version` (string): mobile application version.
 
 ### Public APIs
 
@@ -42,9 +45,13 @@ A wide list of parameters are available.
 
 #### Recommendation
 
+* `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
+	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
+	* `format` (optional, string): If set to `urn`, it returns a `recommendedList` object. Default is `media` and redirects to an IL media list response.
+
 * `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
-	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media`.
+	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media` and redirects to an IL media list response.
 
 ## Private APIs
 
