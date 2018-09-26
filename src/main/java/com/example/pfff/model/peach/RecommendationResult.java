@@ -45,6 +45,6 @@ public class RecommendationResult {
     }
 
     public String getRecommendationId() {
-        return result.id;
+        return result == null ? null : result.id;
     }
 }
