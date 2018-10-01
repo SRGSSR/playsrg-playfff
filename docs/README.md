@@ -47,7 +47,7 @@ A wide list of parameters are available.
 
 * `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
-	* `format` (optional, string): If set to `urn`, it returns a `recommendedList` object. Default is `media` and redirects to an IL media list response.
+	* Returns a `recommendedList` object.
 
 * `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
