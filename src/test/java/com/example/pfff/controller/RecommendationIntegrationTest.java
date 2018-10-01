@@ -101,17 +101,17 @@ public class RecommendationIntegrationTest {
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(jsonPath("$[0]").value(mediaURN));
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(jsonPath("$[0]").value(mediaURN));
 
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
 
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$.urns[0]").value(mediaURN));
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(jsonPath("$.urns[0]").value(mediaURN));
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(jsonPath("$.urns[0]").value(mediaURN));
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isOk()).andExpect(jsonPath("$.urns[0]").value(mediaURN));
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(jsonPath("$.urns[0]").value(mediaURN));
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true")).andExpect(jsonPath("$.urns[0]").value(mediaURN));
 
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("format", format)).andExpect(status().isOk()).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
-        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isOk()).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true")).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
 
     }
 }
