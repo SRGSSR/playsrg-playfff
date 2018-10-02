@@ -1,5 +1,6 @@
 package com.example.pfff.controller;
 
+import com.example.pfff.model.RecommendedList;
 import com.example.pfff.service.RecommendationService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,9 +23,10 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:video:9691670";
         boolean standalone = false;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 
     @Test
@@ -32,9 +34,10 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:video:9691670";
         boolean standalone = true;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 
     @Test
@@ -42,9 +45,10 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
         boolean standalone = false;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 
     @Test
@@ -52,9 +56,10 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
         boolean standalone = true;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 
     @Test
@@ -62,9 +67,10 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:swisstxt:video:rts:288208";
         boolean standalone = false;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 
     @Test
@@ -72,8 +78,9 @@ public class RecommendationServiceTests {
         String purpose = "continuousplayback";
         String mediaURN = "urn:swisstxt:video:rts:288208";
         boolean standalone = true;
-        List<String> urns = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNotNull(urns);
+        Assert.assertNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
     }
 }

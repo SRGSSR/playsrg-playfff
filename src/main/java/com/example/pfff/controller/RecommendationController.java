@@ -1,5 +1,6 @@
 package com.example.pfff.controller;
 
+import com.example.pfff.model.RecommendedList;
 import com.example.pfff.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -26,23 +26,38 @@ public class RecommendationController {
 
     @RequestMapping("/api/v1/playlist/recommendation/{purpose}/{urn}")
     @ResponseBody
-    Object recommendation(
+    Object recommendationV1(
             HttpServletRequest request,
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
             @RequestParam(value = "standalone", required = false, defaultValue = "false") boolean standalone,
             @RequestParam(value = "format", required = false, defaultValue = "media") String format) {
-        List<String> urns = service.getRecommendedUrns(purpose, urn, standalone);
-        urns.add(0, urn);
+        RecommendedList recommendedList = getRecommendationList(purpose, urn, standalone);
         if ("urn".equals(format)) {
-            return urns;
+            return recommendedList.getUrns();
         } else { //if ("media".equals(format)) {
             UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
             builder.scheme(request.getScheme());
             builder.host("il.srgssr.ch");
             builder.path("integrationlayer/2.0/mediaList/byUrns.json");
-            builder.queryParam("urns", String.join(",", urns));
+            builder.queryParam("urns", String.join(",", recommendedList.getUrns()));
             return new ModelAndView(new RedirectView(builder.toUriString()));
         }
+    }
+
+    @RequestMapping("/api/v2/playlist/recommendation/{purpose}/{urn}")
+    @ResponseBody
+    Object recommendationV2(
+            HttpServletRequest request,
+            @PathVariable("purpose") String purpose,
+            @PathVariable("urn") String urn,
+            @RequestParam(value = "standalone", required = false, defaultValue = "false") boolean standalone) {
+        return getRecommendationList(purpose, urn, standalone);
+    }
+
+    private RecommendedList getRecommendationList(@PathVariable("purpose") String purpose, @PathVariable("urn") String urn, @RequestParam(value = "standalone", required = false, defaultValue = "false") boolean standalone) {
+        RecommendedList recommendedList = service.getRecommendedUrns(purpose, urn, standalone);
+        recommendedList.addUrn(0, urn);
+        return recommendedList;
     }
 }
