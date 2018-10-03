@@ -26,6 +26,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
     }
 
@@ -37,6 +38,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
     }
 

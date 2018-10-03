@@ -32,7 +32,7 @@ public class RecommendationService {
             System.out.println(url.toUriString());
 
             RecommendationResult recommendationResult = restTemplate.exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
-            return new RecommendedList(recommendationResult.getRecommendationId(), recommendationResult.getUrns());
+            return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
         }
         else {
             return new RecommendedList();
