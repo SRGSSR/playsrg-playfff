@@ -3,6 +3,8 @@ package com.example.pfff.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,8 +18,15 @@ public class RecommendedList {
     private String recommendationId;
     private List<String> urns;
 
-    public RecommendedList(String recommendationId, List<String> urns) {
-        this.recommendationId = recommendationId;
+    public RecommendedList(String host, String recommendationId, List<String> urns) {
+        if (host != null && recommendationId != null) {
+            List<String> components = Arrays.asList(host.split("\\."));
+            Collections.reverse(components);
+            String domain = String.join(".", components.toArray(new String[0]));
+            this.recommendationId = domain + ":" + recommendationId;
+        } else {
+            this.recommendationId = recommendationId;
+        }
         this.urns = urns;
     }
 
