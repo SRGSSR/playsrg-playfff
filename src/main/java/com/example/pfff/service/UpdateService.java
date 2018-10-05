@@ -64,4 +64,8 @@ public class UpdateService {
     public Iterable<Update> findAll() {
         return repository.findAll();
     }
+
+    public Iterable<Update> findAllDesc() {
+        return repository.findAllByOrderByIdDesc();
+    }
 }
