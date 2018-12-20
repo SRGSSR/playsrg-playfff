@@ -15,4 +15,6 @@ public interface UpdateRepository extends CrudRepository<Update, Long> {
     List<Update> removeByPackageNameAndVersion(String packageName, String version);
 
     List<Update> findByPackageNameAndVersion(String packageName, String version);
+
+    List<Update> findAllByOrderByIdDesc();
 }

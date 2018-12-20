@@ -73,7 +73,7 @@ public class UpdateController {
     }
 
     @GetMapping("/api/v1/update")
-    public ResponseEntity<Iterable<Update>> findAll() {
-        return new ResponseEntity<>(updateService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Iterable<Update>> findAllDesc() {
+        return new ResponseEntity<>(updateService.findAllDesc(), HttpStatus.OK);
     }
 }
