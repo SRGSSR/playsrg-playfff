@@ -3,6 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<repositories>
+		<repository>
+			<id>SRF repository</id>
+			<url>http://maven.admin.srf.ch</url>
+		</repository>
+	</repositories>
+
 	<groupId>com.example</groupId>
 	<artifactId>pfff</artifactId>
 	<version>7</version>
@@ -17,13 +24,6 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
-	<repositories>
-		<repository>
-			<id>SRF repository</id>
-			<url>http://maven.admin.srf.ch</url>
-		</repository>
-	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
