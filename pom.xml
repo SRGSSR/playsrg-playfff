@@ -18,6 +18,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<repositories>
+		<repository>
+			<id>SRF repository</id>
+			<url>http://maven.admin.srf.ch</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -90,6 +97,17 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.srf.integrationlayer</groupId>
+			<artifactId>integrationlayer-domain-objects</artifactId>
+			<version>1.20.272</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>27.0.1-jre</version>
 		</dependency>
 	</dependencies>
 
