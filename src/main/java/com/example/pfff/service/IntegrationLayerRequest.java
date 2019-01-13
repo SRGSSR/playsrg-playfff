@@ -32,9 +32,12 @@ public class IntegrationLayerRequest {
         restTemplate = restTemplateBuilder.build();
     }
 
-    public EpisodeComposition getEpisodeCompositionLatestByShow(String showURN, ZonedDateTime maxPublishedDate, Environment environment) {
+    public EpisodeComposition getEpisodeCompositionLatestByShow(String showURN, ZonedDateTime maxPublishedDate, int pageSize, Environment environment) {
         String path = "/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/" + showURN + ".json";
-        String query = (maxPublishedDate != null) ? "maxPublishedDate=" + DateTimeFormatter.ofPattern("yyyy-MM-dd").format(maxPublishedDate) : null;
+        String query = "pageSize=" + pageSize;
+        if (maxPublishedDate != null) {
+            query += "&maxPublishedDate=" + DateTimeFormatter.ofPattern("yyyy-MM-dd").format(maxPublishedDate);
+        }
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, query, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);

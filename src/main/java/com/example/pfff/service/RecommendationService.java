@@ -54,7 +54,7 @@ public class RecommendationService {
                     return new RecommendedList();
                 }
 
-                EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(media.getShow().getUrn(), null, Environment.PROD);
+                EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(media.getShow().getUrn(), null, 50, Environment.PROD);
                 if (episodeComposition == null) {
                     new RecommendedList();
                 }
@@ -68,28 +68,38 @@ public class RecommendationService {
                 List<String> recommendationResult = null;
 
                 if (fullLengthUrns.contains(urn)) {
+                    // New urns first from newest to oldest, then old ones from newest to oldest.
                     isFullLengthUrns = true;
                     int index = fullLengthUrns.lastIndexOf(urn);
                     if (index < fullLengthUrns.size() - 1) {
-                        recommendationResult = fullLengthUrns.subList(index + 1, fullLengthUrns.size());
+                        recommendationResult = new ArrayList<>(fullLengthUrns.subList(index + 1, fullLengthUrns.size()));
+                        fullLengthUrns.removeAll(recommendationResult);
+                        fullLengthUrns.remove(urn);
+                        recommendationResult.addAll(Lists.reverse(fullLengthUrns));
                     }
                     else {
-                        recommendationResult = new ArrayList<>();
+                        // Newest to oldest.
+                        recommendationResult = Lists.reverse(fullLengthUrns);
                     }
                 }
                 else if (clipUrns.contains(urn)) {
+                    // New urns first from newest to oldest, then old ones from newest to oldest.
                     isFullLengthUrns = false;
                     int index = clipUrns.lastIndexOf(urn);
                     if (index < clipUrns.size() - 1) {
-                        recommendationResult = clipUrns.subList(index + 1, clipUrns.size());
+                        recommendationResult = new ArrayList<>(clipUrns.subList(index + 1, clipUrns.size()));
+                        clipUrns.removeAll(recommendationResult);
+                        clipUrns.remove(urn);
+                        recommendationResult.addAll(Lists.reverse(clipUrns));
                     }
                     else {
-                        recommendationResult = new ArrayList<>();
+                        // Newest to oldest.
+                        recommendationResult = Lists.reverse(clipUrns);
                     }
                 }
                 else {
                     isFullLengthUrns = media.getType() != CLIP;
-                    recommendationResult = isFullLengthUrns ? fullLengthUrns : clipUrns;
+                    recommendationResult = isFullLengthUrns ? Lists.reverse(fullLengthUrns) : Lists.reverse(clipUrns);
                 }
 
                 String host = "playfff.srgssr.ch";
