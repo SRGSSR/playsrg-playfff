@@ -5,8 +5,8 @@
 
 	<repositories>
 		<repository>
-			<id>SRF repository</id>
-			<url>http://maven.admin.srf.ch</url>
+			<id>Pfff repository</id>
+			<url>https://raw.github.com/SRGSSR/pfff/mvn-repo/</url>
 		</repository>
 	</repositories>
 
