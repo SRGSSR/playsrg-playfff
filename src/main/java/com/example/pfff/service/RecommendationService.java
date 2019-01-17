@@ -39,7 +39,7 @@ public class RecommendationService {
                 UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http").host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
                 uriComponentsBuilder.queryParam("urn", urn);
                 uriComponentsBuilder.queryParam("purpose", purpose);
-                uriComponentsBuilder.queryParam("pageSize", 50);
+                uriComponentsBuilder.queryParam("pageSize", 49);
                 uriComponentsBuilder.queryParam("standalone", standalone);
                 UriComponents url = uriComponentsBuilder.build();
 
@@ -105,8 +105,8 @@ public class RecommendationService {
                 String host = "playfff.srgssr.ch";
                 String recommendationId = "EpisodeComposition/LatestByShow/" + (isFullLengthUrns ? "FullLength" : "Clip");
 
-                if (recommendationResult.size() > 50) {
-                    recommendationResult = recommendationResult.subList(0, 51);
+                if (recommendationResult.size() > 49) {
+                    recommendationResult = recommendationResult.subList(0, 49);
                 }
 
                 return new RecommendedList(host, recommendationId, recommendationResult);
