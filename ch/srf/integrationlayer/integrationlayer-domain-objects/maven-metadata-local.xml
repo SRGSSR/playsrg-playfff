@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>ch.srf.integrationlayer</groupId>
+  <artifactId>integrationlayer-domain-objects</artifactId>
+  <versioning>
+    <versions>
+      <version>1.20.272</version>
+    </versions>
+    <lastUpdated>20180709200900</lastUpdated>
+  </versioning>
+</metadata>
