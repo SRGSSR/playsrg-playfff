@@ -54,7 +54,7 @@ public class RecommendationService {
                     return new RecommendedList();
                 }
 
-                EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(media.getShow().getUrn(), null, 50, Environment.PROD);
+                EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(media.getShow().getUrn(), null, 100, Environment.PROD);
                 if (episodeComposition == null) {
                     new RecommendedList();
                 }
@@ -67,39 +67,42 @@ public class RecommendationService {
                 Boolean isFullLengthUrns = false;
                 List<String> recommendationResult = null;
 
+                List<String> urns = null;
+                int index = -1;
+
                 if (fullLengthUrns.contains(urn)) {
-                    // New urns first from newest to oldest, then old ones from newest to oldest.
                     isFullLengthUrns = true;
-                    int index = fullLengthUrns.lastIndexOf(urn);
-                    if (index < fullLengthUrns.size() - 1) {
-                        recommendationResult = new ArrayList<>(fullLengthUrns.subList(index + 1, fullLengthUrns.size()));
-                        fullLengthUrns.removeAll(recommendationResult);
-                        fullLengthUrns.remove(urn);
-                        recommendationResult.addAll(Lists.reverse(fullLengthUrns));
-                    }
-                    else {
-                        // Newest to oldest.
-                        recommendationResult = Lists.reverse(fullLengthUrns);
-                    }
+                    index = fullLengthUrns.lastIndexOf(urn);
+                    urns = fullLengthUrns;
                 }
                 else if (clipUrns.contains(urn)) {
-                    // New urns first from newest to oldest, then old ones from newest to oldest.
                     isFullLengthUrns = false;
-                    int index = clipUrns.lastIndexOf(urn);
-                    if (index < clipUrns.size() - 1) {
-                        recommendationResult = new ArrayList<>(clipUrns.subList(index + 1, clipUrns.size()));
-                        clipUrns.removeAll(recommendationResult);
-                        clipUrns.remove(urn);
-                        recommendationResult.addAll(Lists.reverse(clipUrns));
-                    }
-                    else {
-                        // Newest to oldest.
-                        recommendationResult = Lists.reverse(clipUrns);
-                    }
+                    index = clipUrns.lastIndexOf(urn);
+                    urns = clipUrns;
                 }
                 else {
                     isFullLengthUrns = media.getType() != CLIP;
-                    recommendationResult = isFullLengthUrns ? Lists.reverse(fullLengthUrns) : Lists.reverse(clipUrns);
+                    urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
+                }
+
+                // First: newest urns from oldest to the last published. Then:
+                // - if next url (pageSize=100), old ones from newest to oldest to newer.
+                // - else, from the older one to newer.
+                if (index > -1 && index < urns.size() - 1) {
+                    recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
+                    urns.removeAll(recommendationResult);
+                    urns.remove(urn);
+                }
+                else {
+                    // Latest urn or not found urn
+                    recommendationResult = new ArrayList<>();
+                }
+
+                if (episodeComposition.getNext() != null) {
+                    recommendationResult.addAll(Lists.reverse(urns));
+                }
+                else {
+                    recommendationResult.addAll(urns);
                 }
 
                 String host = "playfff.srgssr.ch";
