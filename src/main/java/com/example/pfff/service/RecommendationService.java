@@ -48,7 +48,7 @@ public class RecommendationService {
                 RecommendationResult recommendationResult = restTemplate.exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
                 return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
             }
-            else {
+            else if (urn.contains(":audio:")) {
                 Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
                 if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
                     return new RecommendedList();
@@ -113,6 +113,9 @@ public class RecommendationService {
                 }
 
                 return new RecommendedList(host, recommendationId, recommendationResult);
+            }
+            else {
+                return new RecommendedList();
             }
         }
         else {
