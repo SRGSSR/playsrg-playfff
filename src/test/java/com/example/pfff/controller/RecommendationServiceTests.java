@@ -28,6 +28,8 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
     }
 
     @Test
@@ -40,6 +42,8 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
     }
 
     @Test
@@ -51,6 +55,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -62,6 +67,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -73,6 +79,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -84,5 +91,6 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 }
