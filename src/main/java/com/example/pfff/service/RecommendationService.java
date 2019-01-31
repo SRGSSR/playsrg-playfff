@@ -85,9 +85,9 @@ public class RecommendationService {
                     urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
                 }
 
-                // First: newest urns from oldest to the last published. Then:
-                // - if next url (pageSize=100), old ones from newest to oldest to newer.
-                // - else, from the older one to newer.
+                // First: newest medias in date ascending order. Then:
+                // - if `nextUrl` exists (show has more than 100 episodes), oldest medias in date descending order.
+                // - else (show has less than 100 episodes), oldest medias in date ascending order.
                 if (index > -1 && index < urns.size() - 1) {
                     recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
                     urns.removeAll(recommendationResult);
