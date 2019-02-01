@@ -37,8 +37,7 @@ public class RecommendationService {
         if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
                 return videoRecommendedList(purpose, urn, standalone);
-            }
-            else if (urn.contains(":audio:")) {
+            } else if (urn.contains(":audio:")) {
                 Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
                 if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
                     return new RecommendedList();
@@ -64,13 +63,11 @@ public class RecommendationService {
                     isFullLengthUrns = true;
                     index = fullLengthUrns.lastIndexOf(urn);
                     urns = fullLengthUrns;
-                }
-                else if (clipUrns.contains(urn)) {
+                } else if (clipUrns.contains(urn)) {
                     isFullLengthUrns = false;
                     index = clipUrns.lastIndexOf(urn);
                     urns = clipUrns;
-                }
-                else {
+                } else {
                     isFullLengthUrns = media.getType() != CLIP;
                     urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
                 }
@@ -82,16 +79,14 @@ public class RecommendationService {
                     recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
                     urns.removeAll(recommendationResult);
                     urns.remove(urn);
-                }
-                else {
+                } else {
                     // Latest urn or not found urn
                     recommendationResult = new ArrayList<>();
                 }
 
                 if (episodeComposition.getNext() != null) {
                     recommendationResult.addAll(Lists.reverse(urns));
-                }
-                else {
+                } else {
                     recommendationResult.addAll(urns);
                 }
 
@@ -103,12 +98,10 @@ public class RecommendationService {
                 }
 
                 return new RecommendedList(host, recommendationId, recommendationResult);
-            }
-            else {
+            } else {
                 return new RecommendedList();
             }
-        }
-        else {
+        } else {
             return new RecommendedList();
         }
     }
