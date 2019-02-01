@@ -88,11 +88,11 @@ public class RecommendationService {
         if (index > -1 && index < urns.size() - 1) {
             recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
             urns.removeAll(recommendationResult);
-            urns.remove(urn);
         } else {
             // Latest urn or not found urn
             recommendationResult = new ArrayList<>();
         }
+        urns.remove(urn);
 
         if (episodeComposition.getNext() != null) {
             recommendationResult.addAll(Lists.reverse(urns));
