@@ -36,17 +36,7 @@ public class RecommendationService {
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
         if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
-                UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http").host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
-                uriComponentsBuilder.queryParam("urn", urn);
-                uriComponentsBuilder.queryParam("purpose", purpose);
-                uriComponentsBuilder.queryParam("pageSize", 49);
-                uriComponentsBuilder.queryParam("standalone", standalone);
-                UriComponents url = uriComponentsBuilder.build();
-
-                System.out.println(url.toUriString());
-
-                RecommendationResult recommendationResult = restTemplate.exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
-                return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
+                return videoRecommendedList(purpose, urn, standalone);
             }
             else if (urn.contains(":audio:")) {
                 Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
@@ -121,5 +111,22 @@ public class RecommendationService {
         else {
             return new RecommendedList();
         }
+    }
+
+    private RecommendedList videoRecommendedList(String purpose, String urn, boolean standalone) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
+                .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
+        uriComponentsBuilder.queryParam("urn", urn);
+        uriComponentsBuilder.queryParam("purpose", purpose);
+        uriComponentsBuilder.queryParam("pageSize", 49);
+        uriComponentsBuilder.queryParam("standalone", standalone);
+        UriComponents url = uriComponentsBuilder.build();
+
+        System.out.println(url.toUriString());
+
+        RecommendationResult recommendationResult = restTemplate
+                .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
+        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(),
+                recommendationResult.getUrns());
     }
 }
