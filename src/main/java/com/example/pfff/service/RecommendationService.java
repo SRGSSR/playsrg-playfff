@@ -45,7 +45,7 @@ public class RecommendationService {
 
                 EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(media.getShow().getUrn(), null, 100, Environment.PROD);
                 if (episodeComposition == null) {
-                    new RecommendedList();
+                    return new RecommendedList();
                 }
 
                 List<EpisodeWithMedias> episodes = Lists.reverse(episodeComposition.getList());
