@@ -7,7 +7,7 @@ Playfff is the middleware to deliver recommendations for Play SRG mobile applica
 
 ## Compatibility
 
-Play Android and Play iOS (2.8.3-272 and more) applications currently use it. 
+Since July 2018, Play Android (2.0.207 and more) and Play iOS (2.8.3-272 and more) applications currently use it.
 
 ## Recommendation type
 
