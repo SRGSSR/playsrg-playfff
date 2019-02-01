@@ -5,6 +5,7 @@ import ch.srg.il.domain.v2_0.Media;
 import ch.srg.il.domain.v2_0.Show;
 import ch.srg.jaxb.SrgUnmarshaller;
 import com.example.pfff.model.Environment;
+import org.assertj.core.util.VisibleForTesting;
 import org.eclipse.persistence.oxm.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,5 +74,10 @@ public class IntegrationLayerRequest {
             logger.warn("http://{}{} : {}", environment.getBaseUrl(), path, e.getMessage());
             return null;
         }
+    }
+
+    @VisibleForTesting
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
     }
 }
