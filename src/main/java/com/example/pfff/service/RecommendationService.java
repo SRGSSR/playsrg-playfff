@@ -36,7 +36,7 @@ public class RecommendationService {
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
         if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
-                return videoRecommendedList(purpose, urn, standalone);
+                return rtsVideoRecommendedList(purpose, urn, standalone);
             } else if (urn.contains(":audio:")) {
                 Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
                 if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
@@ -106,7 +106,7 @@ public class RecommendationService {
         }
     }
 
-    private RecommendedList videoRecommendedList(String purpose, String urn, boolean standalone) {
+    private RecommendedList rtsVideoRecommendedList(String purpose, String urn, boolean standalone) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
                 .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
         uriComponentsBuilder.queryParam("urn", urn);
