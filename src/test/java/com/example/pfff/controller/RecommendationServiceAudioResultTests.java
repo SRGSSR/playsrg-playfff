@@ -4,6 +4,7 @@ import com.example.pfff.helper.BaseResourceString;
 import com.example.pfff.model.RecommendedList;
 import com.example.pfff.service.IntegrationLayerRequest;
 import com.example.pfff.service.RecommendationService;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -42,10 +44,20 @@ public class RecommendationServiceAudioResultTests {
     protected ApplicationContext applicationContext;
 
     private MockRestServiceServer mockServer;
+    private  RestTemplate mockRestTemplate = new RestTemplate();
+
+    private  RestTemplate savedRestTemplate;
 
     @Before
     public void init() {
-        mockServer = MockRestServiceServer.createServer(integrationLayerRequest.getRestTemplate());
+        savedRestTemplate = integrationLayerRequest.getRestTemplate();
+        integrationLayerRequest.setRestTemplate(mockRestTemplate);
+        mockServer = MockRestServiceServer.createServer(mockRestTemplate);
+    }
+
+    @After
+    public void finish() {
+        integrationLayerRequest.setRestTemplate(savedRestTemplate);
     }
 
     @Test
@@ -224,5 +236,7 @@ public class RecommendationServiceAudioResultTests {
         Assert.assertNotNull(recommendedList2);
         Assert.assertEquals(recommendedList2.getRecommendationId(), expectedRecommendationId);
         Assert.assertEquals(recommendedList2.getUrns(), expectedUrns);
+
+        mockServer.verify();
     }
 }
