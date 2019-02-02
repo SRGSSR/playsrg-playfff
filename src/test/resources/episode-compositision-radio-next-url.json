@@ -67,7 +67,7 @@
          "presentation" : "DEFAULT"
       }, {
          "id" : "43",
-         "mediaType" : "AUDIO",
+         "mediaType" : "VIDEO",
          "vendor" : "RTS",
          "urn" : "urn:rts:audio:43",
          "title" : "Le zoo jordanien qui recueille les animaux blessés de guerre",
@@ -131,7 +131,7 @@
          "presentation" : "DEFAULT"
       }, {
          "id" : "33",
-         "mediaType" : "AUDIO",
+         "mediaType" : "VIDEO",
          "vendor" : "RTS",
          "urn" : "urn:rts:audio:33",
          "title" : "Reportage, le long de la frontière entre les Etats-Unis et le Mexique (2/2)",
@@ -195,7 +195,7 @@
          "presentation" : "DEFAULT"
       }, {
          "id" : "23",
-         "mediaType" : "AUDIO",
+         "mediaType" : "VIDEO",
          "vendor" : "RTS",
          "urn" : "urn:rts:audio:23",
          "title" : "Reportage le long de la frontière entre les Etats-Unis et le Mexique (1/2)",
@@ -260,7 +260,7 @@
          "presentation" : "DEFAULT"
       }, {
          "id" : "13",
-         "mediaType" : "AUDIO",
+         "mediaType" : "VIDEO",
          "vendor" : "RTS",
          "urn" : "urn:rts:audio:13",
          "title" : "L'épouse de Meng Hongweim, ex-patron chinois d'Interpol, craint pour sa sécurité",
