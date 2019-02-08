@@ -19,7 +19,7 @@ public class RecommendationServiceTests {
     private RecommendationService recommendationService;
 
     @Test
-    public void getRecommendedUrnsContinuousplaybackRTSTest() {
+    public void getRecommendedUrnsContinuousplaybackRTSVideoTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:video:9691670";
         boolean standalone = false;
@@ -28,10 +28,12 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
     }
 
     @Test
-    public void getRecommendedUrnsContinuousplaybackStandaloneRTSTest() {
+    public void getRecommendedUrnsContinuousplaybackStandaloneRTSVideoTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:video:9691670";
         boolean standalone = true;
@@ -40,6 +42,64 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+    }
+
+    @Test
+    public void getRecommendedUrnsContinuousplaybackRTSAudioFullTest() {
+        String purpose = "continuousplayback";
+        String mediaURN = "urn:rts:audio:9866170";
+        boolean standalone = false;
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertEquals(recommendedList.getRecommendationId(),"ch.srgssr.playfff:EpisodeComposition/LatestByShow/FullLength");
+        Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+    }
+
+    @Test
+    public void getRecommendedUrnsContinuousplaybackStandaloneRTSAudioFullTest() {
+        String purpose = "continuousplayback";
+        String mediaURN = "urn:rts:audio:9866170";
+        boolean standalone = true;
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/FullLength");
+        Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+    }
+
+    @Test
+    public void getRecommendedUrnsContinuousplaybackRTSAudioClipTest() {
+        String purpose = "continuousplayback";
+        String mediaURN = "urn:rts:audio:10163388";
+        boolean standalone = false;
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/Clip");
+        Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+    }
+
+    @Test
+    public void getRecommendedUrnsContinuousplaybackStandaloneRTSAudioClipTest() {
+        String purpose = "continuousplayback";
+        String mediaURN = "urn:rts:audio:10163388";
+        boolean standalone = true;
+        RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
+
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/Clip");
+        Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
     }
 
     @Test
@@ -51,6 +111,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -62,6 +123,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -73,6 +135,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     @Test
@@ -84,5 +147,6 @@ public class RecommendationServiceTests {
 
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 }

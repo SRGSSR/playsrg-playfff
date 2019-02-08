@@ -38,8 +38,22 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
-    public void getRecommendationRTS() throws Exception {
+    public void getRecommendationRTSVideo() throws Exception {
         String mediaURN = "urn:rts:video:9691670";
+
+        getRecommendation(mediaURN);
+    }
+
+    @Test
+    public void getRecommendationRTSVAudioFull() throws Exception {
+        String mediaURN = "urn:rts:audio:9866170";
+
+        getRecommendation(mediaURN);
+    }
+
+    @Test
+    public void getRecommendationRTSVAudioClip() throws Exception {
+        String mediaURN = "urn:rts:audio:10163388";
 
         getRecommendation(mediaURN);
     }
@@ -76,8 +90,22 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
-    public void getRecommendationRTSURNFormat() throws Exception {
+    public void getRecommendationRTSVideoURNFormat() throws Exception {
         String mediaURN = "urn:rts:video:9691670";
+
+        getRecommendationURNFormat(mediaURN, true);
+    }
+
+    @Test
+    public void getRecommendationRTSAudioFullURNFormat() throws Exception {
+        String mediaURN = "urn:rts:audio:9866170";
+
+        getRecommendationURNFormat(mediaURN, true);
+    }
+
+    @Test
+    public void getRecommendationRTSAudioClipURNFormat() throws Exception {
+        String mediaURN = "urn:rts:audio:10163388";
 
         getRecommendationURNFormat(mediaURN, true);
     }

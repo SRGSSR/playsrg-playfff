@@ -1,0 +1,29 @@
+{
+   "id" : "11",
+   "mediaType" : "AUDIO",
+   "vendor" : "RTS",
+   "urn" : "urn:rts:audio:11",
+   "title" : "Le soutien à Theresa May dans sa circonscription d'origine, Maidenhead",
+   "imageUrl" : "https://www.rts.ch/2018/12/17/17/51/10077119.image/16x9",
+   "imageTitle" : "La Première ministre britannique, Theresa May, ne veut pas d'un nouveau référendum sur le Brexit. [epa/Will Oliver - Keystone]",
+   "type" : "CLIP",
+   "date" : "2019-01-29T08:12:00+01:00",
+   "duration" : 251000,
+   "playableAbroad" : true,
+   "episode" : {
+      "id" : "10157671",
+      "title" : "Tout un monde du 29.01.2019",
+      "imageUrl" : "https://www.rts.ch/2018/12/17/17/51/10077119.image/16x9"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTS",
+      "transmission" : "RADIO",
+      "urn" : "urn:rts:show:radio:1234",
+      "title" : "Tout un monde",
+      "imageUrl" : "http://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+      "podcastSubscriptionUrl" : "https://www.rts.ch/la-1ere/programmes/tout-un-monde/podcast/",
+      "primaryChannelId" : "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da"
+   },
+   "presentation" : "DEFAULT"
+}
