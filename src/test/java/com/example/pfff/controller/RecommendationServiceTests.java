@@ -50,11 +50,13 @@ public class RecommendationServiceTests {
     public void getRecommendedUrnsContinuousplaybackRTSAudioFullTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:audio:9866170";
+        String showURN = "urn:rts:show:radio:9835809";
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertEquals(recommendedList.getRecommendationId(),"ch.srgssr.playfff:EpisodeComposition/LatestByShow/FullLength");
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
         Assert.assertNotNull(recommendedList.getUrns());
         Assert.assertTrue(recommendedList.getUrns().size() > 0);
         Assert.assertTrue(recommendedList.getUrns().size() < 50);
@@ -64,11 +66,13 @@ public class RecommendationServiceTests {
     public void getRecommendedUrnsContinuousplaybackStandaloneRTSAudioFullTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:audio:9866170";
+        String showURN = "urn:rts:show:radio:9835809";
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/FullLength");
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
         Assert.assertNotNull(recommendedList.getUrns());
         Assert.assertTrue(recommendedList.getUrns().size() > 0);
         Assert.assertTrue(recommendedList.getUrns().size() < 50);
@@ -78,11 +82,13 @@ public class RecommendationServiceTests {
     public void getRecommendedUrnsContinuousplaybackRTSAudioClipTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:audio:10163388";
+        String showURN = "urn:rts:show:radio:8849020";
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/Clip");
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
         Assert.assertNotNull(recommendedList.getUrns());
         Assert.assertTrue(recommendedList.getUrns().size() > 0);
         Assert.assertTrue(recommendedList.getUrns().size() < 50);
@@ -92,11 +98,13 @@ public class RecommendationServiceTests {
     public void getRecommendedUrnsContinuousplaybackStandaloneRTSAudioClipTest() {
         String purpose = "continuousplayback";
         String mediaURN = "urn:rts:audio:10163388";
+        String showURN = "urn:rts:show:radio:8849020";
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/Clip");
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
         Assert.assertNotNull(recommendedList.getUrns());
         Assert.assertTrue(recommendedList.getUrns().size() > 0);
         Assert.assertTrue(recommendedList.getUrns().size() < 50);

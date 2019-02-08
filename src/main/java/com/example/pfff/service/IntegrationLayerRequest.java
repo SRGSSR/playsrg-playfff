@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 public class IntegrationLayerRequest {
     private static final Logger logger = LoggerFactory.getLogger(IntegrationLayerRequest.class);
     public static final int PORT = 80;
-    
+
     private RestTemplate restTemplate;
 
     public IntegrationLayerRequest(RestTemplateBuilder restTemplateBuilder) {

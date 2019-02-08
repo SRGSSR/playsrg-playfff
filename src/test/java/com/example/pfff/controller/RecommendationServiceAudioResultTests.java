@@ -225,16 +225,22 @@ public class RecommendationServiceAudioResultTests {
                         .body(episodeCompositionJson)
                 );
 
-        String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/FullLength" : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/Clip";
+        String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/FullLength/" + urn : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/Clip/" + urn;
 
         RecommendedList recommendedList1 = recommendationService.getRecommendedUrns("continuousplayback", urn, false);
         Assert.assertNotNull(recommendedList1);
-        Assert.assertEquals(recommendedList1.getRecommendationId(), expectedRecommendationId);
+        String recommendationId1 = recommendedList1.getRecommendationId();
+        // Remove timestamp part
+        recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
+        Assert.assertEquals(recommendationId1, expectedRecommendationId);
         Assert.assertEquals(recommendedList1.getUrns(), expectedUrns);
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
-        Assert.assertEquals(recommendedList2.getRecommendationId(), expectedRecommendationId);
+        String recommendationId2 = recommendedList2.getRecommendationId();
+        // Remove timestamp part
+        recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
+        Assert.assertEquals(recommendationId2, expectedRecommendationId);
         Assert.assertEquals(recommendedList2.getUrns(), expectedUrns);
 
         mockServer.verify();
