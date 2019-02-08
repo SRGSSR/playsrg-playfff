@@ -64,8 +64,6 @@ Private APIs need a user authentification.
 * `/api/v1/update` (PUT) : update an update object from the body object.
 * `/api/v1/update/{id}` (GET) : get update object with `id` identifier.
 * `/api/v1/update/{id}` (DELETE) : remove update object with `id` identifier.
-
-* 
  
 ## License
 
