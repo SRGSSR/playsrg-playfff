@@ -1,0 +1,30 @@
+{
+   "id" : "01",
+   "mediaType" : "AUDIO",
+   "vendor" : "RTS",
+   "urn" : "urn:rts:audio:01",
+   "title" : "Huawei soupçonné d'espionnage: interview de Kavé Salamatian, spécialiste de sécurité de réseaux",
+   "description" : "Le fabricant chinois Huawei n’est plus le bienvenu dans plusieurs pays pour y construire des infrastructures de télécommunications. La Suisse commence aussi à se poser des questions. Interview de Kavé Salamatian, spécialiste de sécurité de réseaux, professeur invité à l’Académie des sciences de Chine.",
+   "imageUrl" : "https://www.rts.ch/2019/01/28/09/30/10172835.image/16x9",
+   "imageTitle" : "Huawei. [Huawei est une entreprise privée et elle est partenaire de Swisscom et Sunrise notamment. - AP Chinatopix/Keystone]",
+   "type" : "CLIP",
+   "date" : "2019-01-28T08:12:00+01:00",
+   "duration" : 404000,
+   "playableAbroad" : true,
+   "episode" : {
+      "id" : "10154154",
+      "title" : "Tout un monde du 28.01.2019",
+      "imageUrl" : "https://www.rts.ch/2019/01/28/09/30/10172835.image/16x9"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTS",
+      "transmission" : "RADIO",
+      "urn" : "urn:rts:show:radio:1234",
+      "title" : "Tout un monde",
+      "imageUrl" : "http://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+      "podcastSubscriptionUrl" : "https://www.rts.ch/la-1ere/programmes/tout-un-monde/podcast/",
+      "primaryChannelId" : "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da"
+   },
+   "presentation" : "DEFAULT"
+}

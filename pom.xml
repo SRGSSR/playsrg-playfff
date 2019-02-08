@@ -3,6 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<repositories>
+		<repository>
+			<id>Pfff repository</id>
+			<url>https://raw.github.com/SRGSSR/pfff/mvn-repo/</url>
+		</repository>
+	</repositories>
+
 	<groupId>com.example</groupId>
 	<artifactId>pfff</artifactId>
 	<version>7</version>
@@ -90,6 +97,17 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.srf.integrationlayer</groupId>
+			<artifactId>integrationlayer-domain-objects</artifactId>
+			<version>1.20.272</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>27.0.1-jre</version>
 		</dependency>
 	</dependencies>
 

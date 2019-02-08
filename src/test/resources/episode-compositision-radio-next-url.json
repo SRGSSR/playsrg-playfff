@@ -1,0 +1,277 @@
+{
+   "next" : "http://il.srgssr.ch/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234.json?next=4c121f9f3e50606447bc5b3de0c652c4fbb3e0c95caec9af03fd3e0abf17c91b519d2c96c7f615aa",
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTS",
+      "transmission" : "RADIO",
+      "urn" : "urn:rts:show:radio:1234",
+      "title" : "Tout un monde",
+      "lead" : "Chaque matin, Eric Guevara-Frey et Patrick Chaboudez mettent la priorité sur l’actualité internationale avec les meilleurs experts, des acteurs internationaux, des reportages et des débats.",
+      "description" : "L'actualité internationale ne s'arrête jamais. Les tensions sont à nouveau vives, autour de la planète et la Suisse est souvent associée dans divers rôles aux principales thématiques internationales.  Pour comprendre ces enjeux, Eric Guevara-Frey et Patrick Chaboudez mettent la priorité sur l'actualité du monde avec les meilleurs experts, des acteurs internationaux, des reportages et des débats.",
+      "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+      "imageTitle" : "Tout un monde [RTS]",
+      "homepageUrl" : "https://details.rts.ch/la-1ere/programmes/tout-un-monde/",
+      "podcastSubscriptionUrl" : "https://www.rts.ch/la-1ere/programmes/tout-un-monde/podcast/",
+      "primaryChannelId" : "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da"
+   },
+   "episodeList" : [ {
+      "id" : "10166113",
+      "title" : "Tout un monde du 01.02.2019",
+      "publishedDate" : "2019-02-01T08:12:26+01:00",
+      "imageUrl" : "https://www.rts.ch/2017/03/03/18/06/8433653.image/16x9",
+      "imageTitle" : "Tout un monde [RTS]",
+      "fullLengthUrn" : "urn:rts:audio:4",
+      "socialCount" : {
+         "key" : "srgView",
+         "value" : 301
+      },
+      "mediaList" : [ {
+         "id" : "4",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:4",
+         "title" : "Tout un monde - Présenté par Eric Guevara-Frey",
+         "description" : "Au sommaire: le mouvement antivaccin parmi les dix grandes menaces selon l’OMS; le point sur l’impact des sanctions en Iran; et le zoo jordanien qui recueille les animaux blessés de guerre.",
+         "imageUrl" : "https://www.rts.ch/2017/03/03/18/06/8433653.image/16x9",
+         "imageTitle" : "Tout un monde [RTS]",
+         "type" : "EPISODE",
+         "date" : "2019-02-01T08:12:26+01:00",
+         "duration" : 1424000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "41",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:41",
+         "title" : "Le mouvement antivaccin parmi les dix grandes menaces selon l’OMS",
+         "imageUrl" : "https://www.rts.ch/2017/12/21/12/15/9193424.image/16x9",
+         "imageTitle" : "La fronde anti-vaccination a-t-elle toujours existé? [Ursule - Fotolia]",
+         "type" : "CLIP",
+         "date" : "2019-02-01T08:12:00+01:00",
+         "duration" : 560000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "42",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:42",
+         "title" : "Le point sur l’impact des sanctions en Iran",
+         "imageUrl" : "https://www.rts.ch/2018/11/14/16/56/9995060.image/16x9",
+         "imageTitle" : "Une raffinerie de pétrole à Téhéran. (Image d'illustration). [Vahid Salemi - AP]",
+         "type" : "CLIP",
+         "date" : "2019-02-01T08:17:00+01:00",
+         "duration" : 448000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "43",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:43",
+         "title" : "Le zoo jordanien qui recueille les animaux blessés de guerre",
+         "imageUrl" : "https://www.rts.ch/2019/02/01/16/46/10186367.image/16x9",
+         "imageTitle" : "Un tigre pensionnaire du centre Al Ma'wa en Jordanie, qui recueille des animaux rescapés de zones de guerre. [Rami Elakhras - DR]",
+         "type" : "CLIP",
+         "date" : "2019-02-01T08:22:00+01:00",
+         "duration" : 265000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      } ]
+   }, {
+      "id" : "10163334",
+      "title" : "Tout un monde du 31.01.2019",
+      "publishedDate" : "2019-01-31T08:12:09+01:00",
+      "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+      "imageTitle" : "Tout un monde [RTS]",
+      "fullLengthUrn" : "urn:rts:audio:3",
+      "socialCount" : {
+         "key" : "srgView",
+         "value" : 305
+      },
+      "mediaList" : [ {
+         "id" : "3",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:3",
+         "title" : "Tout un monde - Présenté par Eric Guevara-Frey",
+         "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+         "imageTitle" : "Tout un monde [RTS]",
+         "type" : "EPISODE",
+         "date" : "2019-01-31T08:12:09+01:00",
+         "duration" : 1412000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "31",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:31",
+         "title" : "Les réformes à Shenzhen à l’origine du développement économique de toute la Chine",
+         "imageUrl" : "https://www.rts.ch/2018/12/07/16/10/10052379.image/16x9",
+         "imageTitle" : "En 2019, tous les taxis de Shenzeng rouleront à l'énergie électrique. [RTS]",
+         "type" : "CLIP",
+         "date" : "2019-01-31T08:12:00+01:00",
+         "duration" : 315000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "32",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:32",
+         "title" : "L’OCDE annonce une campagne pour repenser la fiscalité face à la digitalisation des entreprises",
+         "imageUrl" : "https://www.rts.ch/2019/01/31/09/39/9822376.image/16x9",
+         "imageTitle" : "Le siège de l'OCDE, à Paris. [Charles Platiau - Reuters]",
+         "type" : "CLIP",
+         "date" : "2019-01-31T08:17:00+01:00",
+         "duration" : 628000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "33",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:33",
+         "title" : "Reportage, le long de la frontière entre les Etats-Unis et le Mexique (2/2)",
+         "imageUrl" : "https://www.rts.ch/2019/01/31/10/57/10182319.image/16x9",
+         "imageTitle" : "Les migrants bloqués du côté mexicain de la frontière dans une situation précaire. [Eric Gay - Keystone/AP]",
+         "type" : "CLIP",
+         "date" : "2019-01-31T08:22:00+01:00",
+         "duration" : 376000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      } ]
+   }, {
+      "id" : "10160597",
+      "title" : "Tout un monde du 30.01.2019",
+      "publishedDate" : "2019-01-30T08:11:53+01:00",
+      "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+      "imageTitle" : "Tout un monde [RTS]",
+      "fullLengthUrn" : "urn:rts:audio:2",
+      "socialCount" : {
+         "key" : "srgView",
+         "value" : 448
+      },
+      "mediaList" : [ {
+         "id" : "2",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:2",
+         "title" : "Tout un monde - Présenté par Eric Guevara-Frey",
+         "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+         "imageTitle" : "Tout un monde [RTS]",
+         "type" : "EPISODE",
+         "date" : "2019-01-30T08:11:53+01:00",
+         "duration" : 1448000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "21",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:21",
+         "title" : "La presse britannique mitigée sur la renégociation annoncée du Brexit",
+         "imageUrl" : "https://www.rts.ch/2019/01/30/06/59/10179357.image/16x9",
+         "imageTitle" : "Theresa May a obtenu un mandat pour renégocier l'accord sur le Brexit. [Mark Duffy - UK Parliament via AP/Keystone]",
+         "type" : "CLIP",
+         "date" : "2019-01-30T08:12:00+01:00",
+         "duration" : 171000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "22",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:22",
+         "title" : "La crainte de la démocratie en Algérie",
+         "imageUrl" : "https://www.rts.ch/2019/01/29/18/23/8429776.image/16x9",
+         "imageTitle" : "L'actuel président algérien Abdelaziz Bouteflika. [Sidali Djarboub - AP/Keystone]",
+         "type" : "CLIP",
+         "date" : "2019-01-30T08:17:00+01:00",
+         "duration" : 366000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "23",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:23",
+         "title" : "Reportage le long de la frontière entre les Etats-Unis et le Mexique (1/2)",
+         "imageUrl" : "https://www.rts.ch/2019/01/28/09/02/10172783.image/16x9",
+         "imageTitle" : "La frontière à Brownsville (Texas). [Raphaël Grand - RTS]",
+         "type" : "CLIP",
+         "date" : "2019-01-30T08:22:00+01:00",
+         "duration" : 435000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }
+      ]
+   }, {
+      "id" : "10157671",
+      "title" : "Tout un monde du 29.01.2019",
+      "publishedDate" : "2019-01-29T08:12:41+01:00",
+      "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+      "imageTitle" : "Tout un monde [RTS]",
+      "fullLengthUrn" : "urn:rts:audio:1",
+      "socialCount" : {
+         "key" : "srgView",
+         "value" : 366
+      },
+      "mediaList" : [ {
+         "id" : "1",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:1",
+         "title" : "Tout un monde - Présenté par Eric Guevara-Frey",
+         "imageUrl" : "https://www.rts.ch/2016/06/10/08/29/7677657.image/16x9",
+         "imageTitle" : "Tout un monde [RTS]",
+         "type" : "EPISODE",
+         "date" : "2019-01-29T08:12:41+01:00",
+         "duration" : 1380000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "11",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:11",
+         "title" : "Le soutien à Theresa May dans sa circonscription d'origine, Maidenhead",
+         "imageUrl" : "https://www.rts.ch/2018/12/17/17/51/10077119.image/16x9",
+         "imageTitle" : "La Première ministre britannique, Theresa May, ne veut pas d'un nouveau référendum sur le Brexit. [epa/Will Oliver - Keystone]",
+         "type" : "CLIP",
+         "date" : "2019-01-29T08:12:00+01:00",
+         "duration" : 251000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "12",
+         "mediaType" : "AUDIO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:12",
+         "title" : "Richard Quest, journaliste de CNN, tire le bilan du Forum économique de Davos",
+         "imageUrl" : "https://www.rts.ch/2019/01/28/18/49/9289640.image/16x9",
+         "imageTitle" : "Retour sur le WEF 2019 avec le journaliste économique américain Richard Quest. [CNN International]",
+         "type" : "CLIP",
+         "date" : "2019-01-29T08:17:00+01:00",
+         "duration" : 612000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      }, {
+         "id" : "13",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTS",
+         "urn" : "urn:rts:audio:13",
+         "title" : "L'épouse de Meng Hongweim, ex-patron chinois d'Interpol, craint pour sa sécurité",
+         "imageUrl" : "https://www.rts.ch/2019/01/18/16/28/10150042.image/16x9",
+         "imageTitle" : "Grace Meng (de dos) lors d'un entretien avec des journalistes en octobre 2018. [Jeff Pachoud - AFP]",
+         "type" : "CLIP",
+         "date" : "2019-01-29T08:22:00+01:00",
+         "duration" : 445000,
+         "playableAbroad" : true,
+         "presentation" : "DEFAULT"
+      } ]
+   }
+  ]
+}

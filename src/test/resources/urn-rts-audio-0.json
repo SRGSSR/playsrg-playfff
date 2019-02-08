@@ -1,0 +1,29 @@
+{
+   "id" : "0",
+   "mediaType" : "AUDIO",
+   "vendor" : "RTS",
+   "urn" : "urn:rts:audio:0",
+   "title" : "Tout un monde - Présenté par Eric Guevara-Frey",
+   "imageUrl" : "https://www.rts.ch/2017/03/03/18/06/8433653.image/16x9",
+   "imageTitle" : "Tout un monde [RTS]",
+   "type" : "EPISODE",
+   "date" : "2019-01-28T08:11:19+01:00",
+   "duration" : 1490000,
+   "playableAbroad" : true,
+   "episode" : {
+      "id" : "10154154",
+      "title" : "Tout un monde du 28.01.2019",
+      "imageUrl" : "https://www.rts.ch/2017/03/03/18/06/8433653.image/16x9"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTS",
+      "transmission" : "RADIO",
+      "urn" : "urn:rts:show:radio:1234",
+      "title" : "Tout un monde",
+      "imageUrl" : "http://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+      "podcastSubscriptionUrl" : "https://www.rts.ch/la-1ere/programmes/tout-un-monde/podcast/",
+      "primaryChannelId" : "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da"
+   },
+   "presentation" : "DEFAULT"
+}

@@ -27,7 +27,7 @@ public class RecommendedList {
         } else {
             this.recommendationId = recommendationId;
         }
-        this.urns = urns;
+        this.urns = (urns != null) ? urns : new ArrayList<String>();
     }
 
     public RecommendedList() {
