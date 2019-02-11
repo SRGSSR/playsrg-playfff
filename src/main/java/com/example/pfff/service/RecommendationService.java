@@ -8,8 +8,6 @@ import com.example.pfff.model.Environment;
 import com.example.pfff.model.peach.PersonalRecommendationResult;
 import com.example.pfff.model.RecommendedList;
 import com.example.pfff.model.peach.RecommendationResult;
-import com.google.common.collect.Lists;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -18,6 +16,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,6 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
-    @NonNull
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
         if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
@@ -50,7 +48,6 @@ public class RecommendationService {
         }
     }
 
-    @NonNull
     private RecommendedList rtsAudioRecommendedList(String urn) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
@@ -64,7 +61,8 @@ public class RecommendationService {
             return new RecommendedList();
         }
 
-        List<EpisodeWithMedias> episodes = Lists.reverse(episodeComposition.getList());
+        List<EpisodeWithMedias> episodes = new ArrayList<>(episodeComposition.getList());
+        Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
         List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == MediaType.AUDIO)).map(Media::getUrn).collect(Collectors.toList());
         clipUrns.removeAll(fullLengthUrns);
@@ -101,7 +99,8 @@ public class RecommendationService {
         urns.remove(urn);
 
         if (episodeComposition.getNext() != null) {
-            recommendationResult.addAll(Lists.reverse(urns));
+            Collections.reverse(urns);
+            recommendationResult.addAll(urns);
         } else {
             recommendationResult.addAll(urns);
         }
@@ -116,7 +115,6 @@ public class RecommendationService {
         return new RecommendedList(host, recommendationId, recommendationResult);
     }
 
-    @NonNull
     private RecommendedList rtsVideoRecommendedList(String purpose, String urn, boolean standalone) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
                 .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
@@ -134,7 +132,6 @@ public class RecommendationService {
                 recommendationResult.getUrns());
     }
 
-    @NonNull
     public RecommendedList getPersonalRecommendation(String type, String userId) {
         switch (type) {
             case "rtsPeachHome":
@@ -145,7 +142,6 @@ public class RecommendationService {
 
     }
 
-    @NonNull
     private RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
                 .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
