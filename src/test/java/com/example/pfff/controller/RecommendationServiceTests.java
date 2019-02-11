@@ -9,12 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecommendationServiceTests {
@@ -173,12 +167,6 @@ public class RecommendationServiceTests {
     private void assertValidList(RecommendedList recommendedList) {
         Assert.assertTrue(recommendedList.getUrns().size() > 0);
         Assert.assertTrue(recommendedList.getUrns().size() < 50);
-    }
-
-    private void assertEmptyList(RecommendedList recommendedList) {
-        Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertEquals(recommendedList.getUrns().size(), 0);
     }
 
     private void assertInvalidList(RecommendedList recommendedList) {
