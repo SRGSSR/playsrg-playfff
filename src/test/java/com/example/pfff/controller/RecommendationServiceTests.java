@@ -11,6 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecommendationServiceTests {
@@ -27,9 +31,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -41,9 +43,7 @@ public class RecommendationServiceTests {
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -57,9 +57,7 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
         Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -73,9 +71,7 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
         Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -89,9 +85,7 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
         Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -105,9 +99,7 @@ public class RecommendationServiceTests {
         Assert.assertNotNull(recommendedList.getRecommendationId());
         Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
         Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
-        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -117,9 +109,7 @@ public class RecommendationServiceTests {
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNull(recommendedList.getRecommendationId());
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertEquals(recommendedList.getUrns().size(), 0);
+        assertInvalidList(recommendedList);
     }
 
     @Test
@@ -129,9 +119,7 @@ public class RecommendationServiceTests {
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNull(recommendedList.getRecommendationId());
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertEquals(recommendedList.getUrns().size(), 0);
+        assertInvalidList(recommendedList);
     }
 
     @Test
@@ -141,9 +129,7 @@ public class RecommendationServiceTests {
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        Assert.assertNull(recommendedList.getRecommendationId());
-        Assert.assertNotNull(recommendedList.getUrns());
-        Assert.assertEquals(recommendedList.getUrns().size(), 0);
+        assertInvalidList(recommendedList);
     }
 
     @Test
@@ -153,6 +139,49 @@ public class RecommendationServiceTests {
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
+        assertInvalidList(recommendedList);
+    }
+
+    @Test
+    public void playHomeTestInvalidType() {
+        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("invalid type", "unknown");
+
+        assertInvalidList(recommendedList);
+    }
+
+    @Test
+    public void playHomeTestInvalidUser() {
+        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "invalid user");
+
+        assertValidList(recommendedList);
+    }
+
+    @Test
+    public void playHomeTestUserUnknown() {
+        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "unknown");
+
+        assertValidList(recommendedList);
+    }
+
+    @Test
+    public void playHomeTestUser9() {
+        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "9");
+
+        assertValidList(recommendedList);
+    }
+
+    private void assertValidList(RecommendedList recommendedList) {
+        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertTrue(recommendedList.getUrns().size() < 50);
+    }
+
+    private void assertEmptyList(RecommendedList recommendedList) {
+        Assert.assertNotNull(recommendedList.getRecommendationId());
+        Assert.assertNotNull(recommendedList.getUrns());
+        Assert.assertEquals(recommendedList.getUrns().size(), 0);
+    }
+
+    private void assertInvalidList(RecommendedList recommendedList) {
         Assert.assertNull(recommendedList.getRecommendationId());
         Assert.assertNotNull(recommendedList.getUrns());
         Assert.assertEquals(recommendedList.getUrns().size(), 0);

@@ -5,9 +5,11 @@ import ch.srg.il.domain.v2_0.EpisodeWithMedias;
 import ch.srg.il.domain.v2_0.Media;
 import ch.srg.il.domain.v2_0.MediaType;
 import com.example.pfff.model.Environment;
+import com.example.pfff.model.peach.PersonalRecommendationResult;
 import com.example.pfff.model.RecommendedList;
 import com.example.pfff.model.peach.RecommendationResult;
 import com.google.common.collect.Lists;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,7 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
+    @NonNull
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
         if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
@@ -47,6 +50,7 @@ public class RecommendationService {
         }
     }
 
+    @NonNull
     private RecommendedList rtsAudioRecommendedList(String urn) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
@@ -112,6 +116,7 @@ public class RecommendationService {
         return new RecommendedList(host, recommendationId, recommendationResult);
     }
 
+    @NonNull
     private RecommendedList rtsVideoRecommendedList(String purpose, String urn, boolean standalone) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
                 .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
@@ -127,5 +132,31 @@ public class RecommendationService {
                 .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
         return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(),
                 recommendationResult.getUrns());
+    }
+
+    @NonNull
+    public RecommendedList getPersonalRecommendation(String type, String userId) {
+        switch (type) {
+            case "rtsPeachHome":
+                return rtsPlayHomePersonalRecommendation(userId);
+            default:
+                return new RecommendedList();
+        }
+
+    }
+
+    @NonNull
+    private RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
+                .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
+        uriComponentsBuilder.queryParam("user_id", userId);
+        UriComponents url = uriComponentsBuilder.build();
+
+        System.out.println(url.toUriString());
+
+        PersonalRecommendationResult result = restTemplate
+                .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
+
+        return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
     }
 }
