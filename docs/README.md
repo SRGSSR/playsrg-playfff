@@ -24,7 +24,8 @@ A wide list of parameters are available.
  * `urn` (string): an unique identifier.
  * `recommendedList` (object): a recommended result list with proterties:
  	* `recommendationId` (string): the recommendation identifer from the service.
- 	* `urns`(array): array of `urn`.
+ 	* `urns` (array): array of `urn`.
+ 	* `title` (string, optional): title of the playlist.
  * `package` (string): Android package name or iOS bundle identifier.
  * `version` (string): mobile application version.
 
@@ -43,15 +44,21 @@ A wide list of parameters are available.
 * `/api/v1/whatisnew/text?package={package}&version={version}` : get WhatIsNewResult object.
 * `/api/v1/whatisnew/html?package={package}&version={version}` : get What's new html format.
 
-#### Recommendation
+#### Recommendation for a media
 
 * `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* Returns a `recommendedList` object.
 
-* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
+* *Deprecated* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media` and redirects to an IL media list response.
+
+#### Personnal recommendation for a user
+
+* `/api/v2/playlist/recommendation/personalRecommendation` : get media list object.
+	* `user` (optional, string): `UserId` to use for a personal recommendation.
+	* Returns a `recommendedList` object.
 
 ## Private APIs
 

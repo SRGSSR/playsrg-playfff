@@ -4,10 +4,7 @@ import com.example.pfff.model.RecommendedList;
 import com.example.pfff.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,6 +21,7 @@ public class RecommendationController {
     @Autowired
     RecommendationService service;
 
+    @Deprecated
     @RequestMapping("/api/v1/playlist/recommendation/{purpose}/{urn}")
     @ResponseBody
     Object recommendationV1(
@@ -47,7 +45,7 @@ public class RecommendationController {
 
     @RequestMapping("/api/v2/playlist/recommendation/{purpose}/{urn}")
     @ResponseBody
-    Object recommendationV2(
+    RecommendedList recommendationV2(
             HttpServletRequest request,
             @PathVariable("purpose") String purpose,
             @PathVariable("urn") String urn,
@@ -60,4 +58,13 @@ public class RecommendationController {
         recommendedList.addUrn(0, urn);
         return recommendedList;
     }
+
+    @RequestMapping("/api/v2/playlist/personalRecommendation")
+    @ResponseBody
+    RecommendedList personalRecommendation(
+            HttpServletRequest request,
+            @RequestParam(value = "user", required = false, defaultValue = "unknown") String userId) {
+        return service.rtsPlayHomePersonalRecommendation(userId);
+    }
+
 }

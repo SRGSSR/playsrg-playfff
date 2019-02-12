@@ -5,9 +5,9 @@ import ch.srg.il.domain.v2_0.EpisodeWithMedias;
 import ch.srg.il.domain.v2_0.Media;
 import ch.srg.il.domain.v2_0.MediaType;
 import com.example.pfff.model.Environment;
+import com.example.pfff.model.peach.PersonalRecommendationResult;
 import com.example.pfff.model.RecommendedList;
 import com.example.pfff.model.peach.RecommendationResult;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,7 +61,8 @@ public class RecommendationService {
             return new RecommendedList();
         }
 
-        List<EpisodeWithMedias> episodes = Lists.reverse(episodeComposition.getList());
+        List<EpisodeWithMedias> episodes = new ArrayList<>(episodeComposition.getList());
+        Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
         List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == MediaType.AUDIO)).map(Media::getUrn).collect(Collectors.toList());
         clipUrns.removeAll(fullLengthUrns);
@@ -97,7 +99,8 @@ public class RecommendationService {
         urns.remove(urn);
 
         if (episodeComposition.getNext() != null) {
-            recommendationResult.addAll(Lists.reverse(urns));
+            Collections.reverse(urns);
+            recommendationResult.addAll(urns);
         } else {
             recommendationResult.addAll(urns);
         }
@@ -127,5 +130,19 @@ public class RecommendationService {
                 .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
         return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(),
                 recommendationResult.getUrns());
+    }
+
+    public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
+                .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
+        uriComponentsBuilder.queryParam("user_id", userId);
+        UriComponents url = uriComponentsBuilder.build();
+
+        System.out.println(url.toUriString());
+
+        PersonalRecommendationResult result = restTemplate
+                .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
+
+        return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
     }
 }
