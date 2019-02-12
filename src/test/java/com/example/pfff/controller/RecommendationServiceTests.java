@@ -137,29 +137,22 @@ public class RecommendationServiceTests {
     }
 
     @Test
-    public void playHomeTestInvalidType() {
-        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("invalid type", "unknown");
-
-        assertInvalidList(recommendedList);
-    }
-
-    @Test
     public void playHomeTestInvalidUser() {
-        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "invalid user");
+        RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("invalid user");
 
         assertValidList(recommendedList);
     }
 
     @Test
     public void playHomeTestUserUnknown() {
-        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "unknown");
+        RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("unknown");
 
         assertValidList(recommendedList);
     }
 
     @Test
     public void playHomeTestUser9() {
-        RecommendedList recommendedList = recommendationService.getPersonalRecommendation("rtsPeachHome", "9");
+        RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("9");
 
         assertValidList(recommendedList);
     }

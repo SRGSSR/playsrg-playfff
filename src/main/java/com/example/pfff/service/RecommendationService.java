@@ -132,17 +132,7 @@ public class RecommendationService {
                 recommendationResult.getUrns());
     }
 
-    public RecommendedList getPersonalRecommendation(String type, String userId) {
-        switch (type) {
-            case "rtsPeachHome":
-                return rtsPlayHomePersonalRecommendation(userId);
-            default:
-                return new RecommendedList();
-        }
-
-    }
-
-    private RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
+    public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
                 .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
         uriComponentsBuilder.queryParam("user_id", userId);

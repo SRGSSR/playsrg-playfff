@@ -59,12 +59,12 @@ public class RecommendationController {
         return recommendedList;
     }
 
-
-    @RequestMapping("/api/v2/playlist/personalRecommendation/{userId}")
+    @RequestMapping("/api/v2/playlist/personalRecommendation")
     @ResponseBody
     RecommendedList personalRecommendation(
-            HttpServletRequest request, @PathVariable("userId") String userId) {
-        return service.getPersonalRecommendation("rtsPeachHome", userId);
+            HttpServletRequest request,
+            @RequestParam(value = "user", required = false, defaultValue = "unknown") String userId) {
+        return service.rtsPlayHomePersonalRecommendation(userId);
     }
 
 }
