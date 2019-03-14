@@ -17,6 +17,12 @@ public class RecommendedList {
 
     private String recommendationId;
     private List<String> urns;
+    private String title;
+
+    public RecommendedList(String title, String host, String recommendationId, List<String> urns) {
+        this(host, recommendationId, urns);
+        this.title = title;
+    }
 
     public RecommendedList(String host, String recommendationId, List<String> urns) {
         if (host != null && recommendationId != null) {
@@ -40,6 +46,10 @@ public class RecommendedList {
 
     public List<String> getUrns() {
         return urns;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void addUrn(int index, String urn) {
