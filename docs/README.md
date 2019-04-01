@@ -57,7 +57,7 @@ A wide list of parameters are available.
 #### Personnal recommendation for a user
 
 * `/api/v2/playlist/personalRecommendation` : get media list object.
-	* `user` (optional, string): `UserId` to use for a personal recommendation.
+	* `userId` (optional, string): `UserId` to use for a personal recommendation.
 	* Returns a `recommendedList` object.
 
 ## Private APIs

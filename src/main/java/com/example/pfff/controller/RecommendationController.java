@@ -63,7 +63,7 @@ public class RecommendationController {
     @ResponseBody
     RecommendedList personalRecommendation(
             HttpServletRequest request,
-            @RequestParam(value = "user", required = false, defaultValue = "unknown") String userId) {
+            @RequestParam(value = "userId", required = false, defaultValue = "unknown") String userId) {
         return service.rtsPlayHomePersonalRecommendation(userId);
     }
 
