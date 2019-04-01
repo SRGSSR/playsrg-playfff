@@ -1,6 +1,8 @@
 package com.example.pfff.controller;
 
+import com.example.pfff.model.RecommendedList;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -141,5 +145,27 @@ public class RecommendationIntegrationTest {
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true")).andExpect(isAvailable ? jsonPath("$.recommendationId").isNotEmpty() : jsonPath("$.recommendationId").doesNotExist());
 
+    }
+
+    @Test
+    public void getRTSPersonalRecommendation() throws Exception {
+        AtomicReference<RecommendedList> anonymousRecommendedListReference = new AtomicReference<>();
+        mvc.perform(get("/api/v2/playlist/personalRecommendation")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap()).andExpect(jsonPath("$.recommendationId").isNotEmpty()).andExpect(jsonPath("$.recommendationId").isNotEmpty()).andDo(mvcResult -> {
+            String json = mvcResult.getResponse().getContentAsString();
+            RecommendedList anonymousRecommendedList = (RecommendedList) convertJSONStringToObject(json, RecommendedList.class);
+            anonymousRecommendedListReference.set(anonymousRecommendedList);
+        });;
+        mvc.perform(get("/api/v2/playlist/personalRecommendation").param("userId", "203656")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap()).andExpect(jsonPath("$.recommendationId").isNotEmpty()).andExpect(jsonPath("$.title").isNotEmpty()).andDo(mvcResult -> {
+            String json = mvcResult.getResponse().getContentAsString();
+            RecommendedList userRecommendedList = (RecommendedList) convertJSONStringToObject(json, RecommendedList.class);
+
+            Assert.assertNotEquals(anonymousRecommendedListReference.get().getRecommendationId(), userRecommendedList.getRecommendationId());
+            Assert.assertNotEquals(anonymousRecommendedListReference.get().getTitle(), userRecommendedList.getTitle());
+        });
+    }
+
+    public static <T>  Object convertJSONStringToObject(String json, Class<T> objectClass) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, objectClass);
     }
 }

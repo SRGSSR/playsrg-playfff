@@ -12,7 +12,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>pfff</artifactId>
-    <version>9</version>
+    <version>10</version>
     <packaging>jar</packaging>
 
     <name>pfff</name>
