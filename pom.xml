@@ -10,7 +10,7 @@
         </repository>
     </repositories>
 
-    <groupId>com.example</groupId>
+    <groupId>ch.srgssr.playfff</groupId>
     <artifactId>pfff</artifactId>
     <version>11</version>
     <packaging>jar</packaging>
