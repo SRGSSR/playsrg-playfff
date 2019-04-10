@@ -11,7 +11,7 @@
     </repositories>
 
     <groupId>ch.srgssr.playfff</groupId>
-    <artifactId>pfff</artifactId>
+    <artifactId>playfff</artifactId>
     <version>11</version>
     <packaging>jar</packaging>
 
