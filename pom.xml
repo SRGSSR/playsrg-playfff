@@ -10,9 +10,9 @@
         </repository>
     </repositories>
 
-    <groupId>com.example</groupId>
-    <artifactId>pfff</artifactId>
-    <version>10</version>
+    <groupId>ch.srgssr</groupId>
+    <artifactId>playfff</artifactId>
+    <version>11</version>
     <packaging>jar</packaging>
 
     <name>pfff</name>
