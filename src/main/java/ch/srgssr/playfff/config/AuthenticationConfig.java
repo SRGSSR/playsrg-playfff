@@ -32,7 +32,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
             @Value("${PFFF_USER:}") String user,
             @Value("${PFFF_PASSWORD:}") String password) {
 
-        this.user = user;;
+        this.user = user;
         this.password = password;
     }
 
