@@ -3,6 +3,7 @@ package ch.srgssr.playfff.repository;
 import ch.srgssr.playfff.model.ParsingReport;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +12,9 @@ import java.util.List;
  * License information is available from the LICENSE file.
  */
 public interface ParsingReportRepository extends CrudRepository<ParsingReport, Long> {
-    List<ParsingReport> findByClientIdAndJsVersionAndUrl(String clientId, String jsVersion, String url);
+    ParsingReport findFirstByClientIdAndJsVersionAndUrl(String clientId, String jsVersion, String url);
 
-    List<ParsingReport> findAllByOrderByIdDesc();
+    List<ParsingReport> findAllByOrderByClientTimeDesc();
+
+    List<ParsingReport> findAllByClientTimeLessThan(Date date);
 }

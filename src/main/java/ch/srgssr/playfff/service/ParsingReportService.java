@@ -5,6 +5,7 @@ import ch.srgssr.playfff.model.Update;
 import ch.srgssr.playfff.repository.ParsingReportRepository;
 import ch.srgssr.playfff.repository.UpdateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -20,6 +21,14 @@ public class ParsingReportService {
     @Autowired
     private ParsingReportRepository repository;
 
+    private int maxParsingReports;
+
+    public ParsingReportService(
+            @Value("${MAX_PARSING_REPORTS:2500}") String maxParsingReportsString) {
+
+        this.maxParsingReports = Integer.valueOf(maxParsingReportsString);
+    }
+
     @Transactional
     public ParsingReport save(ParsingReport parsingReport) {
         ParsingReport currentParsingReport = getParsingReport(parsingReport.clientId, parsingReport.jsVersion, parsingReport.url);
@@ -33,13 +42,18 @@ public class ParsingReportService {
         }
     }
 
-    private ParsingReport getParsingReport(String clientId, String jsVersion, String url) {
-        List<ParsingReport> parsingReports = repository.findByClientIdAndJsVersionAndUrl(clientId, jsVersion, url);
-
-        if (parsingReports.isEmpty()) {
-            return null;
-        } else {
-            return parsingReports.get(0);
+    @Transactional
+    public synchronized void purgeOlderReports() {
+        // Keep only latest reports
+        if (repository.count() > maxParsingReports) {
+            List<ParsingReport> allReports = repository.findAllByOrderByClientTimeDesc();
+            ParsingReport report = allReports.get(maxParsingReports - 1);
+            List<ParsingReport> olderReports = repository.findAllByClientTimeLessThan(report.clientTime);
+            repository.delete(olderReports);
         }
+    }
+
+    private ParsingReport getParsingReport(String clientId, String jsVersion, String url) {
+        return repository.findFirstByClientIdAndJsVersionAndUrl(clientId, jsVersion, url);
     }
 }
