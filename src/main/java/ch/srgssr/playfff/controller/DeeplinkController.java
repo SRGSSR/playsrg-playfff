@@ -1,13 +1,18 @@
 package ch.srgssr.playfff.controller;
 
 import ch.srgssr.playfff.model.DeeplinkContent;
+import ch.srgssr.playfff.model.ParsingReport;
+import ch.srgssr.playfff.model.Update;
 import ch.srgssr.playfff.service.DeeplinkService;
+import ch.srgssr.playfff.service.ParsingReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -15,13 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * License information is available from the LICENSE file.
  */
 @Controller
-@RequestMapping(value = "/deeplink")
+@CrossOrigin(origins = "*")
 public class DeeplinkController {
 
     @Autowired
     private DeeplinkService service;
 
-    @RequestMapping(value="/v1/parse_play_url.js")
+    @Autowired
+    private ParsingReportService parsingReportService;
+
+    @RequestMapping(value="/api/v1/deeplink/parse_play_url.js")
     @ResponseBody
     public ResponseEntity<String> parsePlayUrlJavascript() {
 
@@ -34,6 +42,19 @@ public class DeeplinkController {
                     .body(deeplinkContent.getContent());
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/api/v1/deeplink/report")
+    public ResponseEntity<ParsingReport> create(@RequestBody ParsingReport parsingReport, WebRequest webRequest) {
+
+        if (parsingReport == null
+                || parsingReport.environment == null
+                || parsingReport.clientTime == null || parsingReport.clientId == null || parsingReport.clientVersion == null
+                || parsingReport.jsVersion == null || parsingReport.jsBuild == null || parsingReport.url == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            return new ResponseEntity<>(parsingReportService.create(parsingReport), HttpStatus.CREATED);
         }
     }
 }
