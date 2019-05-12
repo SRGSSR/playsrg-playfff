@@ -23,13 +23,11 @@ public class ParsingReport {
     @JsonFormat(shape = JsonFormat.Shape.STRING, locale = "en_US_POSIX", pattern = "yyyy-MM-dd'T'HH:mm:ssXXX", timezone = "Europe/Zurich")
     public Date clientTime;
     public String clientId;
-    public String clientVersion;
-
-    public String environment;
 
     public String jsVersion;
-    public String jsBuild;
 
     @Column(length = 512)
     public String url;
+
+    public int count;
 }

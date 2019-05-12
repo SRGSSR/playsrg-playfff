@@ -1,7 +1,6 @@
 package ch.srgssr.playfff.repository;
 
 import ch.srgssr.playfff.model.ParsingReport;
-import ch.srgssr.playfff.model.Update;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,5 +11,7 @@ import java.util.List;
  * License information is available from the LICENSE file.
  */
 public interface ParsingReportRepository extends CrudRepository<ParsingReport, Long> {
+    List<ParsingReport> findByClientIdAndJsVersionAndUrl(String clientId, String jsVersion, String url);
+
     List<ParsingReport> findAllByOrderByIdDesc();
 }

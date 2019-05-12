@@ -21,7 +21,25 @@ public class ParsingReportService {
     private ParsingReportRepository repository;
 
     @Transactional
-    public ParsingReport create(ParsingReport parsingReport) {
-        return repository.save(parsingReport);
+    public ParsingReport save(ParsingReport parsingReport) {
+        ParsingReport currentParsingReport = getParsingReport(parsingReport.clientId, parsingReport.jsVersion, parsingReport.url);
+        if (currentParsingReport != null) {
+            currentParsingReport.count += 1;
+            currentParsingReport.clientTime = parsingReport.clientTime;
+            return repository.save(currentParsingReport);
+        } else {
+            parsingReport.count = 1;
+            return repository.save(parsingReport);
+        }
+    }
+
+    private ParsingReport getParsingReport(String clientId, String jsVersion, String url) {
+        List<ParsingReport> parsingReports = repository.findByClientIdAndJsVersionAndUrl(clientId, jsVersion, url);
+
+        if (parsingReports.isEmpty()) {
+            return null;
+        } else {
+            return parsingReports.get(0);
+        }
     }
 }

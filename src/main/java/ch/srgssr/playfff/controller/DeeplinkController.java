@@ -49,12 +49,11 @@ public class DeeplinkController {
     public ResponseEntity<ParsingReport> create(@RequestBody ParsingReport parsingReport, WebRequest webRequest) {
 
         if (parsingReport == null
-                || parsingReport.environment == null
-                || parsingReport.clientTime == null || parsingReport.clientId == null || parsingReport.clientVersion == null
-                || parsingReport.jsVersion == null || parsingReport.jsBuild == null || parsingReport.url == null) {
+                || parsingReport.clientTime == null || parsingReport.clientId == null
+                || parsingReport.jsVersion == null || parsingReport.url == null) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         } else {
-            return new ResponseEntity<>(parsingReportService.create(parsingReport), HttpStatus.CREATED);
+            return new ResponseEntity<>(parsingReportService.save(parsingReport), HttpStatus.CREATED);
         }
     }
 }
