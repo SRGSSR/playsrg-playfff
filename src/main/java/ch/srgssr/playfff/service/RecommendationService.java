@@ -39,7 +39,16 @@ public class RecommendationService {
             if (urn.contains(":video:")) {
                 return rtsVideoRecommendedList(purpose, urn, standalone);
             } else if (urn.contains(":audio:")) {
-                return rtsAudioRecommendedList(urn);
+                return pfffRecommendedList(urn, MediaType.AUDIO);
+            } else {
+                return new RecommendedList();
+            }
+        }
+        else if (urn.contains(":rsi:") || urn.contains(":rtr:") || urn.contains(":swi:")) {
+            if (urn.contains(":video:")) {
+                return pfffRecommendedList(urn, MediaType.VIDEO);
+            } else if (urn.contains(":audio:")) {
+                return pfffRecommendedList(urn, MediaType.AUDIO);
             } else {
                 return new RecommendedList();
             }
@@ -48,7 +57,7 @@ public class RecommendationService {
         }
     }
 
-    private RecommendedList rtsAudioRecommendedList(String urn) {
+    private RecommendedList pfffRecommendedList(String urn, MediaType mediaType) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
             return new RecommendedList();
@@ -64,7 +73,7 @@ public class RecommendationService {
         List<EpisodeWithMedias> episodes = new ArrayList<>(episodeComposition.getList());
         Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
-        List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == MediaType.AUDIO)).map(Media::getUrn).collect(Collectors.toList());
+        List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == mediaType)).map(Media::getUrn).collect(Collectors.toList());
         clipUrns.removeAll(fullLengthUrns);
 
         Boolean isFullLengthUrns = false;
