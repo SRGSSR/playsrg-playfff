@@ -121,6 +121,20 @@ public class RecommendationIntegrationTest {
         getRecommendationURNFormat(mediaURN, false);
     }
 
+    @Test
+    public void getRecommendationSwisstxtSRFURNFormat() throws Exception {
+        String mediaURN = "urn:swisstxt:video:srf:794403";
+
+        getRecommendationURNFormat(mediaURN, false);
+    }
+
+    @Test
+    public void getRecommendationSwisstxtRTSURNFormat() throws Exception {
+        String mediaURN = "urn:swisstxt:video:rts:794404";
+
+        getRecommendationURNFormat(mediaURN, false);
+    }
+
     private void getRecommendationURNFormat(String mediaURN, boolean isAvailable) throws Exception {
         String purpose = "continuousplayback";
         String format = "urn";

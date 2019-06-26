@@ -35,7 +35,10 @@ public class RecommendationService {
     }
 
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
-        if (urn.contains(":rts:")) {
+        if (urn.contains(":swisstxt:")) {
+            return new RecommendedList();
+        }
+        else if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
                 return rtsVideoRecommendedList(purpose, urn, standalone);
             } else if (urn.contains(":audio:")) {
