@@ -115,10 +115,17 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
-    public void getRecommendationSRFURNFormat() throws Exception {
+    public void getRecommendationSRFVideoURNFormat() throws Exception {
         String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
 
-        getRecommendationURNFormat(mediaURN, false);
+        getRecommendationURNFormat(mediaURN, true);
+    }
+
+    @Test
+    public void getRecommendationSRFAudioURNFormat() throws Exception {
+        String mediaURN = "urn:srf:audio:e4a1378c-db5f-4f96-a15b-ac32043c4440";
+
+        getRecommendationURNFormat(mediaURN, true);
     }
 
     @Test

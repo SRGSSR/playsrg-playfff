@@ -1,9 +1,6 @@
 package ch.srgssr.playfff.service;
 
-import ch.srg.il.domain.v2_0.EpisodeComposition;
-import ch.srg.il.domain.v2_0.EpisodeWithMedias;
-import ch.srg.il.domain.v2_0.Media;
-import ch.srg.il.domain.v2_0.MediaType;
+import ch.srg.il.domain.v2_0.*;
 import ch.srgssr.playfff.model.Environment;
 import ch.srgssr.playfff.model.RecommendedList;
 import ch.srgssr.playfff.model.peach.PersonalRecommendationResult;
@@ -37,6 +34,15 @@ public class RecommendationService {
     public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
         if (urn.contains(":swisstxt:")) {
             return new RecommendedList();
+        }
+        else if (urn.contains(":srf:")) {
+            if (urn.contains(":video:")) {
+                return srfVideoRecommendedList(purpose, urn, standalone);
+            } else if (urn.contains(":audio:")) {
+                return pfffRecommendedList(urn, MediaType.AUDIO);
+            } else {
+                return new RecommendedList();
+            }
         }
         else if (urn.contains(":rts:")) {
             if (urn.contains(":video:")) {
@@ -140,8 +146,7 @@ public class RecommendationService {
 
         RecommendationResult recommendationResult = restTemplate
                 .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
-        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(),
-                recommendationResult.getUrns());
+        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
     }
 
     public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
@@ -156,5 +161,20 @@ public class RecommendationService {
                 .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
 
         return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
+    }
+
+    private RecommendedList srfVideoRecommendedList(String purpose, String urn, boolean standalone) {
+        long timestamp = System.currentTimeMillis();
+
+        Environment environment = Environment.PROD;
+
+        MediaList mediaList = integrationLayerRequest.getRecommendedMediaList(urn, environment);
+        if (mediaList == null || mediaList.getList().size() == 0) {
+            return new RecommendedList();
+        }
+
+        String recommendationId = "mediaList/recommended/byUrn/" + urn + "/" + timestamp;
+
+        return new RecommendedList(environment.getBaseUrl(), recommendationId, mediaList.getList().stream().map((i) -> i.getUrn()).collect(Collectors.toList()));
     }
 }
