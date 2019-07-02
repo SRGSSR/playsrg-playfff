@@ -215,7 +215,7 @@ public class RecommendationServiceAudioResultTests {
                         .body(mediaJson1)
                 );
 
-        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-compositision-radio-next-url.json" : "episode-compositision-radio.json";
+        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-compositision-rts-radio-next-url.json" : "episode-compositision-rts-radio.json";
         String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName, new HashMap<>());
         mockServer.expect(ExpectedCount.manyTimes(),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234.json?pageSize=100")))
