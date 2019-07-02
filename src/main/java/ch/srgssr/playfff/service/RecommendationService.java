@@ -1,10 +1,8 @@
 package ch.srgssr.playfff.service;
 
-import ch.srg.il.domain.v2_0.EpisodeComposition;
-import ch.srg.il.domain.v2_0.EpisodeWithMedias;
-import ch.srg.il.domain.v2_0.Media;
-import ch.srg.il.domain.v2_0.MediaType;
+import ch.srg.il.domain.v2_0.*;
 import ch.srgssr.playfff.model.Environment;
+import ch.srgssr.playfff.model.IlUrn;
 import ch.srgssr.playfff.model.RecommendedList;
 import ch.srgssr.playfff.model.peach.PersonalRecommendationResult;
 import ch.srgssr.playfff.model.peach.RecommendationResult;
@@ -34,21 +32,32 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
-    public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
-        if (urn.contains(":rts:")) {
-            if (urn.contains(":video:")) {
-                return rtsVideoRecommendedList(purpose, urn, standalone);
-            } else if (urn.contains(":audio:")) {
-                return rtsAudioRecommendedList(urn);
-            } else {
-                return new RecommendedList();
-            }
-        } else {
-            return new RecommendedList();
+    public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
+        IlUrn urn = new IlUrn(urnString);
+        switch (urn.getMam()) {
+            case RTS:
+                if (urn.getMediaType() == MediaType.VIDEO) {
+                    return rtsVideoRecommendedList(purpose, urnString, standalone);
+                } else if (urn.getMediaType() == MediaType.AUDIO) {
+                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                }
+                break;
+            case SRF:
+                if (urn.getMediaType() == MediaType.VIDEO) {
+                    return srfVideoRecommendedList(purpose, urnString, standalone);
+                } else if (urn.getMediaType() == MediaType.AUDIO) {
+                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                }
+                break;
+            case RSI:
+            case RTR:
+            case SWI:
+                return pfffRecommendedList(urnString, urn.getMediaType());
         }
+        return new RecommendedList();
     }
 
-    private RecommendedList rtsAudioRecommendedList(String urn) {
+    private RecommendedList pfffRecommendedList(String urn, MediaType mediaType) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
             return new RecommendedList();
@@ -64,7 +73,7 @@ public class RecommendationService {
         List<EpisodeWithMedias> episodes = new ArrayList<>(episodeComposition.getList());
         Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
-        List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == MediaType.AUDIO)).map(Media::getUrn).collect(Collectors.toList());
+        List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == mediaType)).map(Media::getUrn).collect(Collectors.toList());
         clipUrns.removeAll(fullLengthUrns);
 
         Boolean isFullLengthUrns = false;
@@ -128,8 +137,7 @@ public class RecommendationService {
 
         RecommendationResult recommendationResult = restTemplate
                 .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
-        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(),
-                recommendationResult.getUrns());
+        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
     }
 
     public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
@@ -144,5 +152,20 @@ public class RecommendationService {
                 .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
 
         return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
+    }
+
+    private RecommendedList srfVideoRecommendedList(String purpose, String urn, boolean standalone) {
+        long timestamp = System.currentTimeMillis();
+
+        Environment environment = Environment.PROD;
+
+        MediaList mediaList = integrationLayerRequest.getRecommendedMediaList(urn, environment);
+        if (mediaList == null || mediaList.getList().size() == 0) {
+            return new RecommendedList();
+        }
+
+        String recommendationId = "mediaList/recommended/byUrn/" + urn + "/" + timestamp;
+
+        return new RecommendedList(environment.getBaseUrl(), recommendationId, mediaList.getList().stream().map((i) -> i.getUrn()).collect(Collectors.toList()));
     }
 }

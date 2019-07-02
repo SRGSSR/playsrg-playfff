@@ -2,6 +2,7 @@ package ch.srgssr.playfff.service;
 
 import ch.srg.il.domain.v2_0.EpisodeComposition;
 import ch.srg.il.domain.v2_0.Media;
+import ch.srg.il.domain.v2_0.MediaList;
 import ch.srg.il.domain.v2_0.Show;
 import ch.srg.jaxb.SrgUnmarshaller;
 import ch.srgssr.playfff.model.Environment;
@@ -71,6 +72,19 @@ public class IntegrationLayerRequest {
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
             SrgUnmarshaller unmarshaller = new SrgUnmarshaller();
             return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, Show.class);
+        } catch (Exception e) {
+            logger.warn("http://{}{} : {}", environment.getBaseUrl(), path, e.getMessage());
+            return null;
+        }
+    }
+
+    public MediaList getRecommendedMediaList(String mediaURN, Environment environment) {
+        String path = "/integrationlayer/2.0/mediaList/recommended/byUrn/" + mediaURN + ".json";
+        try {
+            URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
+            SrgUnmarshaller unmarshaller = new SrgUnmarshaller();
+            return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, MediaList.class);
         } catch (Exception e) {
             logger.warn("http://{}{} : {}", environment.getBaseUrl(), path, e.getMessage());
             return null;

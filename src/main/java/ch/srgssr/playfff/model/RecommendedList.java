@@ -33,11 +33,11 @@ public class RecommendedList {
         } else {
             this.recommendationId = recommendationId;
         }
-        this.urns = (urns != null) ? urns : new ArrayList<String>();
+        this.urns = (urns != null) ? urns : new ArrayList<>();
     }
 
     public RecommendedList() {
-        this.urns = new ArrayList<String>();
+        this.urns = new ArrayList<>();
     }
 
     public String getRecommendationId() {
