@@ -39,25 +39,25 @@ public class RecommendationService {
                 if (urn.getMediaType() == MediaType.VIDEO) {
                     return rtsVideoRecommendedList(purpose, urnString, standalone);
                 } else if (urn.getMediaType() == MediaType.AUDIO) {
-                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                    return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
                 }
                 break;
             case SRF:
                 if (urn.getMediaType() == MediaType.VIDEO) {
                     return srfVideoRecommendedList(purpose, urnString, standalone);
                 } else if (urn.getMediaType() == MediaType.AUDIO) {
-                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                    return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
                 }
                 break;
             case RSI:
             case RTR:
             case SWI:
-                return pfffRecommendedList(urnString, urn.getMediaType());
+                return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
         }
         return new RecommendedList();
     }
 
-    private RecommendedList pfffRecommendedList(String urn, MediaType mediaType) {
+    private RecommendedList pfffRecommendedList(String urn, MediaType mediaType, Boolean standalone) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
             return new RecommendedList();
@@ -90,9 +90,24 @@ public class RecommendationService {
             isFullLengthUrns = false;
             index = clipUrns.lastIndexOf(urn);
             urns = clipUrns;
+        } else if (media.getType() == CLIP) {
+            isFullLengthUrns = false;
+            urns = clipUrns;
         } else {
-            isFullLengthUrns = media.getType() != CLIP;
+            MediaComposition mediaComposition = integrationLayerRequest.getMediaComposition(urn, Environment.PROD);
+            isFullLengthUrns = (mediaComposition != null && mediaComposition.getSegmentUrn() != null) ? !urn.equals(mediaComposition.getSegmentUrn()) : true;
             urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
+        }
+
+        // Take care of non standalone video.
+        String baseUrn = urn;
+        if (mediaType == MediaType.VIDEO && !standalone && !isFullLengthUrns) {
+            if (index != -1) {
+                EpisodeWithMedias episode = episodes.stream().filter(e -> e.getMediaList().stream().map(Media::getUrn).collect(Collectors.toList()).contains(urn)).findFirst().orElse(null);
+                index = (episode != null) ? fullLengthUrns.indexOf(episode.getFullLengthUrn()) : -1;
+                baseUrn = (episode != null) ? episode.getFullLengthUrn() : urn ;
+            }
+            urns = fullLengthUrns;
         }
 
         // First: newest medias in date ascending order. Then:
@@ -106,6 +121,7 @@ public class RecommendationService {
             recommendationResult = new ArrayList<>();
         }
         urns.remove(urn);
+        urns.remove(baseUrn);
 
         if (episodeComposition.getNext() != null) {
             Collections.reverse(urns);
