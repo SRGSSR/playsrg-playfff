@@ -2,6 +2,7 @@ package ch.srgssr.playfff.service;
 
 import ch.srg.il.domain.v2_0.*;
 import ch.srgssr.playfff.model.Environment;
+import ch.srgssr.playfff.model.IlUrn;
 import ch.srgssr.playfff.model.RecommendedList;
 import ch.srgssr.playfff.model.peach.PersonalRecommendationResult;
 import ch.srgssr.playfff.model.peach.RecommendationResult;
@@ -31,39 +32,29 @@ public class RecommendationService {
         restTemplate = new RestTemplate();
     }
 
-    public RecommendedList getRecommendedUrns(String purpose, String urn, boolean standalone) {
-        if (urn.contains(":swisstxt:")) {
-            return new RecommendedList();
+    public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
+        IlUrn urn = new IlUrn(urnString);
+        switch (urn.getMam()) {
+            case RTS:
+                if (urn.getMediaType() == MediaType.VIDEO) {
+                    return rtsVideoRecommendedList(purpose, urnString, standalone);
+                } else if (urn.getMediaType() == MediaType.AUDIO) {
+                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                }
+                break;
+            case SRF:
+                if (urn.getMediaType() == MediaType.VIDEO) {
+                    return srfVideoRecommendedList(purpose, urnString, standalone);
+                } else if (urn.getMediaType() == MediaType.AUDIO) {
+                    return pfffRecommendedList(urnString, MediaType.AUDIO);
+                }
+                break;
+            case RSI:
+            case RTR:
+            case SWI:
+                return pfffRecommendedList(urnString, urn.getMediaType());
         }
-        else if (urn.contains(":srf:")) {
-            if (urn.contains(":video:")) {
-                return srfVideoRecommendedList(purpose, urn, standalone);
-            } else if (urn.contains(":audio:")) {
-                return pfffRecommendedList(urn, MediaType.AUDIO);
-            } else {
-                return new RecommendedList();
-            }
-        }
-        else if (urn.contains(":rts:")) {
-            if (urn.contains(":video:")) {
-                return rtsVideoRecommendedList(purpose, urn, standalone);
-            } else if (urn.contains(":audio:")) {
-                return pfffRecommendedList(urn, MediaType.AUDIO);
-            } else {
-                return new RecommendedList();
-            }
-        }
-        else if (urn.contains(":rsi:") || urn.contains(":rtr:") || urn.contains(":swi:")) {
-            if (urn.contains(":video:")) {
-                return pfffRecommendedList(urn, MediaType.VIDEO);
-            } else if (urn.contains(":audio:")) {
-                return pfffRecommendedList(urn, MediaType.AUDIO);
-            } else {
-                return new RecommendedList();
-            }
-        } else {
-            return new RecommendedList();
-        }
+        return new RecommendedList();
     }
 
     private RecommendedList pfffRecommendedList(String urn, MediaType mediaType) {
