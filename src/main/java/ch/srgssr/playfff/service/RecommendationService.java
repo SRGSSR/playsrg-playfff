@@ -81,6 +81,7 @@ public class RecommendationService {
 
         List<String> urns = null;
         int index = -1;
+        MediaComposition mediaComposition = null;
 
         if (fullLengthUrns.contains(urn)) {
             isFullLengthUrns = true;
@@ -94,19 +95,33 @@ public class RecommendationService {
             isFullLengthUrns = false;
             urns = clipUrns;
         } else {
-            MediaComposition mediaComposition = integrationLayerRequest.getMediaComposition(urn, Environment.PROD);
+            mediaComposition = integrationLayerRequest.getMediaComposition(urn, Environment.PROD);
             isFullLengthUrns = (mediaComposition != null && mediaComposition.getSegmentUrn() != null) ? !urn.equals(mediaComposition.getSegmentUrn()) : true;
             urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
         }
 
         // Take care of non standalone video.
         String baseUrn = urn;
-        if (mediaType == MediaType.VIDEO && !standalone && !isFullLengthUrns) {
+        if (mediaType == MediaType.VIDEO && !standalone && !isFullLengthUrns && clipUrns.size() > 0) {
             if (index != -1) {
                 EpisodeWithMedias episode = episodes.stream().filter(e -> e.getMediaList().stream().map(Media::getUrn).collect(Collectors.toList()).contains(urn)).findFirst().orElse(null);
                 index = (episode != null) ? fullLengthUrns.indexOf(episode.getFullLengthUrn()) : -1;
                 baseUrn = (episode != null) ? episode.getFullLengthUrn() : urn ;
             }
+            urns = fullLengthUrns;
+        }
+        // Take care of clip not in Episode composition
+        else if (!isFullLengthUrns && clipUrns.size() == 0) {
+            String chapterUrn = null;
+            if (mediaComposition != null) {
+                chapterUrn = mediaComposition.getChapterUrn();
+            }
+            else {
+                EpisodeWithMedias episode = episodes.stream().filter(e -> e.getPublishedDate().getDayOfYear() == media.getDate().getDayOfYear() && e.getPublishedDate().getYear() == media.getDate().getYear()).findFirst().orElse(null);
+                chapterUrn = (episode != null) ? episode.getFullLengthUrn() : null;
+            }
+            index = (chapterUrn != null) ? fullLengthUrns.indexOf(chapterUrn) : -1;
+            baseUrn = (chapterUrn != null) ? chapterUrn : urn ;
             urns = fullLengthUrns;
         }
 

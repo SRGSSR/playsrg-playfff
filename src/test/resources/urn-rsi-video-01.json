@@ -1,0 +1,44 @@
+{
+   "id" : "01",
+   "mediaType" : "VIDEO",
+   "vendor" : "RSI",
+   "urn" : "urn:rsi:video:01",
+   "title" : "03.07.2019: Parlamento UE, ci cerca il presidente",
+   "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938298/",
+   "imageTitle" : "TG 12:30  [La1] 2019-07-03 12:30:55 - Parlamento UE, ci cerca il presidente",
+   "type" : "EPISODE",
+   "date" : "2019-07-03T12:30:00+02:00",
+   "duration" : 123000,
+   "validTo" : "2199-01-01T13:00:00+01:00",
+   "playableAbroad" : true,
+   "subtitlesAvailable" : false,
+   "episode" : {
+      "id" : "11937977",
+      "title" : "03.07.2019: Parlamento UE, ci cerca il presidente",
+      "publishedDate" : "2019-07-03T12:30:00+02:00",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938298/",
+      "imageTitle" : "TG 12:30  [La1] 2019-07-03 12:30:55 - Parlamento UE, ci cerca il presidente"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:show:tv:1234",
+      "title" : "Telegiornale",
+      "lead" : "",
+      "description" : "Il TG ha una storia pluriennale. Dalla prima edizione nel 1958 a Zurigo, le generazioni che si sono susseguite nella redazione lavorano ogni giorno dell’anno con passione, impegno e serietà per confezionare le quattro edizioni quotidiane. Edizioni che vogliono raccontare l’attualità nazionale, estera e anche regionale con uno stile diretto, senza fronzoli, equilibrato e fornendo anche chiavi di lettura per capire le implicazioni e le ragioni degli eventi che ritmano da vicino e da lontano le nostre vite",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/WEBVISUAL/11351565/",
+      "imageTitle" : "STORY_TG.jpg",
+      "bannerImageUrl" : "http://www.rsi.ch/rsi-api/resize/image/HEADER_PLAYER/11351565/",
+      "homepageUrl" : "https://www.rsi.ch/la1/programmi/informazione/telegiornale/",
+      "podcastSubscriptionUrl" : "",
+      "primaryChannelId" : "la1"
+   },
+   "channel" : {
+      "id" : "la1",
+      "title" : "LA 1",
+      "imageUrl" : "https://www.rsi.ch/rsi-api/resize/image/LOGO/1567117",
+      "imageTitle" : "LA 1"
+   },
+   "presentation" : "DEFAULT"
+}

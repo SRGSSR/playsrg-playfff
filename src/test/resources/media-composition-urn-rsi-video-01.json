@@ -1,0 +1,348 @@
+{
+   "chapterUrn" : "urn:rsi:video:0",
+  "segmentUrn": "urn:rsi:video:01",
+  "episode" : {
+      "id" : "11937911",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di mezza giornata",
+      "publishedDate" : "2019-07-03T12:30:00+02:00",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938289/",
+      "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-03 12:30:00"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:show:tv:1234",
+      "title" : "Telegiornale",
+      "lead" : "",
+      "description" : "Il TG ha una storia pluriennale. Dalla prima edizione nel 1958 a Zurigo, le generazioni che si sono susseguite nella redazione lavorano ogni giorno dell’anno con passione, impegno e serietà per confezionare le quattro edizioni quotidiane. Edizioni che vogliono raccontare l’attualità nazionale, estera e anche regionale con uno stile diretto, senza fronzoli, equilibrato e fornendo anche chiavi di lettura per capire le implicazioni e le ragioni degli eventi che ritmano da vicino e da lontano le nostre vite",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/WEBVISUAL/11351565/",
+      "imageTitle" : "STORY_TG.jpg",
+      "bannerImageUrl" : "http://www.rsi.ch/rsi-api/resize/image/HEADER_PLAYER/11351565/",
+      "homepageUrl" : "https://www.rsi.ch/la1/programmi/informazione/telegiornale/",
+      "podcastSubscriptionUrl" : "",
+      "primaryChannelId" : "la1"
+   },
+   "channel" : {
+      "id" : "la1",
+      "title" : "LA 1",
+      "imageUrl" : "https://www.rsi.ch/rsi-api/resize/image/LOGO/1567117",
+      "imageTitle" : "LA 1",
+      "transmission" : "TV"
+   },
+   "chapterList" : [ {
+      "id" : "0",
+      "mediaType" : "VIDEO",
+      "vendor" : "RSI",
+      "urn" : "urn:rsi:video:0",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di mezza giornata",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938289/",
+      "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-03 12:30:00",
+      "type" : "EPISODE",
+      "date" : "2019-07-03T12:30:00+02:00",
+      "duration" : 780520,
+      "validTo" : "2199-01-01T13:00:00+01:00",
+      "playableAbroad" : true,
+      "socialCountList" : [ {
+         "key" : "srgView",
+         "value" : 144
+      }, {
+         "key" : "srgLike",
+         "value" : 0
+      }, {
+         "key" : "fbShare",
+         "value" : 1
+      }, {
+         "key" : "twitterShare",
+         "value" : 1
+      }, {
+         "key" : "googleShare",
+         "value" : 0
+      }, {
+         "key" : "whatsAppShare",
+         "value" : 0
+      } ],
+      "displayable" : true,
+      "position" : 0,
+      "noEmbed" : false,
+      "analyticsData" : {
+         "ns_st_ep" : "Telegiornale",
+         "ns_st_ty" : "Video",
+         "ns_st_ci" : "11937911",
+         "ns_st_el" : "780520",
+         "ns_st_cl" : "780520",
+         "ns_st_sl" : "780520",
+         "srg_mgeobl" : "false",
+         "ns_st_tp" : "6",
+         "ns_st_cn" : "1",
+         "ns_st_ct" : "vc12",
+         "ns_st_pn" : "1"
+      },
+      "analyticsMetadata" : {
+         "media_segment" : "Telegiornale",
+         "media_type" : "Video",
+         "media_segment_id" : "11937911",
+         "media_episode_length" : "781",
+         "media_segment_length" : "781",
+         "media_number_of_segment_selected" : "1",
+         "media_number_of_segments_total" : "6",
+         "media_duration_category" : "long",
+         "media_is_geoblocked" : "false",
+         "media_urn" : "urn:rsi:video:11937911"
+      },
+      "eventData" : "$e1f5f2fd959c7192$05d41dfcd44d45c18259c34ad9bbab59a93482248613c72c9756ff25eb3e9a2d002252c8b30d627d1f95fc50b638eda42cab2d86d73cb90bf83c716297d4eebd395ba420019446158c98e72ca4aa30cfc7617ac030cb240193c495883e926f01c5a5e40a620619f6a64582729257e58311d681d4bf87110844ab2152114eb69af08f7bf8361d50ce2d05ad91b23a41cb0a16c9644a96d63e699f82fdadc53c168cee284112a5c4efa54cb135ead8fd5abd967b3b1133c70476a14963e19453a34cc6f9815b276fbd2b478f2c6d7725cfd8893ca83a0113a31db4238fdc4b18621446a4e0b5e137c969d22a1155a9c6f382ee1017272bc0d9606405268954ca7b0481488658e0750d162725373322fa40",
+      "resourceList" : [ {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/manifest.f4m",
+         "quality" : "SD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/master.m3u8",
+         "quality" : "SD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/master.m3u8"
+         }
+      }, {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/manifest.f4m",
+         "quality" : "HD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/master.m3u8",
+         "quality" : "HD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/03/,2841685,2841686,2841687,.mp4.csmil/master.m3u8"
+         }
+      } ],
+      "segmentList" : [ {
+         "id" : "01",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:01",
+         "title" : "03.07.2019: Parlamento UE, ci cerca il presidente",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938298/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-03 12:30:55 - Parlamento UE, ci cerca il presidente",
+         "type" : "EPISODE",
+         "date" : "2019-07-03T12:30:00+02:00",
+         "duration" : 123240,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11937911",
+         "position" : 0,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "03.07.2019: Parlamento UE, ci cerca il presidente",
+            "media_type" : "Video",
+            "media_segment_id" : "11937977",
+            "media_episode_length" : "781",
+            "media_segment_length" : "123",
+            "media_number_of_segment_selected" : "1",
+            "media_number_of_segments_total" : "6",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11937977"
+         },
+         "eventData" : "$4a743889360d3be8$351405c708843ba9fc75a2f16b30b418758256e7559a1c45512c849f61ef270d24cee568197298fab8edd5ba3958208a07887ff74a2284ce7310a92322e6561771964ccfea905682db38884a2ec456dad1a9d5d4f6e786e10137424e771cba4553274674ad87207bfd4ed7ed269b9a3b4247e58cfcf81d5797a37698b94618b78e6455fbbba5355c84ffeb5e0dbe3754bce300162cac6e6648bd05b7967e21dd0dc2c31f3022901ae1c8f861823644aea59122bf4085b11f84f5f573957618274e2bbf8f4f869c0f78d83df685e98177f909552678361145b1befefc7d09cca703099370dee121e80713cd430f57276dfd7ea3fe0bb1895e56888dc493063d5a722c0a15269faea9c2ca715a2d7341e1",
+         "markIn" : 55799,
+         "markOut" : 179039
+      }, {
+         "id" : "02",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:02",
+         "title" : "03.07.2019: Il caso Carola Rackete prosegue",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938301/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-03 12:32:59 - Il caso Carola Rackete prosegue",
+         "type" : "EPISODE",
+         "date" : "2019-07-03T12:30:00+02:00",
+         "duration" : 153080,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11937911",
+         "position" : 1,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "03.07.2019: Il caso Carola Rackete prosegue",
+            "media_type" : "Video",
+            "media_segment_id" : "11937980",
+            "media_episode_length" : "781",
+            "media_segment_length" : "153",
+            "media_number_of_segment_selected" : "2",
+            "media_number_of_segments_total" : "6",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11937980"
+         },
+         "eventData" : "$a12920ce0172f751$5b5907ac3545de7437c66894ac3e346e620d1998990d4b4c6f7d15e2a3a022978ee342e7378dafa6972a6778b9bd16db2ca14d142f07684ec6e75585e0236fe1cd8b9c3b26b5296d1d2f5fed549ade16135b8fccb470348e0e446092e8bf66bb9afda70d27e5172991b6706d0c62fc6996fc53eadeac071a442e728c110e9246acba9c71d53b99709f6daa90ed13999bce437f0da14fc92b962f89cacc5144dee4684492865da82c244741d0834aa5e649e32098384ff1f5a7552be595b9283b8c9398d8da31d89a8d9bf97701e2e70ec9352bf14c241feb0829e124d70138c2172252031c96fae8747c737638fc2d6d1502d941ffd53f495cb4f900c3704c01039b0e5ad858c77476ef05f669a65e96",
+         "markIn" : 179160,
+         "markOut" : 332240
+      }, {
+         "id" : "03",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:03",
+         "title" : "03.07.2019: Bombardamento su Tripoli",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938352/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-03 12:35:32 - Bombardamento su Tripoli",
+         "type" : "EPISODE",
+         "date" : "2019-07-03T12:30:00+02:00",
+         "duration" : 53720,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11937911",
+         "position" : 2,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "03.07.2019: Bombardamento su Tripoli",
+            "media_type" : "Video",
+            "media_segment_id" : "11937983",
+            "media_episode_length" : "781",
+            "media_segment_length" : "54",
+            "media_number_of_segment_selected" : "3",
+            "media_number_of_segments_total" : "6",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11937983"
+         },
+         "eventData" : "$43be957f434caf6e$391395b6c92989a741b1c2d2150c89a4f6a913bd81f2e2a4a7b35cedff98d7da59c1e47a658480f15805985cdcac29cd243c55efbf5db104d1160cc47aeef60136387dd266569aaba78dd33f998e198bfa56936f4bd74f087918de367bf67ede24248d860b27a4383a2297686fb11e71750f169c0d1188d203fef7faf34fbf409556be4bb8cf55ca817b9ddc552c59f3a58e7c051fa8b7e9403e541fad291fa430223b089e03166c5a00471026e5fe8c8fce811c297846e58f60774290dd287e114ca0031d9ae4772339cd5765b17bb17460e71dcaef698493cb466e7e95d8e085926130e4415de6ef972f09c99396a22ad7ef6d1dc724783ae8ed4de3459e626c451b2c3aefc75663e3961ff78b9869",
+         "markIn" : 332320,
+         "markOut" : 386040
+      }
+      ]
+   } ],
+   "topicList" : [ {
+      "id" : "7",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:topic:tv:7",
+      "title" : "Informazione"
+   } ],
+   "analyticsData" : {
+      "srg_pr_id" : "11937911",
+      "srg_plid" : "2311780",
+      "ns_st_pl" : "Telegiornale",
+      "ns_st_pr" : "Telegiornale del 03.07.2019",
+      "ns_st_dt" : "2019-07-03",
+      "ns_st_ddt" : "2019-07-03",
+      "ns_st_tdt" : "2019-07-03",
+      "ns_st_tm" : "12:42:17",
+      "ns_st_tep" : "EP856354",
+      "ns_st_li" : "0",
+      "ns_st_stc" : "8003",
+      "ns_st_st" : "LA 1",
+      "ns_st_tpr" : "2311780",
+      "ns_st_en" : "*null",
+      "ns_st_ge" : "*null",
+      "ns_st_ia" : "*null",
+      "ns_st_ce" : "1",
+      "ns_st_cdm" : "to",
+      "ns_st_cmt" : "fc",
+      "srg_unit" : "RSI",
+      "srg_c1" : "LA1-Informazione",
+      "srg_c2" : "Informazione.Telegiornale delle 12:30",
+      "srg_c3" : "Telegiornale del 03.07.2019 (FULL) - 11937911",
+      "srg_tv_id" : "EP856354",
+      "srg_tvsvizzera" : "false",
+      "srg_aod_prid" : "11937911"
+   },
+   "analyticsMetadata" : {
+      "media_episode_id" : "11937911",
+      "media_show_id" : "2311780",
+      "media_show" : "Telegiornale",
+      "media_episode" : "Telegiornale del 03.07.2019",
+      "media_is_livestream" : "false",
+      "media_full_length" : "full",
+      "media_enterprise_units" : "RSI",
+      "media_joker1" : "LA1-Informazione",
+      "media_joker2" : "Informazione.Telegiornale delle 12:30",
+      "media_joker3" : "Telegiornale del 03.07.2019 (FULL) - 11937911",
+      "media_is_web_only" : "false",
+      "media_production_source" : "produced.for.broadcasting",
+      "media_tv_id" : "EP856354",
+      "media_thumbnail" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11938289//scale/width/344",
+      "media_publication_date" : "2019-07-03",
+      "media_publication_time" : "12:30:00",
+      "media_publication_datetime" : "2019-07-03T12:30:00+02:00",
+      "media_tv_date" : "2019-07-03",
+      "media_tv_time" : "12:42:17",
+      "media_tv_datetime" : "2019-07-03T12:42:17+02:00",
+      "media_content_group" : "Informazione",
+      "media_channel_id" : "TV",
+      "media_channel_cs" : "8003",
+      "media_channel_name" : "LA 1",
+      "media_since_publication_d" : "0",
+      "media_since_publication_h" : "7"
+   }
+}
