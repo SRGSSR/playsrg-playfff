@@ -36,8 +36,9 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 		- Then:
 			- *If* `nextUrl` exists (show has more than 100 episodes), oldest medias in the date descending order.
 			- *Else* (show has less than 100 episodes), oldest medias in the date ascending order.
-- Could get `IL-MediaComposition` if the media urn isn't found, and has not the `CLIP` type.
-- It not returns clips if `VIDEO` media type and `standalone == false`.
+- It can get `IL-MediaComposition` if the media urn isn't found, and has not the `CLIP` type.
+- It does not return clips if `VIDEO` media type and `standalone == false`.
+- If clips are not in `IL-EpisodeComposition`, it fallacks to full lengths.
 
 #### Swisstxt URNs
 
