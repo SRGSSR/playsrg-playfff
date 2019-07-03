@@ -244,16 +244,16 @@ public class RecommendationServiceAudioResultTests {
         String recommendationId1 = recommendedList1.getRecommendationId();
         // Remove timestamp part
         recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
-        Assert.assertEquals(recommendationId1, expectedRecommendationId);
-        Assert.assertEquals(recommendedList1.getUrns(), expectedUrns);
+        Assert.assertEquals(expectedRecommendationId, recommendationId1);
+        Assert.assertEquals(expectedUrns, recommendedList1.getUrns());
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
         String recommendationId2 = recommendedList2.getRecommendationId();
         // Remove timestamp part
         recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
-        Assert.assertEquals(recommendationId2, expectedRecommendationId);
-        Assert.assertEquals(recommendedList2.getUrns(), expectedUrns);
+        Assert.assertEquals(expectedRecommendationId, recommendationId2);
+        Assert.assertEquals(expectedUrns, recommendedList2.getUrns());
 
         mockServer.verify();
     }
