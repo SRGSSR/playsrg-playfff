@@ -19,11 +19,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 
 - For RTS videos, it asks Peach recommendation `continuous_playback_mobile` service.
 
-#### SRF videos
-
-- For SRF videos, it asks SRF recommendation `RecSys` service.
-
-#### RSI, RTR, SWI videos and RSI, RTR, RTS and SRF audios
+#### RSI, RTR, SRF, SWI videos and RSI, RTR, RTS and SRF audios
 
 - It asks Playfff recommendation. Based on IL requests, without personalization. Here is how it works:
 	- Get `IL-Media`. It returns an empty list if it's a `LIVESTREAM` or a `SCHEDULED_LIVESTREAM`.

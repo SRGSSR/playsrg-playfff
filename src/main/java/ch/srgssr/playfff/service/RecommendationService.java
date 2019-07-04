@@ -42,15 +42,9 @@ public class RecommendationService {
                     return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
                 }
                 break;
-            case SRF:
-                if (urn.getMediaType() == MediaType.VIDEO) {
-                    return srfVideoRecommendedList(purpose, urnString, standalone);
-                } else if (urn.getMediaType() == MediaType.AUDIO) {
-                    return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
-                }
-                break;
             case RSI:
             case RTR:
+            case SRF:
             case SWI:
                 return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
         }
