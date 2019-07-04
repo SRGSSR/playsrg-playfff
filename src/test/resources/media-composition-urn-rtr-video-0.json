@@ -1,0 +1,384 @@
+{
+   "chapterUrn" : "urn:rtr:video:0",
+   "episode" : {
+      "id" : "aa4435ef-ab77-4d4e-b7b7-1fa829d17aed",
+      "title" : "Minisguard dals 29.06.2019",
+      "lead" : "Die Nachrichtensendung für Kinder und Jugendliche. Warum ist der Himmel blau? Was sind Menschenrechte? Was macht die Digitalisierung? Willst Du wissen, was in unserer Welt los ist? Willst Du gut informiert sein und mehr verstehen? «Minisguard» präsentiert aktuelle Themen kinderleicht verständlich.",
+      "publishedDate" : "2019-06-29T17:45:00+02:00",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/WEBVISUAL/1512977010.jpg"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTR",
+      "transmission" : "TV",
+      "urn" : "urn:rtr:show:tv:1234",
+      "title" : "Minisguard",
+      "lead" : "Il Minisguard è l’emissiun emnila d’infurmaziun da la Televisiun Rumantscha per ils uffants .",
+      "description" : "Il Minisguard è l’emissiun emnila d’infurmaziun da la Televisiun Rumantscha per ils uffants. L’emissiun declera als uffants temas politics, economics, culturals, ord il mund dal sport e da la societad en furma chapaivla e divertenta. Mintga emissiun dat paisa speziala ad in tema actual da l’emna.",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/WEBVISUAL/1512977010.jpg",
+      "imageTitle" : "Minisguard",
+      "bannerImageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/HEADER_SRF_PLAYER/1512976940.jpg",
+      "homepageUrl" : "https://www.rtr.ch/play/tv/emissiuns/minisguard?id=c482ae32-8c10-0001-27d7-5a401fb5f130",
+      "podcastSubscriptionUrl" : "https://www.rtr.ch/podcasts",
+      "timeTableUrl" : "https://www.srf.ch/programm/tv/mediagroup/minisguard",
+      "primaryChannelId" : "f5dc82ed-4564-4223-903f-0bf6a13c5620",
+      "numberOfEpisodes" : 408,
+      "topicList" : [ {
+         "id" : "dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+         "vendor" : "RTR",
+         "transmission" : "TV",
+         "urn" : "urn:rtr:topic:tv:dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+         "title" : "Uffants"
+      } ]
+   },
+   "channel" : {
+      "id" : "f5dc82ed-4564-4223-903f-0bf6a13c5620",
+      "title" : "RTR auf SRF 1",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/3f5e8381-e318-4928-8713-17ab1777aa19/LOGO_RESPONSIVE/1521626564.png",
+      "imageTitle" : "Logo",
+      "transmission" : "TV"
+   },
+   "chapterList" : [ {
+      "id" : "0",
+      "mediaType" : "VIDEO",
+      "vendor" : "RTR",
+      "urn" : "urn:rtr:video:0",
+      "title" : "Minisguard dals 29.06.2019",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/3d33e0fe-3236-424b-b7f5-90fd5c2f9d67/EPISODE_IMAGE/1561826333.png",
+      "imageTitle" : "Minisguard dals 29.06.2019",
+      "type" : "EPISODE",
+      "date" : "2019-06-29T17:45:00+02:00",
+      "duration" : 630480,
+      "podcastSdUrl" : "https://podcastsource.sf.tv/nps/105064066/630.48/Minisguard+dals+29.06.2019/podcast/minisguard/2019/06/minisguard_20190629_174758_16500291_v_podcast_h264_q10.mp4?assetId=516d4479-7049-4c2d-a954-2f28a1bfff3a",
+      "podcastHdUrl" : "https://podcastsource.sf.tv/nps/286496657/630.48/Minisguard+dals+29.06.2019/podcast/minisguard/2019/06/minisguard_20190629_174758_16500291_v_podcast_h264_q30.mp4?assetId=516d4479-7049-4c2d-a954-2f28a1bfff3a",
+      "validFrom" : "2019-06-29T17:59:00+02:00",
+      "playableAbroad" : true,
+      "socialCountList" : [ {
+         "key" : "srgView",
+         "value" : 49
+      }, {
+         "key" : "srgLike",
+         "value" : 0
+      }, {
+         "key" : "fbShare",
+         "value" : 0
+      }, {
+         "key" : "twitterShare",
+         "value" : 0
+      }, {
+         "key" : "googleShare",
+         "value" : 0
+      }, {
+         "key" : "whatsAppShare",
+         "value" : 0
+      } ],
+      "displayable" : true,
+      "position" : 0,
+      "noEmbed" : false,
+      "subtitleList" : [ {
+         "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a/subtitle.vtt",
+         "format" : "VTT"
+      }, {
+         "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a/subtitle.ttml",
+         "format" : "TTML"
+      } ],
+      "analyticsData" : {
+         "ns_st_ep" : "Minisguard dals 29.06.2019",
+         "ns_st_ty" : "Video",
+         "ns_st_ci" : "516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "ns_st_el" : "630480",
+         "ns_st_cl" : "630480",
+         "ns_st_sl" : "630480",
+         "srg_mgeobl" : "false",
+         "ns_st_tp" : "3",
+         "ns_st_cn" : "1",
+         "ns_st_ct" : "vc12",
+         "ns_st_pn" : "1"
+      },
+      "analyticsMetadata" : {
+         "media_segment" : "Minisguard dals 29.06.2019",
+         "media_type" : "Video",
+         "media_segment_id" : "516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "media_episode_length" : "630",
+         "media_segment_length" : "630",
+         "media_number_of_segment_selected" : "1",
+         "media_number_of_segments_total" : "3",
+         "media_duration_category" : "long",
+         "media_is_geoblocked" : "false",
+         "media_urn" : "urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "media_assigned_tags" : "won"
+      },
+      "eventData" : "$a688f010b57996ae$847231514313ecc72d44e0e2bd6356937aa708ec00667b1878ff66999cf5f253f4e49baa8ffd2df183fc8d3af2a8f5b29046c85edfbd7e81c37ea11e6cd31ac0ec55c4d13d1cdf4f8ea1d1ba2ad82028ff7a963fb587d725027997bd25e9f4b61774338fa2aa65ce922b3216774e23c9dd19be1a58da54a087604eb5a5ee3b6db0d7e5a309d1671335a7d99f97415ff02c08ca15cc7a76568276fdf946348285074bdf074cc5d25e71efa390795f1b1d30a95ef73851cb9add26198922831a09e633c0307e09f75fbd87fff21f563b790b2d03116919d4281572ba8f235a474b2f6785ef6ea25bf9375c1feb60c849f339efa4df4685453a733fa4ec28eb5057eb53b1f16cb4c46c52c3a422524b3447fbeb99ca8dc1ce372068f7e067a08e95b60141884296c759dee9a7616a2c35fcae205228ec3c99414dc2895a0164d71687082e284c8b62648fe044916c81e732a26eb8dbe1cf54bb4dd00be0396dd03e9ec001d47fa17b59b161a85628c064153f1b13b4e8f9a159b0be3ff520a93382bfe80bc6b39f90cb190620102431cea5f1ec020eaf51a79c5d76d1c88b948366fb751320cff8c467aae5660443a1674f63f075731cdfeaa26e8454f22ffc1126",
+      "resourceList" : [ {
+         "url" : "http://srfvodhd-vh.akamaihd.net/z/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=630.48",
+         "quality" : "SD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "UNKNOWN",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://srfvodhd-vh.akamaihd.net/z/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/manifest.f4m?start=0.0&end=630.48"
+         }
+      }, {
+         "url" : "http://srfvodhd-vh.akamaihd.net/z/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=630.48",
+         "quality" : "HD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "UNKNOWN",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://srfvodhd-vh.akamaihd.net/z/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/manifest.f4m?start=0.0&end=630.48"
+         }
+      }, {
+         "url" : "https://srfvodhd-vh.akamaihd.net/i/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=630.48",
+         "quality" : "SD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "UNKNOWN",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://srfvodhd-vh.akamaihd.net/i/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,.mp4.csmil/master.m3u8?start=0.0&end=630.48"
+         }
+      }, {
+         "url" : "https://srfvodhd-vh.akamaihd.net/i/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=630.48",
+         "quality" : "HD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "UNKNOWN",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://srfvodhd-vh.akamaihd.net/i/vod/minisguard/2019/06/minisguard_20190629_174758_16500291_v_webcast_h264_,q40,q10,q20,q30,q50,q60,.mp4.csmil/master.m3u8?start=0.0&end=630.48"
+         }
+      } ],
+      "segmentList" : [ {
+         "id" : "01",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTR",
+         "urn" : "urn:rtr:video:01",
+         "title" : "Ils dis ca chalira passads",
+         "imageUrl" : "https://ws.srf.ch/asset/image/audio/c3908bf8-89b9-4885-9e75-374d0a494d8a/EPISODE_IMAGE/1561826471.png",
+         "imageTitle" : "Ils dis ca chalira passads",
+         "type" : "EPISODE",
+         "date" : "2019-06-29T17:45:00+02:00",
+         "duration" : 143240,
+         "validFrom" : "2019-06-29T17:59:00+02:00",
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "position" : 1,
+         "noEmbed" : false,
+         "subtitleList" : [ {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:5cca6a68-690a-48c8-af91-a92f79c7006c/subtitle.vtt",
+            "format" : "VTT"
+         }, {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:5cca6a68-690a-48c8-af91-a92f79c7006c/subtitle.ttml",
+            "format" : "TTML"
+         } ],
+         "analyticsMetadata" : {
+            "media_segment" : "Ils dis ca chalira passads",
+            "media_type" : "Video",
+            "media_segment_id" : "5cca6a68-690a-48c8-af91-a92f79c7006c",
+            "media_episode_length" : "630",
+            "media_segment_length" : "143",
+            "media_number_of_segment_selected" : "1",
+            "media_number_of_segments_total" : "3",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rtr:video:5cca6a68-690a-48c8-af91-a92f79c7006c"
+         },
+         "eventData" : "$2dc3338a08d600c0$9d228cfd968854bf4e8266c578c00549c03688f8dfe387f600259a324fc6a920eec96dd285a870f63651eaa12f44d96899eb1ef3bd9c5085d10ae4490f944d52c2fb0076438411ba4cc323443b7675e2ae5f1a6d3ab811185a097206aee638bf01a1c8837ebac9411317be21648b07c83bc1d222cb29398821b30c7bd5fe5edae77cdfcc93eb53deb838fce4c686f5eac06a108850853d2ac7fefdda893fe7de5d15262b20249c3696cce5213ece0c84f692b9628541fcd9b6c1e71f5275dcaa60ce83374c6c588c063a1d306a48688ebec61a54a3922871482c79466357d0156c0ecfa614803028d78a2e8f0b175d0f5427c6cf4b876ed4d96b6444622adf2c32c349349097223781eca27a1bf9292ce60d2645b2f37d731c896a32f6287c795a3df4cf9636622e697b33de33afbc5dd9fde62671c129a9793228672c71e6ea2c50db8b100636b2be3e046b9b8666929ca9941b40664a9a6a4a1a13826bbe21169729ea136724cb33e40233f800256f8eed9cd6562bcc1cba1de220c85303535d6172492bb8e1f1a4150117f98a692a3439b7e691260fe12d8e09f091165c18da2db67900815ff130014aee896e0b756187667c8ce4512205ececac49f44460",
+         "markIn" : 0,
+         "markOut" : 143240
+      }, {
+         "id" : "02",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTR",
+         "urn" : "urn:rtr:video:02",
+         "title" : "Aua en noss corp",
+         "imageUrl" : "https://ws.srf.ch/asset/image/audio/1bbce967-158f-412c-b6f1-0570f8a9a65f/EPISODE_IMAGE/1561826867.png",
+         "imageTitle" : "Aua en noss corp",
+         "type" : "EPISODE",
+         "date" : "2019-06-29T17:45:00+02:00",
+         "duration" : 145680,
+         "validFrom" : "2019-06-29T17:59:00+02:00",
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "position" : 2,
+         "noEmbed" : false,
+         "subtitleList" : [ {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:a292b0b0-98c7-4876-b8ce-a56c7375b05c/subtitle.vtt",
+            "format" : "VTT"
+         }, {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:a292b0b0-98c7-4876-b8ce-a56c7375b05c/subtitle.ttml",
+            "format" : "TTML"
+         } ],
+         "analyticsMetadata" : {
+            "media_segment" : "Aua en noss corp",
+            "media_type" : "Video",
+            "media_segment_id" : "a292b0b0-98c7-4876-b8ce-a56c7375b05c",
+            "media_episode_length" : "630",
+            "media_segment_length" : "146",
+            "media_number_of_segment_selected" : "2",
+            "media_number_of_segments_total" : "3",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rtr:video:a292b0b0-98c7-4876-b8ce-a56c7375b05c"
+         },
+         "eventData" : "$cea1230e8aeb17c6$6ba7aceee237faa2e1bf2b1992fda3af2ce7d8e65b05bc961f53274e34b38a59b1cef8f69566e4afb1f0d54a4d551202748493ca28d44418a7f0d1aec2f25585e739d08ab5fc6a0913e1738010bd1a66c66b31e9e642f300a1b73d016df18448bfaeb0d95e6fce4b7329b98a8cce577f86e422d4e21ebe68583afbe0d0ed7bbf1c1e83ed90313acb2554ed1d57ec4da753fb89ac03655aeb54065c551123af2559f621e3eaa84c42effb5b7c16371473df77ac76b7d152616ef17977d45312026bf0f3073c00601b70536e4dc840ce0438ba8939021e32188f2b30809715f240d4380373cf4a2ec39088a1ccab5ba31e920bfb7c2fe0f0a2b5189d7ea6b0c435c9866d922bac045694c34ef5b349cd21e843947ce3f572760f0bfc83e140084b5ce5bd81efffa3c56e4e6d1a686e6990cd9fea50f3b670cb9b2fef689fbd53dd1ec2f387c463a06a9235c1e81dee103c8af78cd6f02e79155e0fc079e1afaaea27ba98eb3bb79dff565c6e61b5b20aa79f6a3c4d986b5602c687bcab11fcef2fa2fc2b9d4717f8865309cabe0c90183a3445e1a11b61a4bcc47247a61a89d520cfb6e37c6ccacc9bebd103295f9a2c414ecd6c613ccf5c04717c9d398cec11fb",
+         "markIn" : 143240,
+         "markOut" : 288920
+      }, {
+         "id" : "03",
+         "mediaType" : "VIDEO",
+         "vendor" : "RTR",
+         "urn" : "urn:rtr:video:03",
+         "title" : "Ils avieuls da Anna Durschei a Segnas èn puspè pli activs",
+         "imageUrl" : "https://ws.srf.ch/asset/image/audio/09d77f82-eadc-4c34-aa69-7a97bcef5316/EPISODE_IMAGE/1561827012.png",
+         "imageTitle" : "Ils avieuls da Anna Durschei a Segnas èn puspè pli activs",
+         "type" : "EPISODE",
+         "date" : "2019-06-29T17:45:00+02:00",
+         "duration" : 341320,
+         "validFrom" : "2019-06-29T17:59:00+02:00",
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rtr:video:516d4479-7049-4c2d-a954-2f28a1bfff3a",
+         "position" : 3,
+         "noEmbed" : false,
+         "subtitleList" : [ {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:e1131df5-9935-4870-8a54-d3d931804d7e/subtitle.vtt",
+            "format" : "VTT"
+         }, {
+            "url" : "https://ws.srf.ch/subtitles/urn:rtr:video:e1131df5-9935-4870-8a54-d3d931804d7e/subtitle.ttml",
+            "format" : "TTML"
+         } ],
+         "analyticsMetadata" : {
+            "media_segment" : "Ils avieuls da Anna Durschei a Segnas èn puspè pli activs",
+            "media_type" : "Video",
+            "media_segment_id" : "e1131df5-9935-4870-8a54-d3d931804d7e",
+            "media_episode_length" : "630",
+            "media_segment_length" : "341",
+            "media_number_of_segment_selected" : "3",
+            "media_number_of_segments_total" : "3",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rtr:video:e1131df5-9935-4870-8a54-d3d931804d7e"
+         },
+         "eventData" : "$10b2f4e99461357e$6116f3a12f74f56c752b19296a629cb291a4935216e582d4f37b0e2c1b16c1e9eabcf60fa0516bdf0e23a95eda298ab70f331fc297f214e1b9bcedb1af28092b535c3f9f41afef379f9966efb7ecadb3427096cf9a17f320355ed86a5b7c2a6644a6c072c651e77b5c0f3113f46e514a576548f1d1802a0d3f11f1ff92e1708db9343acfb502e7a73d31e8fa5477a87ab04313e37e84bbc557c242471681fa3fc30ad101c71dc2f56989c8b4c56524bb34ff1f606156e12c9bc772b4b365487b6bb03ffecdffdc403b95f69823b0236c5b3e2a856e14214a5ad66e4fed98cb8df3e9cd6faf552a495c086e8626710d9165ca9fb5096e1c47d7c1317f602ab014a66feb156d5e15a79267b21c17c1f004c017c51726c3dfa3fd22477aff98eafab1c1fa143f42984f4a0a02143b2a058829a9550bab992d26f7a12ea3933128f6efd93b1d5341ada8a0bd8cbb7cc617d1a3d8a4ba0f6a551c4b4d7a1093d935187cc5579ab4fabff26ff7a6900d7999369e5ab424f93bd227eef199e42c068d741127c01fa2969a855cc22999ffe4ea8bd998b2243f605418d8947da7513135ae3b373f9c3cbd027feb49e2114d2e13ca89dad831c3d9f20be8df024d53026e5f",
+         "markIn" : 289160,
+         "markOut" : 630480
+      } ]
+   } ],
+   "topicList" : [ {
+      "id" : "dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+      "vendor" : "RTR",
+      "transmission" : "TV",
+      "urn" : "urn:rtr:topic:tv:dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+      "title" : "Uffants"
+   } ],
+   "analyticsData" : {
+      "srg_pr_id" : "aa4435ef-ab77-4d4e-b7b7-1fa829d17aed",
+      "srg_plid" : "c482ae32-8c10-0001-27d7-5a401fb5f130",
+      "ns_st_pl" : "Minisguard",
+      "ns_st_pr" : "Minisguard dals 29.06.2019",
+      "ns_st_dt" : "2019-06-29",
+      "ns_st_ddt" : "2019-06-29",
+      "ns_st_tdt" : "2019-06-29",
+      "ns_st_tm" : "17:47:58",
+      "ns_st_tep" : "22647234527",
+      "ns_st_li" : "0",
+      "ns_st_stc" : "*null",
+      "ns_st_st" : "RTR auf SRF 1",
+      "ns_st_tpr" : "c482ae32-8c10-0001-27d7-5a401fb5f130",
+      "ns_st_en" : "*null",
+      "ns_st_ge" : "*null",
+      "ns_st_ia" : "*null",
+      "ns_st_ce" : "1",
+      "ns_st_cdm" : "to",
+      "ns_st_cmt" : "fc",
+      "srg_unit" : "RTR",
+      "srg_c1" : "Uffants",
+      "srg_c2" : "full",
+      "srg_wo" : "0",
+      "srg_tv_id" : "224228643812",
+      "srg_fullLength" : "full"
+   },
+   "analyticsMetadata" : {
+      "media_episode_id" : "aa4435ef-ab77-4d4e-b7b7-1fa829d17aed",
+      "media_show_id" : "c482ae32-8c10-0001-27d7-5a401fb5f130",
+      "media_show" : "Minisguard",
+      "media_episode" : "Minisguard dals 29.06.2019",
+      "media_is_livestream" : "false",
+      "media_full_length" : "full",
+      "media_enterprise_units" : "RTR",
+      "media_joker1" : "Uffants",
+      "media_is_web_only" : "false",
+      "media_production_source" : "produced.for.broadcasting",
+      "media_tv_id" : "22647234527",
+      "media_thumbnail" : "https://ws.srf.ch/asset/image/audio/3d33e0fe-3236-424b-b7f5-90fd5c2f9d67/EPISODE_IMAGE/1561826333.png/scale/width/344",
+      "media_publication_date" : "2019-06-29",
+      "media_publication_time" : "17:59:00",
+      "media_publication_datetime" : "2019-06-29T17:59:00+02:00",
+      "media_tv_date" : "2019-06-29",
+      "media_tv_time" : "17:47:58",
+      "media_tv_datetime" : "2019-06-29T17:47:58+02:00",
+      "media_content_group" : "Uffants",
+      "media_channel_id" : "f5dc82ed-4564-4223-903f-0bf6a13c5620",
+      "media_channel_cs" : "*null",
+      "media_channel_name" : "RTR auf SRF 1",
+      "media_since_publication_d" : "3",
+      "media_since_publication_h" : "80"
+   }
+}

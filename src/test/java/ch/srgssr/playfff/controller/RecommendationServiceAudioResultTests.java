@@ -206,24 +206,36 @@ public class RecommendationServiceAudioResultTests {
 
     private void testAudioRecommendation(String urn, boolean isFullLength, boolean episodeCompositionHasNextUrl, List<String> expectedUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
-        String mediaJson1 = BaseResourceString.getString(applicationContext, mediaFileName, new HashMap<>());
-        mockServer.expect(ExpectedCount.manyTimes(),
+        String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName, new HashMap<>());
+        mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/media/byUrn/"+ urn + ".json")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(mediaJson1)
+                        .body(mediaJson)
                 );
 
-        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-compositision-radio-next-url.json" : "episode-compositision-radio.json";
+        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rts-radio-next-url.json" : "episode-composition-rts-radio.json";
         String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName, new HashMap<>());
-        mockServer.expect(ExpectedCount.manyTimes(),
+        mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234.json?pageSize=100")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(episodeCompositionJson)
                 );
+
+        try {
+            String mediaCompositionFileName = "media-composition-" + urn.replace(":", "-") + ".json";
+            String mediaCompositionJson = BaseResourceString.getString(applicationContext, mediaCompositionFileName, new HashMap<>());
+            mockServer.expect(ExpectedCount.between(0, 2),
+                    requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/mediaComposition/byUrn/" + urn + ".json")))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withStatus(HttpStatus.OK)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(mediaCompositionJson)
+                    );
+        } catch (Exception e) {}
 
         String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/FullLength/" + urn : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/Clip/" + urn;
 
@@ -232,16 +244,16 @@ public class RecommendationServiceAudioResultTests {
         String recommendationId1 = recommendedList1.getRecommendationId();
         // Remove timestamp part
         recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
-        Assert.assertEquals(recommendationId1, expectedRecommendationId);
-        Assert.assertEquals(recommendedList1.getUrns(), expectedUrns);
+        Assert.assertEquals(expectedRecommendationId, recommendationId1);
+        Assert.assertEquals(expectedUrns, recommendedList1.getUrns());
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
         String recommendationId2 = recommendedList2.getRecommendationId();
         // Remove timestamp part
         recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
-        Assert.assertEquals(recommendationId2, expectedRecommendationId);
-        Assert.assertEquals(recommendedList2.getUrns(), expectedUrns);
+        Assert.assertEquals(expectedRecommendationId, recommendationId2);
+        Assert.assertEquals(expectedUrns, recommendedList2.getUrns());
 
         mockServer.verify();
     }
