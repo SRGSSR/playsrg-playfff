@@ -38,7 +38,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 			- *Else* (show has less than 100 episodes), oldest medias in the date ascending order.
 - It can get `IL-MediaComposition` if the media urn isn't found, and has not the `CLIP` type.
 - It does not return clips if `VIDEO` media type and `standalone == false`.
-- If clips are not in `IL-EpisodeComposition`, it fallacks to full lengths.
+- If clips are not in `IL-EpisodeComposition`, it fallbacks to full lengths.
 
 #### Swisstxt URNs or other MAMs
 
@@ -51,7 +51,3 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 #### RTS
 
 - With and without an `userId`, it asks Peach recommendation `play_home_personal_rec` service.
- 
-## License
-
-To be defined.
