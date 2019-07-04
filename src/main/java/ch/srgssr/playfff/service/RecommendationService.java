@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -104,17 +105,33 @@ public class RecommendationService {
             }
             urns = fullLengthUrns;
         }
-        // Take care of clip not in Episode composition
-        else if (!isFullLengthUrns && clipUrns.size() == 0) {
+        // Take care of full length and clip not in Episode composition, specially for RSI.
+        else if (index == -1 && clipUrns.size() == 0) {
             String chapterUrn = null;
             if (mediaComposition != null) {
                 chapterUrn = mediaComposition.getChapterUrn();
+                index = (chapterUrn != null) ? fullLengthUrns.indexOf(chapterUrn) : -1;
             }
-            else {
-                EpisodeWithMedias episode = episodes.stream().filter(e -> e.getPublishedDate().getDayOfYear() == media.getDate().getDayOfYear() && e.getPublishedDate().getYear() == media.getDate().getYear()).findFirst().orElse(null);
+            if (index == -1) {
+                EpisodeWithMedias episode = null;
+                if (isFullLengthUrns) {
+                    // Find full length with the same published date as the media
+                    episode = episodes.stream().filter(e -> {
+                        ZonedDateTime publishedDate = e.getMediaList().get(0).getDate();
+                        return publishedDate.compareTo(media.getDate()) == 0;
+                    }).findFirst().orElse(null);
+                }
+                else {
+                    // Find full length with media published date between full length start date and end date.
+                    episode = episodes.stream().filter(e -> {
+                        ZonedDateTime publishedDate = e.getMediaList().get(0).getDate();
+                        ZonedDateTime endPublishedDate = publishedDate.plusSeconds(e.getMediaList().get(0).getDuration() / 1000);
+                        return publishedDate.compareTo(media.getDate()) <= 0 && endPublishedDate.compareTo(media.getDate()) > 0;
+                    }).findFirst().orElse(null);
+                }
                 chapterUrn = (episode != null) ? episode.getFullLengthUrn() : null;
+                index = (chapterUrn != null) ? fullLengthUrns.indexOf(chapterUrn) : -1;
             }
-            index = (chapterUrn != null) ? fullLengthUrns.indexOf(chapterUrn) : -1;
             baseUrn = (chapterUrn != null) ? chapterUrn : urn ;
             urns = fullLengthUrns;
         }

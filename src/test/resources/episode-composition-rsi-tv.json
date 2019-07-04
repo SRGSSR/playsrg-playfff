@@ -21,16 +21,16 @@
       "publishedDate" : "2019-07-02T20:00:00+02:00",
       "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
       "imageTitle" : "TELEGIORNALE  [La1] 2019-07-02 20:00:11",
-      "fullLengthUrn" : "urn:rsi:video:4",
+      "fullLengthUrn" : "urn:rsi:video:4b",
       "socialCount" : {
          "key" : "srgView",
          "value" : 519
       },
       "mediaList" : [ {
-         "id" : "4",
+         "id" : "4b",
          "mediaType" : "VIDEO",
          "vendor" : "RSI",
-         "urn" : "urn:rsi:video:4",
+         "urn" : "urn:rsi:video:4b",
          "title" : "Telegiornale",
          "lead" : "Le notizie di prima serata",
          "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
@@ -51,16 +51,16 @@
       "publishedDate" : "2019-07-02T12:30:00+02:00",
       "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934632/",
       "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-02 12:30:00",
-      "fullLengthUrn" : "urn:rsi:video:3",
+      "fullLengthUrn" : "urn:rsi:video:3b",
       "socialCount" : {
          "key" : "srgView",
          "value" : 167
       },
       "mediaList" : [ {
-         "id" : "3",
+         "id" : "3b",
          "mediaType" : "VIDEO",
          "vendor" : "RSI",
-         "urn" : "urn:rsi:video:3",
+         "urn" : "urn:rsi:video:3b",
          "title" : "Telegiornale",
          "lead" : "Le notizie di mezza giornata",
          "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934632/",
@@ -80,16 +80,16 @@
       "publishedDate" : "2019-07-01T20:00:00+02:00",
       "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934056/",
       "imageTitle" : "TELEGIORNALE  [La1] 2019-07-01 20:00:11",
-      "fullLengthUrn" : "urn:rsi:video:2",
+      "fullLengthUrn" : "urn:rsi:video:2b",
       "socialCount" : {
          "key" : "srgView",
          "value" : 589
       },
       "mediaList" : [ {
-         "id" : "2",
+         "id" : "2b",
          "mediaType" : "VIDEO",
          "vendor" : "RSI",
-         "urn" : "urn:rsi:video:2",
+         "urn" : "urn:rsi:video:2b",
          "title" : "Telegiornale",
          "lead" : "Le notizie di prima serata",
          "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934056/",
@@ -110,16 +110,16 @@
       "publishedDate" : "2019-07-01T12:30:00+02:00",
       "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11931521/",
       "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-01 12:30:00",
-      "fullLengthUrn" : "urn:rsi:video:1",
+      "fullLengthUrn" : "urn:rsi:video:1b",
       "socialCount" : {
          "key" : "srgView",
          "value" : 217
       },
       "mediaList" : [ {
-         "id" : "1",
+         "id" : "1b",
          "mediaType" : "VIDEO",
          "vendor" : "RSI",
-         "urn" : "urn:rsi:video:1",
+         "urn" : "urn:rsi:video:1b",
          "title" : "Telegiornale",
          "lead" : "Le notizie di mezza giornata",
          "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11931521/",

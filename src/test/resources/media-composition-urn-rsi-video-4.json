@@ -1,0 +1,351 @@
+{
+   "chapterUrn" : "urn:rsi:video:4",
+   "episode" : {
+      "id" : "11935970",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di prima serata",
+      "publishedDate" : "2019-07-02T20:00:00+02:00",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
+      "imageTitle" : "TELEGIORNALE  [La1] 2019-07-02 20:00:11"
+   },
+   "show" : {
+      "id" : "2311780",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:show:tv:2311780",
+      "title" : "Telegiornale",
+      "lead" : "",
+      "description" : "Il TG ha una storia pluriennale. Dalla prima edizione nel 1958 a Zurigo, le generazioni che si sono susseguite nella redazione lavorano ogni giorno dell’anno con passione, impegno e serietà per confezionare le quattro edizioni quotidiane. Edizioni che vogliono raccontare l’attualità nazionale, estera e anche regionale con uno stile diretto, senza fronzoli, equilibrato e fornendo anche chiavi di lettura per capire le implicazioni e le ragioni degli eventi che ritmano da vicino e da lontano le nostre vite",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/WEBVISUAL/11351565/",
+      "imageTitle" : "STORY_TG.jpg",
+      "bannerImageUrl" : "http://www.rsi.ch/rsi-api/resize/image/HEADER_PLAYER/11351565/",
+      "homepageUrl" : "https://www.rsi.ch/la1/programmi/informazione/telegiornale/",
+      "podcastSubscriptionUrl" : "",
+      "primaryChannelId" : "la1"
+   },
+   "channel" : {
+      "id" : "la1",
+      "title" : "LA 1",
+      "imageUrl" : "https://www.rsi.ch/rsi-api/resize/image/LOGO/1567117",
+      "imageTitle" : "LA 1",
+      "transmission" : "TV"
+   },
+   "chapterList" : [ {
+      "id" : "4",
+      "mediaType" : "VIDEO",
+      "vendor" : "RSI",
+      "urn" : "urn:rsi:video:4",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di prima serata",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
+      "imageTitle" : "TELEGIORNALE  [La1] 2019-07-02 20:00:11",
+      "type" : "EPISODE",
+      "date" : "2019-07-02T20:00:00+02:00",
+      "duration" : 1916120,
+      "validTo" : "2199-01-01T13:00:00+01:00",
+      "playableAbroad" : true,
+      "socialCountList" : [ {
+         "key" : "srgView",
+         "value" : 553
+      }, {
+         "key" : "srgLike",
+         "value" : 0
+      }, {
+         "key" : "fbShare",
+         "value" : 0
+      }, {
+         "key" : "twitterShare",
+         "value" : 0
+      }, {
+         "key" : "googleShare",
+         "value" : 0
+      }, {
+         "key" : "whatsAppShare",
+         "value" : 2
+      } ],
+      "displayable" : true,
+      "position" : 0,
+      "noEmbed" : false,
+      "subtitleList" : [ {
+         "url" : "https://cdn.rsi.ch/subtitles/subt_web/rsi/production/2019/ts_20190702_i_11935970.xml",
+         "format" : "TTML"
+      } ],
+      "analyticsData" : {
+         "ns_st_ep" : "Telegiornale",
+         "ns_st_ty" : "Video",
+         "ns_st_ci" : "11935970",
+         "ns_st_el" : "1916120",
+         "ns_st_cl" : "1916120",
+         "ns_st_sl" : "1916120",
+         "srg_mgeobl" : "false",
+         "ns_st_tp" : "12",
+         "ns_st_cn" : "1",
+         "ns_st_ct" : "vc12",
+         "ns_st_pn" : "1"
+      },
+      "analyticsMetadata" : {
+         "media_segment" : "Telegiornale",
+         "media_type" : "Video",
+         "media_segment_id" : "11935970",
+         "media_episode_length" : "1916",
+         "media_segment_length" : "1916",
+         "media_number_of_segment_selected" : "1",
+         "media_number_of_segments_total" : "12",
+         "media_duration_category" : "long",
+         "media_is_geoblocked" : "false",
+         "media_urn" : "urn:rsi:video:11935970"
+      },
+      "eventData" : "$2ab8891009cb807e$cbb6829f11fa1703677d9243948dc40db3e08790ae5e57aac038658c7f67c093d09156dcdafea01ec301601f2c1cd8094ebb8e65e5a4d46de4bc21b18125deb90f82f3caa8c57d1c54071f0d5accaf8681adad403c9ab4b14e08cf60b66b465d0ed56b3c87e914da42bb44fefbef5a2208206537fbaf1d32a40449a6defa0fc87b57ee55fb7824159aa59564e1e23826b3d815400136534dac42452dfa227bb218306484dcec544d34f2e7955a5a3ba85459c06bc00396202bcaa0d65f471972bc8cd0423cae94af7bb67704d08e3a483cb1a01d595bc472fce16e42ff3b6cd4cc149bc3bf80b7bdf276b5dccbc0b456615d285969ec0ab6e99d8b96e477b264bc78946dccfc7e943da93fe8afa4d47f",
+      "resourceList" : [ {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/manifest.f4m",
+         "quality" : "SD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/master.m3u8",
+         "quality" : "SD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/master.m3u8"
+         }
+      }, {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/manifest.f4m",
+         "quality" : "HD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/master.m3u8",
+         "quality" : "HD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2841317,2841318,2841319,.mp4.csmil/master.m3u8"
+         }
+      } ],
+      "segmentList" : [ {
+         "id" : "41",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:41",
+         "title" : "02.07.2019: Compromesso sul secondo pilastro",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936270/",
+         "imageTitle" : "TG  [La1] 2019-07-02 20:01:07 - Compromesso sul secondo pilastro",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T20:00:11+02:00",
+         "duration" : 182920,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:4",
+         "position" : 0,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: Compromesso sul secondo pilastro",
+            "media_type" : "Video",
+            "media_segment_id" : "11935925",
+            "media_episode_length" : "1916",
+            "media_segment_length" : "183",
+            "media_number_of_segment_selected" : "1",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11935925"
+         },
+         "eventData" : "$d80d62fafeaa538c$ab1e32a177c27fb8131d5734f8f59d1c1d09d8fc70419482b19850b313d89da71d3c23af268d2ad38d1d8907d0f361eb928313e79f184184e3e6ca3caed84a66b0ef09546ef69a7e5b94fdf1ad73bac34e8505ebc825a2e3d89e84f2818e2ece7190e31d40237366be84d4a4f8bbc26065dadcc129b495956a0f4980231b8f8dd574d4408a1c94aed745191918687e0113686ccce61761203270771b6389ae1313ef975344582686566e078aff5b1c7b6ccf6e93559c41aedb005138a7c794c2f18d083aa8428e55310349c5f39a2510505765cacc064d9b68150ee06d71c5f7898b242f2a5b530863afe29782f2dbcbd89e92514af78d0497c8fe385482686634de8488a4eb9b041baecc94ac6cbf81",
+         "markIn" : 56799,
+         "markOut" : 239719
+      }, {
+         "id" : "42",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:42",
+         "title" : "02.07.2019: Cosa prevede il progetto sul secondo pilastro",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936288/",
+         "imageTitle" : "TG  [La1] 2019-07-02 20:04:10 - Cosa prevede il progetto sul secondo pilastro",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T20:00:11+02:00",
+         "duration" : 141600,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:4",
+         "position" : 1,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: Cosa prevede il progetto sul secondo pilastro",
+            "media_type" : "Video",
+            "media_segment_id" : "11935922",
+            "media_episode_length" : "1916",
+            "media_segment_length" : "142",
+            "media_number_of_segment_selected" : "2",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11935922"
+         },
+         "eventData" : "$ffcaf1af568530d3$c1f94b96e3b5b0ce9720fcd384d3abe7786e87508af514de353f61c636921d3313665ee545ccf06554e4325b6bf579d4c3b4cfb45004db19b0895578b4aa07d95622e9f0defe7c4c8904629055a3bc2d50412952100b4487c277f7676140393483bc641e37b9dac70415250e6182a648d237e88b5d928b6d7c3cb8783c27d57c6ba723d28a22d3e9533a4735cd9b3acbc3a3bfc2f071f3af2be791b61e7bd7df04fb523ae77a5eaa3d540e1ee788e249bac6546606b1c2ec54c007165d857f272d0b0866ff507f8ca353c5c0a25b6dc1199c1396c8f9ae37659d66502001134c831f54ee3d0d13381f40c07b062bc943111bcafda9dab5ac1bc8f9a0b676e4466df481be85df0faaa982397c9af09760",
+         "markIn" : 239399,
+         "markOut" : 380999
+      }, {
+         "id" : "43",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:43",
+         "title" : "02.07.2019: La nostra corrispondente Simona Cereghetti",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936294/",
+         "imageTitle" : "TG  [La1] 2019-07-02 20:06:32 - La nostra corrispondente Simona Cereghetti",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T20:00:11+02:00",
+         "duration" : 129520,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:4",
+         "position" : 2,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: La nostra corrispondente Simona Cereghetti",
+            "media_type" : "Video",
+            "media_segment_id" : "11935928",
+            "media_episode_length" : "1916",
+            "media_segment_length" : "130",
+            "media_number_of_segment_selected" : "3",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11935928"
+         },
+         "eventData" : "$faec3ac3e490729d$8fe8f18dc76875ced87ef7b5dd10faa9e2d2e905b5b26f69faee2c328d46664b025e81588af033ee135e7fc7a06a4b022e66bd057c51fa9edd1a31da98c07c1fe77b9a91f367b7884357ff26f51a874f172d0a69fba68b55e49c070c08b3adc2c2344c8e494f44054f019a431bbed99d7fb9389a3c1d44b830de12600eb1ee7f39dcd9ea54e058e98ca6e587e46b3b4fa5259c335dc6ae716ee534ddd09cdd9ca0493486a54abe34693383fc14733079d1ca4ed83a77212bd8703b05a919f3c425a84b9523810ad51585bb0779253dee0d4872ec5bf8662df3365999b8eabe9751108d19913ba25fda782f8544b5ba7b391c694064614c510aa1ef59b983a80cffa12f08bd91b88209d758b55b7c94df",
+         "markIn" : 381480,
+         "markOut" : 511000
+      }
+      ]
+   } ],
+   "topicList" : [ {
+      "id" : "7",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:topic:tv:7",
+      "title" : "Informazione"
+   } ],
+   "analyticsData" : {
+      "srg_pr_id" : "11935970",
+      "srg_plid" : "2311780",
+      "ns_st_pl" : "Telegiornale",
+      "ns_st_pr" : "Telegiornale del 02.07.2019",
+      "ns_st_dt" : "2019-07-02",
+      "ns_st_ddt" : "2019-07-02",
+      "ns_st_tdt" : "2019-07-02",
+      "ns_st_tm" : "20:30:19",
+      "ns_st_tep" : "EP872233",
+      "ns_st_li" : "0",
+      "ns_st_stc" : "8003",
+      "ns_st_st" : "LA 1",
+      "ns_st_tpr" : "2311780",
+      "ns_st_en" : "*null",
+      "ns_st_ge" : "*null",
+      "ns_st_ia" : "*null",
+      "ns_st_ce" : "1",
+      "ns_st_cdm" : "to",
+      "ns_st_cmt" : "fc",
+      "srg_unit" : "RSI",
+      "srg_c1" : "LA1-Informazione",
+      "srg_c2" : "Informazione.Telegiornale delle 20:00",
+      "srg_c3" : "Telegiornale del 02.07.2019 (FULL) - 11935970",
+      "srg_tv_id" : "EP872233",
+      "srg_tvsvizzera" : "false",
+      "srg_aod_prid" : "11935970"
+   },
+   "analyticsMetadata" : {
+      "media_episode_id" : "11935970",
+      "media_show_id" : "2311780",
+      "media_show" : "Telegiornale",
+      "media_episode" : "Telegiornale del 02.07.2019",
+      "media_is_livestream" : "false",
+      "media_full_length" : "full",
+      "media_enterprise_units" : "RSI",
+      "media_joker1" : "LA1-Informazione",
+      "media_joker2" : "Informazione.Telegiornale delle 20:00",
+      "media_joker3" : "Telegiornale del 02.07.2019 (FULL) - 11935970",
+      "media_is_web_only" : "false",
+      "media_production_source" : "produced.for.broadcasting",
+      "media_tv_id" : "EP872233",
+      "media_thumbnail" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261//scale/width/344",
+      "media_publication_date" : "2019-07-02",
+      "media_publication_time" : "20:00:00",
+      "media_publication_datetime" : "2019-07-02T20:00:00+02:00",
+      "media_tv_date" : "2019-07-02",
+      "media_tv_time" : "20:30:19",
+      "media_tv_datetime" : "2019-07-02T20:30:19+02:00",
+      "media_content_group" : "Informazione",
+      "media_channel_id" : "TV",
+      "media_channel_cs" : "8003",
+      "media_channel_name" : "LA 1",
+      "media_since_publication_d" : "2",
+      "media_since_publication_h" : "53"
+   }
+}

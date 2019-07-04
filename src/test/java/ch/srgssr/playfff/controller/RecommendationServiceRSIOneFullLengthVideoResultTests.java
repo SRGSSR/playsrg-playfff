@@ -35,7 +35,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RecommendationServiceRSIVideoResultTests {
+public class RecommendationServiceRSIOneFullLengthVideoResultTests {
 
     @Autowired
     private RecommendationService recommendationService;
@@ -66,8 +66,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthAndNextURLforOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:1";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -75,8 +75,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthforOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:1";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -84,8 +84,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthAndNextURLforSecondEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:2";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:4b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:4b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -93,8 +93,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthforSecondEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:2";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:4b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:4b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -102,8 +102,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthAndNextURLforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:3";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -111,8 +111,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:3";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:1b", "urn:rsi:video:2b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:1b", "urn:rsi:video:2b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:1", "urn:rsi:video:2");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:1", "urn:rsi:video:2");
 
         testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -120,8 +120,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthAndNextURLforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:4";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -129,8 +129,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:4";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
 
         testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -138,8 +138,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthAndNextURLforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:0";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -147,8 +147,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoFullLengthforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:0";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -157,8 +157,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipAndNextURLforOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:11";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -166,8 +166,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipforOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:11";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -175,8 +175,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipAndNextURLforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:31";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -184,8 +184,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:31";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:1b", "urn:rsi:video:2b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:1b", "urn:rsi:video:2b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:1", "urn:rsi:video:2");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:1", "urn:rsi:video:2");
 
         testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -193,8 +193,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipAndNextURLforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:43";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -202,8 +202,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:43";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
 
         testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -211,8 +211,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipAndNextURLforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:01";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4b", "urn:rsi:video:3b", "urn:rsi:video:2b", "urn:rsi:video:1b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
         testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
     }
@@ -220,8 +220,8 @@ public class RecommendationServiceRSIVideoResultTests {
     @Test
     public void videoClipforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rsi:video:01";
-        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
-        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1b", "urn:rsi:video:2b", "urn:rsi:video:3b", "urn:rsi:video:4b");
+        List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
+        List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
         testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
     }
@@ -237,7 +237,7 @@ public class RecommendationServiceRSIVideoResultTests {
                         .body(mediaJson)
                 );
 
-        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rsi-tv-next-url.json" : "episode-composition-rsi-tv.json";
+        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rsi-tv-one-full-length-next-url.json" : "episode-composition-rsi-tv-one-full-length.json";
         String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName, new HashMap<>());
         mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rsi:show:tv:1234.json?pageSize=100")))
@@ -277,6 +277,6 @@ public class RecommendationServiceRSIVideoResultTests {
         Assert.assertEquals(expectedRecommendationId, recommendationId2);
         Assert.assertEquals(expectedStandaloneUrns, recommendedList2.getUrns());
 
-        //mockServer.verify();
+        mockServer.verify();
     }
 }
