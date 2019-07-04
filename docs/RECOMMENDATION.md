@@ -15,11 +15,11 @@ Since July 2018, Play Android (2.0.207 and more) and Play iOS (2.8.3-272 and mor
 
 The API doesn't not support paginations, therefore mobile applications didn't implement pagination. The media recommendation list must have at least 49 items, the 50th is the requested media.
 
-#### RTS videos `urn.contains(":rts:video:")`
+#### RTS videos
 
 - For RTS videos, it asks Peach recommendation `continuous_playback_mobile` service.
 
-#### SRF videos `urn.contains(":srf:video:")`
+#### SRF videos
 
 - For SRF videos, it asks SRF recommendation `RecSys` service.
 
@@ -40,7 +40,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 - It does not return clips if `VIDEO` media type and `standalone == false`.
 - If clips are not in `IL-EpisodeComposition`, it fallacks to full lengths.
 
-#### Swisstxt URNs
+#### Swisstxt URNs or other MAMs
 
 - No recommendation provided. It returns an empty list.
 
