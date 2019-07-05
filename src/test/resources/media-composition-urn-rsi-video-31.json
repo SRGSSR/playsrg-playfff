@@ -1,0 +1,343 @@
+{
+   "chapterUrn" : "urn:rsi:video:3",
+   "segmentUrn" : "urn:rsi:video:31",
+   "episode" : {
+      "id" : "11884301",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di mezza giornata",
+      "publishedDate" : "2019-07-02T12:30:00+02:00",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934632/",
+      "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-02 12:30:00"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:show:tv:1234",
+      "title" : "Telegiornale",
+      "lead" : "",
+      "description" : "Il TG ha una storia pluriennale. Dalla prima edizione nel 1958 a Zurigo, le generazioni che si sono susseguite nella redazione lavorano ogni giorno dell’anno con passione, impegno e serietà per confezionare le quattro edizioni quotidiane. Edizioni che vogliono raccontare l’attualità nazionale, estera e anche regionale con uno stile diretto, senza fronzoli, equilibrato e fornendo anche chiavi di lettura per capire le implicazioni e le ragioni degli eventi che ritmano da vicino e da lontano le nostre vite",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/WEBVISUAL/11351565/",
+      "imageTitle" : "STORY_TG.jpg",
+      "bannerImageUrl" : "http://www.rsi.ch/rsi-api/resize/image/HEADER_PLAYER/11351565/",
+      "homepageUrl" : "https://www.rsi.ch/la1/programmi/informazione/telegiornale/",
+      "podcastSubscriptionUrl" : "",
+      "primaryChannelId" : "la1"
+   },
+   "channel" : {
+      "id" : "la1",
+      "title" : "LA 1",
+      "imageUrl" : "https://www.rsi.ch/rsi-api/resize/image/LOGO/1567117",
+      "imageTitle" : "LA 1",
+      "transmission" : "TV"
+   },
+   "chapterList" : [ {
+      "id" : "3",
+      "mediaType" : "VIDEO",
+      "vendor" : "RSI",
+      "urn" : "urn:rsi:video:3",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di mezza giornata",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934632/",
+      "imageTitle" : "TELEGIORNALE 12:30  [La1] 2019-07-02 12:30:00",
+      "type" : "EPISODE",
+      "date" : "2019-07-02T12:30:00+02:00",
+      "duration" : 676480,
+      "validTo" : "2199-01-01T13:00:00+01:00",
+      "playableAbroad" : true,
+      "displayable" : true,
+      "position" : 0,
+      "noEmbed" : false,
+      "analyticsData" : {
+         "ns_st_ep" : "Telegiornale",
+         "ns_st_ty" : "Video",
+         "ns_st_ci" : "11884301",
+         "ns_st_el" : "676480",
+         "ns_st_cl" : "676480",
+         "ns_st_sl" : "676480",
+         "srg_mgeobl" : "false",
+         "ns_st_tp" : "7",
+         "ns_st_cn" : "1",
+         "ns_st_ct" : "vc12",
+         "ns_st_pn" : "1"
+      },
+      "analyticsMetadata" : {
+         "media_segment" : "Telegiornale",
+         "media_type" : "Video",
+         "media_segment_id" : "11884301",
+         "media_episode_length" : "676",
+         "media_segment_length" : "676",
+         "media_number_of_segment_selected" : "1",
+         "media_number_of_segments_total" : "7",
+         "media_duration_category" : "long",
+         "media_is_geoblocked" : "false",
+         "media_urn" : "urn:rsi:video:11884301"
+      },
+      "eventData" : "$5895c347d1be69b6$a785b9ed268ae41164df7cd8a3386ac12e1c75b76c11adbd01d1d0710f0437b6b8ceb3759be6ec275cd5ed570548bce1dcd5a32bc271d0281f7074326787c8e04d23c9b96790985d1596e25ce528f76f803ba51c39746e19d01b43c25d2369663632dd3b810d0b8853a390499e032f97ccf4a5ff13cc36b64156bc1662662c9a2b0226e4869711391f1a48d2968002b94b078f293afe0b3520df015e50d569bfaead626f4827cc3b526bee5308e05fedbcef92a8f1b692f4ff35cc25467e143e4469b675a45dbbac594fac34531fc8a8895d486d792340068b5768ff15259bcfa5280751fb976e414cb09856adc25c5934bcec411a494220766f96fc4e13196c477f5f74cb406b5c35db65c48e403f6c",
+      "resourceList" : [ {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/manifest.f4m",
+         "quality" : "SD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/master.m3u8",
+         "quality" : "SD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/master.m3u8"
+         }
+      }, {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/manifest.f4m",
+         "quality" : "HD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/master.m3u8",
+         "quality" : "HD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/02/,2840984,2840985,2840986,.mp4.csmil/master.m3u8"
+         }
+      } ],
+      "segmentList" : [ {
+         "id" : "31",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:31",
+         "title" : "02.07.2019: Secondo pilastro: un compromesso storico",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934611/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-02 12:30:49 - Secondo pilastro: un compromesso storico",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T12:30:00+02:00",
+         "duration" : 112400,
+         "playableAbroad" : true,
+         "socialCountList" : [ {
+            "key" : "srgView",
+            "value" : 0
+         }, {
+            "key" : "srgLike",
+            "value" : 0
+         }, {
+            "key" : "fbShare",
+            "value" : 0
+         }, {
+            "key" : "twitterShare",
+            "value" : 0
+         }, {
+            "key" : "googleShare",
+            "value" : 0
+         }, {
+            "key" : "whatsAppShare",
+            "value" : 0
+         } ],
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11884301",
+         "position" : 0,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: Secondo pilastro: un compromesso storico",
+            "media_type" : "Video",
+            "media_segment_id" : "11934392",
+            "media_episode_length" : "676",
+            "media_segment_length" : "112",
+            "media_number_of_segment_selected" : "1",
+            "media_number_of_segments_total" : "7",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11934392"
+         },
+         "eventData" : "$c5f6fefea6d30fb2$56e9790e8e7aa01ae29de9090b48be75e41fd79d92555cd9cfd0a67ae722f5514649c44232534956883bfcbe0c3c996fec4453b9a5d0dee2225fad6303d296a191edb5d37d5a9c27de98a38d62eee3ea77cb44eea3cd6932b440ec98fabbc6a40c6a1067923e784ea54c312331e457ba4bb67e5c58893457313de15a0072260af17bda1160515b1fbe8d6ad77644ec16373916601c8cf384a922c350de8733573621c273b6e615f085784f7ad60e57e3a35102523497556d01e770d5cd06aaa6fc66df6269b05aa40a9ad403220bc9bf44828bc1b851fdc039879259e63dea79ee9804954a02b86fa6221bce4a0f2821d62218054e3744d317936ed440f457de0b94edb5de4d99e427e9743e67d19db7",
+         "markIn" : 49720,
+         "markOut" : 162120
+      }, {
+         "id" : "32",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:32",
+         "title" : "02.07.2019: ONG, il finanziamento cambia",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934614/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-02 12:33:12 - ONG, il finanziamento cambia",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T12:30:00+02:00",
+         "duration" : 60280,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11884301",
+         "position" : 1,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: ONG, il finanziamento cambia",
+            "media_type" : "Video",
+            "media_segment_id" : "11934383",
+            "media_episode_length" : "676",
+            "media_segment_length" : "60",
+            "media_number_of_segment_selected" : "2",
+            "media_number_of_segments_total" : "7",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11934383"
+         },
+         "eventData" : "$a79cb12a8457a143$d201fc60b87e35df43e06226aac24ce9784f34bfe5bb39ed0438588829b43bb99f4f53916646029a146cd826c827e67440bb71ea9541084e1338c36cf88a0ceb55d91643969e3455d2729429dc5801d54d2b139556789095a80771d80bd9fa63fb4b9c2d13073ade05d8fe4c49fe427b9b4392824c52dc8e89c4d39a29ecf27a05ad63911f32d7bfe6b9d5c544e619a5375c8f453a9d653e2976ff50f226966df6d7cf6803318631129f56eb1e1c125f5486c698afe354239282c4647e96250938335b17d93c78a739abb0755495c316e67674aa014878a08eacd86e9e7c4130698708e9d0a38d81c563229b69a02c8056bfcacbbf6833561de80c2d654ac5e3ee04c177b31a52062fa5075b4e34d2b8",
+         "markIn" : 192240,
+         "markOut" : 252520
+      }, {
+         "id" : "33",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:33",
+         "title" : "02.07.2019: Bruxelles, riprese le trattative sulle nomine Ue",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934617/",
+         "imageTitle" : "TG 12:30  [La1] 2019-07-02 12:34:12 - Bruxelles, riprese le trattative sulle nomine Ue",
+         "type" : "EPISODE",
+         "date" : "2019-07-02T12:30:00+02:00",
+         "duration" : 68560,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:11884301",
+         "position" : 2,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "02.07.2019: Bruxelles, riprese le trattative sulle nomine Ue",
+            "media_type" : "Video",
+            "media_segment_id" : "11934395",
+            "media_episode_length" : "676",
+            "media_segment_length" : "69",
+            "media_number_of_segment_selected" : "3",
+            "media_number_of_segments_total" : "7",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11934395"
+         },
+         "eventData" : "$0b588fd8267dd272$b9fbf2cff72fb3cc42ae41eab3ac66fdb439e43a4653483f8edbb86e6b826660f4901d46fcb9aa3406552e635fd496cdb6b8636633f46d99d6db9fda48aaf548e71c893da5183420f964443ea11ce3394020a443b0ec537f871219fee31ee5f23c5f4f1a962f3f84c33b4b8055daf2489ceabb686c69302e96a1e5c15c25f8b10bc03c4664229944184230ca18c541aa08cc22d613b303bdd9650e079ac110977097eb7dc862a80698b1e4205f30d90553190523c7a71440ae89e89a2f4c8e111ef796938623829ea7f0cfc2d1562b7a5c068c56288b5abd74b978a316393e49da5bb9043086a37fb6466d1acbb3143d1f3a71620050726893aeac90154e59e049812cb39bacfcb523e24c84ddea0502",
+         "markIn" : 252639,
+         "markOut" : 321199
+      }
+      ]
+   } ],
+   "topicList" : [ {
+      "id" : "7",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:topic:tv:7",
+      "title" : "Informazione"
+   } ],
+   "analyticsData" : {
+      "srg_pr_id" : "11884301",
+      "srg_plid" : "2311780",
+      "ns_st_pl" : "Telegiornale",
+      "ns_st_pr" : "Telegiornale del 02.07.2019",
+      "ns_st_dt" : "2019-07-02",
+      "ns_st_ddt" : "2019-07-02",
+      "ns_st_tdt" : "2019-07-02",
+      "ns_st_tm" : "12:30:00",
+      "ns_st_tep" : "",
+      "ns_st_li" : "0",
+      "ns_st_stc" : "8003",
+      "ns_st_st" : "LA 1",
+      "ns_st_tpr" : "2311780",
+      "ns_st_en" : "*null",
+      "ns_st_ge" : "*null",
+      "ns_st_ia" : "*null",
+      "ns_st_ce" : "0",
+      "srg_unit" : "RSI",
+      "srg_c1" : "LA1-Informazione",
+      "srg_c2" : "Informazione.Telegiornale delle 12:30",
+      "srg_c3" : "02.07.2019: Secondo pilastro: un compromesso storico - 11934392",
+      "srg_tv_id" : "",
+      "srg_tvsvizzera" : "false",
+      "srg_aod_prid" : "11884301"
+   },
+   "analyticsMetadata" : {
+      "media_episode_id" : "11884301",
+      "media_show_id" : "2311780",
+      "media_show" : "Telegiornale",
+      "media_episode" : "Telegiornale del 02.07.2019",
+      "media_is_livestream" : "false",
+      "media_full_length" : "partial",
+      "media_enterprise_units" : "RSI",
+      "media_joker1" : "LA1-Informazione",
+      "media_joker2" : "Informazione.Telegiornale delle 12:30",
+      "media_joker3" : "02.07.2019: Secondo pilastro: un compromesso storico - 11934392",
+      "media_tv_id" : "",
+      "media_thumbnail" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934611//scale/width/344",
+      "media_publication_date" : "2019-07-02",
+      "media_publication_time" : "12:30:00",
+      "media_publication_datetime" : "2019-07-02T12:30:00+02:00",
+      "media_tv_date" : "2019-07-02",
+      "media_tv_time" : "12:30:00",
+      "media_tv_datetime" : "2019-07-02T12:30:00+02:00",
+      "media_channel_id" : "TV",
+      "media_channel_cs" : "8003",
+      "media_channel_name" : "LA 1",
+      "media_since_publication_d" : "1",
+      "media_since_publication_h" : "31"
+   }
+}

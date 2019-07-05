@@ -1,0 +1,44 @@
+{
+   "id" : "3",
+   "mediaType" : "VIDEO",
+   "vendor" : "RTR",
+   "urn" : "urn:rtr:video:3",
+   "title" : "Minisguard dals 15.06.2019",
+   "imageUrl" : "https://ws.srf.ch/asset/image/audio/97450e52-b6cb-4111-b98b-9563fb71765f/EPISODE_IMAGE/1560618133.png",
+   "type" : "EPISODE",
+   "date" : "2019-06-15T17:45:00+02:00",
+   "duration" : 609000,
+   "podcastSdUrl" : "https://podcastsource.sf.tv/nps/101551066/609.32/Minisguard+dals+15.06.2019/podcast/minisguard/2019/06/minisguard_20190615_174514_16349903_v_podcast_h264_q10.mp4?assetId=6975f8d7-e26a-4c4d-945f-df3472c25b0e",
+   "podcastHdUrl" : "https://podcastsource.sf.tv/nps/276810888/609.32/Minisguard+dals+15.06.2019/podcast/minisguard/2019/06/minisguard_20190615_174514_16349903_v_podcast_h264_q30.mp4?assetId=6975f8d7-e26a-4c4d-945f-df3472c25b0e",
+   "validFrom" : "2019-06-15T18:00:00+02:00",
+   "playableAbroad" : true,
+   "subtitlesAvailable" : true,
+   "episode" : {
+      "id" : "39832185-7279-4fa2-9067-94718f89e619",
+      "title" : "Minisguard dals 15.06.2019",
+      "lead" : "Die Nachrichtensendung für Kinder und Jugendliche. Warum ist der Himmel blau? Was sind Menschenrechte? Was macht die Digitalisierung? Willst Du wissen, was in unserer Welt los ist? Willst Du gut informiert sein und mehr verstehen? «Minisguard» präsentiert aktuelle Themen kinderleicht verständlich.",
+      "publishedDate" : "2019-06-15T17:45:00+02:00",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/WEBVISUAL/1512977010.jpg"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTR",
+      "transmission" : "TV",
+      "urn" : "urn:rtr:show:tv:1234",
+      "title" : "Minisguard",
+      "lead" : "Il Minisguard è l’emissiun emnila d’infurmaziun da la Televisiun Rumantscha per ils uffants .",
+      "description" : "Il Minisguard è l’emissiun emnila d’infurmaziun da la Televisiun Rumantscha per ils uffants. L’emissiun declera als uffants temas politics, economics, culturals, ord il mund dal sport e da la societad en furma chapaivla e divertenta. Mintga emissiun dat paisa speziala ad in tema actual da l’emna.",
+      "imageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/WEBVISUAL/1512977010.jpg",
+      "imageTitle" : "Minisguard",
+      "bannerImageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/HEADER_SRF_PLAYER/1512976940.jpg",
+      "timeTableUrl" : "https://www.srf.ch/programm/tv/mediagroup/minisguard",
+      "primaryChannelId" : "f5dc82ed-4564-4223-903f-0bf6a13c5620",
+      "topicList" : [ {
+         "id" : "dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+         "vendor" : "RTR",
+         "transmission" : "TV",
+         "urn" : "urn:rtr:topic:tv:dfb7ae6d-cb73-431b-a817-b1663ec2f58a",
+         "title" : "Uffants"
+      } ]
+   }
+}

@@ -1,0 +1,351 @@
+{
+   "chapterUrn" : "urn:rsi:video:2",
+   "episode" : {
+      "id" : "11932874",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di prima serata",
+      "publishedDate" : "2019-07-01T20:00:00+02:00",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934056/",
+      "imageTitle" : "TELEGIORNALE  [La1] 2019-07-01 20:00:11"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:show:tv:1234",
+      "title" : "Telegiornale",
+      "lead" : "",
+      "description" : "Il TG ha una storia pluriennale. Dalla prima edizione nel 1958 a Zurigo, le generazioni che si sono susseguite nella redazione lavorano ogni giorno dell’anno con passione, impegno e serietà per confezionare le quattro edizioni quotidiane. Edizioni che vogliono raccontare l’attualità nazionale, estera e anche regionale con uno stile diretto, senza fronzoli, equilibrato e fornendo anche chiavi di lettura per capire le implicazioni e le ragioni degli eventi che ritmano da vicino e da lontano le nostre vite",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/WEBVISUAL/11351565/",
+      "imageTitle" : "STORY_TG.jpg",
+      "bannerImageUrl" : "http://www.rsi.ch/rsi-api/resize/image/HEADER_PLAYER/11351565/",
+      "homepageUrl" : "https://www.rsi.ch/la1/programmi/informazione/telegiornale/",
+      "podcastSubscriptionUrl" : "",
+      "primaryChannelId" : "la1"
+   },
+   "channel" : {
+      "id" : "la1",
+      "title" : "LA 1",
+      "imageUrl" : "https://www.rsi.ch/rsi-api/resize/image/LOGO/1567117",
+      "imageTitle" : "LA 1",
+      "transmission" : "TV"
+   },
+   "chapterList" : [ {
+      "id" : "2",
+      "mediaType" : "VIDEO",
+      "vendor" : "RSI",
+      "urn" : "urn:rsi:video:2",
+      "title" : "Telegiornale",
+      "lead" : "Le notizie di prima serata",
+      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934056/",
+      "imageTitle" : "TELEGIORNALE  [La1] 2019-07-01 20:00:11",
+      "type" : "EPISODE",
+      "date" : "2019-07-01T20:00:00+02:00",
+      "duration" : 1690280,
+      "validTo" : "2199-01-01T13:00:00+01:00",
+      "playableAbroad" : true,
+      "socialCountList" : [ {
+         "key" : "srgView",
+         "value" : 597
+      }, {
+         "key" : "srgLike",
+         "value" : 0
+      }, {
+         "key" : "fbShare",
+         "value" : 0
+      }, {
+         "key" : "twitterShare",
+         "value" : 0
+      }, {
+         "key" : "googleShare",
+         "value" : 0
+      }, {
+         "key" : "whatsAppShare",
+         "value" : 2
+      } ],
+      "displayable" : true,
+      "position" : 0,
+      "noEmbed" : false,
+      "subtitleList" : [ {
+         "url" : "https://cdn.rsi.ch/subtitles/subt_web/rsi/production/2019/ts_20190701_i_11932874.xml",
+         "format" : "TTML"
+      } ],
+      "analyticsData" : {
+         "ns_st_ep" : "Telegiornale",
+         "ns_st_ty" : "Video",
+         "ns_st_ci" : "11932874",
+         "ns_st_el" : "1690280",
+         "ns_st_cl" : "1690280",
+         "ns_st_sl" : "1690280",
+         "srg_mgeobl" : "false",
+         "ns_st_tp" : "12",
+         "ns_st_cn" : "1",
+         "ns_st_ct" : "vc12",
+         "ns_st_pn" : "1"
+      },
+      "analyticsMetadata" : {
+         "media_segment" : "Telegiornale",
+         "media_type" : "Video",
+         "media_segment_id" : "11932874",
+         "media_episode_length" : "1690",
+         "media_segment_length" : "1690",
+         "media_number_of_segment_selected" : "1",
+         "media_number_of_segments_total" : "12",
+         "media_duration_category" : "long",
+         "media_is_geoblocked" : "false",
+         "media_urn" : "urn:rsi:video:11932874"
+      },
+      "eventData" : "$4b8cb590d25d6e87$494b6c5d120e8ee26f145df84a37c4b647ed2450251b81d8523ccadb04bb49d0a16535537b54a375f0cd194c36cca42334c0624422533f3f03943011be81471f697adce18a10084939d7af7f795f0f5e1468f38577b8b90695f78a0727bf2375bdca747a981c71149e8cca3f703c0254da1ec0c089e65502545a668d2339f485dc2a8d5f7c3156ee48dc41b7804e4845b17539638e6d4f39c9a146040a2bf25214ea58b1faa19a228396fa342299b20d9c5b204d52f2508a9e492b1d9aea436aa1bc125e7411fa8230872d03ae76461c4348c47482f709e1e42897cc0f3d9357219c30ac5cbbcbaabe40152a36e8811351174b1def82e526e06f4bc4895755af2185c0671045b97a292c7577a4671193",
+      "resourceList" : [ {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/manifest.f4m",
+         "quality" : "SD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/master.m3u8",
+         "quality" : "SD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "SD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "SD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/master.m3u8"
+         }
+      }, {
+         "url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/manifest.f4m",
+         "quality" : "HD",
+         "protocol" : "HDS",
+         "encoding" : "H264",
+         "mimeType" : "application/adobe-f4m",
+         "presentation" : "DEFAULT",
+         "streaming" : "HDS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "http://codww-vh.akamaihd.net/z/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/manifest.f4m"
+         }
+      }, {
+         "url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/master.m3u8",
+         "quality" : "HD",
+         "protocol" : "HLS",
+         "encoding" : "H264",
+         "mimeType" : "application/x-mpegURL",
+         "presentation" : "DEFAULT",
+         "streaming" : "HLS",
+         "dvr" : false,
+         "live" : false,
+         "mediaContainer" : "MP4",
+         "audioCodec" : "AAC",
+         "videoCodec" : "H264",
+         "tokenType" : "AKAMAI",
+         "analyticsData" : {
+            "srg_mqual" : "HD",
+            "srg_mpres" : "DEFAULT"
+         },
+         "analyticsMetadata" : {
+            "media_streaming_quality" : "HD",
+            "media_special_format" : "DEFAULT",
+            "media_url" : "https://codww-vh.akamaihd.net/i/rsi/unrestricted/2019/07/01/,2840733,2840734,2840735,.mp4.csmil/master.m3u8"
+         }
+      } ],
+      "segmentList" : [ {
+         "id" : "21",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:21",
+         "title" : "01.07.2019: SECO, stabile l'immiagrazione dall'UE",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11933033/",
+         "imageTitle" : "TG  [La1] 2019-07-01 20:01:07 - SECO, stabile l'immiagrazione dall'UE",
+         "type" : "EPISODE",
+         "date" : "2019-07-01T20:00:11+02:00",
+         "duration" : 147400,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:2",
+         "position" : 0,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "01.07.2019: SECO, stabile l'immiagrazione dall'UE",
+            "media_type" : "Video",
+            "media_segment_id" : "11932847",
+            "media_episode_length" : "1690",
+            "media_segment_length" : "147",
+            "media_number_of_segment_selected" : "1",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11932847"
+         },
+         "eventData" : "$d87e27ee5a00cf4e$5f72a4b302cd95cf8909c8c57d770788fd0936bc2ceb42b4975c7b56397bd74039a6380e95db3a32083bd57cce86d3f317922022b33d9489972ca58073d1073faa9af3dc76fe58560fbb1a493cfefc885c928704a73d5ebee3b0c92f975291b6f5ee12b1b0998346317e60b0a04144947be1269322d967425789a674e154aaa576de1323341d15b26f338fc608d9f48892e9406d6fac0c6cf235078490730a7b2c16ab31104f423d29534ece65dd716e905abb4218085f437f10213b48d63cad810afab9435a1e4e16ca5cc2fd7988e347415851497ce16fbaa094ca07d7c028e6330b2accb3c1d7ec21fa278410df61f1f439dd27d805925aceced1223b7c08afbf74ccbe05546afbeed6319d447988",
+         "markIn" : 67319,
+         "markOut" : 214719
+      }, {
+         "id" : "22",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:22",
+         "title" : "01.07.2019: Accordo quadro, l'UE toglie l'equivalenza alla borsa elvetica",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11933036/",
+         "imageTitle" : "TG  [La1] 2019-07-01 20:03:34 - Accordo quadro, l'UE toglie l'equivalenza alla borsa elvet",
+         "type" : "EPISODE",
+         "date" : "2019-07-01T20:00:11+02:00",
+         "duration" : 104560,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:2",
+         "position" : 1,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "01.07.2019: Accordo quadro, l'UE toglie l'equivalenza alla borsa elvetica",
+            "media_type" : "Video",
+            "media_segment_id" : "11932841",
+            "media_episode_length" : "1690",
+            "media_segment_length" : "105",
+            "media_number_of_segment_selected" : "2",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11932841"
+         },
+         "eventData" : "$f790bdc0fa6ea86c$6e05d6692685f395f658b5d46d9b3c3dbd6703644d74a9c6c113db1781f024d1942096370e96293577dd5a86dd4162f22da63bf1ca04d380944dcebb581d5f2e2bf6277b58651fc816a86ea23328028009d59b4fa18f1b25e273a30dc5176d558cfffae6162e7a177e76a28be200205e7e67113ff2ed1be448ef80de3fa9429c98073e2f9fe21e7444c0f546728c5f02c06bda0b203720700c7b5fa8cb1102d77b8c12171bed893bc384083c2640733505b7b3b014a7ae57eac0e28b81293355ac50d66599de8fee6c878c50cbafeee944a036b5085a3a36170becb09cf36959e7f3b3db74cebca261d28a29ded1cbd55fb0cec44a0568ebf9bc8fbff3ef1ece5ed840ca3a9c4b16c9713799082c99cf",
+         "markIn" : 214839,
+         "markOut" : 319399
+      }, {
+         "id" : "23",
+         "mediaType" : "VIDEO",
+         "vendor" : "RSI",
+         "urn" : "urn:rsi:video:23",
+         "title" : "01.07.2019: UE, ancora stallo nelle nomine",
+         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11933054/",
+         "imageTitle" : "TG  [La1] 2019-07-01 20:05:19 - UE, ancora stallo nelle nomine",
+         "type" : "EPISODE",
+         "date" : "2019-07-01T20:00:11+02:00",
+         "duration" : 145320,
+         "playableAbroad" : true,
+         "displayable" : true,
+         "fullLengthUrn" : "urn:rsi:video:2",
+         "position" : 2,
+         "noEmbed" : false,
+         "analyticsMetadata" : {
+            "media_segment" : "01.07.2019: UE, ancora stallo nelle nomine",
+            "media_type" : "Video",
+            "media_segment_id" : "11932850",
+            "media_episode_length" : "1690",
+            "media_segment_length" : "145",
+            "media_number_of_segment_selected" : "3",
+            "media_number_of_segments_total" : "12",
+            "media_duration_category" : "short",
+            "media_is_geoblocked" : "false",
+            "media_urn" : "urn:rsi:video:11932850"
+         },
+         "eventData" : "$73c3ae4d5776b519$a8fae491324fd317e24bdcc3c23311d5ee77ef1284db22dede3509a864c38f361bb8285655bd58d89016fe49f4d21e2669df21a13c736c85bdcb6b4f532854d662dfa36f6e11b699ccf9cae2cb805ee80f2786c6ba2a36a9cca6d811001cb45dad4c271dafa15c3da5acec702b19ca248117b50ccea7c631a85b78a00fa7c81e1ab9ceb3593c9bcee5763c89c54b921418759dbbe249310c0e0b70ec18e0b6ee61808addae61072f7094bed26f8ec712bcc472c945b84971941e6e4f0638ea52a227ac94d193a9f32466c85e09d9114701251cdba1332540cc4dfdee258d346f9091d4e1428a6c2a6954c94168e4a944450dec3c1dc34dce22f9cd9311b51a7cc41ce7dbc684d1623dceb923f1810c5f",
+         "markIn" : 319519,
+         "markOut" : 464839
+      }
+      ]
+   } ],
+   "topicList" : [ {
+      "id" : "7",
+      "vendor" : "RSI",
+      "transmission" : "TV",
+      "urn" : "urn:rsi:topic:tv:7",
+      "title" : "Informazione"
+   } ],
+   "analyticsData" : {
+      "srg_pr_id" : "11932874",
+      "srg_plid" : "2311780",
+      "ns_st_pl" : "Telegiornale",
+      "ns_st_pr" : "Telegiornale del 01.07.2019",
+      "ns_st_dt" : "2019-07-01",
+      "ns_st_ddt" : "2019-07-01",
+      "ns_st_tdt" : "2019-07-01",
+      "ns_st_tm" : "20:27:50",
+      "ns_st_tep" : "EP872232",
+      "ns_st_li" : "0",
+      "ns_st_stc" : "8003",
+      "ns_st_st" : "LA 1",
+      "ns_st_tpr" : "2311780",
+      "ns_st_en" : "*null",
+      "ns_st_ge" : "*null",
+      "ns_st_ia" : "*null",
+      "ns_st_ce" : "1",
+      "ns_st_cdm" : "to",
+      "ns_st_cmt" : "fc",
+      "srg_unit" : "RSI",
+      "srg_c1" : "LA1-Informazione",
+      "srg_c2" : "Informazione.Telegiornale delle 20:00",
+      "srg_c3" : "Telegiornale del 01.07.2019 (FULL) - 11932874",
+      "srg_tv_id" : "EP872232",
+      "srg_tvsvizzera" : "false",
+      "srg_aod_prid" : "11932874"
+   },
+   "analyticsMetadata" : {
+      "media_episode_id" : "11932874",
+      "media_show_id" : "2311780",
+      "media_show" : "Telegiornale",
+      "media_episode" : "Telegiornale del 01.07.2019",
+      "media_is_livestream" : "false",
+      "media_full_length" : "full",
+      "media_enterprise_units" : "RSI",
+      "media_joker1" : "LA1-Informazione",
+      "media_joker2" : "Informazione.Telegiornale delle 20:00",
+      "media_joker3" : "Telegiornale del 01.07.2019 (FULL) - 11932874",
+      "media_is_web_only" : "false",
+      "media_production_source" : "produced.for.broadcasting",
+      "media_tv_id" : "EP872232",
+      "media_thumbnail" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11934056//scale/width/344",
+      "media_publication_date" : "2019-07-01",
+      "media_publication_time" : "20:00:00",
+      "media_publication_datetime" : "2019-07-01T20:00:00+02:00",
+      "media_tv_date" : "2019-07-01",
+      "media_tv_time" : "20:27:50",
+      "media_tv_datetime" : "2019-07-01T20:27:50+02:00",
+      "media_content_group" : "Informazione",
+      "media_channel_id" : "TV",
+      "media_channel_cs" : "8003",
+      "media_channel_name" : "LA 1",
+      "media_since_publication_d" : "3",
+      "media_since_publication_h" : "76"
+   }
+}
