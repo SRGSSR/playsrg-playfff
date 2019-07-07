@@ -34,13 +34,13 @@ public class DeeplinkIntegrationTest {
 
     @Test
     public void getParsePlayUrl() throws Exception {
-        MvcResult mvcResult = mvc.perform(get("/deeplink/v1/parse_play_url.js"))
+        MvcResult mvcResult = mvc.perform(get("/api/v1/deeplink/parse_play_url.js"))
                 .andExpect(status().isOk())
                 .andExpect(header().string("ETag", IsNull.notNullValue()))
                 .andExpect(content().string(IsNull.notNullValue())).andReturn();
         String eTag = mvcResult.getResponse().getHeader("ETag");
 
-        mvc.perform(get("/deeplink/v1/parse_play_url.js").header("If-None-Match", eTag))
+        mvc.perform(get("/api/v1/deeplink/parse_play_url.js").header("If-None-Match", eTag))
                 .andExpect(status().isNotModified())
                 .andExpect(content().string(""));
     }
