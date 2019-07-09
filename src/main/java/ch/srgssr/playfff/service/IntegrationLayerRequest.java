@@ -40,7 +40,14 @@ public class IntegrationLayerRequest {
         }
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, query, null);
+
+            long startTime = System.currentTimeMillis();
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
+            long elapsedTime = System.currentTimeMillis() - startTime;
+
+            String queryPrefix = uri.getQuery().length() > 0 ? "?" : "";
+            System.out.println("service=IL path=\"" + uri.getPath() + queryPrefix + uri.getQuery() + "\" host=\"" + uri.getHost() + "\" status=" + responseEntity.getStatusCode() + " reponseTime=" + elapsedTime + "ms");
+
             SrgUnmarshaller unmarshaller = new SrgUnmarshaller();
             return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, EpisodeComposition.class);
         } catch (Exception e) {

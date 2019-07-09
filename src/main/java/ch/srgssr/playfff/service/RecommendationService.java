@@ -8,6 +8,7 @@ import ch.srgssr.playfff.model.peach.PersonalRecommendationResult;
 import ch.srgssr.playfff.model.peach.RecommendationResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -175,10 +176,15 @@ public class RecommendationService {
         uriComponentsBuilder.queryParam("standalone", standalone);
         UriComponents url = uriComponentsBuilder.build();
 
-        System.out.println(url.toUriString());
+        long startTime = System.currentTimeMillis();
+        ResponseEntity<RecommendationResult> responseEntity = restTemplate
+                .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class);
+        long elapsedTime = System.currentTimeMillis() - startTime;
 
-        RecommendationResult recommendationResult = restTemplate
-                .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
+        String queryPrefix = url.getQuery().length() > 0 ? "?" : "";
+        System.out.println("service=Peach path=\"" + url.getPath() + queryPrefix + url.getQuery() + "\" host=\"" + url.getHost() + "\" status=" + responseEntity.getStatusCode() + " reponseTime=" + elapsedTime + "ms");
+
+        RecommendationResult recommendationResult = responseEntity.getBody();
         return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
     }
 
@@ -188,11 +194,15 @@ public class RecommendationService {
         uriComponentsBuilder.queryParam("user_id", userId);
         UriComponents url = uriComponentsBuilder.build();
 
-        System.out.println(url.toUriString());
+        long startTime = System.currentTimeMillis();
+        ResponseEntity<PersonalRecommendationResult> responseEntity = restTemplate
+                .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class);
+        long elapsedTime = System.currentTimeMillis() - startTime;
 
-        PersonalRecommendationResult result = restTemplate
-                .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
+        String queryPrefix = url.getQuery().length() > 0 ? "?" : "";
+        System.out.println("service=Peach path=\"" + url.getPath() + queryPrefix + url.getQuery() + "\" host=\"" + url.getHost() + "\" status=" + responseEntity.getStatusCode() + " reponseTime=" + elapsedTime + "ms");
 
+        PersonalRecommendationResult result = responseEntity.getBody();
         return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
     }
 
