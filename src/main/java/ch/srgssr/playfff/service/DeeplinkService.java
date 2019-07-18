@@ -120,7 +120,7 @@ public class DeeplinkService {
         }
 
         if (tvTopics != null) {
-            javascript = javascript.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics);
+            javascript = javascript.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
         }
 
         // Get event module list
@@ -148,7 +148,7 @@ public class DeeplinkService {
         }
 
         if (tvEvents != null) {
-            javascript = javascript.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents);
+            javascript = javascript.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
         }
 
         String buildHash = sha1(javascript);
