@@ -1,5 +1,5 @@
 
-package ch.srgssr.playportal;
+package ch.srgssr.playfff.model.playportal;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,7 +4,7 @@ import ch.srg.il.domain.v2_0.ModuleConfig;
 import ch.srg.il.domain.v2_0.ModuleConfigList;
 import ch.srgssr.playfff.model.DeeplinkContent;
 import ch.srgssr.playfff.model.Environment;
-import ch.srgssr.playportal.PlayTopic;
+import ch.srgssr.playfff.model.playportal.PlayTopic;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
