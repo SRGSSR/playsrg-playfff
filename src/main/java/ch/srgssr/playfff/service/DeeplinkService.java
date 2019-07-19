@@ -2,6 +2,7 @@ package ch.srgssr.playfff.service;
 
 import ch.srg.il.domain.v2_0.ModuleConfig;
 import ch.srg.il.domain.v2_0.ModuleConfigList;
+import ch.srgssr.playfff.helper.BaseResourceString;
 import ch.srgssr.playfff.model.DeeplinkContent;
 import ch.srgssr.playfff.model.Environment;
 import ch.srgssr.playfff.model.playportal.PlayTopic;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,9 @@ public class DeeplinkService {
     private RestTemplate restTemplate;
 
     @Autowired
+    protected ApplicationContext applicationContext;
+
+    @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
 
     public DeeplinkService(RestTemplateBuilder restTemplateBuilder) {
@@ -63,21 +68,7 @@ public class DeeplinkService {
 
     @CachePut("DeeplinkParsePlayUrl")
     public synchronized DeeplinkContent refreshParsePlayUrlContent() {
-        URI uri = null;
-        try {
-            uri = new URI("https", null, "play-mmf.herokuapp.com", 443, "/deeplink/v1/parse_play_url.js",
-                    null, null);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            logger.warn("Couldn't get mmf original javascript: " + e.getMessage());
-        }
-
-        ResponseEntity<String> jsResponseEntity = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
-        if (jsResponseEntity.getStatusCode() != HttpStatus.OK) {
-            return null;
-        }
-
-        String javascript = jsResponseEntity.getBody();
+        String javascript = BaseResourceString.getString(applicationContext, "parse_play_url.js");
 
         Map<String, String> buMap = new HashMap<String, String>();
         buMap.put("srf", "www.srf.ch");
