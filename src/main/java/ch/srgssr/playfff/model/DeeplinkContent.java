@@ -2,7 +2,7 @@ package ch.srgssr.playfff.model;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
- *
+ * <p>
  * License information is available from the LICENSE file.
  */
 public class DeeplinkContent {

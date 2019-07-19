@@ -34,7 +34,7 @@ import java.util.TimeZone;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
- *
+ * <p>
  * License information is available from the LICENSE file.
  */
 @Service
