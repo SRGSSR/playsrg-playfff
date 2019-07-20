@@ -1,5 +1,6 @@
 package ch.srgssr.playfff.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public final class JsonUtil {
@@ -18,6 +19,7 @@ public final class JsonUtil {
             synchronized (JsonUtil.class) {
                 if (mapper == null) {
                     mapper = new ObjectMapper();
+                    mapper.setSerializationInclusion(JsonInclude.Include.NON_DEFAULT);
                 }
             }
         }

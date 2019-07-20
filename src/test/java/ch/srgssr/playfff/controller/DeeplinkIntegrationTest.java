@@ -2,6 +2,7 @@ package ch.srgssr.playfff.controller;
 
 import ch.srgssr.playfff.model.ParsingReport;
 import ch.srgssr.playfff.repository.ParsingReportRepository;
+import java.text.SimpleDateFormat;
 import org.hamcrest.core.IsNull;
 import org.junit.After;
 import org.junit.Assert;
@@ -30,6 +31,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DeeplinkIntegrationTest {
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+
     private MockMvc mvc;
 
     @Autowired
@@ -70,55 +73,55 @@ public class DeeplinkIntegrationTest {
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content("{}")).andExpect(status().isNotAcceptable());
 
-        String nonAcceptableJson1 = "{\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport nonAcceptableParsingReport1 = new ParsingReport();
+        nonAcceptableParsingReport1.url = "https://www.rts.ch/rts/play/unknown1";
+        String nonAcceptableJson1 = JsonUtil.getMapper().writeValueAsString(nonAcceptableParsingReport1);
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson1)).andExpect(status().isNotAcceptable());
 
-        String nonAcceptableJson2 = "{\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport nonAcceptableParsingReport2 = new ParsingReport();
+        nonAcceptableParsingReport2.jsVersion = "v1.0";
+        nonAcceptableParsingReport2.url = "https://www.rts.ch/rts/play/unknown1";
+        String nonAcceptableJson2 = JsonUtil.getMapper().writeValueAsString(nonAcceptableParsingReport2);
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson2)).andExpect(status().isNotAcceptable());
 
-        String nonAcceptableJson3 = "{\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport nonAcceptableParsingReport3 = new ParsingReport();
+        nonAcceptableParsingReport3.clientId = "ch.rts.rtsplayer";
+        nonAcceptableParsingReport3.jsVersion = "v1.0";
+        nonAcceptableParsingReport3.url = "https://www.rts.ch/rts/play/unknown1";
+        String nonAcceptableJson3 = JsonUtil.getMapper().writeValueAsString(nonAcceptableParsingReport3);
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson3)).andExpect(status().isNotAcceptable());
 
-        String acceptableJson1 = "{\n" +
-                "\t\"clientTime\": \"2019-07-20T16:15:53+02:00\",\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport acceptableParsingReport1 = new ParsingReport();
+        acceptableParsingReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
+        acceptableParsingReport1.clientId = "ch.rts.rtsplayer";
+        acceptableParsingReport1.jsVersion = "v1.0";
+        acceptableParsingReport1.url = "https://www.rts.ch/rts/play/unknown1";
+        String acceptableJson1 = JsonUtil.getMapper().writeValueAsString(acceptableParsingReport1);
 
         MvcResult mvcResult1 = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(acceptableJson1)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
         ParsingReport parsingReport1 = JsonUtil.getMapper().readValue(mvcResult1.getResponse().getContentAsString(), ParsingReport.class);
 
-        String acceptableJson1bis = "{\n" +
-                "\t\"clientTime\": \"2019-08-20T16:15:53+02:00\",\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport acceptableParsingReport1bis = new ParsingReport();
+        acceptableParsingReport1bis.clientTime = dateFormat.parse("2019-08-20T16:15:53+02:00");
+        acceptableParsingReport1bis.clientId = "ch.rts.rtsplayer";
+        acceptableParsingReport1bis.jsVersion = "v1.0";
+        acceptableParsingReport1bis.url = "https://www.rts.ch/rts/play/unknown1";
+        String acceptableJson1bis = JsonUtil.getMapper().writeValueAsString(acceptableParsingReport1bis);
 
         MvcResult mvcResult1bis = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(acceptableJson1bis)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(2)).andReturn();
         ParsingReport parsingReport1bis = JsonUtil.getMapper().readValue(mvcResult1bis.getResponse().getContentAsString(), ParsingReport.class);
 
         Assert.assertEquals(parsingReport1.id, parsingReport1bis.id);
 
-        String acceptableJson2 = "{\n" +
-                "\t\"clientTime\": \"2019-07-20T16:15:53+02:00\",\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown2\"\n" +
-                "}";
+        ParsingReport acceptableParsingReport2 = new ParsingReport();
+        acceptableParsingReport2.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
+        acceptableParsingReport2.clientId = "ch.rts.rtsplayer";
+        acceptableParsingReport2.jsVersion = "v1.0";
+        acceptableParsingReport2.url = "https://www.rts.ch/rts/play/unknown2";
+        String acceptableJson2 = JsonUtil.getMapper().writeValueAsString(acceptableParsingReport2);
 
         MvcResult mvcResult2 = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(acceptableJson2)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
         ParsingReport parsingReport2 = JsonUtil.getMapper().readValue(mvcResult2.getResponse().getContentAsString(), ParsingReport.class);
@@ -129,34 +132,34 @@ public class DeeplinkIntegrationTest {
     @Test
     @WithMockUser(username = "deeplink", password = "password", roles = "USER")
     public void reportChange() throws Exception {
-        String json1 = "{\n" +
-                "\t\"clientTime\": \"2019-07-20T16:15:53+02:00\",\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown\"\n" +
-                "}";
+        ParsingReport acceptableParsingReport1 = new ParsingReport();
+        acceptableParsingReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
+        acceptableParsingReport1.clientId = "ch.rts.rtsplayer";
+        acceptableParsingReport1.jsVersion = "v1.0";
+        acceptableParsingReport1.url = "https://www.rts.ch/rts/play/unknown1";
+        String acceptableJson1 = JsonUtil.getMapper().writeValueAsString(acceptableParsingReport1);
 
-        MvcResult mvcResult1 = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(json1)).andExpect(status().isCreated()).andReturn();
+        MvcResult mvcResult1 = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(acceptableJson1)).andExpect(status().isCreated()).andReturn();
         ParsingReport parsingReport1 = JsonUtil.getMapper().readValue(mvcResult1.getResponse().getContentAsString(), ParsingReport.class);
 
-        mvc.perform(get("/api/v1/deeplink/report/" + parsingReport1.id)).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(json1));
+        mvc.perform(get("/api/v1/deeplink/report/" + parsingReport1.id)).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(acceptableJson1));
 
         mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
 
-        String json2 = "{\n" +
-                "\t\"clientTime\": \"2019-07-20T16:15:53+02:00\",\n" +
-                "\t\"clientId\": \"ch.rts.rtsplayer.debug\",\n" +
-                "\t\"jsVersion\": \"v1.0\",\n" +
-                "\t\"url\": \"https:\\/\\/www.rts.ch\\/rts\\/play\\/unknown2\"\n" +
-                "}";
+        ParsingReport acceptableParsingReport2 = new ParsingReport();
+        acceptableParsingReport2.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
+        acceptableParsingReport2.clientId = "ch.rts.rtsplayer";
+        acceptableParsingReport2.jsVersion = "v1.0";
+        acceptableParsingReport2.url = "https://www.rts.ch/rts/play/unknown2";
+        String acceptableJson2 = JsonUtil.getMapper().writeValueAsString(acceptableParsingReport2);
 
-        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(json2)).andExpect(status().isCreated());
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(acceptableJson2)).andExpect(status().isCreated());
 
         mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(2)));
 
         mvc.perform(delete("/api/v1/deeplink/report/" + parsingReport1.id)).andExpect(status().isForbidden());
 
-        mvc.perform(delete("/api/v1/deeplink/report/" + parsingReport1.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(json1));
+        mvc.perform(delete("/api/v1/deeplink/report/" + parsingReport1.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(acceptableJson1));
 
         mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
     }
