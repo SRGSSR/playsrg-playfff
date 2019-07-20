@@ -3,6 +3,6 @@ export class DeeplinkReport {
   clientId: string;
   clientTime: string;
   count: number;
-  jsVersion: string;
+  jsVersion: number;
   url: string;
 }
