@@ -24,7 +24,7 @@ public class DeepLinkReport {
     public Date clientTime;
     public String clientId;
 
-    public String jsVersion;
+    public int jsVersion;
 
     @Column(length = 512)
     public String url;

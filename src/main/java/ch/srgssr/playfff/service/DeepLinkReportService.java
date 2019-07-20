@@ -51,7 +51,7 @@ public class DeepLinkReportService {
         }
     }
 
-    private DeepLinkReport getParsingReport(String clientId, String jsVersion, String url) {
+    private DeepLinkReport getParsingReport(String clientId, int jsVersion, String url) {
         return repository.findFirstByClientIdAndJsVersionAndUrl(clientId, jsVersion, url);
     }
 

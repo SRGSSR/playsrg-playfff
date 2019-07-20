@@ -12,7 +12,7 @@ import java.util.List;
  * License information is available from the LICENSE file.
  */
 public interface DeepLinkReportRepository extends CrudRepository<DeepLinkReport, Long> {
-    DeepLinkReport findFirstByClientIdAndJsVersionAndUrl(String clientId, String jsVersion, String url);
+    DeepLinkReport findFirstByClientIdAndJsVersionAndUrl(String clientId, int jsVersion, String url);
 
     List<DeepLinkReport> findAllByOrderByClientTimeDesc();
 

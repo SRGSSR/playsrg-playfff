@@ -48,7 +48,7 @@ public class DeepLinkController {
 
         if (deepLinkReport == null
                 || deepLinkReport.clientTime == null || deepLinkReport.clientId == null
-                || deepLinkReport.jsVersion == null || deepLinkReport.url == null) {
+                || deepLinkReport.jsVersion == 0 || deepLinkReport.url == null) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         } else {
             return new ResponseEntity<>(deepLinkReportService.save(deepLinkReport), HttpStatus.CREATED);

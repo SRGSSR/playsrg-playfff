@@ -1,6 +1,6 @@
 // parse_play_url
 
-var parsePlayUrlVersion = "v1.0-dev14";
+var parsePlayUrlVersion = 14;
 var parsePlayUrlBuild = "mmf";
 
 var parsePlayUrl = function(urlString) {

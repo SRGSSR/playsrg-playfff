@@ -80,7 +80,7 @@ public class DeepLinkIntegrationTest {
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson1)).andExpect(status().isNotAcceptable());
 
         DeepLinkReport nonAcceptableDeepLinkReport2 = new DeepLinkReport();
-        nonAcceptableDeepLinkReport2.jsVersion = "v1.0";
+        nonAcceptableDeepLinkReport2.jsVersion = 14;
         nonAcceptableDeepLinkReport2.url = "https://www.rts.ch/rts/play/unknown1";
         String nonAcceptableJson2 = JsonUtil.getMapper().writeValueAsString(nonAcceptableDeepLinkReport2);
 
@@ -88,7 +88,7 @@ public class DeepLinkIntegrationTest {
 
         DeepLinkReport nonAcceptableDeepLinkReport3 = new DeepLinkReport();
         nonAcceptableDeepLinkReport3.clientId = "ch.rts.rtsplayer";
-        nonAcceptableDeepLinkReport3.jsVersion = "v1.0";
+        nonAcceptableDeepLinkReport3.jsVersion = 14;
         nonAcceptableDeepLinkReport3.url = "https://www.rts.ch/rts/play/unknown1";
         String nonAcceptableJson3 = JsonUtil.getMapper().writeValueAsString(nonAcceptableDeepLinkReport3);
 
@@ -97,7 +97,7 @@ public class DeepLinkIntegrationTest {
         DeepLinkReport acceptableDeepLinkReport1 = new DeepLinkReport();
         acceptableDeepLinkReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport1.clientId = "ch.rts.rtsplayer";
-        acceptableDeepLinkReport1.jsVersion = "v1.0";
+        acceptableDeepLinkReport1.jsVersion = 14;
         acceptableDeepLinkReport1.url = "https://www.rts.ch/rts/play/unknown1";
         String acceptableJson1 = JsonUtil.getMapper().writeValueAsString(acceptableDeepLinkReport1);
 
@@ -107,7 +107,7 @@ public class DeepLinkIntegrationTest {
         DeepLinkReport acceptableDeepLinkReport1Bis = new DeepLinkReport();
         acceptableDeepLinkReport1Bis.clientTime = dateFormat.parse("2019-08-20T16:15:53+02:00");
         acceptableDeepLinkReport1Bis.clientId = "ch.rts.rtsplayer";
-        acceptableDeepLinkReport1Bis.jsVersion = "v1.0";
+        acceptableDeepLinkReport1Bis.jsVersion = 14;
         acceptableDeepLinkReport1Bis.url = "https://www.rts.ch/rts/play/unknown1";
         String acceptableJson1bis = JsonUtil.getMapper().writeValueAsString(acceptableDeepLinkReport1Bis);
 
@@ -119,7 +119,7 @@ public class DeepLinkIntegrationTest {
         DeepLinkReport acceptableDeepLinkReport2 = new DeepLinkReport();
         acceptableDeepLinkReport2.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport2.clientId = "ch.rts.rtsplayer";
-        acceptableDeepLinkReport2.jsVersion = "v1.0";
+        acceptableDeepLinkReport2.jsVersion = 14;
         acceptableDeepLinkReport2.url = "https://www.rts.ch/rts/play/unknown2";
         String acceptableJson2 = JsonUtil.getMapper().writeValueAsString(acceptableDeepLinkReport2);
 
@@ -135,7 +135,7 @@ public class DeepLinkIntegrationTest {
         DeepLinkReport acceptableDeepLinkReport1 = new DeepLinkReport();
         acceptableDeepLinkReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport1.clientId = "ch.rts.rtsplayer";
-        acceptableDeepLinkReport1.jsVersion = "v1.0";
+        acceptableDeepLinkReport1.jsVersion = 14;
         acceptableDeepLinkReport1.url = "https://www.rts.ch/rts/play/unknown1";
         String acceptableJson1 = JsonUtil.getMapper().writeValueAsString(acceptableDeepLinkReport1);
 
@@ -149,7 +149,7 @@ public class DeepLinkIntegrationTest {
         DeepLinkReport acceptableDeepLinkReport2 = new DeepLinkReport();
         acceptableDeepLinkReport2.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport2.clientId = "ch.rts.rtsplayer";
-        acceptableDeepLinkReport2.jsVersion = "v1.0";
+        acceptableDeepLinkReport2.jsVersion = 14;
         acceptableDeepLinkReport2.url = "https://www.rts.ch/rts/play/unknown2";
         String acceptableJson2 = JsonUtil.getMapper().writeValueAsString(acceptableDeepLinkReport2);
 
