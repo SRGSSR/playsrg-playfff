@@ -3,7 +3,7 @@ Playfff
 
 ## About
 
-Playfff is a SRG micro service to serve extra datas to Play applications. Playfff  means "Play Features and Functionalities with Flair".
+Playfff is a SRG micro service to serve extra datas to Play applications. Playfff means "Play Features and Functionalities with Flair".
 
 ## Compatibility
 
@@ -19,7 +19,8 @@ A wide list of parameters are available.
 
 * `PFFF_USER` (optional, string): A user login to admin service.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service.
-* `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database, default is `2500`.
+* `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
+* `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
 
 ## API
  * `urn` (string): an unique identifier.
@@ -44,6 +45,15 @@ A wide list of parameters are available.
 
 * `/api/v1/whatisnew/text?package={package}&version={version}` : get WhatIsNewResult object.
 * `/api/v1/whatisnew/html?package={package}&version={version}` : get What's new html format.
+
+#### Deep link
+
+* `/api/v1/deeplink/parse_play_url.js` (GET): Get the Play web URL to mobile application scheme URL script (deep link script). The HTTP ETag caching is supported.
+* `/api/v1/deeplink/report` (POST) : create or update a new deep link report object from the JSON body object. Send a report only if the script returns `[scheme]://redirect`. The JSON object must contains:
+  * `clientTime` (string): date of the parsing execution in `yyyy-MM-dd'T'HH:mm:ssXXX` format.
+  * `clientId` (string): Bundle id or package name.
+  * `jsVersion` (string): the `parse_play_url.js` value of `parsePlayUrlVersion` variable. 
+  * `url` (string): the unparsing url.
 
 #### Recommendation for a media
 
@@ -72,6 +82,12 @@ Private APIs need a user authentification.
 * `/api/v1/update` (PUT) : update an update object from the body object.
 * `/api/v1/update/{id}` (GET) : get update object with `id` identifier.
 * `/api/v1/update/{id}` (DELETE) : remove update object with `id` identifier.
+
+#### Deep link
+
+* `/api/v1/deeplink/report` (GET) : get All deep link reports.
+* `/api/v1/deeplink/report/{id}` (GET) : get deep link report object with `id` identifier.
+* `/api/v1/deeplink/report/{id}` (DELETE) : remove deep link report object with `id` identifier.
  
 ## License
 
