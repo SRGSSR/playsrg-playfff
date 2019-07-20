@@ -38,8 +38,8 @@ public class DeepLinkController {
     }
 
     @GetMapping("/api/v1/deeplink/report")
-    public ResponseEntity<Iterable<DeepLinkReport>> findAllByOrderByCountDesc() {
-        return new ResponseEntity<>(deepLinkReportService.findAllByOrderByCountDesc(), HttpStatus.OK);
+    public ResponseEntity<Iterable<DeepLinkReport>> findAll() {
+        return new ResponseEntity<>(deepLinkReportService.findAllByOrderByJsVersionDescCountDesc(), HttpStatus.OK);
     }
 
     // Public API

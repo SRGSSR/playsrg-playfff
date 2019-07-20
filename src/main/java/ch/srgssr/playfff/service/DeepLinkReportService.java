@@ -69,7 +69,7 @@ public class DeepLinkReportService {
         return null;
     }
 
-    public Iterable<DeepLinkReport> findAllByOrderByCountDesc() {
-        return repository.findAllByOrderByCountDesc();
+    public Iterable<DeepLinkReport> findAllByOrderByJsVersionDescCountDesc() {
+        return repository.findAllByOrderByJsVersionDescCountDesc();
     }
 }

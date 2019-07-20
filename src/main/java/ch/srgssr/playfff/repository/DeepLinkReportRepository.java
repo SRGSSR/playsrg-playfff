@@ -18,5 +18,5 @@ public interface DeepLinkReportRepository extends CrudRepository<DeepLinkReport,
 
     List<DeepLinkReport> findAllByClientTimeLessThan(Date date);
 
-    List<DeepLinkReport> findAllByOrderByCountDesc();
+    List<DeepLinkReport> findAllByOrderByJsVersionDescCountDesc();
 }
