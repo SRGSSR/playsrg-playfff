@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collections;
 
@@ -50,9 +51,16 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
                 .permitAll();
         http
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+        http
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 
     @Override
