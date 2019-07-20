@@ -1,7 +1,7 @@
 package ch.srgssr.playfff.config;
 
-import ch.srgssr.playfff.service.DeeplinkService;
-import ch.srgssr.playfff.service.ParsingReportService;
+import ch.srgssr.playfff.service.DeepLinkService;
+import ch.srgssr.playfff.service.DeepLinkReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,14 +17,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class DeeplinkConfig {
 
     @Autowired
-    private DeeplinkService deeplinkService;
+    private DeepLinkService deepLinkService;
 
     @Autowired
-    private ParsingReportService parsingReportService;
+    private DeepLinkReportService deepLinkReportService;
 
     @Scheduled(fixedDelayString = "${DEEPLINK_REFRESH_DELAY_MS:300000}")
     public void DeeplinkRefresh() {
-        deeplinkService.refreshParsePlayUrlContent();
-        parsingReportService.purgeOlderReports();
+        deepLinkService.refreshParsePlayUrlJSContent();
+        deepLinkReportService.purgeOlderReports();
     }
 }

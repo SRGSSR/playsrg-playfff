@@ -11,8 +11,8 @@ import java.util.Date;
  * License information is available from the LICENSE file.
  */
 @Entity
-@Table(name = "parsing_reports")
-public class ParsingReport {
+@Table(name = "deeplink_reports")
+public class DeepLinkReport {
     private static final long serialVersionUID = -3009157732242241606L;
 
     @Id

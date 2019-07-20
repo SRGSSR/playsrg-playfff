@@ -3,7 +3,7 @@ package ch.srgssr.playfff.service;
 import ch.srg.il.domain.v2_0.ModuleConfig;
 import ch.srg.il.domain.v2_0.ModuleConfigList;
 import ch.srgssr.playfff.helper.BaseResourceString;
-import ch.srgssr.playfff.model.DeeplinkContent;
+import ch.srgssr.playfff.model.DeepLinkJSContent;
 import ch.srgssr.playfff.model.Environment;
 import ch.srgssr.playfff.model.playportal.PlayTopic;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +15,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -40,10 +39,10 @@ import java.util.TimeZone;
  * License information is available from the LICENSE file.
  */
 @Service
-public class DeeplinkService {
-    private static final Logger logger = LoggerFactory.getLogger(DeeplinkService.class);
+public class DeepLinkService {
+    private static final Logger logger = LoggerFactory.getLogger(DeepLinkService.class);
 
-    private DeeplinkContent parsePlayUrlContent;
+    private DeepLinkJSContent parsePlayUrlContent;
 
     private RestTemplate restTemplate;
 
@@ -53,21 +52,21 @@ public class DeeplinkService {
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
 
-    public DeeplinkService(RestTemplateBuilder restTemplateBuilder) {
+    public DeepLinkService(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
     }
 
-    @Cacheable("DeeplinkParsePlayUrl")
-    public DeeplinkContent getParsePlayUrlContent() {
+    @Cacheable("DeeplinkParsePlayUrlJSContent")
+    public DeepLinkJSContent getParsePlayUrlJSContent() {
         if (parsePlayUrlContent == null) {
-            refreshParsePlayUrlContent();
+            refreshParsePlayUrlJSContent();
         }
 
         return parsePlayUrlContent;
     }
 
-    @CachePut("DeeplinkParsePlayUrl")
-    public synchronized DeeplinkContent refreshParsePlayUrlContent() {
+    @CachePut("DeeplinkParsePlayUrlJSContent")
+    public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
         String javascript = BaseResourceString.getString(applicationContext, "parse_play_url.js");
 
         Map<String, String> buMap = new HashMap<String, String>();
@@ -150,7 +149,7 @@ public class DeeplinkService {
         String strDate = dateFormat.format(buildDate);
         javascript = javascript.replaceAll("var parsePlayUrlBuild = \"mmf\";", "var parsePlayUrlBuild = \"" + buildHash + "\";\nvar parsePlayUrlBuildDate = \"" + strDate + "\";");
 
-        parsePlayUrlContent = new DeeplinkContent(javascript, buildHash);
+        parsePlayUrlContent = new DeepLinkJSContent(javascript, buildHash);
         return parsePlayUrlContent;
     }
 

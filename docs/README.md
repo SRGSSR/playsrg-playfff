@@ -18,7 +18,8 @@ A Java development environment with Maven is needed.
 A wide list of parameters are available.
 
 * `PFFF_USER` (optional, string): A user login to admin service.
-* `PFFF_PASSWORD` (optional, string): A user password to admin service. 
+* `PFFF_PASSWORD` (optional, string): A user password to admin service.
+* `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database, default is `2500`.
 
 ## API
  * `urn` (string): an unique identifier.

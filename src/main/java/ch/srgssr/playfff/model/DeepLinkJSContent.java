@@ -5,12 +5,12 @@ package ch.srgssr.playfff.model;
  * <p>
  * License information is available from the LICENSE file.
  */
-public class DeeplinkContent {
+public class DeepLinkJSContent {
 
     private String content;
     private String hash;
 
-    public DeeplinkContent(String content, String hash) {
+    public DeepLinkJSContent(String content, String hash) {
         this.content = content;
         this.hash = hash;
     }
