@@ -68,32 +68,59 @@ public class DeepLinkIntegrationTest {
     }
 
     @Test
-    public void reportSave() throws Exception {
+    public void reportNotAcceptable() throws Exception {
         mvc.perform(post("/api/v1/deeplink/report")).andExpect(status().isBadRequest());
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content("{}")).andExpect(status().isNotAcceptable());
 
-        DeepLinkReport nonAcceptableDeepLinkReport1 = new DeepLinkReport();
-        nonAcceptableDeepLinkReport1.url = "https://www.rts.ch/rts/play/unknown1";
-        String nonAcceptableJson1 = JsonUtil.getMapper().writeValueAsString(nonAcceptableDeepLinkReport1);
+        DeepLinkReport notAcceptableDeepLinkReport = new DeepLinkReport();
+        String notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
-        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson1)).andExpect(status().isNotAcceptable());
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.url = "https://www.rts.ch/rts/play/unknown";
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
-        DeepLinkReport nonAcceptableDeepLinkReport2 = new DeepLinkReport();
-        nonAcceptableDeepLinkReport2.jsVersion = 14;
-        nonAcceptableDeepLinkReport2.url = "https://www.rts.ch/rts/play/unknown1";
-        String nonAcceptableJson2 = JsonUtil.getMapper().writeValueAsString(nonAcceptableDeepLinkReport2);
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.jsVersion = 14;
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
-        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson2)).andExpect(status().isNotAcceptable());
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.clientId = "ch.rts.rtsplayer";
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
-        DeepLinkReport nonAcceptableDeepLinkReport3 = new DeepLinkReport();
-        nonAcceptableDeepLinkReport3.clientId = "ch.rts.rtsplayer";
-        nonAcceptableDeepLinkReport3.jsVersion = 14;
-        nonAcceptableDeepLinkReport3.url = "https://www.rts.ch/rts/play/unknown1";
-        String nonAcceptableJson3 = JsonUtil.getMapper().writeValueAsString(nonAcceptableDeepLinkReport3);
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.clientTime = dateFormat.parse("2019-08-20T16:15:53+02:00");
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
-        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(nonAcceptableJson3)).andExpect(status().isNotAcceptable());
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.jsVersion = 14;
+        notAcceptableDeepLinkReport.url = "https://www.rts.ch/rts/play/unknown";
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
 
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.clientId = "ch.rts.rtsplayer";
+        notAcceptableDeepLinkReport.jsVersion = 14;
+        notAcceptableDeepLinkReport.url = "https://www.rts.ch/rts/play/unknown";
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
+
+        notAcceptableDeepLinkReport = new DeepLinkReport();
+        notAcceptableDeepLinkReport.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
+        notAcceptableDeepLinkReport.clientId = "ch.rts.rtsplayer";
+        notAcceptableDeepLinkReport.jsVersion = 0;
+        notAcceptableDeepLinkReport.url = "https://www.rts.ch/rts/play/unknown";
+        notAcceptableJson = JsonUtil.getMapper().writeValueAsString(notAcceptableDeepLinkReport);
+        mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(notAcceptableJson)).andExpect(status().isNotAcceptable());
+    }
+
+    @Test
+    public void reportPosted() throws Exception {
         DeepLinkReport acceptableDeepLinkReport1 = new DeepLinkReport();
         acceptableDeepLinkReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport1.clientId = "ch.rts.rtsplayer";
@@ -131,7 +158,7 @@ public class DeepLinkIntegrationTest {
 
     @Test
     @WithMockUser(username = "deeplink", password = "password", roles = "USER")
-    public void reportChange() throws Exception {
+    public void reportAdmin() throws Exception {
         DeepLinkReport acceptableDeepLinkReport1 = new DeepLinkReport();
         acceptableDeepLinkReport1.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
         acceptableDeepLinkReport1.clientId = "ch.rts.rtsplayer";
@@ -162,5 +189,16 @@ public class DeepLinkIntegrationTest {
         mvc.perform(delete("/api/v1/deeplink/report/" + deepLinkReport1.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(acceptableJson1));
 
         mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void notAuthenticated() throws Exception {
+        mvc.perform(get("/api/v1/deeplink/report/1")).andExpect(status().is3xxRedirection());
+
+        mvc.perform(delete("/api/v1/deeplink/report/1")).andExpect(status().isForbidden());
+
+        mvc.perform(delete("/api/v1/deeplink/report/1").with(csrf())).andExpect(status().is3xxRedirection());
+
+        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().is3xxRedirection());
     }
 }
