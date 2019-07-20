@@ -45,13 +45,6 @@ public class UpdateController {
         return "removed";
     }
 
-    @RequestMapping("/api/v1/update/check")
-    public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
-        Update update = updateService.getUpdate(packageName, version);
-        return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
-    }
-
-
     @PostMapping("/api/v1/update")
     public ResponseEntity<Update> create(@RequestBody Update update) {
         return new ResponseEntity<>(updateService.create(update), HttpStatus.OK);
@@ -75,5 +68,12 @@ public class UpdateController {
     @GetMapping("/api/v1/update")
     public ResponseEntity<Iterable<Update>> findAllDesc() {
         return new ResponseEntity<>(updateService.findAllDesc(), HttpStatus.OK);
+    }
+
+    // Public API
+    @RequestMapping("/api/v1/update/check")
+    public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+        Update update = updateService.getUpdate(packageName, version);
+        return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
     }
 }
