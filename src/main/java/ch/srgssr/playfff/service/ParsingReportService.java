@@ -56,4 +56,22 @@ public class ParsingReportService {
     private ParsingReport getParsingReport(String clientId, String jsVersion, String url) {
         return repository.findFirstByClientIdAndJsVersionAndUrl(clientId, jsVersion, url);
     }
+
+    public ParsingReport findById(long id) {
+        return repository.findOne(id);
+    }
+
+    @Transactional
+    public ParsingReport delete(long id) {
+        ParsingReport parsingReport = findById(id);
+        if (parsingReport != null) {
+            repository.delete(parsingReport);
+            return parsingReport;
+        }
+        return null;
+    }
+
+    public Iterable<ParsingReport> findAllByOrderByCountDesc() {
+        return repository.findAllByOrderByCountDesc();
+    }
 }

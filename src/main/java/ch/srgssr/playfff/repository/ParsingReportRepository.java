@@ -17,4 +17,6 @@ public interface ParsingReportRepository extends CrudRepository<ParsingReport, L
     List<ParsingReport> findAllByOrderByClientTimeDesc();
 
     List<ParsingReport> findAllByClientTimeLessThan(Date date);
+
+    List<ParsingReport> findAllByOrderByCountDesc();
 }

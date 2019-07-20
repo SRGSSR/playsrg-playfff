@@ -29,6 +29,35 @@ public class DeeplinkController {
     @Autowired
     private ParsingReportService parsingReportService;
 
+    @GetMapping(path = {"/api/v1/deeplink/report/{id}"})
+    public ResponseEntity<ParsingReport> findOne(@PathVariable("id") int id) {
+        return new ResponseEntity<>(parsingReportService.findById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = {"/api/v1/deeplink/report/{id}"})
+    public ResponseEntity<ParsingReport> delete(@PathVariable("id") int id) {
+        return new ResponseEntity<>(parsingReportService.delete(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/v1/deeplink/report")
+    public ResponseEntity<Iterable<ParsingReport>> findAllByOrderByCountDesc() {
+        return new ResponseEntity<>(parsingReportService.findAllByOrderByCountDesc(), HttpStatus.OK);
+    }
+
+    // Public API
+    @PostMapping("/api/v1/deeplink/report")
+    public ResponseEntity<ParsingReport> create(@RequestBody ParsingReport parsingReport, WebRequest webRequest) {
+
+        if (parsingReport == null
+                || parsingReport.clientTime == null || parsingReport.clientId == null
+                || parsingReport.jsVersion == null || parsingReport.url == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            return new ResponseEntity<>(parsingReportService.save(parsingReport), HttpStatus.CREATED);
+        }
+    }
+
+    // Public API
     @RequestMapping(value="/api/v1/deeplink/parse_play_url.js")
     @ResponseBody
     public ResponseEntity<String> parsePlayUrlJavascript() {
@@ -42,18 +71,6 @@ public class DeeplinkController {
                     .body(deeplinkContent.getContent());
         } else {
             return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping("/api/v1/deeplink/report")
-    public ResponseEntity<ParsingReport> create(@RequestBody ParsingReport parsingReport, WebRequest webRequest) {
-
-        if (parsingReport == null
-                || parsingReport.clientTime == null || parsingReport.clientId == null
-                || parsingReport.jsVersion == null || parsingReport.url == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        } else {
-            return new ResponseEntity<>(parsingReportService.save(parsingReport), HttpStatus.CREATED);
         }
     }
 }

@@ -29,6 +29,7 @@ public class UpdateService {
         repository.removeByPackageNameAndVersion(packageName, version);
     }
 
+    @Transactional
     public Update getUpdate(String packageName, String version) {
         List<Update> updates = repository.findByPackageNameAndVersion(packageName, version);
 
@@ -39,6 +40,7 @@ public class UpdateService {
         }
     }
 
+    @Transactional
     public Update create(Update update) {
         return repository.save(update);
     }
@@ -47,10 +49,12 @@ public class UpdateService {
         return repository.findOne(id);
     }
 
+    @Transactional
     public Update update(Update update) {
         return repository.save(update);
     }
 
+    @Transactional
     public Update delete(long id) {
         Update update = findById(id);
         if (update != null) {
