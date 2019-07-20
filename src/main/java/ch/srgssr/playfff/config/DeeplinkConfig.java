@@ -22,8 +22,8 @@ public class DeeplinkConfig {
     @Autowired
     private DeepLinkReportService deepLinkReportService;
 
-    @Scheduled(fixedDelayString = "${DEEPLINK_REFRESH_DELAY_MS:300000}")
-    public void DeeplinkRefresh() {
+    @Scheduled(fixedDelayString = "${DEEP_LINK_REFRESH_DELAY_MS:300000}")
+    public void DeepLinkRefresh() {
         deepLinkService.refreshParsePlayUrlJSContent();
         deepLinkReportService.purgeOlderReports();
     }
