@@ -20,6 +20,9 @@ export class AddUpdateComponent {
         .subscribe( data => {
           alert("Update message created or updated.");
           this.router.navigate(['/updates']);
+        },
+        err => {
+          alert("Please complete all fields.");
         });
 
   };
