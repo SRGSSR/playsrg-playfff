@@ -37,7 +37,14 @@ public class UpdateController {
 
     @PostMapping("/api/v1/update")
     public ResponseEntity<Update> create(@RequestBody Update update) {
-        return new ResponseEntity<>(updateService.save(update), HttpStatus.OK);
+        if (update == null
+                || update.packageName == null || update.packageName.length() == 0
+                || update.version == null || update.version.length() == 0
+                || update.text == null || update.text.length() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            return new ResponseEntity<>(updateService.save(update), HttpStatus.CREATED);
+        }
     }
 
     // Public API
