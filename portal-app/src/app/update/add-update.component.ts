@@ -18,7 +18,8 @@ export class AddUpdateComponent {
   createUpdate(): void {
     this.updateService.createUpdate(this.update)
         .subscribe( data => {
-          alert("Update created successfully.");
+          alert("Update message created or updated.");
+          this.router.navigate(['/updates']);
         });
 
   };
