@@ -1,9 +1,9 @@
 <div class="col-md-12">
   <h2 class="text-center">
-    Updates
+    Update alerts
   </h2>
-  <p class="text-center">Recommended update or mandatory update messages displayed at application launch.</p>
-  <p class="text-center"><a routerLink="/add_update" class="btn btn-success col-2">Add an update</a></p>
+  <p class="text-center">Recommended update or mandatory update alert displayed at application launch.</p>
+  <p class="text-center"><a routerLink="/add_update" class="btn btn-success col-2">Add an update alert</a></p>
 
   <table class="table table-striped">
     <thead>
@@ -19,7 +19,7 @@
         {{update[col]}}
       </td>
       <td>
-        <button class="btn btn-danger" (click)="deleteUpdate(update)">Delete Update</button>
+        <button class="btn btn-danger" (click)="deleteUpdate(update)">Delete</button>
       </td>
     </tr>
     </tbody>
