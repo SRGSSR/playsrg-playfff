@@ -1,4 +1,4 @@
-// parse_play_url
+// parsePlayUrl
 
 var parsePlayUrlVersion = 15;
 var parsePlayUrlBuild = "mmf";
