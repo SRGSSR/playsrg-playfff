@@ -67,7 +67,7 @@ public class DeepLinkService {
 
     @CachePut("DeeplinkParsePlayUrlJSContent")
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
-        String javascript = BaseResourceString.getString(applicationContext, "parse_play_url.js");
+        String javascript = BaseResourceString.getString(applicationContext, "parsePlayUrl.js");
 
         Map<String, String> buMap = new HashMap<String, String>();
         buMap.put("srf", "www.srf.ch");
