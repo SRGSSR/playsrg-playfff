@@ -29,7 +29,6 @@ public class UpdateService {
         repository.removeByPackageNameAndVersion(packageName, version);
     }
 
-    @Transactional
     public Update getUpdate(String packageName, String version) {
         List<Update> updates = repository.findByPackageNameAndVersion(packageName, version);
 
