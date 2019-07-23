@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <h2 class="text-center">
+    Deep link reports
+  </h2>
+  <p class="text-center">Only failed parsing urls are reported and ordered by JS version and count.</p>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let deeplinkReport of deeplinkReports">
+      <td *ngFor="let col of columns">
+        {{deeplinkReport[col]}}
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteDeeplinkReport(deeplinkReport)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

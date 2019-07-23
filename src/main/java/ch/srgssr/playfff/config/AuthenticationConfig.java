@@ -3,7 +3,9 @@ package ch.srgssr.playfff.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collections;
 
@@ -30,7 +33,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
             @Value("${PFFF_USER:}") String user,
             @Value("${PFFF_PASSWORD:}") String password) {
 
-        this.user = user;;
+        this.user = user;
         this.password = password;
     }
 
@@ -43,12 +46,29 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
                 .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
                 .permitAll();
         http
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+        http
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/api/v1/deeplink/parsePlayUrl.js")
+                .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
     }
 
     @Bean

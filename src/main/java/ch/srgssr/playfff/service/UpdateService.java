@@ -39,30 +39,18 @@ public class UpdateService {
         }
     }
 
-    public Update create(Update update) {
-        return repository.save(update);
-    }
-
     public Update findById(long id) {
         return repository.findOne(id);
     }
 
-    public Update update(Update update) {
-        return repository.save(update);
-    }
-
+    @Transactional
     public Update delete(long id) {
         Update update = findById(id);
         if (update != null) {
-             repository.delete(update);
+            repository.delete(update);
             return update;
         }
         return null;
-    }
-
-
-    public Iterable<Update> findAll() {
-        return repository.findAll();
     }
 
     public Iterable<Update> findAllDesc() {
