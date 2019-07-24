@@ -6,26 +6,20 @@ import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 /**
- * Created by seb on 10/08/16.
+ * Copyright (c) SRG SSR. All rights reserved.
+ * <p>
+ * License information is available from the LICENSE file.
  */
 public class BaseResourceString {
-    public static String getString(ApplicationContext applicationContext, String name, Map<String, String> variables) {
+    public static String getString(ApplicationContext applicationContext, String name) {
         try {
             Resource resource = applicationContext.getResource("classpath:" + name);
             if (resource == null) {
                 throw new RuntimeException("No resource: " + name);
             }
             String s = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
-            for (String k : variables.keySet()) {
-                String value = variables.get(k);
-                if (value == null) {
-                    throw new IllegalArgumentException(k + " has null value (" + name + ")");
-                }
-                s = s.replaceAll(k, value);
-            }
             return s;
         } catch (IOException e) {
             throw new RuntimeException("IO Exception for " + name, e);

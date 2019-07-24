@@ -6,9 +6,15 @@
     <h1 class="text-center">Pfff - Admin</h1>
   </div>
 
+  <p class="text-right">
+    <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='/logout'">
+        <span class="glyphicon glyphicon-log-out"></span> Logout
+    </button>
+  </p>
+
   <div class="btn-group-justified">
-    <a routerLink="/updates" class="btn btn-primary">List Updates</a>
-    <a routerLink="/add_update" class="btn btn-success">Add Update</a>
+    <a routerLink="/updates" class="btn btn-primary">Update alerts</a>
+    <a routerLink="/deeplink" class="btn btn-primary">Deep links</a>
   </div>
   <br/>
   <router-outlet></router-outlet>

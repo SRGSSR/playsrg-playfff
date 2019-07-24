@@ -23,7 +23,6 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -225,7 +224,7 @@ public class RecommendationServiceVideoResultTests {
 
     private void testVideoRecommendation(String urn, boolean isFullLength, boolean episodeCompositionHasNextUrl, List<String> expectedUrns, List<String> expectedStandaloneUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
-        String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName, new HashMap<>());
+        String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/media/byUrn/"+ urn + ".json")))
                 .andExpect(method(HttpMethod.GET))
@@ -235,7 +234,7 @@ public class RecommendationServiceVideoResultTests {
                 );
 
         String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rtr-tv-next-url.json" : "episode-composition-rtr-tv.json";
-        String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName, new HashMap<>());
+        String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName);
         mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rtr:show:tv:1234.json?pageSize=100")))
                 .andExpect(method(HttpMethod.GET))
@@ -246,7 +245,7 @@ public class RecommendationServiceVideoResultTests {
 
         try {
             String mediaCompositionFileName = "media-composition-" + urn.replace(":", "-") + ".json";
-            String mediaCompositionJson = BaseResourceString.getString(applicationContext, mediaCompositionFileName, new HashMap<>());
+            String mediaCompositionJson = BaseResourceString.getString(applicationContext, mediaCompositionFileName);
             mockServer.expect(ExpectedCount.between(0, 2),
                     requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/mediaComposition/byUrn/" + urn + ".json")))
                     .andExpect(method(HttpMethod.GET))

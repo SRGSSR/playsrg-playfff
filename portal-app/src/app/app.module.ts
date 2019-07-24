@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UpdateComponent } from './update/update.component';
+import { DeeplinkComponent } from './deeplink/deeplink.component';
 import { AppRoutingModule } from './app.routing.module';
-import {UpdateService} from './update/update.service';
-import {HttpClientModule} from "@angular/common/http";
+import { UpdateService } from './update/update.service';
+import { DeeplinkService } from './deeplink/deeplink.service';
+import { HttpClientModule } from "@angular/common/http";
 
 import {AddUpdateComponent} from './update/add-update.component';
 
@@ -14,7 +16,8 @@ import {AddUpdateComponent} from './update/add-update.component';
   declarations: [
     AppComponent,
     UpdateComponent,
-    AddUpdateComponent
+    AddUpdateComponent,
+    DeeplinkComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import {AddUpdateComponent} from './update/add-update.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UpdateService],
+  providers: [UpdateService, DeeplinkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
