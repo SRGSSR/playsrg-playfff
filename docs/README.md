@@ -7,7 +7,8 @@ Playfff is a SRG micro service to serve extra datas to Play applications. Playff
 
 ## Compatibility
 
-The service uses Spring Boot, a postgresql database and a NodeJS server.
+- The service uses Spring Boot, a postgresql database and a NodeJS server.
+- For admin sessions and multi instances, only sticky sessions are supported.
 
 ## Installation
 
