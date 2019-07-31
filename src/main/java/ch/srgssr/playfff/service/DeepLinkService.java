@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -28,10 +29,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -46,14 +44,22 @@ public class DeepLinkService {
 
     private RestTemplate restTemplate;
 
+    private Set<Environment> pullEnvironmentSet = new HashSet<>();
+
     @Autowired
     protected ApplicationContext applicationContext;
 
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
 
-    public DeepLinkService(RestTemplateBuilder restTemplateBuilder) {
+    public DeepLinkService(RestTemplateBuilder restTemplateBuilder,
+                           @Value("${DEEP_LINK_ENVIRONMENTS:PROD}") String environments) {
         restTemplate = restTemplateBuilder.build();
+
+        String[] environmentStrings = environments.split(",");
+        for (String environmentString : environmentStrings) {
+            pullEnvironmentSet.add(Environment.fromValue(environmentString));
+        }
     }
 
     @Cacheable("DeeplinkParsePlayUrlJSContent")
@@ -69,42 +75,95 @@ public class DeepLinkService {
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
         String javascript = BaseResourceString.getString(applicationContext, "parsePlayUrl.js");
 
-        Map<String, String> buMap = new HashMap<String, String>();
-        buMap.put("srf", "www.srf.ch");
-        buMap.put("rts", "www.rts.ch");
-        buMap.put("rsi", "www.rsi.ch");
-        buMap.put("rtr", "www.rtr.ch");
-        buMap.put("swi", "play.swissinfo.ch");
+        Map<String, Map<String, Map<String, String>>> tvGlobalTopicsMap = new HashMap<>();
+        Map<String, Map<String, Map<String, String>>> tvGlobalEventsMap = new HashMap<>();
 
-        ObjectMapper mapperObj = new ObjectMapper();
+        for (Environment environment : pullEnvironmentSet) {
 
-        // Get tv topic list
-        Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
+            Map<String, String> buProdMap = new HashMap<>();
+            buProdMap.put("srf", "www.srf.ch");
+            buProdMap.put("rts", "www.rts.ch");
+            buProdMap.put("rsi", "www.rsi.ch");
+            buProdMap.put("rtr", "www.rtr.ch");
+            buProdMap.put("swi", "play.swissinfo.ch");
 
-        for (Map.Entry<String, String> bu : buMap.entrySet()) {
-            URI tvTopicListUri = null;
-            try {
-                tvTopicListUri = new URI("https", null, bu.getValue(), 443, "/play/tv/topicList",
-                        null, null);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            ResponseEntity<PlayTopic[]> tvTopicListResponseEntity = restTemplate.exchange(tvTopicListUri, HttpMethod.GET, null, PlayTopic[].class);
-            if (tvTopicListResponseEntity.getBody() != null) {
-                PlayTopic[] tvTopicList = tvTopicListResponseEntity.getBody();
-                Map<String, String> tvTopicsSubMap = new HashMap<>();
+            Map<String, String> buStageMap = new HashMap<>();
+            buStageMap.put("srf", "srgplayer-srf.stage.srf.ch");
+            buStageMap.put("rts", "srgplayer-rts.stage.srf.ch");
+            buStageMap.put("rsi", "srgplayer-rsi.stage.srf.ch");
+            buStageMap.put("rtr", "srgplayer-rtr.stage.srf.ch");
+            buStageMap.put("swi", "srgplayer-swi.stage.srf.ch");
 
-                for (PlayTopic playTopic : tvTopicList) {
-                    tvTopicsSubMap.put(playTopic.getUrlEncodedTitle(), playTopic.getId());
+            Map<String, String> buTestMap = new HashMap<>();
+            buTestMap.put("srf", "srgplayer-srf.test.srf.ch");
+            buTestMap.put("rts", "srgplayer-rts.test.srf.ch");
+            buTestMap.put("rsi", "srgplayer-rsi.test.srf.ch");
+            buTestMap.put("rtr", "srgplayer-rtr.test.srf.ch");
+            buTestMap.put("swi", "srgplayer-swi.test.srf.ch");
+
+            Map<Environment, Map<String, String>> buMap = new HashMap<>();
+            buMap.put(Environment.PROD, buProdMap);
+            buMap.put(Environment.STAGE, buStageMap);
+            buMap.put(Environment.TEST, buTestMap);
+            buMap.put(Environment.MMF, new HashMap<>());
+
+            // Get tv topic list
+            Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
+
+            for (Map.Entry<String, String> bu : buMap.get(environment).entrySet()) {
+                URI tvTopicListUri = null;
+                try {
+                    tvTopicListUri = new URI("https", null, bu.getValue(), 443, "/play/tv/topicList",
+                            null, null);
+
+                    ResponseEntity<PlayTopic[]> tvTopicListResponseEntity = restTemplate.exchange(tvTopicListUri, HttpMethod.GET, null, PlayTopic[].class);
+
+                    if (tvTopicListResponseEntity.getBody() != null) {
+                        PlayTopic[] tvTopicList = tvTopicListResponseEntity.getBody();
+                        Map<String, String> tvTopicsSubMap = new HashMap<>();
+
+                        for (PlayTopic playTopic : tvTopicList) {
+                            tvTopicsSubMap.put(playTopic.getUrlEncodedTitle(), playTopic.getId());
+                        }
+
+                        tvTopicsMap.put(bu.getKey(), tvTopicsSubMap);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            }
 
-                tvTopicsMap.put(bu.getKey(), tvTopicsSubMap);
+            if (tvTopicsMap.size() > 0) {
+                tvGlobalTopicsMap.put(environment.getPrettyName(), tvTopicsMap);
+            }
+
+            // Get event module list
+            Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
+
+            for (Map.Entry<String, String> bu : buProdMap.entrySet()) {
+                ModuleConfigList moduleConfigList = integrationLayerRequest.getEvents(bu.getKey(), environment);
+                if (moduleConfigList != null) {
+                    Map<String, String> tvEventsSubMap = new HashMap<>();
+
+                    for (int i = 0; i < moduleConfigList.getModuleConfigList().size(); i++) {
+                        ModuleConfig moduleConfig = moduleConfigList.getModuleConfigList().get(i);
+                        tvEventsSubMap.put(moduleConfig.getSeoName(), moduleConfig.getId());
+                    }
+
+                    tvEventsMap.put(bu.getKey(), tvEventsSubMap);
+                }
+            }
+
+            if (tvEventsMap.size() > 0) {
+                tvGlobalEventsMap.put(environment.getPrettyName(), tvEventsMap);
             }
         }
 
+        ObjectMapper mapperObj = new ObjectMapper();
+
         String tvTopics = null;
         try {
-            tvTopics = mapperObj.writeValueAsString(tvTopicsMap);
+            tvTopics = mapperObj.writeValueAsString(tvGlobalTopicsMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,26 +172,9 @@ public class DeepLinkService {
             javascript = javascript.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
         }
 
-        // Get event module list
-        Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
-
-        for (Map.Entry<String, String> bu : buMap.entrySet()) {
-            ModuleConfigList moduleConfigList = integrationLayerRequest.getEvents(bu.getKey(), Environment.PROD);
-            if (moduleConfigList != null) {
-                Map<String, String> tvEventsSubMap = new HashMap<>();
-
-                for (int i = 0; i < moduleConfigList.getModuleConfigList().size(); i++) {
-                    ModuleConfig moduleConfig = moduleConfigList.getModuleConfigList().get(i);
-                    tvEventsSubMap.put(moduleConfig.getSeoName(), moduleConfig.getId());
-                }
-
-                tvEventsMap.put(bu.getKey(), tvEventsSubMap);
-            }
-        }
-
         String tvEvents = null;
         try {
-            tvEvents = mapperObj.writeValueAsString(tvEventsMap);
+            tvEvents = mapperObj.writeValueAsString(tvGlobalEventsMap);
         } catch (IOException e) {
             e.printStackTrace();
         }

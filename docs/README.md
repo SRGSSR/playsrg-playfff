@@ -22,6 +22,7 @@ A wide list of parameters are available.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service.
 * `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
+* `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
 
 ## API
  * `urn` (string): an unique identifier.
