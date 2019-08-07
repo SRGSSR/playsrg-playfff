@@ -1,5 +1,6 @@
 language: java
+dist: trusty
 jdk:
- - openjdk9
+ - oraclejdk8
 notifications:
   email: false
