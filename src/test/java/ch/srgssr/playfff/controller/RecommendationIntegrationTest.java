@@ -181,7 +181,9 @@ public class RecommendationIntegrationTest {
             RecommendedList userRecommendedList = (RecommendedList) convertJSONStringToObject(json, RecommendedList.class);
 
             Assert.assertNotEquals(anonymousRecommendedListReference.get().getRecommendationId(), userRecommendedList.getRecommendationId());
-            Assert.assertNotEquals(anonymousRecommendedListReference.get().getTitle(), userRecommendedList.getTitle());
+            // Currently, a logged user can have the same title as an anonymous user, but with a different result list.
+            //Assert.assertNotEquals(anonymousRecommendedListReference.get().getTitle(), userRecommendedList.getTitle());
+            Assert.assertNotEquals(anonymousRecommendedListReference.get().getUrns(), userRecommendedList.getUrns());
         });
     }
 
