@@ -8,18 +8,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * License information is available from the LICENSE file.
  */
 public enum Environment {
-    PROD("il.srgssr.ch"),
-    STAGE("il-stage.srgssr.ch"),
-    TEST("il-test.srgssr.ch"),
-    MMF("play-mmf.herokuapp.com");
+    PROD("il.srgssr.ch", "production"),
+    STAGE("il-stage.srgssr.ch", "stage"),
+    TEST("il-test.srgssr.ch", "test"),
+    MMF("play-mmf.herokuapp.com", "play mmf");
 
-    Environment(String url) {
+    Environment(String url, String prettyName) {
         this.name = name().toLowerCase();
         this.baseUrl = url;
+        this.prettyName = prettyName;
     }
 
     private String name;
     private String baseUrl;
+    private String prettyName;
 
     public static Environment fromValue(String v) {
         return valueOf(v.toUpperCase());
@@ -27,6 +29,10 @@ public enum Environment {
 
     public String getBaseUrl() {
         return baseUrl;
+    }
+
+    public String getPrettyName() {
+        return prettyName;
     }
 
     @JsonValue
