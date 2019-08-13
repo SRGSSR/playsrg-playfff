@@ -7,7 +7,8 @@ Playfff is a SRG micro service to serve extra datas to Play applications. Playff
 
 ## Compatibility
 
-The service uses Spring Boot, a postgresql database and a NodeJS server.
+- The service uses Spring Boot, a postgresql database and a NodeJS server.
+- For admin sessions and multi instances, only sticky sessions are supported.
 
 ## Installation
 
@@ -21,6 +22,7 @@ A wide list of parameters are available.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service.
 * `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
+* `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
 
 ## API
  * `urn` (string): an unique identifier.
@@ -49,7 +51,7 @@ A wide list of parameters are available.
 #### Deep link
 
 * `/api/v1/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL script (deep link script). The HTTP ETag caching is supported.
-* `/api/v1/deeplink/report` (POST) : create or update a new deep link report object from the JSON body object. Send a report only if the script returns `[scheme]://redirect`. The JSON object must contains:
+* `/api/v1/deeplink/report` (POST) : create or update a new deep link report object from the JSON body object. Send a report only if the script returns `[scheme]://unsupported`. The JSON object must contains:
   * `clientTime` (string): date of the parsing execution in `yyyy-MM-dd'T'HH:mm:ssXXX` format.
   * `clientId` (string): Bundle id or package name.
   * `jsVersion` (integer): the `parsePlayUrl.js` value of `parsePlayUrlVersion` variable. 
