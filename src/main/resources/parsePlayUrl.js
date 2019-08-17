@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 19;
+var parsePlayUrlVersion = 20;
 var parsePlayUrlBuild = "mmf";
 
 function parsePlayUrl(urlString) {
@@ -747,19 +747,14 @@ function serverForUrl(hostname, pathname, queryParams) {
 			server = "play mmf";
 		}
 		else {
-			var server = queryParams["server"];
-			switch (server) {
-				case "production":
-					server = "production";
-					break;
+			var serverParam = queryParams["server"];
+			switch (serverParam) {
 				case "stage":
 					server = "stage";
 					break;
 				case "test":
 					server = "test";
 					break;
-				default:
-					server = null;
 			}
 		}
 	}
