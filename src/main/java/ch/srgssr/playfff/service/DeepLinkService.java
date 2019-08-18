@@ -12,9 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,7 +28,6 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -37,10 +40,11 @@ import java.util.*;
  * License information is available from the LICENSE file.
  */
 @Service
+@EnableCaching
 public class DeepLinkService {
     private static final Logger logger = LoggerFactory.getLogger(DeepLinkService.class);
 
-    private DeepLinkJSContent parsePlayUrlContent;
+    private static final String DeepLinkCacheName = "DeeplinkParsePlayUrlJSContent";
 
     private RestTemplate restTemplate;
 
@@ -52,6 +56,11 @@ public class DeepLinkService {
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
 
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager(DeepLinkCacheName);
+    }
+
     public DeepLinkService(RestTemplateBuilder restTemplateBuilder,
                            @Value("${DEEP_LINK_ENVIRONMENTS:PROD}") String environments) {
         restTemplate = restTemplateBuilder.build();
@@ -62,16 +71,12 @@ public class DeepLinkService {
         }
     }
 
-    @Cacheable("DeeplinkParsePlayUrlJSContent")
+    @Cacheable(DeepLinkCacheName)
     public DeepLinkJSContent getParsePlayUrlJSContent() {
-        if (parsePlayUrlContent == null) {
-            refreshParsePlayUrlJSContent();
-        }
-
-        return parsePlayUrlContent;
+        return refreshParsePlayUrlJSContent();
     }
 
-    @CachePut("DeeplinkParsePlayUrlJSContent")
+    @CachePut(DeepLinkCacheName)
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
         String javascript = BaseResourceString.getString(applicationContext, "parsePlayUrl.js");
 
@@ -191,8 +196,7 @@ public class DeepLinkService {
         String strDate = dateFormat.format(buildDate);
         javascript = javascript.replaceAll("var parsePlayUrlBuild = \"mmf\";", "var parsePlayUrlBuild = \"" + buildHash + "\";\nvar parsePlayUrlBuildDate = \"" + strDate + "\";");
 
-        parsePlayUrlContent = new DeepLinkJSContent(javascript, buildHash);
-        return parsePlayUrlContent;
+        return new DeepLinkJSContent(javascript, buildHash);
     }
 
     private String sha1(String input) {
