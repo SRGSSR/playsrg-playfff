@@ -12,13 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -55,11 +52,6 @@ public class DeepLinkService {
 
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
-
-    @Bean
-    public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager(DeepLinkCacheName);
-    }
 
     public DeepLinkService(RestTemplateBuilder restTemplateBuilder,
                            @Value("${DEEP_LINK_ENVIRONMENTS:PROD}") String environments) {
