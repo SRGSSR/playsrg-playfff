@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 20;
+var parsePlayUrlVersion = 21;
 var parsePlayUrlBuild = "mmf";
 
 function parsePlayUrl(urlString) {
@@ -580,6 +580,19 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 */
 	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
 		return openPage(server, bu, "tv:home", null, null);
+	}
+
+	/**
+	 *  Catch play help urls
+	 *
+	 *  Ex: https://www.srf.ch/play/tv/hilfe
+	 *  Ex: https://www.rts.ch/play/tv/aide
+	 *  Ex: https://www.rsi.ch/play/tv/guida
+	 *  Ex: https://www.rtr.ch/play/tv/agid
+	 *  Ex: https://play.swissinfo.ch/play/tv/help
+	 */
+	if (pathname.endsWith("/hilfe") || pathname.endsWith("/aide") || pathname.endsWith("/guida") || pathname.endsWith("/agid") || pathname.endsWith("/help")) {
+		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
 	}
 
 	// Redirect fallback.
