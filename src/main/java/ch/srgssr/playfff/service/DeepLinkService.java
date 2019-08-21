@@ -92,23 +92,23 @@ public class DeepLinkService {
         buTestMap.put("rtr", "srgplayer-rtr.test.srf.ch");
         buTestMap.put("swi", "srgplayer-swi.test.srf.ch");
 
-        Map<Environment, Map<String, String>> buMap = new HashMap<>();
-        buMap.put(Environment.PROD, buProdMap);
-        buMap.put(Environment.STAGE, buStageMap);
-        buMap.put(Environment.TEST, buTestMap);
-        buMap.put(Environment.MMF, new HashMap<>());
+        Map<Environment, Map<String, String>> environmentMap = new HashMap<>();
+        environmentMap.put(Environment.PROD, buProdMap);
+        environmentMap.put(Environment.STAGE, buStageMap);
+        environmentMap.put(Environment.TEST, buTestMap);
+        environmentMap.put(Environment.MMF, new HashMap<>());
 
         Map<String, Map<String, Map<String, String>>> tvGlobalTopicMap = new HashMap<>();
         Map<String, Map<String, Map<String, String>>> tvGlobalEventMap = new HashMap<>();
 
         for (Environment environment : pullEnvironmentSet) {
-            Map<String, Map<String, String>> tvTopicMap = getTvTopicMap(environment, buMap);
+            Map<String, Map<String, String>> tvTopicMap = getTvTopicMap(environmentMap.get(environment));
 
             if (tvTopicMap.size() > 0) {
                 tvGlobalTopicMap.put(environment.getPrettyName(), tvTopicMap);
             }
 
-            Map<String, Map<String, String>> tvEventMap = getTvEventMap(environment, buProdMap);
+            Map<String, Map<String, String>> tvEventMap = getTvEventMap(environmentMap.get(environment), environment);
 
             if (tvEventMap.size() > 0) {
                 tvGlobalEventMap.put(environment.getPrettyName(), tvEventMap);
@@ -155,10 +155,10 @@ public class DeepLinkService {
         return new DeepLinkJSContent(javascript, buildHash);
     }
 
-    private Map<String, Map<String, String>> getTvTopicMap(Environment environment, Map<Environment, Map<String, String>> buMap) {
+    private Map<String, Map<String, String>> getTvTopicMap(Map<String, String> buMap) {
         Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
 
-        for (Map.Entry<String, String> bu : buMap.get(environment).entrySet()) {
+        for (Map.Entry<String, String> bu : buMap.entrySet()) {
             URI tvTopicListUri = null;
             try {
                 tvTopicListUri = new URI("https", null, bu.getValue(), 443, "/play/tv/topicList",
@@ -183,7 +183,7 @@ public class DeepLinkService {
         return tvTopicsMap;
     }
 
-    private Map<String, Map<String, String>> getTvEventMap(Environment environment, Map<String, String> buMap) {
+    private Map<String, Map<String, String>> getTvEventMap(Map<String, String> buMap, Environment environment) {
         Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
 
         for (Map.Entry<String, String> bu : buMap.entrySet()) {
