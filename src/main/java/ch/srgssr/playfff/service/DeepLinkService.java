@@ -6,6 +6,7 @@ import ch.srgssr.playfff.helper.BaseResourceString;
 import ch.srgssr.playfff.model.DeepLinkJSContent;
 import ch.srgssr.playfff.model.Environment;
 import ch.srgssr.playfff.model.playportal.PlayTopic;
+import ch.srgssr.playfff.utils.Sha1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,7 +77,6 @@ public class DeepLinkService {
         Map<String, Map<String, Map<String, String>>> tvGlobalEventsMap = new HashMap<>();
 
         for (Environment environment : pullEnvironmentSet) {
-
             Map<String, String> buProdMap = new HashMap<>();
             buProdMap.put("srf", "www.srf.ch");
             buProdMap.put("rts", "www.rts.ch");
@@ -104,31 +104,7 @@ public class DeepLinkService {
             buMap.put(Environment.TEST, buTestMap);
             buMap.put(Environment.MMF, new HashMap<>());
 
-            // Get tv topic list
-            Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
-
-            for (Map.Entry<String, String> bu : buMap.get(environment).entrySet()) {
-                URI tvTopicListUri = null;
-                try {
-                    tvTopicListUri = new URI("https", null, bu.getValue(), 443, "/play/tv/topicList",
-                            null, null);
-
-                    ResponseEntity<PlayTopic[]> tvTopicListResponseEntity = restTemplate.exchange(tvTopicListUri, HttpMethod.GET, null, PlayTopic[].class);
-
-                    if (tvTopicListResponseEntity.getBody() != null) {
-                        PlayTopic[] tvTopicList = tvTopicListResponseEntity.getBody();
-                        Map<String, String> tvTopicsSubMap = new HashMap<>();
-
-                        for (PlayTopic playTopic : tvTopicList) {
-                            tvTopicsSubMap.put(playTopic.getUrlEncodedTitle(), playTopic.getId());
-                        }
-
-                        tvTopicsMap.put(bu.getKey(), tvTopicsSubMap);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            Map<String, Map<String, String>> tvTopicsMap = getTvTopicList(environment, buMap);
 
             if (tvTopicsMap.size() > 0) {
                 tvGlobalTopicsMap.put(environment.getPrettyName(), tvTopicsMap);
@@ -180,7 +156,12 @@ public class DeepLinkService {
             javascript = javascript.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
         }
 
-        String buildHash = sha1(javascript);
+        String buildHash = "NO_SHA1";
+        try {
+            buildHash = Sha1.sha1(javascript);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            logger.warn("sha1", e);
+        }
         Date buildDate = new Date();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -191,15 +172,32 @@ public class DeepLinkService {
         return new DeepLinkJSContent(javascript, buildHash);
     }
 
-    private String sha1(String input) {
-        String sha1 = null;
-        try {
-            MessageDigest msdDigest = MessageDigest.getInstance("SHA-1");
-            msdDigest.update(input.getBytes("UTF-8"), 0, input.length());
-            sha1 = DatatypeConverter.printHexBinary(msdDigest.digest());
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-            logger.warn(e.getMessage());
+    private Map<String, Map<String, String>> getTvTopicList(Environment environment, Map<Environment, Map<String, String>> buMap) {
+        Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
+
+        for (Map.Entry<String, String> bu : buMap.get(environment).entrySet()) {
+            URI tvTopicListUri = null;
+            try {
+                tvTopicListUri = new URI("https", null, bu.getValue(), 443, "/play/tv/topicList",
+                        null, null);
+
+                ResponseEntity<PlayTopic[]> tvTopicListResponseEntity = restTemplate.exchange(tvTopicListUri, HttpMethod.GET, null, PlayTopic[].class);
+
+                if (tvTopicListResponseEntity.getBody() != null) {
+                    PlayTopic[] tvTopicList = tvTopicListResponseEntity.getBody();
+                    Map<String, String> tvTopicsSubMap = new HashMap<>();
+
+                    for (PlayTopic playTopic : tvTopicList) {
+                        tvTopicsSubMap.put(playTopic.getUrlEncodedTitle(), playTopic.getId());
+                    }
+
+                    tvTopicsMap.put(bu.getKey(), tvTopicsSubMap);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return sha1;
+        return tvTopicsMap;
     }
+
 }
