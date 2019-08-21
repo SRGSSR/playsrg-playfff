@@ -22,11 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -73,62 +71,47 @@ public class DeepLinkService {
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
         String javascript = BaseResourceString.getString(applicationContext, "parsePlayUrl.js");
 
-        Map<String, Map<String, Map<String, String>>> tvGlobalTopicsMap = new HashMap<>();
-        Map<String, Map<String, Map<String, String>>> tvGlobalEventsMap = new HashMap<>();
+        Map<String, String> buProdMap = new HashMap<>();
+        buProdMap.put("srf", "www.srf.ch");
+        buProdMap.put("rts", "www.rts.ch");
+        buProdMap.put("rsi", "www.rsi.ch");
+        buProdMap.put("rtr", "www.rtr.ch");
+        buProdMap.put("swi", "play.swissinfo.ch");
+
+        Map<String, String> buStageMap = new HashMap<>();
+        buStageMap.put("srf", "srgplayer-srf.stage.srf.ch");
+        buStageMap.put("rts", "srgplayer-rts.stage.srf.ch");
+        buStageMap.put("rsi", "srgplayer-rsi.stage.srf.ch");
+        buStageMap.put("rtr", "srgplayer-rtr.stage.srf.ch");
+        buStageMap.put("swi", "srgplayer-swi.stage.srf.ch");
+
+        Map<String, String> buTestMap = new HashMap<>();
+        buTestMap.put("srf", "srgplayer-srf.test.srf.ch");
+        buTestMap.put("rts", "srgplayer-rts.test.srf.ch");
+        buTestMap.put("rsi", "srgplayer-rsi.test.srf.ch");
+        buTestMap.put("rtr", "srgplayer-rtr.test.srf.ch");
+        buTestMap.put("swi", "srgplayer-swi.test.srf.ch");
+
+        Map<Environment, Map<String, String>> buMap = new HashMap<>();
+        buMap.put(Environment.PROD, buProdMap);
+        buMap.put(Environment.STAGE, buStageMap);
+        buMap.put(Environment.TEST, buTestMap);
+        buMap.put(Environment.MMF, new HashMap<>());
+
+        Map<String, Map<String, Map<String, String>>> tvGlobalTopicMap = new HashMap<>();
+        Map<String, Map<String, Map<String, String>>> tvGlobalEventMap = new HashMap<>();
 
         for (Environment environment : pullEnvironmentSet) {
-            Map<String, String> buProdMap = new HashMap<>();
-            buProdMap.put("srf", "www.srf.ch");
-            buProdMap.put("rts", "www.rts.ch");
-            buProdMap.put("rsi", "www.rsi.ch");
-            buProdMap.put("rtr", "www.rtr.ch");
-            buProdMap.put("swi", "play.swissinfo.ch");
+            Map<String, Map<String, String>> tvTopicMap = getTvTopicMap(environment, buMap);
 
-            Map<String, String> buStageMap = new HashMap<>();
-            buStageMap.put("srf", "srgplayer-srf.stage.srf.ch");
-            buStageMap.put("rts", "srgplayer-rts.stage.srf.ch");
-            buStageMap.put("rsi", "srgplayer-rsi.stage.srf.ch");
-            buStageMap.put("rtr", "srgplayer-rtr.stage.srf.ch");
-            buStageMap.put("swi", "srgplayer-swi.stage.srf.ch");
-
-            Map<String, String> buTestMap = new HashMap<>();
-            buTestMap.put("srf", "srgplayer-srf.test.srf.ch");
-            buTestMap.put("rts", "srgplayer-rts.test.srf.ch");
-            buTestMap.put("rsi", "srgplayer-rsi.test.srf.ch");
-            buTestMap.put("rtr", "srgplayer-rtr.test.srf.ch");
-            buTestMap.put("swi", "srgplayer-swi.test.srf.ch");
-
-            Map<Environment, Map<String, String>> buMap = new HashMap<>();
-            buMap.put(Environment.PROD, buProdMap);
-            buMap.put(Environment.STAGE, buStageMap);
-            buMap.put(Environment.TEST, buTestMap);
-            buMap.put(Environment.MMF, new HashMap<>());
-
-            Map<String, Map<String, String>> tvTopicsMap = getTvTopicList(environment, buMap);
-
-            if (tvTopicsMap.size() > 0) {
-                tvGlobalTopicsMap.put(environment.getPrettyName(), tvTopicsMap);
+            if (tvTopicMap.size() > 0) {
+                tvGlobalTopicMap.put(environment.getPrettyName(), tvTopicMap);
             }
 
-            // Get event module list
-            Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
+            Map<String, Map<String, String>> tvEventMap = getTvEventMap(environment, buProdMap);
 
-            for (Map.Entry<String, String> bu : buProdMap.entrySet()) {
-                ModuleConfigList moduleConfigList = integrationLayerRequest.getEvents(bu.getKey(), environment);
-                if (moduleConfigList != null) {
-                    Map<String, String> tvEventsSubMap = new HashMap<>();
-
-                    for (int i = 0; i < moduleConfigList.getModuleConfigList().size(); i++) {
-                        ModuleConfig moduleConfig = moduleConfigList.getModuleConfigList().get(i);
-                        tvEventsSubMap.put(moduleConfig.getSeoName(), moduleConfig.getId());
-                    }
-
-                    tvEventsMap.put(bu.getKey(), tvEventsSubMap);
-                }
-            }
-
-            if (tvEventsMap.size() > 0) {
-                tvGlobalEventsMap.put(environment.getPrettyName(), tvEventsMap);
+            if (tvEventMap.size() > 0) {
+                tvGlobalEventMap.put(environment.getPrettyName(), tvEventMap);
             }
         }
 
@@ -136,7 +119,7 @@ public class DeepLinkService {
 
         String tvTopics = null;
         try {
-            tvTopics = mapperObj.writeValueAsString(tvGlobalTopicsMap);
+            tvTopics = mapperObj.writeValueAsString(tvGlobalTopicMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -147,7 +130,7 @@ public class DeepLinkService {
 
         String tvEvents = null;
         try {
-            tvEvents = mapperObj.writeValueAsString(tvGlobalEventsMap);
+            tvEvents = mapperObj.writeValueAsString(tvGlobalEventMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,7 +155,7 @@ public class DeepLinkService {
         return new DeepLinkJSContent(javascript, buildHash);
     }
 
-    private Map<String, Map<String, String>> getTvTopicList(Environment environment, Map<Environment, Map<String, String>> buMap) {
+    private Map<String, Map<String, String>> getTvTopicMap(Environment environment, Map<Environment, Map<String, String>> buMap) {
         Map<String, Map<String, String>> tvTopicsMap = new HashMap<>();
 
         for (Map.Entry<String, String> bu : buMap.get(environment).entrySet()) {
@@ -200,4 +183,22 @@ public class DeepLinkService {
         return tvTopicsMap;
     }
 
+    private Map<String, Map<String, String>> getTvEventMap(Environment environment, Map<String, String> buMap) {
+        Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
+
+        for (Map.Entry<String, String> bu : buMap.entrySet()) {
+            ModuleConfigList moduleConfigList = integrationLayerRequest.getEvents(bu.getKey(), environment);
+            if (moduleConfigList != null) {
+                Map<String, String> tvEventsSubMap = new HashMap<>();
+
+                for (int i = 0; i < moduleConfigList.getModuleConfigList().size(); i++) {
+                    ModuleConfig moduleConfig = moduleConfigList.getModuleConfigList().get(i);
+                    tvEventsSubMap.put(moduleConfig.getSeoName(), moduleConfig.getId());
+                }
+
+                tvEventsMap.put(bu.getKey(), tvEventsSubMap);
+            }
+        }
+        return tvEventsMap;
+    }
 }
