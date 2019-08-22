@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 19;
+var parsePlayUrlVersion = 21;
 var parsePlayUrlBuild = "mmf";
 
 function parsePlayUrl(urlString) {
@@ -582,6 +582,19 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
+	/**
+	 *  Catch play help urls
+	 *
+	 *  Ex: https://www.srf.ch/play/tv/hilfe
+	 *  Ex: https://www.rts.ch/play/tv/aide
+	 *  Ex: https://www.rsi.ch/play/tv/guida
+	 *  Ex: https://www.rtr.ch/play/tv/agid
+	 *  Ex: https://play.swissinfo.ch/play/tv/help
+	 */
+	if (pathname.endsWith("/hilfe") || pathname.endsWith("/aide") || pathname.endsWith("/guida") || pathname.endsWith("/agid") || pathname.endsWith("/help")) {
+		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
+	}
+
 	// Redirect fallback.
 	console.log("Can't parse Play URL. Unsupported URL.");
 	return schemeForBu(bu) + "://unsupported?server=" + server;
@@ -747,19 +760,14 @@ function serverForUrl(hostname, pathname, queryParams) {
 			server = "play mmf";
 		}
 		else {
-			var server = queryParams["server"];
-			switch (server) {
-				case "production":
-					server = "production";
-					break;
+			var serverParam = queryParams["server"];
+			switch (serverParam) {
 				case "stage":
 					server = "stage";
 					break;
 				case "test":
 					server = "test";
 					break;
-				default:
-					server = null;
 			}
 		}
 	}
