@@ -50,7 +50,8 @@ A wide list of parameters are available.
 
 #### Deep link
 
-* `/api/v1/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL script (deep link script). The HTTP ETag caching is supported.
+* `/api/v1/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL (v1) script (deep link script). The HTTP ETag caching is supported.
+* `/api/v2/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL (v2) script (deep link script). The HTTP ETag caching is supported.
 * `/api/v1/deeplink/report` (POST) : create or update a new deep link report object from the JSON body object. Send a report only if the script returns `[scheme]://unsupported`. The JSON object must contains:
   * `clientTime` (string): date of the parsing execution in `yyyy-MM-dd'T'HH:mm:ssXXX` format.
   * `clientId` (string): Bundle id or package name.
