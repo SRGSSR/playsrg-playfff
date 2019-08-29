@@ -14,8 +14,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let deeplinkReport of deeplinkReports">
-      <td *ngFor="let col of columns">
-        {{deeplinkReport[col]}}
+      <td *ngFor="let column of columns; let idx=index">
+        <span *ngIf="idx == 5">
+          <a href="{{deeplinkReport[column]}}" target="_blank">{{deeplinkReport[column]}}</a>
+        </span>
+        <span *ngIf="idx != 5">
+          {{deeplinkReport[column]}}
+        </span>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteDeeplinkReport(deeplinkReport)">Delete</button>
