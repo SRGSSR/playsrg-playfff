@@ -167,7 +167,7 @@ public class RecommendationService {
     }
 
     private RecommendedList rtsVideoRecommendedList(String purpose, String urn, boolean standalone) {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("https")
                 .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
         uriComponentsBuilder.queryParam("urn", urn);
         uriComponentsBuilder.queryParam("purpose", purpose);
@@ -183,7 +183,7 @@ public class RecommendationService {
     }
 
     public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("http")
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("https")
                 .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
         uriComponentsBuilder.queryParam("user_id", userId);
         UriComponents url = uriComponentsBuilder.build();
