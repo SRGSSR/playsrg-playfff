@@ -3,22 +3,10 @@
 var parsePlayUrlVersion = 21;
 var parsePlayUrlBuild = "mmf";
 
-function parsePlayUrl(urlString) {
-	var url = urlString;
-	try {
-		url = new URL(urlString);
-	}
-	catch(error) {
-		console.log("Can't read URL: " + error);
-		return null;
-	}
-
-	var queryParams = {};
-	for (var queryItem of url.searchParams) {
-		queryParams[queryItem[0]] = queryItem[1];
-	}
-
-	return parseForPlayApp(url.protocol.replace(':', ''), url.hostname, url.pathname, queryParams, url.hash.replace('#', ''));
+if(! console) {
+    var console = {
+        log:function(){}
+    }
 }
 
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {

@@ -3,7 +3,7 @@
 var parsePlayUrlVersion = 21;
 var parsePlayUrlBuild = "mmf";
 
-if(!console){
+if(! console) {
     var console = {
         log:function(){}
     }
@@ -780,7 +780,7 @@ function serverForUrl(hostname, pathname, queryParams) {
 	return server;
 }
 
-function getBuFromHostname(hostname,pathname) {
+function getBuFromHostname(hostname, pathname) {
     switch (true) {
     	case hostname.endsWith("tp.srgssr.ch") || hostname.endsWith("player.rts.ch") || hostname.endsWith("player.rsi.ch") || hostname.endsWith("player.rtr.ch") || hostname.endsWith("player.swissinfo.ch") || hostname.endsWith("player.srf.ch"):
     		return "tp";
@@ -803,31 +803,31 @@ function getBuFromHostname(hostname,pathname) {
  }
 
 /**
-* build scheme://host[/path][?queryParams[0]&...&queryParams[n-1]]
-* Sample :
+* Build scheme://host[/path][?queryParams[0]&...&queryParams[n-1]]
+* Sample:
 *   playrts://media/urn:xxx?position=0&server=mmf
 */
-function buildUri(scheme,host,path,queryParams){
-    var uri = scheme+"://" + host;
-    if(path){
+function buildUri(scheme, host, path, queryParams) {
+    var uri = scheme + "://" + host;
+    if (path) {
         uri = uri + "/" + path;
     }
-    if(queryParams && queryParams!=={}){
+    if (queryParams && queryParams !== {}) {
         uri = uri + "?";
-        var optionI = 0;
+        var optionIndex = 0;
         for (var option in queryParams) {
-            if(queryParams[option]){
-               if(optionI > 0){
+            if(queryParams[option]) {
+               if(optionIndex > 0) {
                     uri = uri + "&";
                }
                uri = uri + option + "=" + encodeURIComponent(queryParams[option]);
-               optionI++;
+               optionIndex++;
             }
         }
     }
     return uri;
 }
 
-function buildBuUri(bu,host,path,queryParams){
-    return buildUri(schemeForBu(bu),host,path,queryParams);
+function buildBuUri(bu, host, path, queryParams) {
+    return buildUri(schemeForBu(bu), host, path, queryParams);
 }
