@@ -1,7 +1,7 @@
 Playfff
 =============
 
-[![Build Status](https://travis-ci.org/SRGSSR/pfff.svg?branch=master)](https://travis-ci.org/SRGSSR/pfff) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases)
+[![Build Status](https://travis-ci.org/SRGSSR/pfff.svg?branch=master)](https://travis-ci.org/SRGSSR/pfff) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE)
 
 
 ## About
@@ -97,4 +97,4 @@ Private APIs need a user authentification.
  
 ## License
 
-To be defined.
+See the [LICENSE](../LICENSE) file for more information.
