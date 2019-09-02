@@ -67,7 +67,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/api/v1/deeplink/parsePlayUrl.js")
+                .antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js")
                 .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
     }
 

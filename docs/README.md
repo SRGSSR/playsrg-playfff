@@ -1,5 +1,7 @@
-Playfff
-=============
+![SRG Logger logo](README-images/logo.png)
+
+[![Build Status](https://travis-ci.org/SRGSSR/pfff.svg?branch=master)](https://travis-ci.org/SRGSSR/pfff) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE)
+
 
 ## About
 
@@ -50,7 +52,8 @@ A wide list of parameters are available.
 
 #### Deep link
 
-* `/api/v1/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL script (deep link script). The HTTP ETag caching is supported.
+* `/api/v1/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL (v1) script (deep link script). The HTTP ETag caching is supported.
+* `/api/v2/deeplink/parsePlayUrl.js` (GET): Get the Play web URL to mobile application scheme URL (v2) script (deep link script). The HTTP ETag caching is supported.
 * `/api/v1/deeplink/report` (POST) : create or update a new deep link report object from the JSON body object. Send a report only if the script returns `[scheme]://unsupported`. The JSON object must contains:
   * `clientTime` (string): date of the parsing execution in `yyyy-MM-dd'T'HH:mm:ssXXX` format.
   * `clientId` (string): Bundle id or package name.
@@ -93,4 +96,4 @@ Private APIs need a user authentification.
  
 ## License
 
-To be defined.
+See the [LICENSE](../LICENSE) file for more information.

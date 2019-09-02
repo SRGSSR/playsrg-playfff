@@ -56,17 +56,31 @@ public class DeepLinkController {
     }
 
     // Public API
-    @RequestMapping(value="/api/v1/deeplink/parsePlayUrl.js")
+    @RequestMapping(value="/api/v{version}/deeplink/parsePlayUrl.js")
     @ResponseBody
-    public ResponseEntity<String> parsePlayUrlJavascript() {
+    public ResponseEntity<String> parsePlayUrlJavascript(@PathVariable("version") int version) {
 
         DeepLinkJSContent deepLinkJSContent = service.getParsePlayUrlJSContent();
 
-        if (deepLinkJSContent != null) {
+        String content = null;
+        String hash = null;
+
+        switch (version) {
+            case 1:
+               content = deepLinkJSContent.getContentV1();
+               hash = deepLinkJSContent.getHashV1();
+               break;
+            case 2:
+                content = deepLinkJSContent.getContentV2();
+                hash = deepLinkJSContent.getHashV2();
+                break;
+        }
+
+        if (content != null && hash != null) {
             return ResponseEntity.ok()
                     .cacheControl(CacheControl.empty().cachePublic())
-                    .eTag(deepLinkJSContent.getHash())
-                    .body(deepLinkJSContent.getContent());
+                    .eTag(hash)
+                    .body(content);
         } else {
             return ResponseEntity.notFound().build();
         }
