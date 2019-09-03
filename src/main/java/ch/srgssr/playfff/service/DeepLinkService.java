@@ -69,7 +69,8 @@ public class DeepLinkService {
 
     @CachePut(DeepLinkCacheName)
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
-        String javascript = BaseResourceString.getString(applicationContext, "parsePlayUrl.js");
+        String javascriptV1 = BaseResourceString.getString(applicationContext, "deeplink/v1/parsePlayUrl.js");
+        String javascriptV2 = BaseResourceString.getString(applicationContext, "deeplink/v2/parsePlayUrl.js");
 
         Map<String, String> buProdMap = new HashMap<>();
         buProdMap.put("srf", "www.srf.ch");
@@ -125,7 +126,8 @@ public class DeepLinkService {
         }
 
         if (tvTopics != null) {
-            javascript = javascript.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
+            javascriptV1 = javascriptV1.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
+            javascriptV2 = javascriptV2.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
         }
 
         String tvEvents = null;
@@ -136,23 +138,31 @@ public class DeepLinkService {
         }
 
         if (tvEvents != null) {
-            javascript = javascript.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
+            javascriptV1 = javascriptV1.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
+            javascriptV2 = javascriptV2.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
         }
 
-        String buildHash = "NO_SHA1";
+        String buildHashV1 = "NO_SHA1";
         try {
-            buildHash = Sha1.sha1(javascript);
+            buildHashV1 = Sha1.sha1(javascriptV1);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            logger.warn("sha1", e);
+            logger.warn("sha1 v1", e);
+        }
+        String buildHashV2 = "NO_SHA1";
+        try {
+            buildHashV2 = Sha1.sha1(javascriptV2);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            logger.warn("sha1 v2", e);
         }
         Date buildDate = new Date();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Zurich"));
         String strDate = dateFormat.format(buildDate);
-        javascript = javascript.replaceAll("var parsePlayUrlBuild = \"mmf\";", "var parsePlayUrlBuild = \"" + buildHash + "\";\nvar parsePlayUrlBuildDate = \"" + strDate + "\";");
+        javascriptV1 = javascriptV1.replaceAll("var parsePlayUrlBuild = \"mmf\";", "var parsePlayUrlBuild = \"" + buildHashV1 + "\";\nvar parsePlayUrlBuildDate = \"" + strDate + "\";");
+        javascriptV2 = javascriptV2.replaceAll("var parsePlayUrlBuild = \"mmf\";", "var parsePlayUrlBuild = \"" + buildHashV2 + "\";\nvar parsePlayUrlBuildDate = \"" + strDate + "\";");
 
-        return new DeepLinkJSContent(javascript, buildHash);
+        return new DeepLinkJSContent(javascriptV1, buildHashV1, javascriptV2, buildHashV2);
     }
 
     private Map<String, Map<String, String>> getTvTopicMap(Map<String, String> buMap) {

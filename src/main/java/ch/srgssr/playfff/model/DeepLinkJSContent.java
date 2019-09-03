@@ -7,19 +7,32 @@ package ch.srgssr.playfff.model;
  */
 public class DeepLinkJSContent {
 
-    private String content;
-    private String hash;
+    private String contentV1;
+    private String hashV1;
 
-    public DeepLinkJSContent(String content, String hash) {
-        this.content = content;
-        this.hash = hash;
+    private String contentV2;
+    private String hashV2;
+
+    public DeepLinkJSContent(String contentV1, String hashV1, String contentV2, String hashV2) {
+        this.contentV1 = contentV1;
+        this.hashV1 = hashV1;
+        this.contentV2 = contentV2;
+        this.hashV2 = hashV2;
     }
 
-    public String getContent() {
-        return content;
+    public String getContentV1() {
+        return contentV1;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashV1() {
+        return hashV1;
+    }
+
+    public String getContentV2() {
+        return contentV2;
+    }
+
+    public String getHashV2() {
+        return hashV2;
     }
 }
