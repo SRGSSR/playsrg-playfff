@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 21;
+var parsePlayUrlVersion = 22;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
