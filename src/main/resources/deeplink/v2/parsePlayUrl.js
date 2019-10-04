@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 21;
+var parsePlayUrlVersion = 22;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -95,7 +95,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 
 		// Returns default TV homepage
-		return openTvHomePage(server,bu);
+		return openTvHomePage(server, bu);
 	}
 
 	if (hostname.includes("play-mmf") && ! pathname.startsWith("/mmf/")) {
@@ -123,7 +123,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 		else if (pathname.startsWith("/video")) {
 			// Returns default TV homepage
-			return openTvHomePage(server,bu);
+			return openTvHomePage(server, bu);
 		}
 		else {
 			var channelId = null;
@@ -218,7 +218,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 		else {
 			// Returns default TV homepage
-			return openTvHomePage(server,bu);
+			return openTvHomePage(server, bu);
 		}
 	}
 
@@ -299,7 +299,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch live tv popup urls
+	 *  Catch tv video popup urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/popupvideoplayer?id=b833a5af-63c6-4310-bb80-05341310a4f5
 	 */
@@ -310,7 +310,23 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 		else {
 			// Returns default TV homepage
-			return openTvHomePage(server,bu);
+			return openTvHomePage(server, bu);
+		}
+	}
+
+	/**
+	 *  Catch radio audio popup urls
+	 *
+	 *  Ex: https://www.srf.ch/play/radio/popupaudioplayer?id=dc5e9465-ac64-409a-9878-ee47de3d1346
+	 */
+	if (pathname.includes("/radio/popupaudioplayer")) {
+		var mediaId = queryParams["id"];
+		if (mediaId) {
+			return openMedia(server, bu, "audio", mediaId, null);
+		}
+		else {
+			// Returns default radio homepage
+			return openRadioHomePage(server, bu, null);
 		}
 	}
 
@@ -369,7 +385,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/tv
 	 */
 	if (pathname.endsWith("/tv")) {
-		return openTvHomePage(server,bu);
+		return openTvHomePage(server, bu);
 	}
 
 	/**
@@ -379,7 +395,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 */
 	if (pathname.endsWith("/radio")) {
 		var channelId = queryParams["station"];
-		return openRadioHomePage(server, bu,channelId);
+		return openRadioHomePage(server, bu, channelId);
 	}
 
 	/**
@@ -476,7 +492,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rts.ch/play/tv/categories/info
 	 */
 	if (pathname.endsWith("/tv/themen") || pathname.endsWith("/tv/categories") || pathname.endsWith("/tv/categorie") || pathname.endsWith("/tv/tematicas") || pathname.endsWith("/tv/topics")) {
-		return openTvHomePage(server,bu);
+		return openTvHomePage(server, bu);
 	}
 	else if (pathname.includes("/tv/themen") || pathname.includes("/tv/categories") || pathname.includes("/tv/categorie") || pathname.includes("/tv/tematicas") || pathname.includes("/tv/topics")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
@@ -493,7 +509,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			return openTopic(server, bu, "tv", topicId);
 		}
 		else {
-			return openTvHomePage(server,bu);
+			return openTvHomePage(server, bu);
 		}
 	}
 
@@ -504,7 +520,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *. Ex: https://www.rsi.ch/play/tv/event/event-playrsi-8858482
 	 */
 	if (pathname.endsWith("/tv/event")) {
-		return openTvHomePage(server,bu);
+		return openTvHomePage(server, bu);
 	}
 	else if (pathname.includes("/tv/event")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
@@ -521,7 +537,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			return openModule(server, bu, "event", eventId);
 		}
 		else {
-			return openTvHomePage(server,bu);
+			return openTvHomePage(server, bu);
 		}
 	}
 
@@ -532,7 +548,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *. Ex: https://www.rsi.ch/play
 	 */
 	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
-		return openTvHomePage(server,bu);
+		return openTvHomePage(server, bu);
 	}
 
 	/**

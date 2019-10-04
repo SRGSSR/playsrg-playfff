@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 21;
+var parsePlayUrlVersion = 22;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -327,7 +327,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch live tv popup urls
+	 *  Catch tv video popup urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/popupvideoplayer?id=b833a5af-63c6-4310-bb80-05341310a4f5
 	 */
@@ -339,6 +339,22 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		else {
 			// Returns default TV homepage
 			return openPage(server, bu, "tv:home", null, null);
+		}
+	}
+
+	/**
+	 *  Catch radio audio popup urls
+	 *
+	 *  Ex: https://www.srf.ch/play/radio/popupaudioplayer?id=dc5e9465-ac64-409a-9878-ee47de3d1346
+	 */
+	if (pathname.includes("/radio/popupaudioplayer")) {
+		var mediaId = queryParams["id"];
+		if (mediaId) {
+			return openMedia(server, bu, "audio", mediaId, null);
+		}
+		else {
+			// Returns default TV homepage
+			return openPage(server, bu, "radio:home", null, null);
 		}
 	}
 
