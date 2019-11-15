@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 22;
+var parsePlayUrlVersion = 23;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -187,6 +187,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Catch classic media urls
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/faut-pas-croire/video/exportations-darmes--la-suisse-vend-t-elle-la-guerre-ou-la-paix-?id=9938530
+	 *  Ex: https://www.srf.ch/play/tv/_/video/_?urn=urn:srf:scheduled_livestream:video:6d49170d-16e9-45ef-a8aa-00873333a610 (strange)
 	 */
 	var mediaType = null;
 	switch (true) {
@@ -199,9 +200,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	if (mediaType) {
+		var mediaUrn = queryParams["urn"];
 		var mediaId = queryParams["id"];
-		if (mediaId) {
-			var startTime = queryParams["startTime"];            
+		var startTime = queryParams["startTime"];
+		if (mediaUrn) {
+			return openMediaURN(server, bu, mediaUrn, startTime);
+		}
+		else if (mediaId) {	
 			return openMedia(server, bu, mediaType, mediaId, startTime);
 		}
 		else {
@@ -237,9 +242,10 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	/**
 	 *  Catch live TV urls
 	 *
-	 *  Ex: https://www.srf.ch/play/tv/live?tvLiveId=c49c1d73-2f70-0001-138a-15e0c4ccd3d0
+	 *  Ex: https://www.srf.ch/play/tv/live?tvLiveId=c49c1d73-2f70-0001-138a-
+	 *  Ex: https://www.srf.ch/play/tv/live/?tvLiveId=c49c1d73-2f70-0001-138a-15e0c4ccd3d0
 	 */
-	if (pathname.endsWith("/tv/live") || pathname.endsWith("/tv/direct")) {
+	if (pathname.endsWith("/tv/live") || pathname.endsWith("/tv/live/") || pathname.endsWith("/tv/direct") || pathname.endsWith("/tv/direct/")) {
 		var mediaId = queryParams["tvLiveId"];
 		if (mediaId) {
 			return openMedia(server, bu, "video", mediaId, null);
@@ -384,15 +390,18 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch redirect show urls
+	 *  Catch redirect and simple show urls
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/quicklink/6176
+	 *  Ex: https://www.rts.ch/play/tv/show/9674517
 	 */
 	switch (true) {
 		case pathname.includes("/tv/quicklink/"):
+		case pathname.includes("/tv/show/"):
 			showTransmission = "tv";
 			break;
 		case pathname.includes("/radio/quicklink/"):
+		case pathname.includes("/radio/show/"):
 			showTransmission = "radio";
 			break;
 	}
@@ -590,12 +599,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Catch play help urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/hilfe
+	 *  Ex: https://www.srf.ch/play/tv/hilfe/geoblock
 	 *  Ex: https://www.rts.ch/play/tv/aide
 	 *  Ex: https://www.rsi.ch/play/tv/guida
 	 *  Ex: https://www.rtr.ch/play/tv/agid
 	 *  Ex: https://play.swissinfo.ch/play/tv/help
 	 */
-	if (pathname.endsWith("/hilfe") || pathname.endsWith("/aide") || pathname.endsWith("/guida") || pathname.endsWith("/agid") || pathname.endsWith("/help")) {
+	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
 		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
 	}
 
