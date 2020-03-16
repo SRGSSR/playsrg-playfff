@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UpdateController {
 
-    private Boolean updateCheckEnabled;
+    private Boolean updateCheckDisabled;
 
     public UpdateController(
-            @Value("${UPDATE_CHECK_ENABLED:false}") String updateCheckEnabledString) {
-        this.updateCheckEnabled = Boolean.valueOf(updateCheckEnabledString);
+            @Value("${UPDATE_CHECK_DISABLED:false}") String updateCheckDisabledString) {
+        this.updateCheckDisabled = Boolean.valueOf(updateCheckDisabledString);
     }
 
     @Autowired
@@ -59,7 +59,7 @@ public class UpdateController {
     // Public API
     @RequestMapping("/api/v1/update/check")
     public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
-        Update update = (updateCheckEnabled) ? updateService.getUpdate(packageName, version) : null;
+        Update update = (! updateCheckDisabled) ? updateService.getUpdate(packageName, version) : null;
         return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
     }
 }

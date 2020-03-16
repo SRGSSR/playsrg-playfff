@@ -25,7 +25,7 @@ A wide list of parameters are available.
 * `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
 * `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
-* `UPDATE_CHECK_ENABLED` (optional, boolean): Check if a recommended or required udpate is available is set to `true`.
+* `UPDATE_CHECK_DISABLED` (optional, boolean): Check if a recommended or required udpate is available is set to `false` (default).
 
 ## API
  * `urn` (string): an unique identifier.
