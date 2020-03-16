@@ -3,7 +3,6 @@ package ch.srgssr.playfff.service;
 import ch.srgssr.playfff.model.Update;
 import ch.srgssr.playfff.repository.UpdateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -16,14 +15,6 @@ import java.util.List;
  */
 @Repository
 public class UpdateService {
-
-    private Boolean updateCheckEnabled;
-
-    public UpdateService(
-            @Value("${UPDATE_CHECK_ENABLED:false}") String updateCheckEnabledString) {
-        this.updateCheckEnabled = Boolean.valueOf(updateCheckEnabledString);
-    }
-
     @Autowired
     private UpdateRepository repository;
 
@@ -39,17 +30,12 @@ public class UpdateService {
     }
 
     public Update getUpdate(String packageName, String version) {
-        if (updateCheckEnabled) {
-            List<Update> updates = repository.findByPackageNameAndVersion(packageName, version);
+        List<Update> updates = repository.findByPackageNameAndVersion(packageName, version);
 
-            if (updates.isEmpty()) {
-                return null;
-            } else {
-                return updates.get(0);
-            }
-        }
-        else {
+        if (updates.isEmpty()) {
             return null;
+        } else {
+            return updates.get(0);
         }
     }
 
