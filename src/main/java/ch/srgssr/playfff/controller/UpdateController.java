@@ -4,6 +4,7 @@ import ch.srgssr.playfff.model.Update;
 import ch.srgssr.playfff.model.UpdateResult;
 import ch.srgssr.playfff.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class UpdateController {
+
+    private Boolean updateCheckDisabled;
+
+    public UpdateController(
+            @Value("${UPDATE_CHECK_DISABLED:false}") String updateCheckDisabledString) {
+        this.updateCheckDisabled = Boolean.valueOf(updateCheckDisabledString);
+    }
+
     @Autowired
     UpdateService updateService;
 
@@ -50,7 +59,7 @@ public class UpdateController {
     // Public API
     @RequestMapping("/api/v1/update/check")
     public ResponseEntity<UpdateResult> updateText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
-        Update update = updateService.getUpdate(packageName, version);
+        Update update = (! updateCheckDisabled) ? updateService.getUpdate(packageName, version) : null;
         return new ResponseEntity<>(new UpdateResult(update), HttpStatus.OK);
     }
 }
