@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 24;
+var parsePlayUrlVersion = 25;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -17,22 +17,22 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	// Get BU
 	var bu = null;
 	switch (true) {
-		case hostname.endsWith("tp.srgssr.ch") || hostname.endsWith("player.rts.ch") || hostname.endsWith("player.rsi.ch") || hostname.endsWith("player.rtr.ch") || hostname.endsWith("player.swissinfo.ch") || hostname.endsWith("player.srf.ch"):
-			bu = "tp";
+		case hostname.endsWith("tp.srgssr.ch") || hostname.endsWith("player.rts.ch") || hostname.endsWith("player.rsi.ch") || hostname.endsWith("player.rtr.ch") || hostname.endsWith("player.swissinfo.ch") || hostname.endsWith("player.srf.ch") || (hostname.includes("srgssr") && pathname.startsWith("/srgletterbox-web")):
+			bu = "lb";
 			break;
-		case hostname.includes("rts.ch") || hostname.includes("srgplayer-rts") || (hostname.includes("play-mmf") && pathname.startsWith("/rts/")) || (hostname.includes("play-web") && pathname.startsWith("/rts/")):
+		case (hostname.includes("rts.ch") && !hostname.includes("play-staging")) || hostname.includes("srgplayer-rts") || (hostname.includes("play-mmf") && pathname.startsWith("/rts/")) || ((hostname.includes("play-web") || hostname.includes("play-staging")) && pathname.startsWith("/rts/")):
 			bu = "rts";
 			break;
-		case hostname.includes("rsi.ch") || hostname.includes("srgplayer-rsi") || (hostname.includes("play-mmf") && pathname.startsWith("/rsi/")) || (hostname.includes("play-web") && pathname.startsWith("/rsi/")):
+		case hostname.includes("rsi.ch") || hostname.includes("srgplayer-rsi") || (hostname.includes("play-mmf") && pathname.startsWith("/rsi/")) || ((hostname.includes("play-web") || hostname.includes("play-staging")) && pathname.startsWith("/rsi/")):
 			bu = "rsi";
 			break;
-		case hostname.includes("rtr.ch") || hostname.includes("srgplayer-rtr") || (hostname.includes("play-mmf") && pathname.startsWith("/rtr/")) || (hostname.includes("play-web") && pathname.startsWith("/rtr/")):
+		case hostname.includes("rtr.ch") || hostname.includes("srgplayer-rtr") || (hostname.includes("play-mmf") && pathname.startsWith("/rtr/")) || ((hostname.includes("play-web") || hostname.includes("play-staging")) && pathname.startsWith("/rtr/")):
 			bu = "rtr";
 			break;
-		case hostname.includes("swissinfo.ch") || hostname.includes("srgplayer-swi") || (hostname.includes("play-mmf") && pathname.startsWith("/swi/")) || (hostname.includes("play-web") && pathname.startsWith("/swi/")):
+		case hostname.includes("swissinfo.ch") || hostname.includes("srgplayer-swi") || (hostname.includes("play-mmf") && pathname.startsWith("/swi/")) || ((hostname.includes("play-web") || hostname.includes("play-staging")) && pathname.startsWith("/swi/")):
 			bu = "swi";
 			break;
-		case hostname.includes("srf.ch") || hostname.includes("srgplayer-srf") || (hostname.includes("play-mmf") && pathname.startsWith("/srf/")) || (hostname.includes("play-web") && pathname.startsWith("/srf/")):
+		case hostname.includes("srf.ch") || hostname.includes("srgplayer-srf") || (hostname.includes("play-mmf") && pathname.startsWith("/srf/")) || ((hostname.includes("play-web") || hostname.includes("play-staging")) && pathname.startsWith("/srf/")):
 			bu = "srf";
 			break;
 		case hostname.includes("play-mmf") && pathname.startsWith("/mmf/"):
@@ -57,11 +57,11 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://tp.srgssr.ch/p/rts/default?urn=urn:rts:video:6735513
 	 *  Ex: https://player.rts.ch/p/rts/default?urn=urn:rts:video:6735513&start=60
 	 */
-	if (bu == "tp") {
+	if (bu == "lb") {
 		if (pathname.startsWith("/p/")) {
 			var mediaURN = queryParams["urn"];
 			if (mediaURN) {
-				var redirectBu = "tp";
+				var redirectBu = "lb";
 				switch (true) {
 					case pathname.startsWith("/p/srf/"):
 						redirectBu = "srf";
@@ -81,6 +81,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 				}
 				var startTime = queryParams["start"];  
 				return openMediaURN(server, redirectBu, mediaURN, startTime);
+			}
+		}
+		else if (pathname.startsWith("/srgletterbox-web")) {
+			var mediaURN = queryParams["urn"];
+			if (mediaURN) {
+				var startTime = queryParams["pendingSeek"];
+				return openMediaURN(server, "lb", mediaURN, startTime);
 			}
 		}
 	}
@@ -130,7 +137,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		pathname = pathname.substring(4);
 	}
 
-	if (hostname.includes("play-web")) {
+	if (hostname.includes("play-web") || hostname.includes("play-staging")) {
 		pathname = pathname.substring(4);
 		pathname = pathname.replace("/stage/play", "/play");
 		pathname = pathname.replace("/test/play", "/play");
@@ -760,7 +767,7 @@ function schemeForBu(bu) {
 			return "playswi";
 			break;
 		case "mmf":
-		case "tp":
+		case "lb":
 			return "letterbox";
 			break;
 		default:
@@ -792,12 +799,28 @@ function serverForUrl(hostname, pathname, queryParams) {
 			}
 		}
 	}
-	else if (hostname.includes("play-web")) {
+	else if (hostname.includes("play-web") || hostname.includes("play-staging")) {
 		if (pathname.includes("/stage/play")) {
 			server = "stage";
 		}
 		else if (pathname.includes("/test/play")) {
 			server = "test";
+		}
+	}
+	else if (pathname.startsWith("/srgletterbox-web")) {
+		var serverParam = queryParams["env"];
+		switch (serverParam) {
+			case "stage":
+				server = "stage";
+				break;
+			case "test":
+				server = "test";
+				break;
+			case "play mmf":
+			case "play+mmf":
+			case "mmf":
+				server = "play mmf";
+				break;
 		}
 	}
 	return server;
