@@ -168,7 +168,7 @@ public class RecommendationService {
 
     private RecommendedList rtsVideoRecommendedList(String purpose, String urn, boolean standalone) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("https")
-                .host("peach.ebu.io").path("api/v1/chrts/continuous_playback_mobile");
+                .host("rts-datalab.azure-api.net").path("rts-datalab-api/continuous_playback_endscreen");
         uriComponentsBuilder.queryParam("urn", urn);
         uriComponentsBuilder.queryParam("purpose", purpose);
         uriComponentsBuilder.queryParam("pageSize", 49);
@@ -184,7 +184,7 @@ public class RecommendationService {
 
     public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().scheme("https")
-                .host("peach.ebu.io").path("api/v1/chrts/play_home_personal_rec");
+                .host("rts-datalab.azure-api.net").path("rts-datalab-api/play_home_personal_rec");
         uriComponentsBuilder.queryParam("user_id", userId);
         UriComponents url = uriComponentsBuilder.build();
 

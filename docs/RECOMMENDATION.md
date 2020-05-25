@@ -17,7 +17,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 
 #### RTS videos
 
-- For RTS videos, it asks Peach recommendation `continuous_playback_mobile` service.
+- For RTS videos, it asks `rts-datalab.azure-api` recommendation `continuous_playback_endscreen` service.
 
 #### RSI, RTR, SRF, SWI videos and RSI, RTR, RTS and SRF audios
 
@@ -46,4 +46,4 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 
 #### RTS
 
-- With and without an `userId`, it asks Peach recommendation `play_home_personal_rec` service.
+- With and without an `userId`, it asks `rts-datalab.azure-api` recommendation `play_home_personal_rec` service.
