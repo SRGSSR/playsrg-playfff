@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,7 @@ public class RecommendationIntegrationTest {
     }
 
     @Test
+    @Ignore
     public void getRTSPersonalRecommendation() throws Exception {
         AtomicReference<RecommendedList> anonymousRecommendedListReference = new AtomicReference<>();
         mvc.perform(get("/api/v2/playlist/personalRecommendation")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap()).andExpect(jsonPath("$.recommendationId").isNotEmpty()).andExpect(jsonPath("$.recommendationId").isNotEmpty()).andDo(mvcResult -> {
