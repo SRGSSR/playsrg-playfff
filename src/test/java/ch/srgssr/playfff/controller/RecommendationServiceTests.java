@@ -3,7 +3,6 @@ package ch.srgssr.playfff.controller;
 import ch.srgssr.playfff.model.RecommendedList;
 import ch.srgssr.playfff.service.RecommendationService;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,7 +137,6 @@ public class RecommendationServiceTests {
     }
 
     @Test
-    @Ignore
     public void playHomeTestInvalidUser() {
         RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("invalid user");
 
@@ -146,7 +144,6 @@ public class RecommendationServiceTests {
     }
 
     @Test
-    @Ignore
     public void playHomeTestUserUnknown() {
         RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("unknown");
 
