@@ -24,7 +24,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("net.azure-api.rts-datalab:"));
         assertValidList(recommendedList);
     }
 
@@ -36,7 +36,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("io.ebu.peach:"));
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("net.azure-api.rts-datalab:"));
         assertValidList(recommendedList);
     }
 
@@ -151,8 +151,8 @@ public class RecommendationServiceTests {
     }
 
     @Test
-    public void playHomeTestUser9() {
-        RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("9");
+    public void playHomeTestUser203656() {
+        RecommendedList recommendedList = recommendationService.rtsPlayHomePersonalRecommendation("203656");
 
         assertValidList(recommendedList);
     }
