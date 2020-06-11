@@ -73,11 +73,11 @@ public class DeepLinkService {
         String javascriptV2 = BaseResourceString.getString(applicationContext, "deeplink/v2/parsePlayUrl.js");
 
         Map<String, String> buProdMap = new HashMap<>();
-        buProdMap.put("srf", "www.srf.ch");
-        buProdMap.put("rts", "www.rts.ch");
-        buProdMap.put("rsi", "www.rsi.ch");
-        buProdMap.put("rtr", "www.rtr.ch");
-        buProdMap.put("swi", "play.swissinfo.ch");
+        buProdMap.put("srf", "srgplayer-srf.production.srf.ch");
+        buProdMap.put("rts", "srgplayer-rts.production.srf.ch");
+        buProdMap.put("rsi", "srgplayer-rsi.production.srf.ch");
+        buProdMap.put("rtr", "srgplayer-rtr.production.srf.ch");
+        buProdMap.put("swi", "srgplayer-swi.production.srf.ch");
 
         Map<String, String> buStageMap = new HashMap<>();
         buStageMap.put("srf", "srgplayer-srf.stage.srf.ch");
