@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 25;
+var parsePlayUrlVersion = 26;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -249,6 +249,24 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 		else {
 			mediaType = null;
+		}
+	}
+
+	/**
+	 *  Catch embed media urls
+	 *
+	 *  Ex: https://www.rts.ch/play/embed?urn=urn:rts:video:580545
+	 *  Ex: https://www.rts.ch/play/embed?urn=urn:rts:video:580545&startTime=60
+	 */
+	if (pathname.endsWith("/embed")) {
+		var mediaURN = queryParams["urn"];
+		if (mediaURN) {
+			var startTime = queryParams["startTime"];
+			return openMediaURN(server, bu, mediaURN, startTime);
+		}
+		else {
+			// Returns default TV homepage
+			return openTvHomePage(server, bu);
 		}
 	}
 
@@ -606,6 +624,16 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *. Ex: https://www.rsi.ch/play
 	 */
 	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
+		return openPage(server, bu, "tv:home", null, null);
+	}
+
+	/**
+	 *  Catch legacy bowser urls
+	 *
+	 *  Ex: https://www.srf.ch/play/legacy-browser
+	 *. Ex: https://www.rsi.ch/play/legacy-browser
+	 */
+	if (pathname.endsWith("/legacy-browser")) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
