@@ -63,17 +63,22 @@ A wide list of parameters are available.
 
 #### Recommendation for a media
 
-* `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
+* `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get recommended medias for a continuous playback purpose.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* Returns a `recommendedList` object.
 
-* *Deprecated* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get media list object.
+* `/api/v2/playlist/recommendation/relatedContent/{urn}` : get recommended medias for a related content purpose.
 	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
+	* Returns a `recommendedList` object.
+
+* *Deprecated* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get recommended medias for a continuous playback purpose.	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media` and redirects to an IL media list response.
+
+More informations about the [recommendation engine](RECOMMENDATION.md) is available.
 
 #### Personnal recommendation for a user
 
-* `/api/v2/playlist/personalRecommendation` : get media list object.
+* `/api/v2/playlist/personalRecommendation` : get personal recommended medias.
 	* `userId` (optional, string): `UserId` to use for a personal recommendation.
 	* Returns a `recommendedList` object.
 
