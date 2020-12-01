@@ -35,19 +35,38 @@ public class RecommendationService {
 
     public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
         IlUrn urn = new IlUrn(urnString);
-        switch (urn.getMam()) {
-            case RTS:
-                if (urn.getMediaType() == MediaType.VIDEO) {
-                    return rtsVideoRecommendedList(purpose, urnString, standalone);
-                } else if (urn.getMediaType() == MediaType.AUDIO) {
-                    return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
-                }
-                break;
-            case RSI:
-            case RTR:
-            case SRF:
-            case SWI:
-                return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+        if (purpose.equals("relatedContent")) {
+            switch (urn.getMam()) {
+                case RTS:
+                    if (urn.getMediaType() == MediaType.VIDEO) {
+                        return rtsVideoRecommendedList(purpose, urnString, standalone);
+                    } else if (urn.getMediaType() == MediaType.AUDIO) {
+                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                    }
+                    break;
+                case SRF:
+                    return srfRecommendedList(purpose, urnString, standalone);
+                case RSI:
+                case RTR:
+                case SWI:
+                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+            }
+        }
+        else {
+            switch (urn.getMam()) {
+                case RTS:
+                    if (urn.getMediaType() == MediaType.VIDEO) {
+                        return rtsVideoRecommendedList(purpose, urnString, standalone);
+                    } else if (urn.getMediaType() == MediaType.AUDIO) {
+                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                    }
+                    break;
+                case RSI:
+                case RTR:
+                case SRF:
+                case SWI:
+                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+            }
         }
         return new RecommendedList();
     }
@@ -196,7 +215,7 @@ public class RecommendationService {
         return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
     }
 
-    private RecommendedList srfVideoRecommendedList(String purpose, String urn, boolean standalone) {
+    private RecommendedList srfRecommendedList(String purpose, String urn, boolean standalone) {
         long timestamp = System.currentTimeMillis();
 
         Environment environment = Environment.PROD;
