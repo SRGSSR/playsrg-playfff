@@ -30,6 +30,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RecommendationIntegrationTest {
     private MockMvc mvc;
 
+    private final String continuousplaybackPurpose = "continuousplayback";
+    private final String relatedContentPurpose = "relatedContent";
+
     @Autowired
     private WebApplicationContext context;
 
@@ -45,33 +48,39 @@ public class RecommendationIntegrationTest {
     public void getRecommendationRTSVideo() throws Exception {
         String mediaURN = "urn:rts:video:9691670";
 
-        getRecommendation(mediaURN);
+        getRecommendation(mediaURN, continuousplaybackPurpose);
+
+        getRecommendation(mediaURN, relatedContentPurpose);
     }
 
     @Test
     public void getRecommendationRTSVAudioFull() throws Exception {
         String mediaURN = "urn:rts:audio:9866170";
 
-        getRecommendation(mediaURN);
+        getRecommendation(mediaURN, continuousplaybackPurpose);
+
+        getRecommendation(mediaURN, relatedContentPurpose);
     }
 
     @Test
     public void getRecommendationRTSVAudioClip() throws Exception {
         String mediaURN = "urn:rts:audio:10163388";
 
-        getRecommendation(mediaURN);
+        getRecommendation(mediaURN, continuousplaybackPurpose);
+
+        getRecommendation(mediaURN, relatedContentPurpose);
     }
 
     @Test
     public void getRecommendationSRF() throws Exception {
         String mediaURN = "urn:srf:video:859dc7e6-a155-41da-9d34-8f4eb800f73c";
 
-        getRecommendation(mediaURN);
+        getRecommendation(mediaURN, continuousplaybackPurpose);
+
+        getRecommendation(mediaURN, relatedContentPurpose);
     }
 
-    public void getRecommendation(String mediaURN) throws Exception {
-        String purpose = "continuousplayback";
-
+    public void getRecommendation(String mediaURN, String purpose) throws Exception {
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isFound()).andExpect(content().string(""));
 
         checkRecommendationWithRedirect(purpose, mediaURN, "false");
