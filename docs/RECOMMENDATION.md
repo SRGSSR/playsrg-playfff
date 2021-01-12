@@ -25,7 +25,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 | RTR audios | Pfff RE | Pfff RE |
 | RTR videos | Pfff RE | Pfff RE |
 | RTS audios | Pfff RE | Pfff RE |
-| RTS videos | **RTS RE** | **RTS RE** |
+| RTS videos | Pfff RE | Pfff RE |
 | SRF audios | Pfff RE | **SRF RE** |
 | SRF videos | Pfff RE | **SRF RE** |
 | SWI videos | Pfff RE | Pfff RE |
