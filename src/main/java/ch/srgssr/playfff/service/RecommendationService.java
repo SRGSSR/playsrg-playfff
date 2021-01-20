@@ -37,20 +37,32 @@ public class RecommendationService {
         IlUrn urn = new IlUrn(urnString);
         if (purpose.equals("relatedContent")) {
             switch (urn.getMam()) {
+                case RTS:
+                    if (urn.getMediaType() == MediaType.VIDEO) {
+                        return rtsVideoRecommendedList(purpose, urnString, standalone);
+                    } else if (urn.getMediaType() == MediaType.AUDIO) {
+                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                    }
+                    break;
                 case SRF:
                     return srfRecommendedList(purpose, urnString, standalone);
                 case RSI:
                 case RTR:
-                case RTS:
                 case SWI:
                     return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
             }
         }
         else {
             switch (urn.getMam()) {
+                case RTS:
+                    if (urn.getMediaType() == MediaType.VIDEO) {
+                        return rtsVideoRecommendedList(purpose, urnString, standalone);
+                    } else if (urn.getMediaType() == MediaType.AUDIO) {
+                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                    }
+                    break;
                 case RSI:
                 case RTR:
-                case RTS:
                 case SRF:
                 case SWI:
                     return pfffRecommendedList(urnString, urn.getMediaType(), standalone);

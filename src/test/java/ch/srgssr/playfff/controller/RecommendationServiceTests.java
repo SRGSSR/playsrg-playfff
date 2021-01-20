@@ -24,7 +24,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("net.azure-api.rts-datalab:"));
         assertValidList(recommendedList);
     }
 
@@ -36,7 +36,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/"));
+        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("net.azure-api.rts-datalab:"));
         assertValidList(recommendedList);
     }
 
