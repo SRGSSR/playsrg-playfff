@@ -31,7 +31,7 @@ A wide list of parameters are available.
 ## API
  * `urn` (string): an unique identifier.
  * `recommendedList` (object): a recommended result list with proterties:
- 	* `recommendationId` (string): the recommendation identifer from the service.
+ 	* `recommendationId` (string, optional): the recommendation identifer from the service.
  	* `urns` (array): array of `urn`.
  	* `title` (string, optional): title of the playlist.
  * `package` (string): Android package name or iOS bundle identifier.
