@@ -6,6 +6,8 @@ import ch.srgssr.playfff.model.IlUrn;
 import ch.srgssr.playfff.model.RecommendedList;
 import ch.srgssr.playfff.model.peach.PersonalRecommendationResult;
 import ch.srgssr.playfff.model.peach.RecommendationResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import static ch.srg.il.domain.v2_0.Type.*;
 
 @Service
 public class RecommendationService {
+    private static final Logger logger = LoggerFactory.getLogger(RecommendationService.class);
 
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
@@ -196,9 +199,14 @@ public class RecommendationService {
 
         System.out.println(url.toUriString());
 
-        RecommendationResult recommendationResult = restTemplate
-                .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
-        return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
+        try {
+            RecommendationResult recommendationResult = restTemplate
+                    .exchange(url.toUriString(), HttpMethod.GET, null, RecommendationResult.class).getBody();
+            return new RecommendedList(url.getHost(), recommendationResult.getRecommendationId(), recommendationResult.getUrns());
+        } catch (Exception e) {
+            logger.warn("{} : {}", url.toUriString(), e.getMessage());
+            return new RecommendedList();
+        }
     }
 
     public RecommendedList rtsPlayHomePersonalRecommendation(String userId) {
@@ -209,10 +217,15 @@ public class RecommendationService {
 
         System.out.println(url.toUriString());
 
-        PersonalRecommendationResult result = restTemplate
-                .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
+        try {
+            PersonalRecommendationResult result = restTemplate
+                    .exchange(url.toUriString(), HttpMethod.GET, null, PersonalRecommendationResult.class).getBody();
 
-        return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
+            return new RecommendedList(result.getTitle(), url.getHost(), result.getRecommendationId(), result.getUrns());
+        } catch (Exception e) {
+            logger.warn("{} : {}", url.toUriString(), e.getMessage());
+            return new RecommendedList();
+        }
     }
 
     private RecommendedList srfRecommendedList(String purpose, String urn, boolean standalone) {
