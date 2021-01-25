@@ -74,7 +74,7 @@ A wide list of parameters are available.
 * *Deprecated* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get recommended medias for a continuous playback purpose.	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media` and redirects to an IL media list response.
 
-More informations about the [recommendation engine](RECOMMENDATION.md) is available.
+All those media recommendation APIs return the requested media at the first position in the list in order to create a playlist, unless the recommended list is empty. For more informations, see the [recommendation engine documentation](RECOMMENDATION.md).
 
 #### Personnal recommendation for a user
 
