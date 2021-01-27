@@ -11,7 +11,7 @@ Since July 2018, Play Android (2.0.207 and more) and Play iOS (2.8.3-272 and mor
 
 ## Media recommendation list for a media
 
-The API doesn't not support paginations, therefore mobile applications didn't implement pagination. The media recommendation list must have at least 49 items, the 50th is the requested media.
+The API doesn't not support paginations, therefore mobile applications didn't implement pagination. The media recommendation list must have at least 49 items, the 50th is the requested media, put on the first position of the list. If there is no recommended media, the returned list is empty.
 
 ### Purposes
 
