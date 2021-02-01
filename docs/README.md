@@ -23,7 +23,7 @@ A wide list of parameters are available.
 * `PFFF_USER` (optional, string): A user login to admin service.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service.
 * `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
-* `DEEP_LINK_REFRESH_INITIAL_DELAY_MS` (optional, integer): Scheduled fixed initial delay before refreshing the first time, the deep link script cache. If not set, defaults is `0`.
+* `DEEP_LINK_REFRESH_INITIAL_DELAY_MS` (optional, integer): Scheduled fixed initial delay before refreshing the deep link script cache. If not set, defaults is `0`.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
 * `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
 * `UPDATE_CHECK_DISABLED` (optional, boolean): Disable checking if a recommended or required update is available, if set to `true`. If not set, defaults is `false`.
