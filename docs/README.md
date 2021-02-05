@@ -1,6 +1,6 @@
 [![SRG Logger logo](README-images/logo.png)](https://github.com/SRGSSR/pfff)
 
-[![Build Status](https://travis-ci.org/SRGSSR/pfff.svg?branch=master)](https://travis-ci.org/SRGSSR/pfff) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE)
 
 
 ## About
@@ -23,6 +23,7 @@ A wide list of parameters are available.
 * `PFFF_USER` (optional, string): A user login to admin service.
 * `PFFF_PASSWORD` (optional, string): A user password to admin service.
 * `DEEP_LINK_REFRESH_DELAY_MS` (optional, integer): Scheduled fixed delay before refreshing the deep link script cache. If not set, defaults is `300000`.
+* `DEEP_LINK_REFRESH_INITIAL_DELAY_MS` (optional, integer): Scheduled fixed initial delay before refreshing the deep link script cache. If not set, defaults is `0`.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
 * `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
 * `UPDATE_CHECK_DISABLED` (optional, boolean): Disable checking if a recommended or required update is available, if set to `true`. If not set, defaults is `false`.
@@ -30,7 +31,7 @@ A wide list of parameters are available.
 ## API
  * `urn` (string): an unique identifier.
  * `recommendedList` (object): a recommended result list with proterties:
- 	* `recommendationId` (string): the recommendation identifer from the service.
+ 	* `recommendationId` (string, optional): the recommendation identifer from the service.
  	* `urns` (array): array of `urn`.
  	* `title` (string, optional): title of the playlist.
  * `package` (string): Android package name or iOS bundle identifier.
@@ -74,7 +75,7 @@ A wide list of parameters are available.
 * *Deprecated* `/api/v1/playlist/recommendation/continuousPlayback/{urn}` : get recommended medias for a continuous playback purpose.	* `standalone` (optional, boolean): Recommendation for the playback mode. Default is `false`.
 	* `format` (optional, string): If set to `urn`, it returns an URN list. Default is `media` and redirects to an IL media list response.
 
-More informations about the [recommendation engine](RECOMMENDATION.md) is available.
+All those media recommendation APIs return the requested media at the first position in the list in order to create a playlist, unless the recommended list is empty. For more informations, see the [recommendation engine documentation](RECOMMENDATION.md).
 
 #### Personnal recommendation for a user
 

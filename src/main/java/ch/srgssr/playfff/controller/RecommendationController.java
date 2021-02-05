@@ -55,7 +55,9 @@ public class RecommendationController {
 
     private RecommendedList getRecommendationList(@PathVariable("purpose") String purpose, @PathVariable("urn") String urn, @RequestParam(value = "standalone", required = false, defaultValue = "false") boolean standalone) {
         RecommendedList recommendedList = service.getRecommendedUrns(purpose, urn, standalone);
-        recommendedList.addUrn(0, urn);
+        if (recommendedList.getUrns().size() > 0) {
+            recommendedList.addUrn(0, urn);
+        }
         return recommendedList;
     }
 
