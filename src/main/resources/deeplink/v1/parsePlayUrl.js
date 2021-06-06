@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 26;
+var parsePlayUrlVersion = 27;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -273,10 +273,11 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	/**
 	 *  Catch live TV urls
 	 *
+	 * 	Ex: https://www.srf.ch/play/tv/live/srf-1?tvLiveId=c4927fcf-e1a0-0001-7edd-1ef01d441651
 	 *  Ex: https://www.srf.ch/play/tv/live?tvLiveId=c49c1d73-2f70-0001-138a-
 	 *  Ex: https://www.srf.ch/play/tv/live/?tvLiveId=c49c1d73-2f70-0001-138a-15e0c4ccd3d0
 	 */
-	if (pathname.endsWith("/tv/live") || pathname.endsWith("/tv/live/") || pathname.endsWith("/tv/direct") || pathname.endsWith("/tv/direct/")) {
+	if (pathname.includes("/tv/live/") || pathname.includes("/tv/direct/") || pathname.endsWith("/tv/live") || pathname.endsWith("/tv/direct") || pathname.endsWith("/tv/live/") || pathname.endsWith("/tv/direct/")) {
 		var mediaId = queryParams["tvLiveId"];
 		if (mediaId) {
 			return openMedia(server, bu, "video", mediaId, null);
