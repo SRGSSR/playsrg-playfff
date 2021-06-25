@@ -938,14 +938,17 @@ function serverForUrl(hostname, pathname, queryParams) {
 		var serverParam = queryParams["env"];
 		switch (serverParam) {
 			case "stage":
+			case "il-stage.srgssr.ch":
 				server = "stage";
 				break;
 			case "test":
+			case "il-test.srgssr.ch":
 				server = "test";
 				break;
 			case "play mmf":
 			case "play+mmf":
 			case "mmf":
+			case "play-mmf.herokuapp.com":
 				server = "play mmf";
 				break;
 		}
