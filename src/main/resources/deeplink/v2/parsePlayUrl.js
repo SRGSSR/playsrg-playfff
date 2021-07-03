@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 28;
+var parsePlayUrlVersion = 29;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -71,9 +71,9 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	/**
 	 *  Catch special case: radio swiss
 	 *
-	 *  Ex: http://www.radioswisspop.ch/de/webplayer
-	 *  Ex: http://www.radioswissclassic.ch/fr/webplayer
-	 *  Ex: http://www.radioswissjazz.ch/it/webplayer
+	 *  Ex: https://www.radioswisspop.ch/de/webplayer
+	 *  Ex: https://www.radioswissclassic.ch/fr/webplayer
+	 *  Ex: https://www.radioswissjazz.ch/it/webplayer
 	 */
 	if (bu == "radioswiss") {
 		var redirectBu = null;
@@ -207,7 +207,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Catch redirect media urls
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/redirect/detail/9938530
-	 *  Ex: http://www.srf.ch/play/tv/redirect/Detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1
+	 *  Ex: https://www.srf.ch/play/tv/redirect/Detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1
 	 */
 	switch (true) {
 		case pathname.includes("/tv/redirect/detail/"):
@@ -523,11 +523,14 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch new by date TV urls
+	 *  Catch new by date TV urls and TV program urls
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/emissions-par-dates/2021-06-21
+	 *  Ex: https://www.srf.ch/play/tv/programm/2021-07-03
 	 */
-	 if (pathname.includes("/tv/sendungen-nach-datum/") || pathname.includes("/tv/emissions-par-dates/") || pathname.includes("/tv/programmi-per-data/") || pathname.includes("/tv/emissiuns-tenor-data/")) {
+	 if (pathname.includes("/tv/sendungen-nach-datum/") || pathname.includes("/tv/emissions-par-dates/") || pathname.includes("/tv/programmi-per-data/") || pathname.includes("/tv/emissiuns-tenor-data/") ||
+	 	pathname.endsWith("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/program") ||
+	 	pathname.includes("/tv/programm/") || pathname.includes("/tv/programme/") || pathname.includes("/tv/program/")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var date = null;
@@ -681,8 +684,11 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/tv/hilfe
 	 *  Ex: https://www.srf.ch/play/tv/hilfe/geoblock
 	 *  Ex: https://www.rts.ch/play/tv/aide
+	 *  Ex: https://www.rts.ch/play/tv/aide/geoblocke
 	 *  Ex: https://www.rsi.ch/play/tv/guida
+	 *  Ex: https://www.rsi.ch/play/tv/guida/geobloccato
 	 *  Ex: https://www.rtr.ch/play/tv/agid
+	 *  Ex: https://www.rtr.ch/play/tv/agid/geo-blocking
 	 *  Ex: https://play.swissinfo.ch/play/tv/help
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
