@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 29;
+var parsePlayUrlVersion = 30;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -528,9 +528,9 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rts.ch/play/tv/emissions-par-dates/2021-06-21
 	 *  Ex: https://www.srf.ch/play/tv/programm/2021-07-03
 	 */
-	 if (pathname.includes("/tv/sendungen-nach-datum/") || pathname.includes("/tv/emissions-par-dates/") || pathname.includes("/tv/programmi-per-data/") || pathname.includes("/tv/emissiuns-tenor-data/") ||
-	 	pathname.endsWith("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/program") ||
-	 	pathname.includes("/tv/programm/") || pathname.includes("/tv/programme/") || pathname.includes("/tv/program/")) {
+	if (pathname.includes("/tv/sendungen-nach-datum/") || pathname.includes("/tv/emissions-par-dates/") || pathname.includes("/tv/programmi-per-data/") || pathname.includes("/tv/emissiuns-tenor-data/") ||
+	pathname.endsWith("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program") ||
+	pathname.includes("/tv/programm/") || pathname.includes("/tv/programme/") || pathname.includes("/tv/guida-programmi/") || pathname.includes("/tv/program/")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var date = null;
