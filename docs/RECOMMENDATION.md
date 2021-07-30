@@ -13,7 +13,9 @@ Since July 2018, Play Android (2.0.207 and more) and Play iOS (2.8.3-272 and mor
 
 The API doesn't not support paginations, therefore mobile applications didn't implement pagination. The media recommendation list must have at least 49 items, the 50th is the requested media, put on the first position of the list. If there is no recommended media, the returned list is empty.
 
-### Purposes
+### Usages
+
+By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_USED` and `SRF_RECOMMENDATION_USED` environment variables can fallback to default **Pfff RE** recommendation engine.
 
 - `continuousPlayback` is used to display one proposition, with a count down and an autoplay.
 - `relatedContent` is used to display some propositions in a swimlane or a grid, without an autoplay.
@@ -32,7 +34,7 @@ The API doesn't not support paginations, therefore mobile applications didn't im
 | Event videos | N/A | N/A |
 | Swisstxt videos | N/A | N/A |
 
-### Recommendation engines used
+### Recommendation engine descriptions
 
 #### RTS recommendation engine (RTS RE)
 
