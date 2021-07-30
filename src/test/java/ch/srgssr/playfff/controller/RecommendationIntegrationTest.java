@@ -104,7 +104,7 @@ public class RecommendationIntegrationTest {
 
     @Test
     public void getRecommendationRTSVideoURNFormat() throws Exception {
-        String mediaURN = "urn:rts:video:9691670";
+        String mediaURN = "urn:rts:video:12184168";
 
         getRecommendationURNFormat(mediaURN, true);
     }
