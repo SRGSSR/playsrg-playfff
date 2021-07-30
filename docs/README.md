@@ -27,6 +27,8 @@ A wide list of parameters are available.
 * `MAX_DEEP_LINK_REPORTS` (optional, integer): Maximum number of deep link reports in the database. If not set, defaults is `2500`.
 * `DEEP_LINK_ENVIRONMENTS` (optional, string, multiple): List of `Environment`s to pull deep link dynamic informations. If not set, defaults is `PROD`.
 * `UPDATE_CHECK_DISABLED` (optional, boolean): Disable checking if a recommended or required update is available, if set to `true`. If not set, defaults is `false`.
+* `RTS_RECOMMENDATION_USED` (optional, boolean): Use RTS recommendation engine (RE) in usages validated by the BU, if set to `true`. Otherwise, use default RE. If not set, defaults is `true`.
+* `SRF_RECOMMENDATION_USED` (optional, boolean): Use SRF recommendation engine (RE) in usages validated by the BU, if set to `true`. Otherwise, use default RE. If not set, defaults is `true`.
 
 ## API
  * `urn` (string): an unique identifier.

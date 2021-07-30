@@ -9,6 +9,7 @@ import ch.srgssr.playfff.model.peach.RecommendationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -32,8 +33,16 @@ public class RecommendationService {
 
     private RestTemplate restTemplate;
 
-    public RecommendationService() {
+    private Boolean rtsRecommendationUsed;
+    private Boolean srfRecommendationUsed;
+
+    public RecommendationService(
+            @Value("${RTS_RECOMMENDATION_USED:true}") String rtsRecommendationUsedString,
+            @Value("${SRF_RECOMMENDATION_USED:true}") String srfRecommendationUsedString
+    ) {
         restTemplate = new RestTemplate();
+        rtsRecommendationUsed = Boolean.valueOf(rtsRecommendationUsedString);
+        srfRecommendationUsed = Boolean.valueOf(srfRecommendationUsedString);
     }
 
     public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
@@ -41,14 +50,22 @@ public class RecommendationService {
         if (purpose.equals("relatedContent")) {
             switch (urn.getMam()) {
                 case RTS:
-                    if (urn.getMediaType() == MediaType.VIDEO) {
-                        return rtsVideoRecommendedList(purpose, urnString, standalone);
-                    } else if (urn.getMediaType() == MediaType.AUDIO) {
-                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                    if (rtsRecommendationUsed) {
+                        if (urn.getMediaType() == MediaType.VIDEO) {
+                            return rtsVideoRecommendedList(purpose, urnString, standalone);
+                        } else if (urn.getMediaType() == MediaType.AUDIO) {
+                            return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                        }
+                    } else {
+                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
                     break;
                 case SRF:
-                    return srfRecommendedList(purpose, urnString, standalone);
+                    if (srfRecommendationUsed) {
+                        return srfRecommendedList(purpose, urnString, standalone);
+                    } else {
+                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                    }
                 case RSI:
                 case RTR:
                 case SWI:
@@ -58,11 +75,15 @@ public class RecommendationService {
         else {
             switch (urn.getMam()) {
                 case RTS:
+                    if (rtsRecommendationUsed) {
                     if (urn.getMediaType() == MediaType.VIDEO) {
                         return rtsVideoRecommendedList(purpose, urnString, standalone);
                     } else if (urn.getMediaType() == MediaType.AUDIO) {
                         return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
                     }
+                } else {
+                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                }
                     break;
                 case RSI:
                 case RTR:
