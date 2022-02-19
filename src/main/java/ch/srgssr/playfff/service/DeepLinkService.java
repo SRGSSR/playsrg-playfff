@@ -5,6 +5,7 @@ import ch.srg.il.domain.v2_0.TopicList;
 import ch.srgssr.playfff.helper.BaseResourceString;
 import ch.srgssr.playfff.model.DeepLinkJSContent;
 import ch.srgssr.playfff.model.Environment;
+import ch.srgssr.playfff.utils.Seo;
 import ch.srgssr.playfff.utils.Sha1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -133,7 +134,7 @@ public class DeepLinkService {
 
                 for (int i = 0; i < topicList.getList().size(); i++) {
                     Topic topic = topicList.getList().get(i);
-                    tvTopicsSubMap.put(topic.getTitle(), topic.getId());
+                    tvTopicsSubMap.put(Seo.nameFromTitle(topic.getTitle()), topic.getId());
                 }
 
                 tvTopicsMap.put(bu, tvTopicsSubMap);
