@@ -101,13 +101,13 @@ public class IntegrationLayerRequest {
         }
     }
 
-    public ModuleConfigList getEvents(String bu, Environment environment) {
-        String path = "/integrationlayer/2.0/" + bu + "/moduleConfigList/event.json";
+    public TopicList getTopics(String bu, Environment environment) {
+        String path = "/integrationlayer/2.0/" + bu + "/topicList/tv.json";
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
             SrgUnmarshaller unmarshaller = new SrgUnmarshaller();
-            return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, ModuleConfigList.class);
+            return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, TopicList.class);
         } catch (Exception e) {
             logger.warn("http://{}{} : {}", environment.getBaseUrl(), path, e.getMessage());
             return null;

@@ -19,7 +19,7 @@ public class RecommendationServiceTests {
     @Test
     public void getRecommendedUrnsContinuousplaybackRTSVideoTest() {
         String purpose = "continuousplayback";
-        String mediaURN = "urn:rts:video:12184168";
+        String mediaURN = "urn:rts:video:9691670";
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
@@ -31,7 +31,7 @@ public class RecommendationServiceTests {
     @Test
     public void getRecommendedUrnsContinuousplaybackStandaloneRTSVideoTest() {
         String purpose = "continuousplayback";
-        String mediaURN = "urn:rts:video:12184168";
+        String mediaURN = "urn:rts:video:9691670";
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
