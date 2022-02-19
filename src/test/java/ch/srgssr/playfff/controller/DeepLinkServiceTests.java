@@ -37,12 +37,10 @@ public class DeepLinkServiceTests {
         Assert.assertNotNull(deepLinkJSContent.getHashV1());
         Assert.assertTrue(deepLinkJSContent.getContentV1().contains(deepLinkJSContent.getHashV1()));
         Assert.assertFalse(deepLinkJSContent.getContentV1().contains("INJECT TVTOPICS OBJECT"));
-        Assert.assertFalse(deepLinkJSContent.getContentV1().contains("INJECT TVEVENTS OBJECT"));
 
         Assert.assertNotNull(deepLinkJSContent.getContentV2());
         Assert.assertNotNull(deepLinkJSContent.getHashV2());
         Assert.assertTrue(deepLinkJSContent.getContentV2().contains(deepLinkJSContent.getHashV2()));
         Assert.assertFalse(deepLinkJSContent.getContentV2().contains("INJECT TVTOPICS OBJECT"));
-        Assert.assertFalse(deepLinkJSContent.getContentV2().contains("INJECT TVEVENTS OBJECT"));
     }
 }
