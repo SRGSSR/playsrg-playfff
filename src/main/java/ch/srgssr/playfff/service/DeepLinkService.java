@@ -1,7 +1,5 @@
 package ch.srgssr.playfff.service;
 
-import ch.srg.il.domain.v2_0.ModuleConfig;
-import ch.srg.il.domain.v2_0.ModuleConfigList;
 import ch.srgssr.playfff.helper.BaseResourceString;
 import ch.srgssr.playfff.model.DeepLinkJSContent;
 import ch.srgssr.playfff.model.Environment;
@@ -100,19 +98,12 @@ public class DeepLinkService {
         environmentMap.put(Environment.MMF, new HashMap<>());
 
         Map<String, Map<String, Map<String, String>>> tvGlobalTopicMap = new HashMap<>();
-        Map<String, Map<String, Map<String, String>>> tvGlobalEventMap = new HashMap<>();
 
         for (Environment environment : pullEnvironmentSet) {
             Map<String, Map<String, String>> tvTopicMap = getTvTopicMap(environmentMap.get(environment));
 
             if (tvTopicMap.size() > 0) {
                 tvGlobalTopicMap.put(environment.getPrettyName(), tvTopicMap);
-            }
-
-            Map<String, Map<String, String>> tvEventMap = getTvEventMap(environmentMap.get(environment), environment);
-
-            if (tvEventMap.size() > 0) {
-                tvGlobalEventMap.put(environment.getPrettyName(), tvEventMap);
             }
         }
 
@@ -128,18 +119,6 @@ public class DeepLinkService {
         if (tvTopics != null) {
             javascriptV1 = javascriptV1.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
             javascriptV2 = javascriptV2.replaceAll("\\/\\* INJECT TVTOPICS OBJECT \\*\\/", "var tvTopics = " + tvTopics + ";");
-        }
-
-        String tvEvents = null;
-        try {
-            tvEvents = mapperObj.writeValueAsString(tvGlobalEventMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (tvEvents != null) {
-            javascriptV1 = javascriptV1.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
-            javascriptV2 = javascriptV2.replaceAll("\\/\\* INJECT TVEVENTS OBJECT \\*\\/", "var tvEvents = " + tvEvents + ";");
         }
 
         String buildHashV1 = "NO_SHA1";
@@ -191,24 +170,5 @@ public class DeepLinkService {
             }
         }
         return tvTopicsMap;
-    }
-
-    private Map<String, Map<String, String>> getTvEventMap(Map<String, String> buMap, Environment environment) {
-        Map<String, Map<String, String>> tvEventsMap = new HashMap<>();
-
-        for (Map.Entry<String, String> bu : buMap.entrySet()) {
-            ModuleConfigList moduleConfigList = integrationLayerRequest.getEvents(bu.getKey(), environment);
-            if (moduleConfigList != null) {
-                Map<String, String> tvEventsSubMap = new HashMap<>();
-
-                for (int i = 0; i < moduleConfigList.getModuleConfigList().size(); i++) {
-                    ModuleConfig moduleConfig = moduleConfigList.getModuleConfigList().get(i);
-                    tvEventsSubMap.put(moduleConfig.getSeoName(), moduleConfig.getId());
-                }
-
-                tvEventsMap.put(bu.getKey(), tvEventsSubMap);
-            }
-        }
-        return tvEventsMap;
     }
 }

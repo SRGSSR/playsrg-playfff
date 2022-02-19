@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 30;
+var parsePlayUrlVersion = 31;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -646,31 +646,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch TV event urls
+	 *  Catch TV event urls (support removed - URLs switched to section page urls)
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/event/10-jahre-auf-und-davon
 	 *  Ex: https://www.rsi.ch/play/tv/event/event-playrsi-8858482
 	 */
-	if (pathname.endsWith("/tv/event")) {
+	if (pathname.endsWith("/tv/event") || pathname.includes("/tv/event")) {
 		return openPage(server, bu, "tv:home", null, null);
-	}
-	else if (pathname.includes("/tv/event")) {
-		var lastPathComponent = pathname.split("/").slice(-1)[0]; 
-
-		var eventId = null;
-
-		/* INJECT TVEVENTS OBJECT */
-
-		if (typeof tvEvents !== 'undefined' && lastPathComponent.length > 0) {
-			eventId = tvEvents[server][bu][lastPathComponent];
-		}
-
-		if (eventId) {
-			return openModule(server, bu, "event", eventId);
-		}
-		else {
-			return openPage(server, bu, "tv:home", null, null);
-		}
 	}
 
 	/**
