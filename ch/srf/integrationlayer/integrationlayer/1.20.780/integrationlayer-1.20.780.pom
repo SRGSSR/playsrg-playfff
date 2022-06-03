@@ -1,0 +1,540 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ch.srf.integrationlayer</groupId>
+    <artifactId>integrationlayer</artifactId>
+    <version>1.20.780</version>
+    <packaging>pom</packaging>
+    <name>integrationlayer</name>
+    <description>Integrates services from several source-systems and provides a unique layer of access</description>
+
+    <properties>
+        <java.version>11</java.version>
+        <scala.version>2.12.10</scala.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency Versions -->
+        <spring.version>5.1.11.RELEASE</spring.version>
+        <spring.integration.version>5.1.9.RELEASE</spring.integration.version>
+        <spring.security.version>5.1.7.RELEASE</spring.security.version>
+        <skyscreamer.jsonassert.version>1.5.0</skyscreamer.jsonassert.version>
+        <jayway.jsonpath.version>2.4.0</jayway.jsonpath.version>
+        <aspectj.version>1.9.5</aspectj.version>
+        <jackson.version>2.10.0</jackson.version>
+        <joda.version>2.10.5</joda.version>
+        <socialview.domain.version>1.0.192</socialview.domain.version>
+        <curator-framework.version>4.0.0</curator-framework.version>
+        <lac.version>0.2.19</lac.version>
+        <amazon.awssdk.version>2.10.25</amazon.awssdk.version>
+        <lombok.version>1.18.22</lombok.version>
+
+        <maven-surefire-plugin.version>2.18</maven-surefire-plugin.version>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+
+        <srfonline.repository.id>srf-online-repository</srfonline.repository.id>
+        <srfonline.repository.name>srfonline repository</srfonline.repository.name>
+        <srfonline.repository.distribution.url>https://maven.admin.srf.ch/artifactory/srf-online/</srfonline.repository.distribution.url>
+
+        <test.srcdir>src/test/java</test.srcdir>
+        <test.resourcesdir>src/test/resources</test.resourcesdir>
+        <validation-api.version>1.1.0.Final</validation-api.version>
+    </properties>
+
+    <!-- Do not forget local workaround for SSH access: https://help.github.com/articles/using-ssh-over-the-https-port -->
+    <scm>
+        <connection>scm:git:ssh://github.com/mmz-srf/integrationlayer.git</connection>
+        <developerConnection>scm:git:ssh://github.com/mmz-srf/integrationlayer.git</developerConnection>
+        <tag>integrationlayer-1.20.780</tag>
+    </scm>
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>https://jira.srg.beecollaboration.com/browse/</url>
+    </issueManagement>
+
+    <modules>
+        <module>integrationlayer-xsd</module>
+        <module>integrationlayer-web</module>
+        <module>integrationlayer-apigee</module>
+        <module>integrationlayer-domain-objects</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.srf.integrationlayer</groupId>
+                <artifactId>integrationlayer-domain-objects</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.srf.integrationlayer</groupId>
+                <artifactId>integrationlayer-apigee</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.srf.integrationlayer</groupId>
+                <artifactId>integrationlayer-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- zookeeper -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator-framework.version}</version>
+            </dependency>
+
+            <!-- Joda -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.version}</version>
+            </dependency>
+
+            <!-- Spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>commons-logging</artifactId>
+                        <groupId>commons-logging</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-core</artifactId>
+                <version>2.1.4.RELEASE</version>
+            </dependency>
+
+            <!-- Functional Java -->
+            <dependency>
+                <groupId>org.functionaljava</groupId>
+                <artifactId>functionaljava</artifactId>
+                <version>4.4</version>
+            </dependency>
+
+            <!-- Scala -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalaz</groupId>
+                <artifactId>scalaz-core_2.12</artifactId>
+                <version>7.2.12</version>
+            </dependency>
+
+            <!-- XML -> JSON -->
+            <dependency>
+                <!-- Release is from May, 2010 !!! -->
+                <groupId>xom</groupId>
+                <artifactId>xom</artifactId>
+                <version>1.2.5</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xalan</groupId>
+                        <artifactId>xalan</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xerces</groupId>
+                        <artifactId>xercesImpl</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>xalan</groupId>
+                <artifactId>xalan</artifactId>
+                <version>2.7.2</version>
+            </dependency>
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>2.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>1.4.01</version>
+            </dependency>
+
+            <!-- JSON -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.2.4</version>
+            </dependency>
+
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>26.0-jre</version>
+            </dependency>
+
+            <!-- Add EE modules -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>2.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>javax.activation-api</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>1.1.4</version>
+            </dependency>
+
+
+            <!-- Testing -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>1.3</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>2.25.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.kubek2k</groupId>
+                <artifactId>springockito-annotations</artifactId>
+                <version>1.0.7</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.skyscreamer</groupId>
+                <artifactId>jsonassert</artifactId>
+                <version>${skyscreamer.jsonassert.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${jayway.jsonpath.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path-assert</artifactId>
+                <version>${jayway.jsonpath.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-library</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>${srfonline.repository.id}</id>
+            <name>${srfonline.repository.name}</name>
+            <url>${srfonline.repository.distribution.url}</url>
+        </repository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>org.maven</id>
+            <name>Maven Central Repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>${srfonline.repository.id}</id>
+            <name>${srfonline.repository.name}</name>
+            <url>${srfonline.repository.distribution.url}</url>
+        </repository>
+        <repository>
+            <id>rts-nexus</id>
+            <name>RTS Private Repo</name>
+            <url>https://maven.ecetest.rts.ch/content/groups/private/</url>
+        </repository>
+        <repository>
+            <id>thirdparty-releases</id>
+            <name>JBoss Thirdparty Releases</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+        </repository>
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-repo</id>
+            <name>maven repo</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!-- Build configuration -->
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>1.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>-Xms512m -Xmx1512m</argLine>
+                    <systemPropertyVariables>
+                        <srf.config.target>unittest</srf.config.target>
+                        <srf.config.subtarget>srf</srf.config.subtarget>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <preparationGoals>clean install</preparationGoals>
+                    <releaseProfiles>multimodule-tag-modules</releaseProfiles>
+                    <username>git</username>
+                </configuration>
+                <!-- http://stackoverflow.com/questions/15166781/mvn-releaseprepare-not-committing-changes-to-pom-xml -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- Enable version number to be set by command line: mvn package versions:set
+                -DnewVersion=${version} -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>1.3.1</version>
+            </plugin>
+            <!-- Reporting -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>findbugs-maven-plugin</artifactId>
+                            <version>2.3.1</version>
+                            <configuration>
+                                <effort>Max</effort>
+                                <xmlOutput>true</xmlOutput>
+                            </configuration>
+                        </plugin>
+                        <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>2.9.1</version> </plugin> -->
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>2.7.1</version>
+                            <configuration>
+                                <!-- PMD options -->
+                                <targetJdk>${java.version}</targetJdk>
+                                <aggregate>true</aggregate>
+                                <format>xml</format>
+                                <!-- CPD options -->
+                                <minimumTokens>50</minimumTokens>
+                                <ignoreIdentifiers>true</ignoreIdentifiers>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>2.3</version>
+                        </plugin>
+
+                    </reportPlugins>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>multimodule-tag-modules</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-scm-plugin</artifactId>
+                            <version>1.2</version>
+                            <executions>
+                                <execution>
+                                    <id>multimodule-tag-modules</id>
+                                    <inherited>true</inherited>
+                                    <phase>deploy</phase>
+                                    <configuration>
+                                        <tag>${project.artifactId}-${project.version}</tag>
+                                        <connectionUrl>scm:git:ssh://github.com/mmz-srf/integrationlayer.git
+                                        </connectionUrl>
+                                        <username>git</username>
+                                    </configuration>
+                                    <goals>
+                                        <goal>tag</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <property>
+                    <name>itest</name>
+                </property>
+            </activation>
+            <properties>
+                <test.srcdir>src/itest/java/</test.srcdir>
+                <test.resourcesdir>src/itest/resources</test.resourcesdir>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>add-test-source</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-test-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/itest/java</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+</project>
