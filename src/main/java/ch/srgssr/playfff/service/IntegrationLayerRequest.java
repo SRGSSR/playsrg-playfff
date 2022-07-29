@@ -33,7 +33,7 @@ public class IntegrationLayerRequest {
     }
 
     public EpisodeComposition getEpisodeCompositionLatestByShow(String showURN, ZonedDateTime maxPublishedDate, int pageSize, Environment environment) {
-        String path = "/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/" + showURN + ".json";
+        String path = "/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/" + showURN;
         String query = "pageSize=" + pageSize;
         if (maxPublishedDate != null) {
             query += "&maxPublishedDate=" + DateTimeFormatter.ofPattern("yyyy-MM-dd").format(maxPublishedDate);
@@ -50,7 +50,7 @@ public class IntegrationLayerRequest {
     }
 
     public Media getMedia(String mediaURN, Environment environment) {
-        String path = "/integrationlayer/2.0/media/byUrn/" + mediaURN + ".json";
+        String path = "/integrationlayer/2.0/media/byUrn/" + mediaURN;
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
@@ -63,7 +63,7 @@ public class IntegrationLayerRequest {
     }
 
     public Show getShow(String showURN, Environment environment) {
-        String path = "/integrationlayer/2.0/show/byUrn/" + showURN + ".json";
+        String path = "/integrationlayer/2.0/show/byUrn/" + showURN;
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
@@ -76,7 +76,7 @@ public class IntegrationLayerRequest {
     }
 
     public MediaList getRecommendedMediaList(String mediaURN, Environment environment) {
-        String path = "/integrationlayer/2.0/mediaList/recommended/byUrn/" + mediaURN + ".json";
+        String path = "/integrationlayer/2.0/mediaList/recommended/byUrn/" + mediaURN;
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
@@ -89,7 +89,7 @@ public class IntegrationLayerRequest {
     }
 
     public MediaComposition getMediaComposition(String mediaURN, Environment environment) {
-        String path = "/integrationlayer/2.0/mediaComposition/byUrn/" + mediaURN + ".json";
+        String path = "/integrationlayer/2.0/mediaComposition/byUrn/" + mediaURN;
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
@@ -102,7 +102,7 @@ public class IntegrationLayerRequest {
     }
 
     public TopicList getTopics(String bu, Environment environment) {
-        String path = "/integrationlayer/2.0/" + bu + "/topicList/tv.json";
+        String path = "/integrationlayer/2.0/" + bu + "/topicList/tv";
         try {
             URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, null, null);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);

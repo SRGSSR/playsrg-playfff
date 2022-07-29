@@ -207,7 +207,7 @@ public class RecommendationServiceAudioResultTests {
         String mediaFileName = urn.replace(":", "-") + ".json";
         String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
-                requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/media/byUrn/"+ urn + ".json")))
+                requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/media/byUrn/"+ urn)))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -217,7 +217,7 @@ public class RecommendationServiceAudioResultTests {
         String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rts-radio-next-url.json" : "episode-composition-rts-radio.json";
         String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName);
         mockServer.expect(ExpectedCount.times(2),
-                requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234.json?pageSize=100")))
+                requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234?pageSize=100")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -228,7 +228,7 @@ public class RecommendationServiceAudioResultTests {
             String mediaCompositionFileName = "media-composition-" + urn.replace(":", "-") + ".json";
             String mediaCompositionJson = BaseResourceString.getString(applicationContext, mediaCompositionFileName);
             mockServer.expect(ExpectedCount.between(0, 2),
-                    requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/mediaComposition/byUrn/" + urn + ".json")))
+                    requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/mediaComposition/byUrn/" + urn)))
                     .andExpect(method(HttpMethod.GET))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
