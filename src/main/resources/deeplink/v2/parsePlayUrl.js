@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 31;
+var parsePlayUrlVersion = 32;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -12,6 +12,12 @@ if(! console) {
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	// fix path issue
 	pathname = pathname.replace("//", "/");
+
+	// Remove last slash if any
+	slashCount = pathname.split("/").length - 1;
+	if (slashCount > 2 && pathname.endsWith("/")) {
+		pathname = pathname.slice(0, -1)
+	}
 
 	// Case insensitive
 	hostname = hostname.toLowerCase();
@@ -208,6 +214,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/redirect/detail/9938530
 	 *  Ex: https://www.srf.ch/play/tv/redirect/Detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1
+	 *  Ex: https://www.srf.ch/play/tv/redirect/detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1/
 	 */
 	switch (true) {
 		case pathname.includes("/tv/redirect/detail/"):
@@ -233,6 +240,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Catch embed media urls
 	 *
 	 *  Ex: https://www.rts.ch/play/embed?urn=urn:rts:video:580545
+	 *  Ex: https://www.rts.ch/play/embed?urn=urn:rts:video:580545/
 	 *  Ex: https://www.rts.ch/play/embed?urn=urn:rts:video:580545&startTime=60
 	 */
 	if (pathname.endsWith("/embed")) {
@@ -528,9 +536,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rts.ch/play/tv/emissions-par-dates/2021-06-21
 	 *  Ex: https://www.srf.ch/play/tv/programm/2021-07-03
 	 */
-	if (pathname.includes("/tv/sendungen-nach-datum/") || pathname.includes("/tv/emissions-par-dates/") || pathname.includes("/tv/programmi-per-data/") || pathname.includes("/tv/emissiuns-tenor-data/") ||
-	pathname.endsWith("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program") ||
-	pathname.includes("/tv/programm/") || pathname.includes("/tv/programme/") || pathname.includes("/tv/guida-programmi/") || pathname.includes("/tv/program/")) {
+	if (pathname.includes("/tv/sendungen-nach-datum") || pathname.includes("/tv/emissions-par-dates") || pathname.includes("/tv/programmi-per-data") || pathname.includes("/tv/emissiuns-tenor-data") ||
+	pathname.includes("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var date = null;
@@ -646,7 +653,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/
 	 *  Ex: https://www.rsi.ch/play
 	 */
-	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
+	if (pathname.endsWith("/play")) {
 		return openTvHomePage(server, bu);
 	}
 
