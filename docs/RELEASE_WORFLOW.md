@@ -1,6 +1,6 @@
 # Release workflow
 
-Use the following workflow when releasing a new version of the service.
+Use the following workflow when releasing a new version of the service on Heroku.
 
 ## State before releasing to production
 

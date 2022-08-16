@@ -16,6 +16,10 @@ Playfff is a SRG micro service to serve extra datas to Play applications. Playff
 
 A Java development environment with Maven is needed.
 
+## Release workflow
+
+A [release workflow](RELEASE_WORFLOW.md) is described to ensure stable releases.
+
 ## Available environment variables
 
 A wide list of parameters are available.
