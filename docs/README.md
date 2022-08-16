@@ -14,7 +14,7 @@ Playfff is a SRG micro service to serve extra datas to Play applications. Playff
 
 ## Installation
 
-A Java development environment with Maven is needed.
+A Java development environment with Maven is needed. To run the NodeJS server, `npm` and `python` (python 2) are needed as well.
 
 ## Release workflow
 
