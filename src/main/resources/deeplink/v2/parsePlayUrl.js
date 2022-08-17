@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 32;
+var parsePlayUrlVersion = 33;
 var parsePlayUrlBuild = "mmf";
 
 if(! console) {
@@ -653,7 +653,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/
 	 *  Ex: https://www.rsi.ch/play
 	 */
-	if (pathname.endsWith("/play")) {
+	 if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
 		return openTvHomePage(server, bu);
 	}
 
@@ -682,6 +682,19 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
 		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
+	}
+
+	/**
+	 *  Catch play parameters urls
+	 *
+	 *  Ex: https://www.srf.ch/play/tv/einstellungen
+	 *  Ex: https://www.rts.ch/play/tv/parametres
+	 *  Ex: https://www.rsi.ch/play/tv/impostazioni
+	 *  Ex: https://www.rtr.ch/play/tv/configuraziuns
+	 *  Ex: https://play.swissinfo.ch/play/tv/settings
+	 */
+	if (pathname.endsWith("/einstellungen") || pathname.endsWith("/parametres") || pathname.endsWith("/impostazioni") || pathname.endsWith("/configuraziuns") || pathname.endsWith("/settings")) {
+		return openTvHomePage(server, bu);
 	}
 
 	// Redirect fallback.
