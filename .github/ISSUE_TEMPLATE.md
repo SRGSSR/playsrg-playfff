@@ -1,0 +1,45 @@
+> Please fill in the issue form below. The more detailed information your provide, the faster we will be able to fix your issue
+>
+> You might also want to remove these instruction in the process, or simply remove sections which might not be relevant in your case (e.g. if you have no code sample)
+
+### Issue type
+
+> Only keep the relevant line below
+
+Incorrect behavior
+
+Feature request
+
+Server crash
+
+Help / documentation
+
+Other: _classification_
+
+### Description of the problem
+
+> Enter a brief description of the problem. Include any meaningful logs
+
+### Environment information
+
+> The simulator is a valid device as well. If all versions or devices seem to be affected, simply enter 'Any'
+
+* Client (web brower, application, …): _client_
+* Client version: _version_
+* Device: _model_
+
+### Reproducibility
+
+> Only keep the relevant line below
+
+Always reproducible
+
+Difficult to reproduce
+
+### Steps to reproduce
+
+> Provide step-by-step instructions about how to reliably reproduce the issue (or if not possible, with a good probability)
+
+1. _Step 1_
+1. _Step 2_
+1. _Step 3_
