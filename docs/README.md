@@ -1,6 +1,6 @@
 [![SRG Logger logo](README-images/logo.png)](https://github.com/SRGSSR/pfff)
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/releases) [![GitHub license](https://img.shields.io/github/license/SRGSSR/pfff)](https://github.com/SRGSSR/pfff/blob/master/LICENSE) [![GitHub deployments](https://img.shields.io/github/deployments/srgssr/playsrg-playfff/playfff-dev)](https://github.com/SRGSSR/playsrg-playfff/deployments/activity_log?environment=playfff-dev)
 
 
 ## About
