@@ -76,14 +76,14 @@ public class RecommendationService {
             switch (urn.getMam()) {
                 case RTS:
                     if (rtsRecommendationUsed) {
-                    if (urn.getMediaType() == MediaType.VIDEO) {
-                        return rtsVideoRecommendedList(purpose, urnString, standalone);
-                    } else if (urn.getMediaType() == MediaType.AUDIO) {
-                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                        if (urn.getMediaType() == MediaType.VIDEO) {
+                            return rtsVideoRecommendedList(purpose, urnString, standalone);
+                        } else if (urn.getMediaType() == MediaType.AUDIO) {
+                            return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                        }
+                    } else {
+                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
-                } else {
-                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
-                }
                     break;
                 case RSI:
                 case RTR:
