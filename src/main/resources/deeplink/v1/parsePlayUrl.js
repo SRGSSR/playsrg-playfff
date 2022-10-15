@@ -1,9 +1,9 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 33;
+var parsePlayUrlVersion = 34;
 var parsePlayUrlBuild = "mmf";
 
-if(! console) {
+if (! console) {
     var console = {
         log:function(){}
     }
@@ -257,6 +257,34 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		if (mediaId) {
 			var startTime = queryParams["startTime"]; 
 			return openMedia(server, bu, mediaType, mediaId, startTime);
+		}
+		else {
+			mediaType = null;
+		}
+	}
+
+	/**
+	 *  Catch redirect livestream urls
+	 *
+	 *  Ex: https://www.srf.ch/play/tv/redirect/live/rsi?id=livestream_La1&title=LA+1
+	 *  Ex: https://www.rsi.ch/play/tv/redirect/live/rts?id=3608506&title=RTS+1
+	 *  Ex: https://www.rts.ch/play/tv/redirect/live/srf?id=c4927fcf-e1a0-0001-7edd-1ef01d441651&title=SRF+1
+	 */
+	 switch (true) {
+		case pathname.includes("/tv/redirect/live/"):
+			mediaType = "video";
+			break;
+		case pathname.includes("/radio/redirect/live/"):
+			mediaType = "audio";
+			break;
+	}
+
+	if (mediaType) {
+		var mediaBu = getBuFromPathname(pathname);
+		var mediaId = queryParams["id"];
+		if (mediaBu && mediaId) {
+			var mediaUrn = "urn:" + mediaBu + ":" + mediaType + ":" + mediaId;
+			return openMediaUrn(server, bu, mediaUrn, null);
 		}
 		else {
 			mediaType = null;
@@ -703,6 +731,16 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
+	 *  Catch sitemap urls
+	 *
+	 *  Ex: https://www.srf.ch/play/sitemap/tv/pages
+	 *. Ex: https://www.rts.ch/play/sitemap/tv/pages
+	 */
+	 if (pathname.includes("/play/sitemap/")) {
+		return openPage(server, bu, "tv:home", null, null);
+	}
+
+	/**
 	 *  Catch play help urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/hilfe
@@ -945,3 +983,19 @@ function serverForUrl(hostname, pathname, queryParams) {
 	}
 	return server;
 }
+
+function getBuFromPathname(pathname) {
+    switch (true) {
+    	case pathname.endsWith("rsi"):
+			return "rsi";
+		case pathname.endsWith("rtr"):
+			return "rtr";
+		case pathname.endsWith("rts"):
+			return "rts";
+		case pathname.endsWith("srf"):
+			return "srf";
+		case pathname.endsWith("swi"):
+			return "swi";
+	}
+	return null;
+ }
