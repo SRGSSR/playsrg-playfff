@@ -1,9 +1,9 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 33;
+var parsePlayUrlVersion = 34;
 var parsePlayUrlBuild = "mmf";
 
-if(! console) {
+if (! console) {
     var console = {
         log:function(){}
     }
@@ -230,6 +230,34 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		if (mediaId) {
 			var startTime = queryParams["startTime"];
 			return openMedia(server, bu, mediaType, mediaId, startTime);
+		}
+		else {
+			mediaType = null;
+		}
+	}
+
+	/**
+	 *  Catch redirect livestream urls
+	 *
+	 *  Ex: https://www.srf.ch/play/tv/redirect/live/rsi?id=livestream_La1&title=LA+1
+	 *  Ex: https://www.rsi.ch/play/tv/redirect/live/rts?id=3608506&title=RTS+1
+	 *  Ex: https://www.rts.ch/play/tv/redirect/live/srf?id=c4927fcf-e1a0-0001-7edd-1ef01d441651&title=SRF+1
+	 */
+	 switch (true) {
+		case pathname.includes("/tv/redirect/live/"):
+			mediaType = "video";
+			break;
+		case pathname.includes("/radio/redirect/live/"):
+			mediaType = "audio";
+			break;
+	}
+
+	if (mediaType) {
+		var mediaBu = getBuFromPathname(pathname);
+		var mediaId = queryParams["id"];
+		if (mediaBu && mediaId) {
+			var mediaUrn = "urn:" + mediaBu + ":" + mediaType + ":" + mediaId;
+			return openMediaUrn(server, bu, mediaUrn, null);
 		}
 		else {
 			mediaType = null;
@@ -668,6 +696,16 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
+	 *  Catch sitemap urls
+	 *
+	 *  Ex: https://www.srf.ch/play/sitemap/tv/pages
+	 *. Ex: https://www.rts.ch/play/sitemap/tv/pages
+	 */
+	 if (pathname.includes("/play/sitemap/")) {
+		return openTvHomePage(server, bu);
+	}
+
+	/**
 	 *  Catch play help urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/hilfe
@@ -705,7 +743,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 // ---- Open functions
 
 function openMedia(server, bu, mediaType, mediaId, startTime) {
-    var urn="urn:" + bu + ":" + mediaType + ":" + mediaId;
+    var urn = "urn:" + bu + ":" + mediaType + ":" + mediaId;
     return openMediaUrn(server, bu, urn, startTime);
 }
 
@@ -721,7 +759,7 @@ function openMediaUrn(server, bu, mediaUrn, startTime) {
 }
 
 function openShow(server, bu, showTransmission, showId) {
-    var showUrn="urn:" + bu + ":show:" + showTransmission + ":" + showId;
+    var showUrn = "urn:" + bu + ":show:" + showTransmission + ":" + showId;
     var options = {};
 	if (server) {
 	    options['server'] = server;
@@ -730,7 +768,7 @@ function openShow(server, bu, showTransmission, showId) {
 }
 
 function openTopic(server, bu, topicTransmission, topicId) {
-    var topicUrn="urn:" + bu + ":topic:" + topicTransmission + ":" + topicId;
+    var topicUrn = "urn:" + bu + ":topic:" + topicTransmission + ":" + topicId;
     var options = {};
 	if (server) {
 	    options['server'] = server;
@@ -739,7 +777,7 @@ function openTopic(server, bu, topicTransmission, topicId) {
 }
 
 function openModule(server, bu, moduleType, moduleId) {
-    var topicUrn="urn:" + bu + ":module:" + moduleType + ":" + moduleId;
+    var topicUrn = "urn:" + bu + ":module:" + moduleType + ":" + moduleId;
     var options = {};
 	if (server) {
 	    options['server'] = server;
@@ -767,8 +805,8 @@ function openRadioHomePage(server,bu,channelId){
     if (!channelId) {
         channelId = primaryChannelUidForBu(bu);
     }
-    var options={};
-    if(channelId){
+    var options = {};
+    if (channelId) {
         options["channel_id"] = channelId;
     }
     if (server) {
@@ -779,10 +817,10 @@ function openRadioHomePage(server,bu,channelId){
 
 function openAtoZ(server,bu,channelId,index){
    var options = {};
-   if(channelId) {
+   if (channelId) {
        options['channel_id'] = channelId;
    }
-   if(index) {
+   if (index) {
         options['index'] = index;
    }
    if (server) {
@@ -800,11 +838,11 @@ function openRadioAtoZ(server,bu,channelId,index){
 
 function openByDate(server,bu,channelId,date){
     var options = {};
-    if(channelId) {
+    if (channelId) {
         options['channel_id'] = channelId;
     }
 
-    if(date) {
+    if (date) {
             options['date'] = date;
         }
     if (server) {
@@ -822,10 +860,10 @@ function openRadioByDate(server,bu,channelId,date) {
 
 function openSearch(server, bu, query, mediaType){
     var options = {};
-    if(query) {
+    if (query) {
         options['query'] = query;
     }
-    if(mediaType) {
+    if (mediaType) {
         options['media_type'] = mediaType;
     }
     if (server) {
@@ -986,6 +1024,22 @@ function getBuFromHostname(hostname, pathname) {
     return null;
  }
 
+ function getBuFromPathname(pathname) {
+    switch (true) {
+    	case pathname.endsWith("rsi"):
+			return "rsi";
+		case pathname.endsWith("rtr"):
+			return "rtr";
+		case pathname.endsWith("rts"):
+			return "rts";
+		case pathname.endsWith("srf"):
+			return "srf";
+		case pathname.endsWith("swi"):
+			return "swi";
+	}
+	return null;
+ }
+
 /**
 * Build scheme://host[/path][?queryParams[0]&...&queryParams[n-1]]
 * Sample:
@@ -1000,8 +1054,8 @@ function buildUri(scheme, host, path, queryParams) {
         uri = uri + "?";
         var optionIndex = 0;
         for (var option in queryParams) {
-            if(queryParams[option]) {
-               if(optionIndex > 0) {
+            if (queryParams[option]) {
+               if (optionIndex > 0) {
                     uri = uri + "&";
                }
                uri = uri + option + "=" + encodeURIComponent(queryParams[option]);
