@@ -183,8 +183,8 @@ public class RecommendationService {
         }
 
         // First: newest medias in date ascending order. Then:
-        // - if more than `ascendingSortEpisodesMax` episodes exists, oldest medias in date descending order.
-        // - else (show has less than `ascendingSortEpisodesMax` episodes), oldest medias in date ascending order.
+        // - if more than `ascendingEpisodesMax` episodes exists, oldest medias in date descending order.
+        // - else (show has as many or fewer than `ascendingEpisodesMax` episodes), oldest medias in date ascending order.
         if (index > -1 && index < urns.size() - 1) {
             recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
             urns.removeAll(recommendationResult);
