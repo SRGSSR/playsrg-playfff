@@ -1,5 +1,4 @@
 {
-   "next" : "https://il.srgssr.ch/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rtr:show:tv:c482ae32-8c10-0001-27d7-5a401fb5f130.json?next=09e12b6f403c2da8bfde15a1c99070d4f1c58eef3c29b0ea2f598fc7a2dcbbae4879677dbf2996cdef1dbabe164c8be92b9b20d5af632465366787d011b9b85cbc72c8e7c1069beacb26039a5bae7b9eb4323bfc7a3ddb134321b35735bc24f5a4d19d232212bedfd98565c6eae92167254973f20f9a8bce9addd40dfe2957d60325eba824aaae5fc764ea4b37c96ee82d795c13cc691f7f20386eb7e0f53c43e8e6e559c0e27dd2e7392a02cd7edfaca89e4268680a2dd8c0be2799a9a23fc51ec448ccc2eea4978c7e515ebf83dff07383b476e071085e601a07611b7ef9d501eead57bcf68fb15e8c76571261df1e7aa01e17652e6e3078c51eb2be6d84edc37b7db23834378effdb62b8cc2a5b08a012c5d6049e9f80efd939546c2ea2d640a7ff59dad9d461d62f8513d8f343611000f8a8d147d5130c1ba88cce6d329ba4a4d25b2a42d835ed65248e0e2c383df5fd0d868e5f0b33",
    "show" : {
       "id" : "1234",
       "vendor" : "RTR",
@@ -22,73 +21,6 @@
       } ]
    },
    "episodeList" : [ {
-      "id" : "238fbd93-a6e6-4b45-b682-14372c162204",
-      "title" : "Minisguard dals 22.06.2019",
-      "lead" : "Die Nachrichtensendung für Kinder und Jugendliche. Warum ist der Himmel blau? Was sind Menschenrechte? Was macht die Digitalisierung? Willst Du wissen, was in unserer Welt los ist? Willst Du gut informiert sein und mehr verstehen? «Minisguard» präsentiert aktuelle Themen kinderleicht verständlich.",
-      "publishedDate" : "2019-06-22T17:45:00+02:00",
-      "imageUrl" : "https://ws.srf.ch/asset/image/audio/e127afa3-18ef-49c2-9325-c235a5acf5c3/WEBVISUAL/1512977010.jpg",
-      "fullLengthUrn" : "urn:rtr:video:4",
-      "socialCount" : {
-         "key" : "srgView",
-         "value" : 112
-      },
-      "mediaList" : [ {
-         "id" : "4",
-         "mediaType" : "VIDEO",
-         "vendor" : "RTR",
-         "urn" : "urn:rtr:video:4",
-         "title" : "Minisguard dals 22.06.2019",
-         "imageUrl" : "https://ws.srf.ch/asset/image/audio/f20aa3df-6cc5-4bf9-a958-c1eb3c8f5f43/EPISODE_IMAGE/1561220386.png",
-         "type" : "EPISODE",
-         "date" : "2019-06-22T17:45:00+02:00",
-         "duration" : 695000,
-         "podcastSdUrl" : "https://podcastsource.sf.tv/nps/115891842/695.4/Minisguard+dals+22.06.2019/podcast/minisguard/2019/06/minisguard_20190622_174632_16426691_v_podcast_h264_q10.mp4?assetId=1ef5f261-437a-4336-8afa-1c15177e5eae",
-         "podcastHdUrl" : "https://podcastsource.sf.tv/nps/315944988/695.4/Minisguard+dals+22.06.2019/podcast/minisguard/2019/06/minisguard_20190622_174632_16426691_v_podcast_h264_q30.mp4?assetId=1ef5f261-437a-4336-8afa-1c15177e5eae",
-         "validFrom" : "2019-06-22T18:00:00+02:00",
-         "playableAbroad" : true,
-         "subtitlesAvailable" : true
-      }, {
-         "id" : "41",
-         "mediaType" : "VIDEO",
-         "vendor" : "RTR",
-         "urn" : "urn:rtr:video:41",
-         "title" : "Panna d'electricitad en l'America dal Sid",
-         "imageUrl" : "https://ws.srf.ch/asset/image/audio/a4947ac4-88ae-42d5-ba76-42d4d8604760/EPISODE_IMAGE/1561220876.png",
-         "type" : "EPISODE",
-         "date" : "2019-06-22T17:45:00+02:00",
-         "duration" : 63000,
-         "validFrom" : "2019-06-22T18:00:00+02:00",
-         "playableAbroad" : true,
-         "subtitlesAvailable" : true
-      }, {
-         "id" : "42",
-         "mediaType" : "VIDEO",
-         "vendor" : "RTR",
-         "urn" : "urn:rtr:video:42",
-         "title" : "Co fussi sche Cuira n’avess betg pli electricitad?",
-         "imageUrl" : "https://ws.srf.ch/asset/image/audio/8f17b857-9d62-4cf5-ae5c-c88e6c9eba30/EPISODE_IMAGE/1561221222.png",
-         "type" : "EPISODE",
-         "date" : "2019-06-22T17:45:00+02:00",
-         "duration" : 136000,
-         "validFrom" : "2019-06-22T18:00:00+02:00",
-         "playableAbroad" : true,
-         "subtitlesAvailable" : true
-      }, {
-         "id" : "43",
-         "mediaType" : "VIDEO",
-         "vendor" : "RTR",
-         "urn" : "urn:rtr:video:43",
-         "title" : "L’ospital chantunal Cuira è era in'ovra electrica",
-         "imageUrl" : "https://ws.srf.ch/asset/image/audio/4fbdcbb8-47c5-49ae-8dd9-1a1bea8d4b2d/EPISODE_IMAGE/1561221396.png",
-         "type" : "EPISODE",
-         "date" : "2019-06-22T17:45:00+02:00",
-         "duration" : 220000,
-         "validFrom" : "2019-06-22T18:00:00+02:00",
-         "playableAbroad" : true,
-         "subtitlesAvailable" : true
-      }
-      ]
-   }, {
       "id" : "39832185-7279-4fa2-9067-94718f89e619",
       "title" : "Minisguard dals 15.06.2019",
       "lead" : "Die Nachrichtensendung für Kinder und Jugendliche. Warum ist der Himmel blau? Was sind Menschenrechte? Was macht die Digitalisierung? Willst Du wissen, was in unserer Welt los ist? Willst Du gut informiert sein und mehr verstehen? «Minisguard» präsentiert aktuelle Themen kinderleicht verständlich.",
