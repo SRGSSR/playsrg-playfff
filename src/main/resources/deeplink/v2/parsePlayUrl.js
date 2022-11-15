@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 34;
+var parsePlayUrlVersion = 35;
 var parsePlayUrlBuild = "mmf";
 
 if (! console) {
@@ -296,8 +296,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			return openMedia(server, bu, "video", mediaId, null);
 		}
 		else {
-			// Returns default TV homepage
-			return openTvHomePage(server, bu);
+			// Returns livestreams homepage
+			return openLivestreamsHomePage(server, bu);
 		}
 	}
 
@@ -309,31 +309,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rsi.ch/play/radio/legacy-livepopup/rete-uno
 	 */
 	if (pathname.endsWith("/radio/livepopup") || pathname.endsWith("/radio/legacy-livepopup") || pathname.endsWith("/radio/livepopup/") || pathname.endsWith("/radio/legacy-livepopup/")) {
-		var mediaId = null;
-
-		switch (bu) {
-			case "srf":
-				mediaId = "69e8ac16-4327-4af4-b873-fd5cd6e895a7";
-				break;
-			case "rts":
-				mediaId = "3262320";
-				break;
-			case "rsi":
-				mediaId = "livestream_ReteUno";
-				break;
-			case "rtr":
-				mediaId = "a029e818-77a5-4c2e-ad70-d573bb865e31";
-				break;
-			default:
-		}
-
-		if (mediaId) {
-			return openMedia(server, bu, "audio", mediaId, null);
-		}
-		else {
-			// Returns default radio homepage
-			return openRadioHomePage(server, bu, null);
-		}
+		// Returns livestreams homepage
+		return openLivestreamsHomePage(server, bu);
 	}
 	else if (pathname.includes("/radio/livepopup/") || pathname.includes("/radio/legacy-livepopup/")) {
 		var mediaBu = null;
@@ -401,8 +378,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			return openMedia(server, mediaBu, "audio", mediaId, null);
 		}
 		else {
-			// Returns default radio homepage
-			return openRadioHomePage(server, bu, null);
+			// Returns livestreams homepage
+			return openLivestreamsHomePage(server, bu);
 		}
 	}
 
@@ -436,6 +413,18 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			// Returns default radio homepage
 			return openRadioHomePage(server, bu, null);
 		}
+	}
+
+	/**
+	 *  Catch BU livestreams urls
+	 *
+	 *  Ex: https://www.rtr.ch/play/tv/rtr-livestreams
+	 *  Ex: https://www.rts.ch/play/tv/rts-livestreams
+	 *  Ex: https://www.srf.ch/play/tv/sport-livestreams
+	 */
+	if (pathname.endsWith("-livestreams")) {
+		// Returns livestreams homepage
+		return openLivestreamsHomePage(server, bu);
 	}
 
 	/**
@@ -799,6 +788,14 @@ function openTvHomePage(server,bu){
         options['server'] = server;
     }
     return buildBuUri(bu,"home",null,options);
+}
+
+function openLivestreamsHomePage(server,bu){
+    var options = {};
+    if (server) {
+        options['server'] = server;
+    }
+    return buildBuUri(bu,"livestreams",null,options);
 }
 
 function openRadioHomePage(server,bu,channelId){
