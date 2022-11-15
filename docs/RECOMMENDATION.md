@@ -55,9 +55,9 @@ By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_U
 	- Get the requested media position in the related list. Split oldests and newests.
 	- Recommendation list:
 		- Newest medias in the date ascending order.
-		- Then:
-			- *If* `nextUrl` exists (show has more than 100 episodes), oldest medias in the date descending order.
-			- *Else* (show has less than 100 episodes), oldest medias in the date ascending order.
+		- Then (`ASCENDING_EPISODES_MAX ` value [is set on the server](README.md#available-environment-variables), default is 25):
+			- *If* more than `ASCENDING_EPISODES_MAX` episodes exists, oldest medias in date descending order.
+			- *Else* (show has as many or fewer than `ASCENDING_EPISODES_MAX` episodes), oldest medias in the date ascending order.
 - It can get `IL-MediaComposition` if the media urn isn't found, and has not the `CLIP` type.
 - It does not return clips if `VIDEO` media type and `standalone == false`.
 - If clips are not in `IL-EpisodeComposition`, it fallbacks to full lengths.

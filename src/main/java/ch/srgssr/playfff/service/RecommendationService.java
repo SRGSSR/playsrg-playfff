@@ -35,14 +35,17 @@ public class RecommendationService {
 
     private Boolean rtsRecommendationUsed;
     private Boolean srfRecommendationUsed;
+    private int ascendingEpisodesMax;
 
     public RecommendationService(
             @Value("${RTS_RECOMMENDATION_USED:true}") String rtsRecommendationUsedString,
-            @Value("${SRF_RECOMMENDATION_USED:true}") String srfRecommendationUsedString
+            @Value("${SRF_RECOMMENDATION_USED:true}") String srfRecommendationUsedString,
+            @Value("${ASCENDING_EPISODES_MAX:25}") int ascendingEpisodesMaxInt
     ) {
         restTemplate = new RestTemplate();
         rtsRecommendationUsed = Boolean.valueOf(rtsRecommendationUsedString);
         srfRecommendationUsed = Boolean.valueOf(srfRecommendationUsedString);
+        ascendingEpisodesMax = ascendingEpisodesMaxInt;
     }
 
     public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
@@ -76,14 +79,14 @@ public class RecommendationService {
             switch (urn.getMam()) {
                 case RTS:
                     if (rtsRecommendationUsed) {
-                    if (urn.getMediaType() == MediaType.VIDEO) {
-                        return rtsVideoRecommendedList(purpose, urnString, standalone);
-                    } else if (urn.getMediaType() == MediaType.AUDIO) {
-                        return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                        if (urn.getMediaType() == MediaType.VIDEO) {
+                            return rtsVideoRecommendedList(purpose, urnString, standalone);
+                        } else if (urn.getMediaType() == MediaType.AUDIO) {
+                            return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                        }
+                    } else {
+                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
-                } else {
-                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
-                }
                     break;
                 case RSI:
                 case RTR:
@@ -180,8 +183,8 @@ public class RecommendationService {
         }
 
         // First: newest medias in date ascending order. Then:
-        // - if `nextUrl` exists (show has more than 100 episodes), oldest medias in date descending order.
-        // - else (show has less than 100 episodes), oldest medias in date ascending order.
+        // - if more than `ascendingEpisodesMax` episodes exists, oldest medias in date descending order.
+        // - else (show has as many or fewer than `ascendingEpisodesMax` episodes), oldest medias in date ascending order.
         if (index > -1 && index < urns.size() - 1) {
             recommendationResult = new ArrayList<>(urns.subList(index + 1, urns.size()));
             urns.removeAll(recommendationResult);
@@ -192,7 +195,7 @@ public class RecommendationService {
         urns.remove(urn);
         urns.remove(baseUrn);
 
-        if (episodeComposition.getNext() != null) {
+        if (episodeComposition.getList().size() > ascendingEpisodesMax) {
             Collections.reverse(urns);
             recommendationResult.addAll(urns);
         } else {

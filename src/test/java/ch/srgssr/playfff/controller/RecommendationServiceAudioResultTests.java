@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -31,6 +32,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class RecommendationServiceAudioResultTests {
 
     @Autowired
@@ -60,9 +62,9 @@ public class RecommendationServiceAudioResultTests {
     }
 
     @Test
-    public void audioFullLengthAndNextURLforOldestEpisodeTest() throws URISyntaxException {
+    public void audioFullLengthAndShortPodcastForOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:1";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:2", "urn:rts:audio:3", "urn:rts:audio:4");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:2", "urn:rts:audio:3");
 
         testAudioRecommendation(urn, true,true, expectedUrns);
     }
@@ -76,9 +78,9 @@ public class RecommendationServiceAudioResultTests {
     }
 
     @Test
-    public void audioFullLengthAndNextURLforSecondEpisodeTest() throws URISyntaxException {
+    public void audioFullLengthAndShortPodcastForSecondEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:2";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:4", "urn:rts:audio:1");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:1");
 
         testAudioRecommendation(urn, true,true, expectedUrns);
     }
@@ -92,25 +94,17 @@ public class RecommendationServiceAudioResultTests {
     }
 
     @Test
-    public void audioFullLengthAndNextURLforThirdEpisodeTest() throws URISyntaxException {
-        String urn = "urn:rts:audio:3";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:2", "urn:rts:audio:1");
-
-        testAudioRecommendation(urn, true,true, expectedUrns);
-    }
-
-    @Test
     public void audioFullLengthforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:3";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:1", "urn:rts:audio:2");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:2", "urn:rts:audio:1");
 
         testAudioRecommendation(urn, true,false, expectedUrns);
     }
 
     @Test
-    public void audioFullLengthAndNextURLforNewestEpisodeTest() throws URISyntaxException {
-        String urn = "urn:rts:audio:4";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
+    public void audioFullLengthAndShortPodcastForNewestEpisodeTest() throws URISyntaxException {
+        String urn = "urn:rts:audio:3";
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2");
 
         testAudioRecommendation(urn, true,true, expectedUrns);
     }
@@ -118,15 +112,15 @@ public class RecommendationServiceAudioResultTests {
     @Test
     public void audioFullLengthforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:4";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2", "urn:rts:audio:3");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
 
         testAudioRecommendation(urn, true,false, expectedUrns);
     }
 
     @Test
-    public void audioFullLengthAndNextURLforNotFoundEpisodeTest() throws URISyntaxException {
+    public void audioFullLengthAndShortPodcastForNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:0";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2", "urn:rts:audio:3");
 
         testAudioRecommendation(urn, true,true, expectedUrns);
     }
@@ -134,15 +128,15 @@ public class RecommendationServiceAudioResultTests {
     @Test
     public void audioFullLengthforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:0";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2", "urn:rts:audio:3", "urn:rts:audio:4");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
 
         testAudioRecommendation(urn, true,false, expectedUrns);
     }
 
     @Test
-    public void audioClipAndNextURLforOldestEpisodeTest() throws URISyntaxException {
+    public void audioClipAndShortPodcastForOldestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:11";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32");
 
         testAudioRecommendation(urn, false,true, expectedUrns);
     }
@@ -156,9 +150,9 @@ public class RecommendationServiceAudioResultTests {
     }
 
     @Test
-    public void audioClipAndNextURLforThirdEpisodeTest() throws URISyntaxException {
+    public void audioClipAndShortPodcastForThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:31";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22");
 
         testAudioRecommendation(urn, false,true, expectedUrns);
     }
@@ -166,15 +160,15 @@ public class RecommendationServiceAudioResultTests {
     @Test
     public void audioClipforThirdEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:31";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42", "urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
         testAudioRecommendation(urn, false,false, expectedUrns);
     }
 
     @Test
-    public void audioClipAndNextURLforNewestEpisodeTest() throws URISyntaxException {
-        String urn = "urn:rts:audio:42";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
+    public void audioClipAndShortPodcastForNewestEpisodeTest() throws URISyntaxException {
+        String urn = "urn:rts:audio:32";
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31");
 
         testAudioRecommendation(urn, false,true, expectedUrns);
     }
@@ -182,15 +176,15 @@ public class RecommendationServiceAudioResultTests {
     @Test
     public void audioClipforNewestEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:42";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32", "urn:rts:audio:41");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
         testAudioRecommendation(urn, false,false, expectedUrns);
     }
 
     @Test
-    public void audioClipAndNextURLforNotFoundEpisodeTest() throws URISyntaxException {
+    public void audioClipAndShortPodcastForNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:01";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:42", "urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32");
 
         testAudioRecommendation(urn, false,true, expectedUrns);
     }
@@ -198,12 +192,12 @@ public class RecommendationServiceAudioResultTests {
     @Test
     public void audioClipforNotFoundEpisodeTest() throws URISyntaxException {
         String urn = "urn:rts:audio:01";
-        List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42");
+        List<String> expectedUrns = Arrays.asList("urn:rts:audio:42", "urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
         testAudioRecommendation(urn, false,false, expectedUrns);
     }
 
-    private void testAudioRecommendation(String urn, boolean isFullLength, boolean episodeCompositionHasNextUrl, List<String> expectedUrns) throws URISyntaxException {
+    private void testAudioRecommendation(String urn, boolean isFullLength, boolean isShortPodcast, List<String> expectedUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
         String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
@@ -214,7 +208,7 @@ public class RecommendationServiceAudioResultTests {
                         .body(mediaJson)
                 );
 
-        String episodeCompositionFileName = episodeCompositionHasNextUrl ? "episode-composition-rts-radio-next-url.json" : "episode-composition-rts-radio.json";
+        String episodeCompositionFileName = isShortPodcast ? "episode-composition-rts-radio-short-podcast.json" : "episode-composition-rts-radio.json";
         String episodeCompositionJson = BaseResourceString.getString(applicationContext, episodeCompositionFileName);
         mockServer.expect(ExpectedCount.times(2),
                 requestTo(new URI("http://il.srgssr.ch:80/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rts:show:radio:1234?pageSize=100")))

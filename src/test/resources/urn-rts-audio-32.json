@@ -1,0 +1,29 @@
+{
+   "id" : "32",
+   "mediaType" : "AUDIO",
+   "vendor" : "RTS",
+   "urn" : "urn:rts:audio:32",
+  "title": "L’OCDE annonce une campagne pour repenser la fiscalité face à la digitalisation des entreprises",
+  "imageUrl": "https://www.rts.ch/2019/01/31/09/39/9822376.image/16x9",
+  "imageTitle": "Le siège de l'OCDE, à Paris. [Charles Platiau - Reuters]",
+  "type": "CLIP",
+  "date": "2019-01-31T08:17:00+01:00",
+  "duration": 628000,
+  "playableAbroad" : true,
+   "episode" : {
+      "id" : "10163334",
+      "title" : "Tout un monde du 31.01.2019",
+      "imageUrl" : "https://www.rts.ch/2018/12/07/16/10/10052379.image/16x9"
+   },
+   "show" : {
+      "id" : "1234",
+      "vendor" : "RTS",
+      "transmission" : "RADIO",
+      "urn" : "urn:rts:show:radio:1234",
+      "title" : "Tout un monde",
+      "imageUrl" : "http://ws.srf.ch/asset/image/audio/8b32fd87-459e-40f1-9519-ba0cbb01f34e/NOT_SPECIFIED.jpg",
+      "podcastSubscriptionUrl" : "https://www.rts.ch/la-1ere/programmes/tout-un-monde/podcast/",
+      "primaryChannelId" : "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da"
+   },
+   "presentation" : "DEFAULT"
+}

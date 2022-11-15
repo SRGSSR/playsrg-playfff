@@ -1,5 +1,4 @@
 {
-   "next" : "http://il.srgssr.ch/integrationlayer/2.0/episodeComposition/latestByShow/byUrn/urn:rsi:show:tv:2311780?next=4c121f9f3e50606447bc5b3de0c652c4fbb3e0c95caec9af03fd3e0abf17c91b519d2c96c7f615aa",
    "show" : {
       "id" : "1234",
       "vendor" : "RSI",
@@ -16,36 +15,6 @@
       "primaryChannelId" : "la1"
    },
    "episodeList" : [ {
-      "id" : "11935970",
-      "title" : "Telegiornale",
-      "lead" : "Le notizie di prima serata",
-      "publishedDate" : "2019-07-02T20:00:00+02:00",
-      "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
-      "imageTitle" : "TELEGIORNALE  [La1] 2019-07-02 20:00:11",
-      "fullLengthUrn" : "urn:rsi:video:4b",
-      "socialCount" : {
-         "key" : "srgView",
-         "value" : 519
-      },
-      "mediaList" : [ {
-         "id" : "4b",
-         "mediaType" : "VIDEO",
-         "vendor" : "RSI",
-         "urn" : "urn:rsi:video:4b",
-         "title" : "Telegiornale",
-         "lead" : "Le notizie di prima serata",
-         "imageUrl" : "http://www.rsi.ch/rsi-api/resize/image/EPISODE_IMAGE/11936261/",
-         "imageTitle" : "TELEGIORNALE  [La1] 2019-07-02 20:00:11",
-         "type" : "EPISODE",
-         "date" : "2019-07-02T20:00:00+02:00",
-         "duration" : 1916000,
-         "validTo" : "2199-01-01T13:00:00+01:00",
-         "playableAbroad" : true,
-         "subtitlesAvailable" : true,
-         "presentation" : "DEFAULT"
-      } ]
-   },
-    {
       "id" : "11934302",
       "title" : "Telegiornale",
       "lead" : "Le notizie di mezza giornata",
