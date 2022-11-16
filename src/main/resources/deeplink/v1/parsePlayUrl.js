@@ -3,10 +3,10 @@
 var parsePlayUrlVersion = 35;
 var parsePlayUrlBuild = "mmf";
 
-if (! console) {
-    var console = {
-        log:function(){}
-    }
+if (!console) {
+	var console = {
+		log: function () { }
+	}
 }
 
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
@@ -52,7 +52,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			break;
 	}
 
-	if (! bu) {
+	if (!bu) {
 		console.log("This URL is not a Play SRG URL.");
 		return null;
 	}
@@ -88,7 +88,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 						redirectBu = "swi";
 						break;
 				}
-				var startTime = queryParams["start"];  
+				var startTime = queryParams["start"];
 				return openMediaUrn(server, redirectBu, mediaUrn, startTime);
 			}
 		}
@@ -142,7 +142,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
-	if (hostname.includes("play-mmf") && ! pathname.startsWith("/mmf/")) {
+	if (hostname.includes("play-mmf") && !pathname.startsWith("/mmf/")) {
 		pathname = pathname.substring(4);
 	}
 
@@ -200,7 +200,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 	}
 
-	if (! pathname.startsWith("/play")) {
+	if (!pathname.startsWith("/play")) {
 		console.log("No /play path in url.");
 		return null;
 	}
@@ -228,7 +228,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		if (mediaUrn) {
 			return openMediaUrn(server, bu, mediaUrn, startTime);
 		}
-		else if (mediaId) {	
+		else if (mediaId) {
 			return openMedia(server, bu, mediaType, mediaId, startTime);
 		}
 		else {
@@ -255,7 +255,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	if (mediaType) {
 		var mediaId = pathname.split("/").slice(-1)[0];
 		if (mediaId) {
-			var startTime = queryParams["startTime"]; 
+			var startTime = queryParams["startTime"];
 			return openMedia(server, bu, mediaType, mediaId, startTime);
 		}
 		else {
@@ -270,7 +270,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rsi.ch/play/tv/redirect/live/rts?id=3608506&title=RTS+1
 	 *  Ex: https://www.rts.ch/play/tv/redirect/live/srf?id=c4927fcf-e1a0-0001-7edd-1ef01d441651&title=SRF+1
 	 */
-	 switch (true) {
+	switch (true) {
 		case pathname.includes("/tv/redirect/live/"):
 			mediaType = "video";
 			break;
@@ -536,7 +536,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			index = index.toLowerCase();
 			index = (index.length > 1) ? null : index;
 		}
-		var options = new Array( { key: "index", value: index } );
+		var options = new Array({ key: "index", value: index });
 		return openPage(server, bu, "tv:az", null, options);
 	}
 
@@ -552,7 +552,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			index = index.toLowerCase();
 			index = (index.length > 1) ? null : index;
 		}
-		var options = new Array( { key: "index", value: index } );
+		var options = new Array({ key: "index", value: index });
 		return openPage(server, bu, "radio:az", channelId, options);
 	}
 
@@ -567,13 +567,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			// Returns an ISO format
 			var dateArray = date.split("-");
 			if (dateArray.length == 3 && dateArray[2].length == 4 && dateArray[1].length == 2 && dateArray[0].length == 2) {
-				date = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];  
+				date = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
 			}
 			else {
 				date = null;
 			}
 		}
-		var options = new Array( { key: "date", value: date } );
+		var options = new Array({ key: "date", value: date });
 		return openPage(server, bu, "tv:bydate", null, options);
 	}
 
@@ -584,7 +584,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/tv/programm/2021-07-03
 	 */
 	if (pathname.includes("/tv/sendungen-nach-datum") || pathname.includes("/tv/emissions-par-dates") || pathname.includes("/tv/programmi-per-data") || pathname.includes("/tv/emissiuns-tenor-data") ||
-	pathname.includes("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program")) {
+		pathname.includes("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var date = null;
@@ -595,7 +595,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 				date = lastPathComponent;
 			}
 		}
-		var options = new Array( { key: "date", value: date } );
+		var options = new Array({ key: "date", value: date });
 		return openPage(server, bu, "tv:bydate", null, options);
 	}
 
@@ -611,13 +611,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			// Returns an ISO format
 			var dateArray = date.split("-");
 			if (dateArray.length == 3 && dateArray[2].length == 4 && dateArray[1].length == 2 && dateArray[0].length == 2) {
-				date = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];  
+				date = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];
 			}
 			else {
 				date = null;
 			}
 		}
-		var options = new Array( { key: "date", value: date } );
+		var options = new Array({ key: "date", value: date });
 		return openPage(server, bu, "radio:bydate", channelId, options);
 	}
 
@@ -638,7 +638,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 			}
 		}
 		var transmissionComponent = (transmission != null) ? transmission + ":" : "";
-		var options = new Array( { key: "query", value: query }, { key: "mediaType", value: mediaType } );
+		var options = new Array({ key: "query", value: query }, { key: "mediaType", value: mediaType });
 		return openPage(server, bu, transmissionComponent + "search", null, options);
 	}
 
@@ -651,7 +651,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 	else if (pathname.includes("/tv/themen") || pathname.includes("/tv/categories") || pathname.includes("/tv/categorie") || pathname.includes("/tv/tematicas") || pathname.includes("/tv/topics")) {
-		var lastPathComponent = pathname.split("/").slice(-1)[0]; 
+		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var topicId = null;
 
@@ -685,7 +685,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rts.ch/play/tv/detail/bulles-dair?id=f75179d9-f621-4855-b695-a9ba206864c2
 	 *  Ex: https://www.rsi.ch/play/tv/detail/il-giardino-di-albert-lis?id=bd8d8352-4512-4f24-86b0-c380f94ab701
 	 */
-	 if (pathname.endsWith("/tv/detail")) {
+	if (pathname.endsWith("/tv/detail")) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 	else if (pathname.includes("/tv/detail")) {
@@ -705,7 +705,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/
 	 *  Ex: https://www.rsi.ch/play
 	 */
-	 if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
+	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
@@ -725,7 +725,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.srf.ch/play/sitemap/tv/pages
 	 *. Ex: https://www.rts.ch/play/sitemap/tv/pages
 	 */
-	 if (pathname.includes("/play/sitemap/")) {
+	if (pathname.includes("/play/sitemap/")) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
@@ -818,22 +818,22 @@ function openSection(server, bu, sectionId) {
 }
 
 function openPage(server, bu, page, channelId, options) {
-	if (! page) {
+	if (!page) {
 		page = "tv:home";
 	}
 
 	var pageUid = page.split(":").slice(-1)[0];
 
-	if (page.startsWith("radio:") && ! channelId) {
+	if (page.startsWith("radio:") && !channelId) {
 		channelId = primaryChannelUidForBu(bu);
 	}
-	
+
 	var redirect = schemeForBu(bu) + "://open?page=urn:" + bu + ":page:" + page + "&page-id=" + pageUid;
 	if (channelId) {
 		redirect = redirect + "&channel-id=" + channelId;
 	}
 	if (options && Array.isArray(options)) {
-		options.forEach(function(option) {
+		options.forEach(function (option) {
 			if (option.key && option.value) {
 				redirect = redirect + "&" + option.key + "=" + encodeURIComponent(option.value);
 			}
@@ -846,7 +846,7 @@ function openPage(server, bu, page, channelId, options) {
 }
 
 function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
-	if (! scheme) {
+	if (!scheme) {
 		scheme = "http";
 	}
 
@@ -857,7 +857,7 @@ function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
 		}
 	}
 	if (queryParamsString.length > 0) {
-		queryParamsString = queryParamsString.replace('&','?');
+		queryParamsString = queryParamsString.replace('&', '?');
 	}
 
 	var anchorString = "";
@@ -974,8 +974,8 @@ function serverForUrl(hostname, pathname, queryParams) {
 }
 
 function getBuFromPathname(pathname) {
-    switch (true) {
-    	case pathname.endsWith("rsi"):
+	switch (true) {
+		case pathname.endsWith("rsi"):
 			return "rsi";
 		case pathname.endsWith("rtr"):
 			return "rtr";
@@ -987,4 +987,4 @@ function getBuFromPathname(pathname) {
 			return "swi";
 	}
 	return null;
- }
+}
