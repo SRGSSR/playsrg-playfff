@@ -744,7 +744,7 @@ function openMediaUrn(server, bu, mediaUrn, startTime) {
 	if (server) {
 	    options['server'] = server;
 	}
-    return buildBuUri(bu,"media",mediaUrn,options);
+    return buildBuUri(bu, "media", mediaUrn, options);
 }
 
 function openShow(server, bu, showTransmission, showId) {
@@ -753,7 +753,7 @@ function openShow(server, bu, showTransmission, showId) {
 	if (server) {
 	    options['server'] = server;
 	}
-    return buildBuUri(bu,"show",showUrn,options);
+    return buildBuUri(bu, "show", showUrn, options);
 }
 
 function openTopic(server, bu, topicTransmission, topicId) {
@@ -762,7 +762,7 @@ function openTopic(server, bu, topicTransmission, topicId) {
 	if (server) {
 	    options['server'] = server;
 	}
-    return buildBuUri(bu,"topic",topicUrn,options);
+    return buildBuUri(bu, "topic", topicUrn, options);
 }
 
 function openModule(server, bu, moduleType, moduleId) {
@@ -771,7 +771,7 @@ function openModule(server, bu, moduleType, moduleId) {
 	if (server) {
 	    options['server'] = server;
 	}
-    return buildBuUri(bu,"module",topicUrn,options);
+    return buildBuUri(bu, "module", topicUrn, options);
 }
 
 function openSection(server, bu, sectionId) {
@@ -779,7 +779,7 @@ function openSection(server, bu, sectionId) {
 	if (server) {
 	    options['server'] = server;
 	}
-    return buildBuUri(bu,"section",sectionId,options);
+    return buildBuUri(bu, "section", sectionId, options);
 }
 
 function openTvHomePage(server,bu){
@@ -787,7 +787,7 @@ function openTvHomePage(server,bu){
     if (server) {
         options['server'] = server;
     }
-    return buildBuUri(bu,"home",null,options);
+    return buildBuUri(bu, "home", null, options);
 }
 
 function openLivestreamsHomePage(server,bu){
@@ -795,7 +795,7 @@ function openLivestreamsHomePage(server,bu){
     if (server) {
         options['server'] = server;
     }
-    return buildBuUri(bu,"livestreams",null,options);
+    return buildBuUri(bu, "livestreams", null, options);
 }
 
 function openRadioHomePage(server,bu,channelId){
@@ -809,7 +809,7 @@ function openRadioHomePage(server,bu,channelId){
     if (server) {
         options['server'] = server;
     }
-    return buildBuUri(bu,"home",null,options);
+    return buildBuUri(bu, "home", null, options);
 }
 
 function openAtoZ(server,bu,channelId,index){
@@ -823,7 +823,7 @@ function openAtoZ(server,bu,channelId,index){
    if (server) {
         options['server'] = server;
    }
-   return buildBuUri(bu,"az",null,options);
+   return buildBuUri(bu, "az", null, options);
 }
 
 function openRadioAtoZ(server,bu,channelId,index){
@@ -833,7 +833,7 @@ function openRadioAtoZ(server,bu,channelId,index){
     return openAtoZ(server,bu,channelId,index);
 }
 
-function openByDate(server,bu,channelId,date){
+function openByDate(server, bu, channelId, date){
     var options = {};
     if (channelId) {
         options['channel_id'] = channelId;
@@ -848,7 +848,7 @@ function openByDate(server,bu,channelId,date){
     return buildBuUri(bu, "bydate", null, options);
 }
 
-function openRadioByDate(server,bu,channelId,date) {
+function openRadioByDate(server, bu, channelId, date) {
     if (!channelId) {
         channelId = primaryChannelUidForBu(bu);
     }
@@ -895,7 +895,7 @@ function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
     if (server) {
         options['server'] = server;
     }
-    return buildBuUri(bu,"link",null,options)
+    return buildBuUri(bu, "link", null, options)
 }
 
 // --- parsing functions
