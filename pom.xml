@@ -12,7 +12,7 @@
 
     <groupId>ch.srgssr</groupId>
     <artifactId>playfff</artifactId>
-    <version>42</version>
+    <version>43</version>
     <packaging>jar</packaging>
 
     <name>pfff</name>
