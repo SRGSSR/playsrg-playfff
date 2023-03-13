@@ -19,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,7 +112,12 @@ public class RecommendationService {
             return new RecommendedList();
         }
 
-        List<EpisodeWithMedias> episodes = new ArrayList<>(episodeComposition.getList());
+        List<EpisodeWithMedias> episodes = episodeComposition.getList().stream()
+                // Don't trust the LatestByShow episode sorting, apply a common one.
+                .sorted(Comparator.comparing(EpisodeWithMedias::getPublishedDate).thenComparing(EpisodeWithMedias::getId).reversed())
+                .collect(Collectors.toList());
+
+        // Use episodes and clips with the same ascendant sorting.
         Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
         List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == mediaType)).map(Media::getUrn).collect(Collectors.toList());
