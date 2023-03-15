@@ -208,6 +208,7 @@ public class RecommendationServiceVideoResultTests {
 
     @Test
     public void videoFullLengthAndShortPodcastWithBingeWatchingSortedForOldestEpisodeTest() throws URISyntaxException {
+        // Should have same returned list as `videoFullLengthAndShortPodcastForOldestEpisodeTest`.
         String urn = "urn:rtr:video:1";
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
@@ -217,6 +218,7 @@ public class RecommendationServiceVideoResultTests {
 
     @Test
     public void videoFullLengthWithBingeWatchingSortedForOldestEpisodeTest() throws URISyntaxException {
+        // Should have same returned list as `videoFullLengthForOldestEpisodeTest`.
         String urn = "urn:rtr:video:1";
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");

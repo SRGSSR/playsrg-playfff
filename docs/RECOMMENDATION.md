@@ -49,7 +49,7 @@ By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_U
 - For RSI, RTR, RTS, SRF, SWI videos and RSI, RTR, RTS, SRF audios, it can ask `Playfff` recommendation.
 - Based on IL requests, without personalization. Here is how it works:
 	- Get `IL-Media`. It returns an empty list if it's a `LIVESTREAM` or a `SCHEDULED_LIVESTREAM`.
-	- Get `IL-EpisodeComposition` with last 100 episodes. Sort episodes with a date ascending order.
+	- Get `IL-EpisodeComposition` with last 100 episodes. Sort episodes with a published date ascending order, then episode ascending order if same published date. It's assumed that clips are ascendant sorting.
 	- Determine if the media is a full length or a clip.
 	- Separate in a full length list and a clip (audio only) list.
 	- Get the requested media position in the related list. Split oldests and newests.

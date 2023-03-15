@@ -117,7 +117,7 @@ public class RecommendationService {
                 .sorted(Comparator.comparing(EpisodeWithMedias::getPublishedDate).thenComparing(EpisodeWithMedias::getId).reversed())
                 .collect(Collectors.toList());
 
-        // Use episodes and clips with the same ascendant sorting.
+        // Use episodes and clips with the same ascendant sorting. It's assumed that clips are ascendant sorting.
         Collections.reverse(episodes);
         List<String> fullLengthUrns = episodes.stream().map(EpisodeWithMedias::getFullLengthUrn).collect(Collectors.toList());
         List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == mediaType)).map(Media::getUrn).collect(Collectors.toList());
