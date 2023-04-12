@@ -67,7 +67,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
 
-        testVideoRecommendation(urn, true,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
 
-        testVideoRecommendation(urn, true,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:1");
 
-        testVideoRecommendation(urn, true,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:4", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:4", "urn:rtr:video:1");
 
-        testVideoRecommendation(urn, true,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -103,7 +103,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:2", "urn:rtr:video:1");
 
-        testVideoRecommendation(urn, true,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2");
 
-        testVideoRecommendation(urn, true,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
 
-        testVideoRecommendation(urn, true,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2", "urn:rtr:video:3");
 
-        testVideoRecommendation(urn, true,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
 
-        testVideoRecommendation(urn, true,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
 
@@ -149,7 +149,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:12", "urn:rtr:video:13", "urn:rtr:video:21", "urn:rtr:video:22", "urn:rtr:video:23", "urn:rtr:video:31", "urn:rtr:video:32", "urn:rtr:video:33");
 
-        testVideoRecommendation(urn, false,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -158,7 +158,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:12", "urn:rtr:video:13", "urn:rtr:video:21", "urn:rtr:video:22", "urn:rtr:video:23", "urn:rtr:video:31", "urn:rtr:video:32", "urn:rtr:video:33", "urn:rtr:video:41", "urn:rtr:video:42", "urn:rtr:video:43");
 
-        testVideoRecommendation(urn, false,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -167,7 +167,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:32", "urn:rtr:video:33", "urn:rtr:video:41", "urn:rtr:video:42", "urn:rtr:video:43", "urn:rtr:video:23", "urn:rtr:video:22", "urn:rtr:video:21", "urn:rtr:video:13", "urn:rtr:video:12", "urn:rtr:video:11");
 
-        testVideoRecommendation(urn, false,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -176,7 +176,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:11", "urn:rtr:video:12", "urn:rtr:video:13", "urn:rtr:video:21", "urn:rtr:video:22", "urn:rtr:video:23", "urn:rtr:video:31", "urn:rtr:video:32");
 
-        testVideoRecommendation(urn, false,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:42", "urn:rtr:video:41", "urn:rtr:video:33", "urn:rtr:video:32", "urn:rtr:video:31", "urn:rtr:video:23", "urn:rtr:video:22", "urn:rtr:video:21", "urn:rtr:video:13", "urn:rtr:video:12", "urn:rtr:video:11");
 
-        testVideoRecommendation(urn, false,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -194,7 +194,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:1", "urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:11", "urn:rtr:video:12", "urn:rtr:video:13", "urn:rtr:video:21", "urn:rtr:video:22", "urn:rtr:video:23", "urn:rtr:video:31", "urn:rtr:video:32", "urn:rtr:video:33");
 
-        testVideoRecommendation(urn, false,true, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -203,7 +203,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:4", "urn:rtr:video:3", "urn:rtr:video:2", "urn:rtr:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:43", "urn:rtr:video:42", "urn:rtr:video:41", "urn:rtr:video:33", "urn:rtr:video:32", "urn:rtr:video:31", "urn:rtr:video:23", "urn:rtr:video:22", "urn:rtr:video:21", "urn:rtr:video:13", "urn:rtr:video:12", "urn:rtr:video:11");
 
-        testVideoRecommendation(urn, false,false, false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -213,7 +213,7 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3");
 
-        testVideoRecommendation(urn, true,true, true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -223,10 +223,10 @@ public class RecommendationServiceVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rtr:video:2", "urn:rtr:video:3", "urn:rtr:video:4");
 
-        testVideoRecommendation(urn, true,false, true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, true, expectedUrns, expectedStandaloneUrns);
     }
 
-    private void testVideoRecommendation(String urn, boolean isFullLength, boolean isShortPodcast, boolean isBingeWatching, List<String> expectedUrns, List<String> expectedStandaloneUrns) throws URISyntaxException {
+    private void testVideoRecommendation(String urn, boolean isShortPodcast, boolean isBingeWatching, List<String> expectedUrns, List<String> expectedStandaloneUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
         String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
@@ -260,22 +260,16 @@ public class RecommendationServiceVideoResultTests {
                     );
         } catch (Exception e) {}
 
-        String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rtr:show:tv:1234/FullLength/" + urn : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rtr:show:tv:1234/Clip/" + urn;
+        String expectedRecommendationId = "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rtr:show:tv:1234";
 
         RecommendedList recommendedList1 = recommendationService.getRecommendedUrns("continuousplayback", urn, false);
         Assert.assertNotNull(recommendedList1);
-        String recommendationId1 = recommendedList1.getRecommendationId();
-        // Remove timestamp part
-        recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId1);
+        Assert.assertEquals(expectedRecommendationId, recommendedList1.getRecommendationId());
         Assert.assertEquals(expectedUrns, recommendedList1.getUrns());
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
-        String recommendationId2 = recommendedList2.getRecommendationId();
-        // Remove timestamp part
-        recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId2);
+        Assert.assertEquals(expectedRecommendationId, recommendedList2.getRecommendationId());
         Assert.assertEquals(expectedStandaloneUrns, recommendedList2.getUrns());
 
         mockServer.verify();

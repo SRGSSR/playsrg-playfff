@@ -49,8 +49,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
-        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
+        Assert.assertEquals(recommendedList.getRecommendationId(),"ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN);
         assertValidList(recommendedList);
     }
 
@@ -63,8 +62,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/FullLength/"));
-        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN);
         assertValidList(recommendedList);
     }
 
@@ -77,8 +75,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
-        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN);
         assertValidList(recommendedList);
     }
 
@@ -91,8 +88,7 @@ public class RecommendationServiceTests {
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
         Assert.assertNotNull(recommendedList.getRecommendationId());
-        Assert.assertTrue(recommendedList.getRecommendationId().startsWith("ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN + "/Clip/"));
-        Assert.assertTrue(recommendedList.getRecommendationId().contains(mediaURN));
+        Assert.assertEquals(recommendedList.getRecommendationId(), "ch.srgssr.playfff:EpisodeComposition/LatestByShow/" + showURN);
         assertValidList(recommendedList);
     }
 
