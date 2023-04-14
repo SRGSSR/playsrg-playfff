@@ -106,7 +106,6 @@ public class RecommendationService {
         }
 
         String showURN = media.getShow().getUrn();
-        long timestamp = System.currentTimeMillis();
         EpisodeComposition episodeComposition = integrationLayerRequest.getEpisodeCompositionLatestByShow(showURN, null, 100, Environment.PROD);
         if (episodeComposition == null) {
             return new RecommendedList();
@@ -209,7 +208,7 @@ public class RecommendationService {
         }
 
         String host = "playfff.srgssr.ch";
-        String recommendationId = "EpisodeComposition/LatestByShow/" + showURN + "/" + ((isFullLengthUrns) ? "FullLength/" : "Clip/") + urn + "/" + timestamp;
+        String recommendationId = "EpisodeComposition/LatestByShow/" + showURN;
 
         if (recommendationResult.size() > 49) {
             recommendationResult = recommendationResult.subList(0, 49);

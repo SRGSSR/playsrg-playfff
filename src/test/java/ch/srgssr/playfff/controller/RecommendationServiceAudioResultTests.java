@@ -66,7 +66,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:1";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:2", "urn:rts:audio:3");
 
-        testAudioRecommendation(urn, true,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:1";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:2", "urn:rts:audio:3", "urn:rts:audio:4");
 
-        testAudioRecommendation(urn, true,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:2";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:1");
 
-        testAudioRecommendation(urn, true,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:2";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:4", "urn:rts:audio:1");
 
-        testAudioRecommendation(urn, true,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:3";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:2", "urn:rts:audio:1");
 
-        testAudioRecommendation(urn, true,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:3";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2");
 
-        testAudioRecommendation(urn, true,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:4";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
 
-        testAudioRecommendation(urn, true,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:0";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:1", "urn:rts:audio:2", "urn:rts:audio:3");
 
-        testAudioRecommendation(urn, true,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:0";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:4", "urn:rts:audio:3", "urn:rts:audio:2", "urn:rts:audio:1");
 
-        testAudioRecommendation(urn, true,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:11";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32");
 
-        testAudioRecommendation(urn, false,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -146,7 +146,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:11";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42");
 
-        testAudioRecommendation(urn, false,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:31";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22");
 
-        testAudioRecommendation(urn, false,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:31";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:32", "urn:rts:audio:41", "urn:rts:audio:42", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
-        testAudioRecommendation(urn, false,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:32";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31");
 
-        testAudioRecommendation(urn, false,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -178,7 +178,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:42";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
-        testAudioRecommendation(urn, false,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
     @Test
@@ -186,7 +186,7 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:01";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:11", "urn:rts:audio:12", "urn:rts:audio:21", "urn:rts:audio:22", "urn:rts:audio:31", "urn:rts:audio:32");
 
-        testAudioRecommendation(urn, false,true, expectedUrns);
+        testAudioRecommendation(urn,true, expectedUrns);
     }
 
     @Test
@@ -194,10 +194,10 @@ public class RecommendationServiceAudioResultTests {
         String urn = "urn:rts:audio:01";
         List<String> expectedUrns = Arrays.asList("urn:rts:audio:42", "urn:rts:audio:41", "urn:rts:audio:32", "urn:rts:audio:31", "urn:rts:audio:22", "urn:rts:audio:21", "urn:rts:audio:12", "urn:rts:audio:11");
 
-        testAudioRecommendation(urn, false,false, expectedUrns);
+        testAudioRecommendation(urn,false, expectedUrns);
     }
 
-    private void testAudioRecommendation(String urn, boolean isFullLength, boolean isShortPodcast, List<String> expectedUrns) throws URISyntaxException {
+    private void testAudioRecommendation(String urn, boolean isShortPodcast, List<String> expectedUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
         String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
@@ -230,22 +230,16 @@ public class RecommendationServiceAudioResultTests {
                     );
         } catch (Exception e) {}
 
-        String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/FullLength/" + urn : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234/Clip/" + urn;
+        String expectedRecommendationId = "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rts:show:radio:1234";
 
         RecommendedList recommendedList1 = recommendationService.getRecommendedUrns("continuousplayback", urn, false);
         Assert.assertNotNull(recommendedList1);
-        String recommendationId1 = recommendedList1.getRecommendationId();
-        // Remove timestamp part
-        recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId1);
+        Assert.assertEquals(expectedRecommendationId, recommendedList1.getRecommendationId());
         Assert.assertEquals(expectedUrns, recommendedList1.getUrns());
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
-        String recommendationId2 = recommendedList2.getRecommendationId();
-        // Remove timestamp part
-        recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId2);
+        Assert.assertEquals(expectedRecommendationId, recommendedList2.getRecommendationId());
         Assert.assertEquals(expectedUrns, recommendedList2.getUrns());
 
         mockServer.verify();

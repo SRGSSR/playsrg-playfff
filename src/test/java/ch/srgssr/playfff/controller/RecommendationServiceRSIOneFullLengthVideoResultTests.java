@@ -70,7 +70,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3");
 
-        testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
-        testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:4", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2");
 
-        testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
 
-        testVideoRecommendation(urn, true,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -142,7 +142,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, true,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
 
@@ -152,7 +152,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3");
 
-        testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -161,7 +161,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:2", "urn:rsi:video:3", "urn:rsi:video:4");
 
-        testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -179,7 +179,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2");
 
-        testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -188,7 +188,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -197,7 +197,7 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:1", "urn:rsi:video:2", "urn:rsi:video:3");
 
-        testVideoRecommendation(urn, false,true, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,true, expectedUrns, expectedStandaloneUrns);
     }
 
     @Test
@@ -206,10 +206,10 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
         List<String> expectedUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
         List<String> expectedStandaloneUrns = Arrays.asList("urn:rsi:video:4", "urn:rsi:video:3", "urn:rsi:video:2", "urn:rsi:video:1");
 
-        testVideoRecommendation(urn, false,false, expectedUrns, expectedStandaloneUrns);
+        testVideoRecommendation(urn,false, expectedUrns, expectedStandaloneUrns);
     }
 
-    private void testVideoRecommendation(String urn, boolean isFullLength, boolean isShortPodcast, List<String> expectedUrns, List<String> expectedStandaloneUrns) throws URISyntaxException {
+    private void testVideoRecommendation(String urn, boolean isShortPodcast, List<String> expectedUrns, List<String> expectedStandaloneUrns) throws URISyntaxException {
         String mediaFileName = urn.replace(":", "-") + ".json";
         String mediaJson = BaseResourceString.getString(applicationContext, mediaFileName);
         mockServer.expect(ExpectedCount.times(2),
@@ -242,22 +242,16 @@ public class RecommendationServiceRSIOneFullLengthVideoResultTests {
                     );
         } catch (Exception e) {}
 
-        String expectedRecommendationId = isFullLength ? "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rsi:show:tv:1234/FullLength/" + urn : "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rsi:show:tv:1234/Clip/" + urn;
+        String expectedRecommendationId = "ch.srgssr.playfff:EpisodeComposition/LatestByShow/urn:rsi:show:tv:1234";
 
         RecommendedList recommendedList1 = recommendationService.getRecommendedUrns("continuousplayback", urn, false);
         Assert.assertNotNull(recommendedList1);
-        String recommendationId1 = recommendedList1.getRecommendationId();
-        // Remove timestamp part
-        recommendationId1 = recommendationId1.substring(0, recommendationId1.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId1);
+        Assert.assertEquals(expectedRecommendationId, recommendedList1.getRecommendationId());
         Assert.assertEquals(expectedUrns, recommendedList1.getUrns());
 
         RecommendedList recommendedList2 = recommendationService.getRecommendedUrns("continuousplayback", urn, true);
         Assert.assertNotNull(recommendedList2);
-        String recommendationId2 = recommendedList2.getRecommendationId();
-        // Remove timestamp part
-        recommendationId2 = recommendationId2.substring(0, recommendationId2.lastIndexOf("/"));
-        Assert.assertEquals(expectedRecommendationId, recommendationId2);
+        Assert.assertEquals(expectedRecommendationId, recommendedList2.getRecommendationId());
         Assert.assertEquals(expectedStandaloneUrns, recommendedList2.getUrns());
 
         mockServer.verify();
