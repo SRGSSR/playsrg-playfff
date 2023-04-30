@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 35;
+var parsePlayUrlVersion = 36;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -173,8 +173,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		}
 	}
 
-	if (!pathname.startsWith("/play")) {
-		console.log("No /play path in url.");
+	if (!(pathname == "/play" || pathname.startsWith("/play/"))) {
+		console.log("No /play path component in url.");
 		return null;
 	}
 
