@@ -130,7 +130,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>2.5</version>
@@ -181,7 +180,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run-script build</arguments>
+                            <arguments>run-script prod</arguments>
                         </configuration>
                         <phase>generate-resources</phase>
                     </execution>
