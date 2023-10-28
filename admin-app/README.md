@@ -1,6 +1,6 @@
 # AdminApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8. All file are in root of the repository, to allow Heroku to deploy it automatically.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
 
 ## Development server
 
