@@ -151,7 +151,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.12.1</version>
                 <configuration>
-                    <workingDirectory>portal-app</workingDirectory>
+                    <workingDirectory>admin-app</workingDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -160,8 +160,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v19.8.1</nodeVersion>
-                            <npmVersion>9.6.5</npmVersion>
+                            <nodeVersion>v20.8.0</nodeVersion>
+                            <npmVersion>10.1.0</npmVersion>
                         </configuration>
                     </execution>
 
@@ -176,12 +176,12 @@
                     </execution>
 
                     <execution>
-                        <id>prod</id>
+                        <id>build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run-script prod</arguments>
+                            <arguments>run-script build</arguments>
                         </configuration>
                         <phase>generate-resources</phase>
                     </execution>
