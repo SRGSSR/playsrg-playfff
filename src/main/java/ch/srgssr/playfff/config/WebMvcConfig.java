@@ -37,7 +37,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/**")
-        .addResourceLocations("./portal-app/dist/admin-app")
+        .addResourceLocations("/portal-app/dist/admin-app")
         .setCachePeriod(3600)
         .resourceChain(true)
         .addResolver(new PathResourceResolver() {
@@ -45,7 +45,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
           protected Resource getResource(String resourcePath, Resource location) throws IOException {
             Resource requestedResource = location.createRelative(resourcePath);
             return requestedResource.exists() && requestedResource.isReadable() ? requestedResource
-                : applicationContext.getResource("./portal-app/dist/admin-app/index.html");
+                : applicationContext.getResource("/portal-app/dist/admin-app/index.html");
           }
         });
   }
