@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -26,64 +28,64 @@ import java.util.Collections;
 @EnableWebSecurity
 public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
-    private String user;
-    private String password;
+  private String user;
+  private String password;
 
-    public AuthenticationConfig(
-            @Value("${PFFF_USER:}") String user,
-            @Value("${PFFF_PASSWORD:}") String password) {
+  public AuthenticationConfig(
+    @Value("${PFFF_USER:}") String user,
+    @Value("${PFFF_PASSWORD:}") String password) {
 
-        this.user = user;
-        this.password = password;
+    this.user = user;
+    this.password = password;
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+      .authorizeRequests()
+      .antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**", "/webjars/bootstrap/**", "/webjars/bootstrap/**", "/webjars/jquery/**", "/webjars/font-awesome/**").permitAll()
+      .anyRequest().authenticated()
+      .and()
+      .formLogin()
+      .defaultSuccessUrl("/admin-app", true)
+      .permitAll()
+      .and()
+      .logout()
+      .deleteCookies("JSESSIONID")
+      .invalidateHttpSession(true)
+      .logoutUrl("/logout")
+      .logoutSuccessUrl("/login")
+      .permitAll();
+    http
+      .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+    http
+      .logout()
+      .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+  }
+
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+    web
+      .ignoring()
+      .antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js")
+      .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
+  }
+
+  @Bean
+  @Override
+  public UserDetailsService userDetailsService() {
+    if (user == null || user.length() == 0 || password == null || password.length() == 0) {
+      return null;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**", "/webjars/bootstrap/**", "/webjars/bootstrap/**", "/webjars/jquery/**", "/webjars/font-awesome/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .permitAll()
-                .and()
-                .logout()
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .permitAll();
-        http
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    UserDetails userDetails =
+      User.withUsername(user)
+        .password(encoder.encode(password))
+        .roles("USER")
+        .build();
 
-        http
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js")
-                .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
-    }
-
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        if (user == null || user.length() == 0 || password == null || password.length() == 0) {
-            return null;
-        }
-
-        UserDetails userDetails =
-                User.withUsername(user)
-                        .password(password)
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(Collections.singleton(userDetails));
-    }
+    return new InMemoryUserDetailsManager(Collections.singleton(userDetails));
+  }
 }

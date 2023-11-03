@@ -47,7 +47,7 @@ public class DeepLinkReportService {
             List<DeepLinkReport> allReports = repository.findAllByOrderByClientTimeDesc();
             DeepLinkReport report = allReports.get(maxDeepLinkReports - 1);
             List<DeepLinkReport> olderReports = repository.findAllByClientTimeLessThan(report.clientTime);
-            repository.delete(olderReports);
+            repository.deleteAll(olderReports);
         }
     }
 
@@ -56,7 +56,7 @@ public class DeepLinkReportService {
     }
 
     public DeepLinkReport findById(long id) {
-        return repository.findOne(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Transactional

@@ -22,4 +22,20 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-src/main/resources/static
+
+### Execution ###
+node_modules/
+logs/
+npm-debug.log
+yarn-error.log
+
+### Compiled output ###
+tmp/
+out-tsc/
+overlays/
+.angular/
+
+### System Files ###
+.DS_Store
+Thumbs.db
+stats/
