@@ -72,7 +72,6 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
       .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
   }
 
-  @Bean
   @Override
   public UserDetailsService userDetailsService() {
     if (user == null || user.length() == 0 || password == null || password.length() == 0) {
