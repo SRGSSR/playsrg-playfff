@@ -28,8 +28,8 @@ import java.util.Collections;
 @EnableWebSecurity
 public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
-    private String user;
-    private String password;
+    private final String user;
+    private final String password;
 
     public AuthenticationConfig(@Value("${PFFF_USER:}") String user, @Value("${PFFF_PASSWORD:}") String password) {
 
@@ -53,7 +53,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        if (user == null || user.length() == 0 || password == null || password.length() == 0) {
+        if (user == null || user.isEmpty() || password == null || password.isEmpty()) {
             return null;
         }
 
