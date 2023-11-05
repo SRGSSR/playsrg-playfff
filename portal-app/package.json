@@ -1,5 +1,5 @@
 {
-  "name": "admin-app",
+  "name": "portal-app",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --configuration production --base-href=/admin-app/"
+    "prod": "ng build --configuration production --base-href=/portal-app/"
   },
   "private": true,
   "dependencies": {

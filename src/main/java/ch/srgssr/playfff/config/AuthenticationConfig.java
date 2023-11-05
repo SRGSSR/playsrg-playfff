@@ -39,7 +39,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**", "/webjars/bootstrap/**", "/webjars/bootstrap/**", "/webjars/jquery/**", "/webjars/font-awesome/**").permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/admin-app", true).permitAll().and().logout().deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutUrl("/logout").logoutSuccessUrl("/login").permitAll();
+        http.authorizeRequests().antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**", "/webjars/bootstrap/**", "/webjars/bootstrap/**", "/webjars/jquery/**", "/webjars/font-awesome/**").permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/portal-app", true).permitAll().and().logout().deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutUrl("/logout").logoutSuccessUrl("/login").permitAll();
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
