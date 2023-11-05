@@ -19,27 +19,27 @@ import java.io.IOException;
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-  private final static Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
-  private final ApplicationContext applicationContext;
+    private final static Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
+    private final ApplicationContext applicationContext;
 
-  @Autowired
-  public WebMvcConfig(ApplicationContext applicationContext) {
-    this.applicationContext = applicationContext;
-  }
+    @Autowired
+    public WebMvcConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/admin-app", "/admin-app/**")
-      .addResourceLocations("classpath:/admin-app/")
-      .setCachePeriod(3600)
-      .resourceChain(true)
-      .addResolver(new PathResourceResolver() {
-        @Override
-        protected Resource getResource(String resourcePath, Resource location) throws IOException {
-          Resource requestedResource = location.createRelative(resourcePath);
-          return requestedResource.exists() && requestedResource.isReadable() ? requestedResource :
-            applicationContext.getResource("classpath:/admin-app/index.html");
-        }
-      });
-  }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/admin-app", "/admin-app/**")
+            .addResourceLocations("classpath:/admin-app/")
+            .setCachePeriod(3600)
+            .resourceChain(true)
+            .addResolver(new PathResourceResolver() {
+                @Override
+                protected Resource getResource(String resourcePath, Resource location) throws IOException {
+                    Resource requestedResource = location.createRelative(resourcePath);
+                    return requestedResource.exists() && requestedResource.isReadable() ? requestedResource :
+                        applicationContext.getResource("classpath:/admin-app/index.html");
+                }
+            });
+    }
 }
