@@ -2,6 +2,7 @@ package ch.srgssr.playfff.service;
 
 import ch.srg.il.domain.v2_0.Topic;
 import ch.srg.il.domain.v2_0.TopicList;
+import ch.srgssr.playfff.config.CachingConfig;
 import ch.srgssr.playfff.helper.BaseResourceString;
 import ch.srgssr.playfff.model.DeepLinkJSContent;
 import ch.srgssr.playfff.model.Environment;
@@ -37,8 +38,6 @@ import java.util.*;
 public class DeepLinkService {
     private static final Logger logger = LoggerFactory.getLogger(DeepLinkService.class);
 
-    private static final String DeepLinkCacheName = "DeeplinkParsePlayUrlJSContent";
-
     private RestTemplate restTemplate;
 
     private Set<Environment> pullEnvironmentSet = new HashSet<>();
@@ -59,12 +58,12 @@ public class DeepLinkService {
         }
     }
 
-    @Cacheable(DeepLinkCacheName)
+    @Cacheable(CachingConfig.DeepLinkCacheName)
     public DeepLinkJSContent getParsePlayUrlJSContent() {
         return refreshParsePlayUrlJSContent();
     }
 
-    @CachePut(DeepLinkCacheName)
+    @CachePut(CachingConfig.DeepLinkCacheName)
     public synchronized DeepLinkJSContent refreshParsePlayUrlJSContent() {
         String javascriptV1 = BaseResourceString.getString(applicationContext, "deeplink/v1/parsePlayUrl.js");
         String javascriptV2 = BaseResourceString.getString(applicationContext, "deeplink/v2/parsePlayUrl.js");
