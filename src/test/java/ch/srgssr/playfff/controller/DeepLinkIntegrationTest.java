@@ -2,6 +2,8 @@ package ch.srgssr.playfff.controller;
 
 import ch.srgssr.playfff.model.DeepLinkReport;
 import ch.srgssr.playfff.repository.DeepLinkReportRepository;
+
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import org.hamcrest.core.IsNull;
 import org.junit.After;
@@ -58,6 +60,7 @@ public class DeepLinkIntegrationTest {
     public void getParsePlayUrlV1() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/api/v1/deeplink/parsePlayUrl.js"))
                 .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
                 .andExpect(header().string("ETag", IsNull.notNullValue()))
                 .andExpect(content().string(IsNull.notNullValue())).andReturn();
         String eTag = mvcResult.getResponse().getHeader("ETag");
@@ -71,6 +74,7 @@ public class DeepLinkIntegrationTest {
     public void getParsePlayUrlV2() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/api/v2/deeplink/parsePlayUrl.js"))
                 .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
                 .andExpect(header().string("ETag", IsNull.notNullValue()))
                 .andExpect(content().string(IsNull.notNullValue())).andReturn();
         String eTag = mvcResult.getResponse().getHeader("ETag");

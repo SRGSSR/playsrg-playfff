@@ -7,10 +7,13 @@ import ch.srgssr.playfff.service.DeepLinkReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -26,6 +29,8 @@ public class DeepLinkController {
 
     @Autowired
     private DeepLinkReportService deepLinkReportService;
+
+    private MediaType javascriptMediaType = new MediaType("application", "javascript", StandardCharsets.UTF_8);
 
     @GetMapping(path = {"/api/v1/deeplink/report/{id}"})
     public ResponseEntity<DeepLinkReport> findOne(@PathVariable("id") int id) {
@@ -78,6 +83,7 @@ public class DeepLinkController {
 
         if (content != null && hash != null) {
             return ResponseEntity.ok()
+                    .contentType(javascriptMediaType)
                     .cacheControl(CacheControl.empty().cachePublic())
                     .eTag(hash)
                     .body(content);
