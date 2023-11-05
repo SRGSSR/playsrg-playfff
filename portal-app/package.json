@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "ng build --configuration production --base-href=/portal-app/"
+    "prod": "ng build --configuration production --base-href=/admin/"
   },
   "private": true,
   "dependencies": {

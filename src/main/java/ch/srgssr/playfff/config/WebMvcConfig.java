@@ -29,7 +29,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/portal-app", "/portal-app/**")
+        registry.addResourceHandler("/admin", "/admin/**")
             .addResourceLocations("classpath:/portal-app/")
             .setCachePeriod(3600)
             .resourceChain(true)
