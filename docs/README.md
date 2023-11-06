@@ -14,7 +14,12 @@ Playfff is a SRG micro service to serve extra datas to Play applications. Playff
 
 ## Installation
 
-A Java development environment with Maven is needed. To run the NodeJS server, `npm` and `python` (python 2) are needed as well.
+A Java 1.8 development environment with Maven is needed. To run the NodeJS server, `npm` is needed as well.
+
+## Development 
+ * Backend: See `pom-xml` for maven configuration.
+ * Frontend: See `portal-app/package.json` for Angular application.
+ * Run locally with in a memory database: `mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DPFFF_PASSWORD=test -DPFFF_USER=test"`
 
 ## Release workflow
 
