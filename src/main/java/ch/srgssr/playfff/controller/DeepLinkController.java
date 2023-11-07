@@ -61,7 +61,7 @@ public class DeepLinkController {
     }
 
     // Public API
-    @RequestMapping(value="/api/v{version}/deeplink/parsePlayUrl.js")
+    @RequestMapping(value={"/api/v{version}/deeplink/parsePlayUrl.js", "//api/v{version}/deeplink/parsePlayUrl.js"})
     @ResponseBody
     public ResponseEntity<String> parsePlayUrlJavascript(@PathVariable("version") int version) {
 

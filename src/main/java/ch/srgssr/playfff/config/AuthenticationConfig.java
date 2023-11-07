@@ -15,6 +15,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collections;
@@ -48,6 +49,9 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js").antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
+
+        // Allow request URL contained a potentially malicious String "//" (For Play Android applications and DeepLinkController issue)
+        web.httpFirewall(new DefaultHttpFirewall());
     }
 
     @Bean

@@ -71,6 +71,20 @@ public class DeepLinkIntegrationTest {
     }
 
     @Test
+    public void getParsePlayUrlV1Android() throws Exception {
+        MvcResult mvcResult = mvc.perform(get("//api/v1/deeplink/parsePlayUrl.js"))
+            .andExpect(status().isOk())
+            .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
+            .andExpect(header().string("ETag", IsNull.notNullValue()))
+            .andExpect(content().string(IsNull.notNullValue())).andReturn();
+        String eTag = mvcResult.getResponse().getHeader("ETag");
+
+        mvc.perform(get("//api/v1/deeplink/parsePlayUrl.js").header("If-None-Match", eTag))
+            .andExpect(status().isNotModified())
+            .andExpect(content().string(""));
+    }
+
+    @Test
     public void getParsePlayUrlV2() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/api/v2/deeplink/parsePlayUrl.js"))
                 .andExpect(status().isOk())
@@ -82,6 +96,20 @@ public class DeepLinkIntegrationTest {
         mvc.perform(get("/api/v2/deeplink/parsePlayUrl.js").header("If-None-Match", eTag))
                 .andExpect(status().isNotModified())
                 .andExpect(content().string(""));
+    }
+
+    @Test
+    public void getParsePlayUrlV2Android() throws Exception {
+        MvcResult mvcResult = mvc.perform(get("//api/v2/deeplink/parsePlayUrl.js"))
+            .andExpect(status().isOk())
+            .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
+            .andExpect(header().string("ETag", IsNull.notNullValue()))
+            .andExpect(content().string(IsNull.notNullValue())).andReturn();
+        String eTag = mvcResult.getResponse().getHeader("ETag");
+
+        mvc.perform(get("//api/v2/deeplink/parsePlayUrl.js").header("If-None-Match", eTag))
+            .andExpect(status().isNotModified())
+            .andExpect(content().string(""));
     }
 
     @Test
