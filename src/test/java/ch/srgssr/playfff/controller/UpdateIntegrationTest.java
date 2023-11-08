@@ -96,7 +96,7 @@ public class UpdateIntegrationTest {
     @Test
     @WithMockUser(username = "update", password = "password", roles = "USER")
     public void updateAdmin() throws Exception {
-        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(0)));
+        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(0)));
 
         Update update = new Update();
         update.packageName = "package.A.B";
@@ -105,11 +105,11 @@ public class UpdateIntegrationTest {
         update.mandatory = false;
         String updateJson = JsonUtil.getMapper().writeValueAsString(update);
 
-        mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty());
+        mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty());
 
         mvc.perform(get("/api/v1/update/check").param("package", update.packageName).param("version", update.version)).andExpect(status().isOk()).andExpect(jsonPath("$.type").value("Optional")).andExpect(jsonPath("$.text").value("."));
 
-        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
+        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
 
         update = new Update();
         update.packageName = "package.A.B";
@@ -118,19 +118,19 @@ public class UpdateIntegrationTest {
         update.mandatory = true;
         updateJson = JsonUtil.getMapper().writeValueAsString(update);
 
-        MvcResult mvcResult = mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andReturn();
+        MvcResult mvcResult = mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty()).andReturn();
         Update updateResult = JsonUtil.getMapper().readValue(mvcResult.getResponse().getContentAsString(), Update.class);
 
         mvc.perform(get("/api/v1/update/check").param("package", update.packageName).param("version", update.version)).andExpect(status().isOk()).andExpect(jsonPath("$.type").value("Mandatory")).andExpect(jsonPath("$.text").value("test012OK"));
 
-        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
+        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
 
         updateJson = JsonUtil.getMapper().writeValueAsString(updateResult);
-        mvc.perform(delete("/api/v1/update/" + updateResult.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(updateJson));
+        mvc.perform(delete("/api/v1/update/" + updateResult.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(updateJson));
 
         mvc.perform(get("/api/v1/update/check").param("package", update.packageName).param("version", update.version)).andExpect(status().isOk()).andExpect(jsonPath("$.type").value("None"));
 
-        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(0)));
+        mvc.perform(get("/api/v1/update")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(0)));
     }
 
     @Test
@@ -143,7 +143,7 @@ public class UpdateIntegrationTest {
         update.mandatory = true;
         String updateJson = JsonUtil.getMapper().writeValueAsString(update);
 
-        mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty());
+        mvc.perform(post("/api/v1/update").contentType(MediaType.APPLICATION_JSON).content(updateJson).with(csrf())).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty());
     }
 
     @Test
