@@ -58,7 +58,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
     @Override
     public UserDetailsService userDetailsService() {
         if (user == null || user.isEmpty() || password == null || password.isEmpty()) {
-            return null;
+            return new InMemoryUserDetailsManager(Collections.emptyList());
         }
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
