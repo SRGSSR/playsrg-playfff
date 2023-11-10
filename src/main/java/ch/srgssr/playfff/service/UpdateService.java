@@ -40,7 +40,7 @@ public class UpdateService {
     }
 
     public Update findById(long id) {
-        return repository.findOne(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Transactional

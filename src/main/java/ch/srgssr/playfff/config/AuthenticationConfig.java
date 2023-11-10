@@ -11,8 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collections;
@@ -26,12 +29,10 @@ import java.util.Collections;
 @EnableWebSecurity
 public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
-    private String user;
-    private String password;
+    private final String user;
+    private final String password;
 
-    public AuthenticationConfig(
-            @Value("${PFFF_USER:}") String user,
-            @Value("${PFFF_PASSWORD:}") String password) {
+    public AuthenticationConfig(@Value("${PFFF_USER:}") String user, @Value("${PFFF_PASSWORD:}") String password) {
 
         this.user = user;
         this.password = password;
@@ -39,50 +40,29 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**", "/webjars/bootstrap/**", "/webjars/bootstrap/**", "/webjars/jquery/**", "/webjars/font-awesome/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .permitAll()
-                .and()
-                .logout()
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .permitAll();
-        http
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.authorizeRequests().antMatchers("/api/v1/update/check", "/api/v1/whatisnew/text", "/api/v1/whatisnew/html", "/api/v1/version", "/api/v*/playlist/**").permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/admin", true).permitAll().and().logout().deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutUrl("/logout").logoutSuccessUrl("/login").permitAll();
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
-        http
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js")
-                .antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
+        web.ignoring().antMatchers("/api/v{[0-9]+}/deeplink/parsePlayUrl.js").antMatchers(HttpMethod.POST, "/api/v1/deeplink/report");
+
+        // Allow request URL contained a potentially malicious String "//" (For Play Android applications and DeepLinkController issue)
+        web.httpFirewall(new DefaultHttpFirewall());
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        if (user == null || user.length() == 0 || password == null || password.length() == 0) {
-            return null;
+        if (user == null || user.isEmpty() || password == null || password.isEmpty()) {
+            return new InMemoryUserDetailsManager(Collections.emptyList());
         }
 
-        UserDetails userDetails =
-                User.withUsername(user)
-                        .password(password)
-                        .roles("USER")
-                        .build();
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        UserDetails userDetails = User.withUsername(user).password(encoder.encode(password)).roles("USER").build();
 
         return new InMemoryUserDetailsManager(Collections.singleton(userDetails));
     }

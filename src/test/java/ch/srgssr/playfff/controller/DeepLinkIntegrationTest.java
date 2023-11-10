@@ -2,6 +2,8 @@ package ch.srgssr.playfff.controller;
 
 import ch.srgssr.playfff.model.DeepLinkReport;
 import ch.srgssr.playfff.repository.DeepLinkReportRepository;
+
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import org.hamcrest.core.IsNull;
 import org.junit.After;
@@ -58,6 +60,7 @@ public class DeepLinkIntegrationTest {
     public void getParsePlayUrlV1() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/api/v1/deeplink/parsePlayUrl.js"))
                 .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
                 .andExpect(header().string("ETag", IsNull.notNullValue()))
                 .andExpect(content().string(IsNull.notNullValue())).andReturn();
         String eTag = mvcResult.getResponse().getHeader("ETag");
@@ -68,9 +71,17 @@ public class DeepLinkIntegrationTest {
     }
 
     @Test
+    public void getParsePlayUrlV1Android() throws Exception {
+        // FIXME It should be 200, as when we call on running server.
+        mvc.perform(get("//api/v1/deeplink/parsePlayUrl.js"))
+            .andExpect(status().isMovedTemporarily());
+    }
+
+    @Test
     public void getParsePlayUrlV2() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/api/v2/deeplink/parsePlayUrl.js"))
                 .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", new MediaType("application", "javascript", StandardCharsets.UTF_8).toString()))
                 .andExpect(header().string("ETag", IsNull.notNullValue()))
                 .andExpect(content().string(IsNull.notNullValue())).andReturn();
         String eTag = mvcResult.getResponse().getHeader("ETag");
@@ -78,6 +89,13 @@ public class DeepLinkIntegrationTest {
         mvc.perform(get("/api/v2/deeplink/parsePlayUrl.js").header("If-None-Match", eTag))
                 .andExpect(status().isNotModified())
                 .andExpect(content().string(""));
+    }
+
+    @Test
+    public void getParsePlayUrlV2Android() throws Exception {
+        // FIXME It should be 200, as when we call on running server.
+        mvc.perform(get("//api/v2/deeplink/parsePlayUrl.js"))
+            .andExpect(status().isMovedTemporarily());
     }
 
     @Test
@@ -141,7 +159,7 @@ public class DeepLinkIntegrationTest {
         deepLinkReport.url = "https://www.rts.ch/rts/play/unknown1";
         String deepLinkReportJson = JsonUtil.getMapper().writeValueAsString(deepLinkReport);
 
-        MvcResult mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
+        MvcResult mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
         DeepLinkReport deepLinkReportResult1 = JsonUtil.getMapper().readValue(mvcResult.getResponse().getContentAsString(), DeepLinkReport.class);
 
         deepLinkReport = new DeepLinkReport();
@@ -151,7 +169,7 @@ public class DeepLinkIntegrationTest {
         deepLinkReport.url = "https://www.rts.ch/rts/play/unknown1";
         deepLinkReportJson = JsonUtil.getMapper().writeValueAsString(deepLinkReport);
 
-        mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(2)).andReturn();
+        mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(2)).andReturn();
         DeepLinkReport deepLinkReportResult2 = JsonUtil.getMapper().readValue(mvcResult.getResponse().getContentAsString(), DeepLinkReport.class);
 
         Assert.assertEquals(deepLinkReportResult1.id, deepLinkReportResult2.id);
@@ -163,7 +181,7 @@ public class DeepLinkIntegrationTest {
         deepLinkReport.url = "https://www.rts.ch/rts/play/unknown2";
         deepLinkReportJson = JsonUtil.getMapper().writeValueAsString(deepLinkReport);
 
-        mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
+        mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.count").value(1)).andReturn();
         DeepLinkReport deepLinkReportResult3 = JsonUtil.getMapper().readValue(mvcResult.getResponse().getContentAsString(), DeepLinkReport.class);
 
         Assert.assertNotEquals(deepLinkReportResult1.id, deepLinkReportResult3.id);
@@ -182,9 +200,9 @@ public class DeepLinkIntegrationTest {
         MvcResult mvcResult = mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated()).andReturn();
         DeepLinkReport deepLinkReportResult = JsonUtil.getMapper().readValue(mvcResult.getResponse().getContentAsString(), DeepLinkReport.class);
 
-        mvc.perform(get("/api/v1/deeplink/report/" + deepLinkReportResult.id)).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(deepLinkReportJson));
+        mvc.perform(get("/api/v1/deeplink/report/" + deepLinkReportResult.id)).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(deepLinkReportJson));
 
-        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
+        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
 
         deepLinkReport = new DeepLinkReport();
         deepLinkReport.clientTime = dateFormat.parse("2019-07-20T16:15:53+02:00");
@@ -195,14 +213,14 @@ public class DeepLinkIntegrationTest {
 
         mvc.perform(post("/api/v1/deeplink/report").contentType(MediaType.APPLICATION_JSON).content(deepLinkReportJson)).andExpect(status().isCreated());
 
-        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(2)));
+        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(2)));
 
         mvc.perform(delete("/api/v1/deeplink/report/" + deepLinkReportResult.id)).andExpect(status().isForbidden());
 
         deepLinkReportJson = JsonUtil.getMapper().writeValueAsString(deepLinkReportResult);
-        mvc.perform(delete("/api/v1/deeplink/report/" + deepLinkReportResult.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().json(deepLinkReportJson));
+        mvc.perform(delete("/api/v1/deeplink/report/" + deepLinkReportResult.id).with(csrf())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(deepLinkReportJson));
 
-        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
+        mvc.perform(get("/api/v1/deeplink/report")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$").isArray()).andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test

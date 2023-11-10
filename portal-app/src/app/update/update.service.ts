@@ -8,11 +8,10 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UpdateService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   private updateUrl = '/api/v1/update';
 
@@ -20,11 +19,11 @@ export class UpdateService {
     return this.http.get<Update[]>(this.updateUrl);
   }
 
-  public deleteUpdate(update) {
+  public deleteUpdate(update: Update) {
     return this.http.delete(this.updateUrl + "/" + update.id);
   }
 
-  public createUpdate(update) {
+  public createUpdate(update: Update) {
     return this.http.post(this.updateUrl, update);
   }
 

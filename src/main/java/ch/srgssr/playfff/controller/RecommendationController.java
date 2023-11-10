@@ -22,7 +22,7 @@ public class RecommendationController {
     RecommendationService service;
 
     @Deprecated
-    @RequestMapping("/api/v1/playlist/recommendation/{purpose}/{urn}")
+    @RequestMapping({"/api/v1/playlist/recommendation/{purpose}/{urn}", "/api/v1/playlist/recommendation/{purpose}/{urn}.json"})
     @ResponseBody
     Object recommendationV1(
             HttpServletRequest request,
@@ -43,7 +43,7 @@ public class RecommendationController {
         }
     }
 
-    @RequestMapping("/api/v2/playlist/recommendation/{purpose}/{urn}")
+    @RequestMapping({"/api/v2/playlist/recommendation/{purpose}/{urn}", "/api/v2/playlist/recommendation/{purpose}/{urn}.json"})
     @ResponseBody
     RecommendedList recommendationV2(
             HttpServletRequest request,

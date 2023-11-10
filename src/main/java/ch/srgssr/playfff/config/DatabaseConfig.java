@@ -1,4 +1,3 @@
-
 package ch.srgssr.playfff.config;
 
 import org.h2.jdbcx.JdbcDataSource;

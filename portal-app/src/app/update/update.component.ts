@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { Update } from '../models/update.model';
 import { UpdateService } from './update.service';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-update',
   templateUrl: './update.component.html',
-  styles: []
+  styleUrls: ['./update.component.css']
 })
+
 export class UpdateComponent implements OnInit {
-  updates: Update[];
-  columns: string[];
+  updates: Update[] = [];
+  columns: string[] = [];
 
-  constructor(private router: Router, private updateService: UpdateService) {
-
-  }
+  constructor(private updateService: UpdateService) { }
 
   ngOnInit() {
     this.columns = this.updateService.getColumns();

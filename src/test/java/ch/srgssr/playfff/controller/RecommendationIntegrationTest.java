@@ -159,6 +159,10 @@ public class RecommendationIntegrationTest {
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
 
+        mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN + ".json").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
+        mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN + ".json").param("standalone", "false").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
+        mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN + ".json").param("standalone", "true").param("format", format)).andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
+
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("format", format)).andExpect(status().isOk()).andExpect(isAvailable ? jsonPath("$[0]").value(mediaURN) : jsonPath("$").isEmpty());
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false").param("format", format)).andExpect(isAvailable ? jsonPath("$[0]").value(mediaURN) : jsonPath("$").isEmpty());
         mvc.perform(get("/api/v1/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true").param("format", format)).andExpect(isAvailable ? jsonPath("$[0]").value(mediaURN) : jsonPath("$").isEmpty());
@@ -166,6 +170,10 @@ public class RecommendationIntegrationTest {
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "true")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN + ".json")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN + ".json").param("standalone", "false")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
+        mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN + ".json").param("standalone", "true")).andExpect(status().isOk()).andExpect(jsonPath("$").isMap());
 
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN)).andExpect(status().isOk()).andExpect(isAvailable ? jsonPath("$.urns[0]").value(mediaURN) : jsonPath("$.urns").isEmpty());
         mvc.perform(get("/api/v2/playlist/recommendation/" + purpose + "/" + mediaURN).param("standalone", "false")).andExpect(isAvailable ? jsonPath("$.urns[0]").value(mediaURN) : jsonPath("$.urns").isEmpty());

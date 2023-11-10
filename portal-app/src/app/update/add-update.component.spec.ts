@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeeplinkComponent } from './deeplink.component';
+import { AddUpdateComponent } from './add-update.component';
 
-describe('DeeplinkComponent', () => {
-  let component: DeeplinkComponent;
-  let fixture: ComponentFixture<DeeplinkComponent>;
+describe('AddUpdateComponent', () => {
+  let component: AddUpdateComponent;
+  let fixture: ComponentFixture<AddUpdateComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DeeplinkComponent]
+      declarations: [AddUpdateComponent]
     });
-    fixture = TestBed.createComponent(DeeplinkComponent);
+    fixture = TestBed.createComponent(AddUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

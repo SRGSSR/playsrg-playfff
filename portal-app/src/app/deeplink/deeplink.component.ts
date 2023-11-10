@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import {DeeplinkReport} from '../models/deeplink-report.model';
+import { DeeplinkReport } from '../models/deeplink-report.model';
 import { DeeplinkService } from './deeplink.service';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-deeplink',
   templateUrl: './deeplink.component.html',
-  styles: []
+  styleUrls: ['./deeplink.component.css']
 })
+
 export class DeeplinkComponent implements OnInit {
-  deeplinkReports: DeeplinkReport[];
-  columns: string[];
+  deeplinkReports: DeeplinkReport[] = [];
+  columns: string[] = [];
 
-  constructor(private router: Router, private deeplinkService: DeeplinkService) {
-
-  }
+  constructor(private deeplinkService: DeeplinkService) { }
 
   ngOnInit() {
     this.columns = this.deeplinkService.getColumns();

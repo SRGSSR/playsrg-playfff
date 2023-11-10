@@ -1,7 +1,8 @@
 export class Update {
-  id: string;
-  packageName: string;
-  version: string;
-  text: string;
-  mandatory: boolean;
+  [key: string]: string | boolean;
+  id!: string;
+  packageName!: string;
+  version!: string;
+  text!: string;
+  mandatory!: boolean;
 }

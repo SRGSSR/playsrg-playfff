@@ -5,21 +5,21 @@
       <label for="packageName">Package name:</label>
       <input type="email" [(ngModel)]="update.packageName" placeholder="ch.srg." name="packageName" class="form-control" id="packageName">
     </div>
-
+    <br />
     <div class="form-group">
       <label for="version">Version:</label>
       <input [(ngModel)]="update.version" placeholder="1.0" name="version" class="form-control" id="version">
     </div>
-
+    <br />
     <div class="form-group">
       <label for="text">Text:</label>
       <input [(ngModel)]="update.text" name="text" class="form-control" id="text">
     </div>
-
+    <br />
     <div class="checkbox">
       <label><input type="checkbox" [(ngModel)]="update.mandatory" name="mandatory" id="mandatory"> Mandatory</label>
     </div>
-
+    <br />
     <button class="btn btn-success" (click)="createUpdate()">Add / Update</button>
   </form>
 </div>

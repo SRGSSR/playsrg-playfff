@@ -8,11 +8,10 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DeeplinkService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   private deeplinkReportUrl = '/api/v1/deeplink/report';
 
@@ -20,7 +19,7 @@ export class DeeplinkService {
     return this.http.get<DeeplinkReport[]>(this.deeplinkReportUrl);
   }
 
-  public deleteDeeplinkReport(deeplinkReport) {
+  public deleteDeeplinkReport(deeplinkReport: DeeplinkReport) {
     return this.http.delete(this.deeplinkReportUrl + "/" + deeplinkReport.id);
   }
 

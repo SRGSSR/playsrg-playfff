@@ -1,21 +1,23 @@
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
-
 <div class="container">
-  <div class="col-md-12">
-    <h1 class="text-center">Pfff - Admin</h1>
-  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Pfff - Admin</h1>
 
-  <p class="text-right">
-    <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='/logout'">
-        <span class="glyphicon glyphicon-log-out"></span> Logout
-    </button>
-  </p>
+      <br />
+      <button class="btn btn-light btn-sm float-end" onclick="window.location.href='/logout'">Logout</button>
+      <br />
 
-  <div class="btn-group-justified">
-    <a routerLink="/updates" class="btn btn-primary">Update alerts</a>
-    <a routerLink="/deeplink" class="btn btn-primary">Deep links</a>
+      <div class="row">
+        <div class="col text-center">
+          <a routerLink="/updates" class="btn btn-primary">Update alerts</a>
+        </div>
+        <div class="col text-center">
+          <a routerLink="/deeplink" class="btn btn-primary">Deep links</a>
+        </div>
+      </div>
+
+      <br />
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <br/>
-  <router-outlet></router-outlet>
 </div>
