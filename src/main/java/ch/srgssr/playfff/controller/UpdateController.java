@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UpdateController {
 
-    private Boolean updateCheckDisabled;
+    private final Boolean updateCheckDisabled;
 
     public UpdateController(
             @Value("${UPDATE_CHECK_DISABLED:false}") String updateCheckDisabledString) {
@@ -47,9 +47,9 @@ public class UpdateController {
     @PostMapping("/api/v1/update")
     public ResponseEntity<Update> create(@RequestBody Update update) {
         if (update == null
-                || update.packageName == null || update.packageName.length() == 0
-                || update.version == null || update.version.length() == 0
-                || update.text == null || update.text.length() == 0) {
+                || update.packageName == null || update.packageName.isEmpty()
+                || update.version == null || update.version.isEmpty()
+                || update.text == null || update.text.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         } else {
             return new ResponseEntity<>(updateService.save(update), HttpStatus.CREATED);

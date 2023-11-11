@@ -2,6 +2,7 @@ package ch.srgssr.playfff.utils;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 public class Sha1 {
     public static String sha1(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest msdDigest = MessageDigest.getInstance("SHA-1");
-        msdDigest.update(input.getBytes("UTF-8"), 0, input.length());
+        msdDigest.update(input.getBytes(StandardCharsets.UTF_8), 0, input.length());
         return DatatypeConverter.printHexBinary(msdDigest.digest());
     }
 }

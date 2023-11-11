@@ -14,7 +14,7 @@ public class UpdateResult {
      */
     public String text;
 
-    enum Type {
+    public enum Type {
         None,
         Optional,
         Mandatory

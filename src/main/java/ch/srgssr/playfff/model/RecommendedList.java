@@ -16,7 +16,7 @@ import java.util.List;
 public class RecommendedList {
 
     private String recommendationId;
-    private List<String> urns;
+    private final List<String> urns;
     private String title;
 
     public RecommendedList(String title, String host, String recommendationId, List<String> urns) {

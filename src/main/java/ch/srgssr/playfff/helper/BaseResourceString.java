@@ -16,11 +16,7 @@ public class BaseResourceString {
     public static String getString(ApplicationContext applicationContext, String name) {
         try {
             Resource resource = applicationContext.getResource("classpath:" + name);
-            if (resource == null) {
-                throw new RuntimeException("No resource: " + name);
-            }
-            String s = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
-            return s;
+            return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException("IO Exception for " + name, e);
         }

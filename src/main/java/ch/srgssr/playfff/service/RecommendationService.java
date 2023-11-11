@@ -32,11 +32,11 @@ public class RecommendationService {
     @Autowired
     private IntegrationLayerRequest integrationLayerRequest;
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    private Boolean rtsRecommendationUsed;
-    private Boolean srfRecommendationUsed;
-    private int ascendingEpisodesMax;
+    private final Boolean rtsRecommendationUsed;
+    private final Boolean srfRecommendationUsed;
+    private final int ascendingEpisodesMax;
 
     public RecommendationService(
             @Value("${RTS_RECOMMENDATION_USED:true}") String rtsRecommendationUsedString,
@@ -122,10 +122,10 @@ public class RecommendationService {
         List<String> clipUrns = episodes.stream().flatMap(e -> e.getMediaList().stream().filter(m -> m.getMediaType() == mediaType)).map(Media::getUrn).collect(Collectors.toList());
         clipUrns.removeAll(fullLengthUrns);
 
-        Boolean isFullLengthUrns = false;
-        List<String> recommendationResult = null;
+        boolean isFullLengthUrns;
+        List<String> recommendationResult;
 
-        List<String> urns = null;
+        List<String> urns;
         int index = -1;
         MediaComposition mediaComposition = null;
 
@@ -142,13 +142,13 @@ public class RecommendationService {
             urns = clipUrns;
         } else {
             mediaComposition = integrationLayerRequest.getMediaComposition(urn, Environment.PROD);
-            isFullLengthUrns = (mediaComposition != null && mediaComposition.getSegmentUrn() != null) ? !urn.equals(mediaComposition.getSegmentUrn()) : true;
+            isFullLengthUrns = mediaComposition == null || mediaComposition.getSegmentUrn() == null || !urn.equals(mediaComposition.getSegmentUrn());
             urns = isFullLengthUrns ? fullLengthUrns : clipUrns;
         }
 
-        // Take care of non standalone video.
+        // Take care of non-standalone video.
         String baseUrn = urn;
-        if (mediaType == MediaType.VIDEO && !standalone && !isFullLengthUrns && clipUrns.size() > 0) {
+        if (mediaType == MediaType.VIDEO && !standalone && !isFullLengthUrns && !clipUrns.isEmpty()) {
             if (index != -1) {
                 EpisodeWithMedias episode = episodes.stream().filter(e -> e.getMediaList().stream().map(Media::getUrn).collect(Collectors.toList()).contains(urn)).findFirst().orElse(null);
                 index = (episode != null) ? fullLengthUrns.indexOf(episode.getFullLengthUrn()) : -1;
@@ -157,7 +157,7 @@ public class RecommendationService {
             urns = fullLengthUrns;
         }
         // Take care of full length and clip not in Episode composition, specially for RSI.
-        else if (index == -1 && clipUrns.size() == 0) {
+        else if (index == -1 && clipUrns.isEmpty()) {
             String chapterUrn = null;
             if (mediaComposition != null) {
                 chapterUrn = mediaComposition.getChapterUrn();
@@ -263,7 +263,7 @@ public class RecommendationService {
         Environment environment = Environment.PROD;
 
         MediaList mediaList = integrationLayerRequest.getRecommendedMediaList(urn, environment);
-        if (mediaList == null || mediaList.getList().size() == 0) {
+        if (mediaList == null || mediaList.getList().isEmpty()) {
             return new RecommendedList();
         }
 

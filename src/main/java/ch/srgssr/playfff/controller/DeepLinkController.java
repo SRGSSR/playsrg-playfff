@@ -30,7 +30,7 @@ public class DeepLinkController {
     @Autowired
     private DeepLinkReportService deepLinkReportService;
 
-    private MediaType javascriptMediaType = new MediaType("application", "javascript", StandardCharsets.UTF_8);
+    private final MediaType javascriptMediaType = new MediaType("application", "javascript", StandardCharsets.UTF_8);
 
     @GetMapping(path = {"/api/v1/deeplink/report/{id}"})
     public ResponseEntity<DeepLinkReport> findOne(@PathVariable("id") int id) {
