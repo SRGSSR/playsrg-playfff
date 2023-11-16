@@ -22,14 +22,14 @@ public class WhatIsNewController {
     ReleaseNoteService releaseNoteService;
 
     @RequestMapping(value = "/whatisnew/admin", method = RequestMethod.GET)
-    public String whatisnewAdmin(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
+    public String whatIsNewAdmin(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
         return "whatisnew/entry";
     }
 
     @RequestMapping(value = "/whatisnew/admin", method = RequestMethod.POST)
     @ResponseBody
-    public String whatisnewSave(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version, @RequestParam(value = "text") String text) {
+    public String whatIsNewSave(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version, @RequestParam(value = "text") String text) {
         ReleaseNote note = new ReleaseNote();
         note.packageName = packageName;
         note.text = text;
@@ -41,14 +41,14 @@ public class WhatIsNewController {
     // Public API
     @RequestMapping("/api/v1/whatisnew/text")
     @ResponseBody
-    public WhatIsNewResult whatisnewText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+    public WhatIsNewResult whatIsNewText(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         return new WhatIsNewResult(releaseNoteService.getDisplayableText(packageName, version));
     }
 
     // Public API
     @RequestMapping("/api/v1/whatisnew/html")
     @ResponseBody
-    public String whatisnewHtml(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
+    public String whatIsNewHtml(@RequestParam(value = "package") String packageName, @RequestParam(value = "version") String version) {
         return releaseNoteService.getDisplayableHtml(packageName, version);
     }
 

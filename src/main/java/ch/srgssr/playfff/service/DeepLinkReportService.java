@@ -19,12 +19,12 @@ public class DeepLinkReportService {
     @Autowired
     private DeepLinkReportRepository repository;
 
-    private int maxDeepLinkReports;
+    private final int maxDeepLinkReports;
 
     public DeepLinkReportService(
             @Value("${MAX_DEEP_LINK_REPORTS:2500}") String maxDeepLinkReportsString) {
 
-        this.maxDeepLinkReports = Integer.valueOf(maxDeepLinkReportsString);
+        this.maxDeepLinkReports = Integer.parseInt(maxDeepLinkReportsString);
     }
 
     @Transactional

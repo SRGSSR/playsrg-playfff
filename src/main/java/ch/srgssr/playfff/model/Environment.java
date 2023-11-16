@@ -19,9 +19,9 @@ public enum Environment {
         this.prettyName = prettyName;
     }
 
-    private String name;
-    private String baseUrl;
-    private String prettyName;
+    private final String name;
+    private final String baseUrl;
+    private final String prettyName;
 
     public static Environment fromValue(String v) {
         return valueOf(v.toUpperCase());

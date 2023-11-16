@@ -7,11 +7,11 @@ package ch.srgssr.playfff.model;
  */
 public class DeepLinkJSContent {
 
-    private String contentV1;
-    private String hashV1;
+    private final String contentV1;
+    private final String hashV1;
 
-    private String contentV2;
-    private String hashV2;
+    private final String contentV2;
+    private final String hashV2;
 
     public DeepLinkJSContent(String contentV1, String hashV1, String contentV2, String hashV2) {
         this.contentV1 = contentV1;

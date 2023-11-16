@@ -38,9 +38,7 @@ import java.util.*;
 public class DeepLinkService {
     private static final Logger logger = LoggerFactory.getLogger(DeepLinkService.class);
 
-    private RestTemplate restTemplate;
-
-    private Set<Environment> pullEnvironmentSet = new HashSet<>();
+    private final Set<Environment> pullEnvironmentSet = new HashSet<>();
 
     @Autowired
     protected ApplicationContext applicationContext;
@@ -50,7 +48,6 @@ public class DeepLinkService {
 
     public DeepLinkService(RestTemplateBuilder restTemplateBuilder,
                            @Value("${DEEP_LINK_ENVIRONMENTS:PROD}") String environments) {
-        restTemplate = restTemplateBuilder.build();
 
         String[] environmentStrings = environments.split(",");
         for (String environmentString : environmentStrings) {
@@ -74,14 +71,14 @@ public class DeepLinkService {
         busMap.put(Environment.PROD, srgBUs);
         busMap.put(Environment.STAGE, srgBUs);
         busMap.put(Environment.TEST, srgBUs);
-        busMap.put(Environment.MMF, Arrays.asList());
+        busMap.put(Environment.MMF, Collections.emptyList());
 
         Map<String, Map<String, Map<String, String>>> tvGlobalTopicMap = new HashMap<>();
 
         for (Environment environment : pullEnvironmentSet) {
             Map<String, Map<String, String>> tvTopicMap = getTvTopicMap(busMap.get(environment), environment);
 
-            if (tvTopicMap.size() > 0) {
+            if (!tvTopicMap.isEmpty()) {
                 tvGlobalTopicMap.put(environment.getPrettyName(), tvTopicMap);
             }
         }
