@@ -31,4 +31,39 @@ export class DeeplinkComponent implements OnInit {
       })
   };
 
+
+  packageNameFromId(id: string|number): string|number {
+    if (typeof id === "number") {
+      return id;
+    }
+
+    if (id === "ch.rsi.player" || id.startsWith("ch.rsi.player.")) {
+      return "Play RSI Android";
+    } else if (id === "ch.rsi.rsiplayer" || id.startsWith("ch.rsi.rsiplayer.")) {
+      return "Play RSI iOS";
+
+    } else if (id === "ch.rtr.player" || id.startsWith("ch.rtr.player.")) {
+      return "Play RTR Android";
+    } else if (id === "ch.rtr.rtrplayer" || id.startsWith("ch.rtr.rtrplayer.")) {
+      return "Play RTR iOS";
+
+    } else if (id === "ch.rts.player" || id.startsWith("ch.rts.player.")) {
+      return "Play RTS Android";
+    } else if (id === "ch.rts.rtsplayer" || id.startsWith("ch.rts.rtsplayer.")) {
+      return "Play RTS iOS";
+
+    } else if (id === "ch.srf.player" || id.startsWith("ch.srf.player.") || id === "ch.srf.mobile.srfplayer" || id.startsWith("ch.srf.mobile.srfplayer.")) {
+      return "Play SRF Android";
+    } else if (id === "ch.srf.srfplayer" || id.startsWith("ch.srf.srfplayer.")) {
+      return "Play SRF iOS";
+
+    } else if (id === "ch.swi.player" || id.startsWith("ch.swi.player.")) {
+      return "Play SWI Android";
+    } else if (id === "ch.swi.swiplayer" || id.startsWith("ch.swi.swiplayer.")) {
+      return "Play SWI iOS";
+
+    } else {
+      return id;
+    }
+  };
 }

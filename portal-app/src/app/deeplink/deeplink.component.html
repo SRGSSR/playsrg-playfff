@@ -15,10 +15,13 @@
     <tbody>
     <tr *ngFor="let deeplinkReport of deeplinkReports">
       <td *ngFor="let column of columns; let idx=index">
+        <span *ngIf="idx == 1" class="min-client-id-width">
+          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Package name: {{deeplinkReport[column]}}">{{packageNameFromId(deeplinkReport[column])}}</button>
+        </span>
         <span *ngIf="idx == 5">
           <a href="{{deeplinkReport[column]}}" target="_blank">{{deeplinkReport[column]}}</a>
         </span>
-        <span *ngIf="idx != 5">
+        <span *ngIf="idx != 1 && idx != 5 ">
           {{deeplinkReport[column]}}
         </span>
       </td>
