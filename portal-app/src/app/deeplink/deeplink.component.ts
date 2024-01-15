@@ -37,33 +37,31 @@ export class DeeplinkComponent implements OnInit {
       return id;
     }
 
-    if (id === "ch.rsi.player" || id.startsWith("ch.rsi.player.")) {
-      return "Play RSI Android";
-    } else if (id === "ch.rsi.rsiplayer" || id.startsWith("ch.rsi.rsiplayer.") || id.startsWith("ch.srgssr.rsiplayer.")) {
-      return "Play RSI iOS";
+    const idPrefixes: { [key: string]: string } = {
+      "ch.rsi.player": "Play RSI Android",
+      "ch.rsi.rsiplayer": "Play RSI iOS",
+      "ch.srgssr.rsiplayer": "Play RSI iOS",
+      "ch.rtr.player": "Play RTR Android",
+      "ch.rtr.rtrplayer": "Play RTR iOS",
+      "ch.srgssr.rtrplayer": "Play RTR iOS",
+      "ch.rts.player": "Play RTS Android",
+      "ch.rts.rtsplayer": "Play RTS iOS",
+      "ch.srgssr.rtsplayer": "Play RTS iOS",
+      "ch.srf.player": "Play SRF Android",
+      "ch.srf.mobile.srfplayer": "Play SRF Android",
+      "ch.srf.srfplayer": "Play SRF iOS",
+      "ch.srgssr.srfplayer": "Play SRF iOS",
+      "ch.swi.player": "Play SWI Android",
+      "ch.swi.swiplayer": "Play SWI iOS",
+      "ch.srgssr.swiplayer": "Play SWI iOS"
+    };
 
-    } else if (id === "ch.rtr.player" || id.startsWith("ch.rtr.player.")) {
-      return "Play RTR Android";
-    } else if (id === "ch.rtr.rtrplayer" || id.startsWith("ch.rtr.rtrplayer.") || id.startsWith("ch.srgssr.rtrplayer.")) {
-      return "Play RTR iOS";
-
-    } else if (id === "ch.rts.player" || id.startsWith("ch.rts.player.")) {
-      return "Play RTS Android";
-    } else if (id === "ch.rts.rtsplayer" || id.startsWith("ch.rts.rtsplayer.") || id.startsWith("ch.srgssr.rtsplayer.")) {
-      return "Play RTS iOS";
-
-    } else if (id === "ch.srf.player" || id.startsWith("ch.srf.player.") || id === "ch.srf.mobile.srfplayer" || id.startsWith("ch.srf.mobile.srfplayer.")) {
-      return "Play SRF Android";
-    } else if (id === "ch.srf.srfplayer" || id.startsWith("ch.srf.srfplayer.") || id.startsWith("ch.srgssr.srfplayer.")) {
-      return "Play SRF iOS";
-
-    } else if (id === "ch.swi.player" || id.startsWith("ch.swi.player.")) {
-      return "Play SWI Android";
-    } else if (id === "ch.swi.swiplayer" || id.startsWith("ch.swi.swiplayer.") || id.startsWith("ch.srgssr.swiplayer.")) {
-      return "Play SWI iOS";
-
-    } else {
-      return id;
+    for (const prefix in idPrefixes) {
+      if (id === prefix || id.startsWith(prefix + ".")) {
+        return idPrefixes[prefix];
+      }
     }
+
+    return id;
   };
 }
