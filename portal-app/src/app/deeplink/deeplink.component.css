@@ -1,0 +1,6 @@
+.min-client-id-width {
+  min-width: 160px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

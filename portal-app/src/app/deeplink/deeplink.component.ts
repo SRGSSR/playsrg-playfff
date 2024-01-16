@@ -31,4 +31,37 @@ export class DeeplinkComponent implements OnInit {
       })
   };
 
+
+  packageNameFromId(id: string|number): string|number {
+    if (typeof id === "number") {
+      return id;
+    }
+
+    const idPrefixes: { [key: string]: string } = {
+      "ch.rsi.player": "Play RSI Android",
+      "ch.rsi.rsiplayer": "Play RSI iOS",
+      "ch.srgssr.rsiplayer": "Play RSI iOS",
+      "ch.rtr.player": "Play RTR Android",
+      "ch.rtr.rtrplayer": "Play RTR iOS",
+      "ch.srgssr.rtrplayer": "Play RTR iOS",
+      "ch.rts.player": "Play RTS Android",
+      "ch.rts.rtsplayer": "Play RTS iOS",
+      "ch.srgssr.rtsplayer": "Play RTS iOS",
+      "ch.srf.player": "Play SRF Android",
+      "ch.srf.mobile.srfplayer": "Play SRF Android",
+      "ch.srf.srfplayer": "Play SRF iOS",
+      "ch.srgssr.srfplayer": "Play SRF iOS",
+      "ch.swi.player": "Play SWI Android",
+      "ch.swi.swiplayer": "Play SWI iOS",
+      "ch.srgssr.swiplayer": "Play SWI iOS"
+    };
+
+    for (const prefix in idPrefixes) {
+      if (id === prefix || id.startsWith(prefix + ".")) {
+        return idPrefixes[prefix];
+      }
+    }
+
+    return id;
+  };
 }
