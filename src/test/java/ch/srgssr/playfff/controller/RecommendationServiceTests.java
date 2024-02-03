@@ -119,7 +119,7 @@ public class RecommendationServiceTests {
         boolean standalone = false;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        assertInvalidList(recommendedList);
+        assertValidList(recommendedList);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class RecommendationServiceTests {
         boolean standalone = true;
         RecommendedList recommendedList = recommendationService.getRecommendedUrns(purpose, mediaURN, standalone);
 
-        assertInvalidList(recommendedList);
+        assertValidList(recommendedList);
     }
 
     @Test
