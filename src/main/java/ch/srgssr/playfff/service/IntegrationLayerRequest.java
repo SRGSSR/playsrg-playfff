@@ -88,6 +88,21 @@ public class IntegrationLayerRequest {
         }
     }
 
+    public MediaList getLivecenterMediaList(String bu, Boolean scheduledLivestreamType, Boolean onlyEventsWithResult, Environment environment) {
+        String path = "/integrationlayer/2.0/" + bu + "/mediaList/video/scheduledLivestreams/livecenter";
+        String types = scheduledLivestreamType ? "scheduled_livestream" : "episode";
+        String query = "types=" + types + "&onlyEventsWithResult=" + onlyEventsWithResult.toString();
+        try {
+            URI uri = new URI("http", null, environment.getBaseUrl(), PORT, path, query, null);
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
+            SrgUnmarshaller unmarshaller = new SrgUnmarshaller();
+            return unmarshaller.unmarshal(responseEntity.getBody(), MediaType.APPLICATION_JSON, MediaList.class);
+        } catch (Exception e) {
+            logger.warn("http://{}{} : {}", environment.getBaseUrl(), path, e.getMessage());
+            return null;
+        }
+    }
+
     public MediaComposition getMediaComposition(String mediaURN, Environment environment) {
         String path = "/integrationlayer/2.0/mediaComposition/byUrn/" + mediaURN;
         try {

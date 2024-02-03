@@ -170,6 +170,10 @@ public class IlUrn {
         return ASSET_VIDEO.equals(assetType) || ASSET_VIDEO_SET.equals(assetType);
     }
 
+    public boolean isSwisstxtVideo() {
+        return Mam.SWISSTXT.equals(mam);
+    }
+
     public boolean isShow() {
         return ASSET_SHOW.equals(assetType);
     }

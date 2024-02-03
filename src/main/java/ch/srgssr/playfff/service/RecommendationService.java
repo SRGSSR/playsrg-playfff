@@ -37,16 +37,25 @@ public class RecommendationService {
     private final Boolean rtsRecommendationUsed;
     private final Boolean srfRecommendationUsed;
     private final int ascendingEpisodesMax;
+    private final Boolean rsiLivecenterOnlyWithResult;
+    private final Boolean rtsLivecenterOnlyWithResult;
+    private final Boolean srfLivecenterOnlyWithResult;
 
     public RecommendationService(
             @Value("${RTS_RECOMMENDATION_USED:true}") String rtsRecommendationUsedString,
             @Value("${SRF_RECOMMENDATION_USED:true}") String srfRecommendationUsedString,
-            @Value("${ASCENDING_EPISODES_MAX:25}") int ascendingEpisodesMaxInt
+            @Value("${ASCENDING_EPISODES_MAX:25}") int ascendingEpisodesMaxInt,
+            @Value("${RSI_LIVECENTER_ONLY_WITH_RESULT:true}") String rsiLivecenterOnlyWithResultString,
+            @Value("${RTS_LIVECENTER_ONLY_WITH_RESULT:false}") String rtsLivecenterOnlyWithResultString,
+            @Value("${SRF_LIVECENTER_ONLY_WITH_RESULT:true}") String srfLivecenterOnlyWithResultString
     ) {
         restTemplate = new RestTemplate();
         rtsRecommendationUsed = Boolean.valueOf(rtsRecommendationUsedString);
         srfRecommendationUsed = Boolean.valueOf(srfRecommendationUsedString);
         ascendingEpisodesMax = ascendingEpisodesMaxInt;
+        rsiLivecenterOnlyWithResult = Boolean.valueOf(rsiLivecenterOnlyWithResultString);
+        rtsLivecenterOnlyWithResult = Boolean.valueOf(rtsLivecenterOnlyWithResultString);
+        srfLivecenterOnlyWithResult = Boolean.valueOf(srfLivecenterOnlyWithResultString);
     }
 
     public RecommendedList getRecommendedUrns(String purpose, String urnString, boolean standalone) {
@@ -58,22 +67,24 @@ public class RecommendationService {
                         if (urn.getMediaType() == MediaType.VIDEO) {
                             return rtsVideoRecommendedList(purpose, urnString, standalone);
                         } else if (urn.getMediaType() == MediaType.AUDIO) {
-                            return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                            return pfffVoDAoDRecommendedList(urnString, MediaType.AUDIO, standalone);
                         }
                     } else {
-                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                        return pfffVoDAoDRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
                     break;
                 case SRF:
                     if (srfRecommendationUsed) {
                         return srfRecommendedList(purpose, urnString, standalone);
                     } else {
-                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                        return pfffVoDAoDRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
                 case RSI:
                 case RTR:
                 case SWI:
-                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                    return pfffVoDAoDRecommendedList(urnString, urn.getMediaType(), standalone);
+                case SWISSTXT:
+                    return pfffSwisstxtRecommendedList(urnString);
             }
         }
         else {
@@ -83,23 +94,25 @@ public class RecommendationService {
                         if (urn.getMediaType() == MediaType.VIDEO) {
                             return rtsVideoRecommendedList(purpose, urnString, standalone);
                         } else if (urn.getMediaType() == MediaType.AUDIO) {
-                            return pfffRecommendedList(urnString, MediaType.AUDIO, standalone);
+                            return pfffVoDAoDRecommendedList(urnString, MediaType.AUDIO, standalone);
                         }
                     } else {
-                        return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                        return pfffVoDAoDRecommendedList(urnString, urn.getMediaType(), standalone);
                     }
                     break;
                 case RSI:
                 case RTR:
                 case SRF:
                 case SWI:
-                    return pfffRecommendedList(urnString, urn.getMediaType(), standalone);
+                    return pfffVoDAoDRecommendedList(urnString, urn.getMediaType(), standalone);
+                case SWISSTXT:
+                    return pfffSwisstxtRecommendedList(urnString);
             }
         }
         return new RecommendedList();
     }
 
-    private RecommendedList pfffRecommendedList(String urn, MediaType mediaType, Boolean standalone) {
+    private RecommendedList pfffVoDAoDRecommendedList(String urn, MediaType mediaType, Boolean standalone) {
         Media media = integrationLayerRequest.getMedia(urn, Environment.PROD);
         if (media == null || media.getType() == LIVESTREAM || media.getType() == SCHEDULED_LIVESTREAM || media.getShow() == null) {
             return new RecommendedList();
@@ -209,6 +222,46 @@ public class RecommendationService {
 
         String host = "playfff.srgssr.ch";
         String recommendationId = "EpisodeComposition/LatestByShow/" + showURN;
+
+        if (recommendationResult.size() > 49) {
+            recommendationResult = recommendationResult.subList(0, 49);
+        }
+
+        return new RecommendedList(host, recommendationId, recommendationResult);
+    }
+
+    private boolean onlyEventsWithResult(IlUrn urn) {
+        switch (urn.getBu()) {
+            case "rsi":
+                return rsiLivecenterOnlyWithResult;
+            case "rts":
+                return rtsLivecenterOnlyWithResult;
+            case "srf":
+                return srfLivecenterOnlyWithResult;
+            default:
+                return true;
+        }
+    }
+
+    private RecommendedList pfffSwisstxtRecommendedList(String urn) {
+        IlUrn ilUrn = new IlUrn(urn);
+        ZonedDateTime now = ZonedDateTime.now();
+        boolean onlyEventsWithResult = onlyEventsWithResult(ilUrn);
+
+        List<String> recommendationResult = new ArrayList<>();
+
+        // Get only livestreams that started and not yet finished
+        MediaList scheduledLiveStreams = integrationLayerRequest.getLivecenterMediaList(ilUrn.getBu(), true, onlyEventsWithResult, Environment.PROD);
+        recommendationResult.addAll(scheduledLiveStreams.getList().stream().filter(m -> m.getValidFrom().isBefore(now) && m.getValidTo().isAfter(now)).map(Media::getUrn).collect(Collectors.toList()));
+
+        // Get only episodes that are playable.
+        MediaList episodes = integrationLayerRequest.getLivecenterMediaList(ilUrn.getBu(), false, onlyEventsWithResult, Environment.PROD);
+        recommendationResult.addAll(episodes.getList().stream().filter(m -> m.getValidFrom().isBefore(now) && m.getValidTo().isAfter(now)).map(Media::getUrn).collect(Collectors.toList()));
+
+        recommendationResult.remove(ilUrn.toString());
+
+        String host = "playfff.srgssr.ch";
+        String recommendationId = "MediaList/Livecenter/" + ilUrn.getBu();
 
         if (recommendationResult.size() > 49) {
             recommendationResult = recommendationResult.subList(0, 49);
