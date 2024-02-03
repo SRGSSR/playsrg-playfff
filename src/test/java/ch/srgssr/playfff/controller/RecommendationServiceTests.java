@@ -154,7 +154,7 @@ public class RecommendationServiceTests {
     }
 
     private void assertValidList(RecommendedList recommendedList) {
-        Assert.assertTrue(recommendedList.getUrns().size() > 0);
+        Assert.assertFalse(recommendedList.getUrns().isEmpty());
         Assert.assertTrue(recommendedList.getUrns().size() < 50);
     }
 
