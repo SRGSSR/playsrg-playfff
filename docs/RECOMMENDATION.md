@@ -32,7 +32,7 @@ By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_U
 | SRF videos | Pfff RE | **SRF RE** |
 | SWI videos | Pfff RE | Pfff RE |
 | Event videos | N/A | N/A |
-| Swisstxt videos | N/A | N/A |
+| Swisstxt videos | Pfff RE | Pfff RE |
 
 ### Recommendation engine descriptions
 
@@ -44,9 +44,9 @@ By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_U
 
 - For SRF videos and SRF audios, it can ask `IL-MediaList` recommendation `Recommended-byUrn` service, without personalization.
 
-#### Playfff recommendation engine (Pfff RE)
+#### Playfff On Demand recommendation engine (Pfff RE)
 
-- For RSI, RTR, RTS, SRF, SWI videos and RSI, RTR, RTS, SRF audios, it can ask `Playfff` recommendation.
+- For RSI, RTR, RTS, SRF, SWI on demand videos and RSI, RTR, RTS, SRF on demand audios, it can ask `Playfff` recommendation.
 - Based on IL requests, without personalization. Here is how it works:
 	- Get `IL-Media`. It returns an empty list if it's a `LIVESTREAM` or a `SCHEDULED_LIVESTREAM`.
 	- Get `IL-EpisodeComposition` with last 100 episodes. Sort episodes with a published date ascending order, then episode ascending order if same published date. It's assumed that clips are ascendant sorting.
@@ -62,7 +62,17 @@ By default, here are the used recommendation engines (RE). `RTS_RECOMMENDATION_U
 - It does not return clips if `VIDEO` media type and `standalone == false`.
 - If clips are not in `IL-EpisodeComposition`, it fallbacks to full lengths.
 
-#### Swisstxt URNs or other MAMs
+#### Playfff Swisstxt video recommendation engine (Pfff RE)
+
+- For RSI, RTS, SRF swisstxt videos, it can ask `Playfff` recommendation.
+- Based on IL requests, without personalization. Here is how it works:
+	- Get `IL-MediaList` from Liceventer for scheduled livestreams. Filter only current playable livestreams.
+	- Get `IL-MediaList` from Liceventer for episodes. Filter only current playable replay content.
+	- First livestream content, then replay content are returned.
+- The `standalone == false` parameter is ignored.
+
+
+#### Scheduled livestream (event) URNs or other MAMs
 
 - No recommendation provided. It returns an empty list.
 
