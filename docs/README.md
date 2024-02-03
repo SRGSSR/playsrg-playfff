@@ -39,6 +39,9 @@ A wide list of parameters are available.
 * `RTS_RECOMMENDATION_USED` (optional, boolean): Use RTS recommendation engine (RE) in usages validated by the BU, if set to `true`. Otherwise, use default RE. If not set, defaults is `true`.
 * `SRF_RECOMMENDATION_USED` (optional, boolean): Use SRF recommendation engine (RE) in usages validated by the BU, if set to `true`. Otherwise, use default RE. If not set, defaults is `true`.
 * `ASCENDING_EPISODES_MAX` (optional, integer): max episodes for a show to be considered as a podcast with ascending published date. If not set, defaults is `25`.
+* `RSI_LIVECENTER_ONLY_WITH_RESULT` (optional, boolean): For RSI swisstxt media urns, the default RE returns events only with sport result, if set to `true`. If not set, defaults is `true`.
+* `RTS_LIVECENTER_ONLY_WITH_RESULT` (optional, boolean): For RTS swisstxt media urns, the default RE returns events only with sport result, if set to `true`. If not set, defaults is `false`.
+* `SRF_LIVECENTER_ONLY_WITH_RESULT` (optional, boolean): For SRF swisstxt media urns, the default RE returns events only with sport result, if set to `true`. If not set, defaults is `true`.
 
 ## API
  * `urn` (string): an unique identifier.
