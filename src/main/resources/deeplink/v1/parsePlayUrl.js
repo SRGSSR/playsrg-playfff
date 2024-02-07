@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 36;
+var parsePlayUrlVersion = 37;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -743,6 +743,15 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://play.swissinfo.ch/play/tv/help
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
+		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
+	}
+
+	/**
+	 * Catch play micro pages urls
+	 *
+	 * Ex: https://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
+	 */
+	if (pathname.includes("/micropages/")) {
 		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
 	}
 
