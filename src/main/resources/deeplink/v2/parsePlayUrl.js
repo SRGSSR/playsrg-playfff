@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 37;
+var parsePlayUrlVersion = 38;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -706,6 +706,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rtr.ch/play/tv/agid
 	 *  Ex: https://www.rtr.ch/play/tv/agid/geo-blocking
 	 *  Ex: https://play.swissinfo.ch/play/tv/help
+	 *
+	 *  Ex: playsrf://www.srf.ch/play/tv/hilfe
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
 		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
@@ -715,6 +717,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 * Catch play micro pages urls
 	 *
 	 * Ex: https://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
+	 *
+	 * Ex: playsrf://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
 	 */
 	if (pathname.includes("/micropages/")) {
 		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
@@ -882,6 +886,9 @@ function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
 	if (!scheme) {
 		scheme = "http";
 	}
+	else if (isBuScheme(scheme)) {
+		scheme = "https";
+	}
 
 	var queryParamsString = "";
 	if (queryParams) {
@@ -952,6 +959,10 @@ function schemeForBu(bu) {
 		default:
 			return null;
 	}
+}
+
+function isBuScheme(scheme) {
+	return scheme.includes("playsrf") || scheme.includes("playrts") || scheme.includes("playrsi") || scheme.includes("playrtr") || scheme.includes("playswi") || scheme.includes("letterbox");
 }
 
 function serverForUrl(hostname, pathname, queryParams) {
