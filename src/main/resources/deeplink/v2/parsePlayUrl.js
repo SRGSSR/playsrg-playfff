@@ -667,6 +667,24 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
+	 * Catch play micro pages urls
+	 *
+	 * Ex: https://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
+	 *
+	 * Ex: playsrf://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
+	 */
+	if (pathname.includes("/micropages/")) {
+		var pageId = queryParams["pageId"];
+
+		if (pageId) {
+			return openPage(server, bu, pageId);
+		}
+		else {
+			return openTvHomePage(server, bu);
+		}
+	}
+
+	/**
 	 *  Catch base play urls
 	 *
 	 *  Ex: https://www.srf.ch/play/
@@ -713,17 +731,6 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: playsrf://www.srf.ch/play/tv/hilfe
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
-		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
-	}
-
-	/**
-	 * Catch play micro pages urls
-	 *
-	 * Ex: https://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
-	 *
-	 * Ex: playsrf://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
-	 */
-	if (pathname.includes("/micropages/")) {
 		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
 	}
 
@@ -796,6 +803,14 @@ function openSection(server, bu, sectionId) {
 		options['server'] = server;
 	}
 	return buildBuUri(bu, "section", sectionId, options);
+}
+
+function openPage(server, bu, pageId) {
+	var options = {};
+	if (server) {
+		options['server'] = server;
+	}
+	return buildBuUri(bu, "page", pageId, options);
 }
 
 function openTvHomePage(server, bu) {
