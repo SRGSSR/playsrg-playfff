@@ -677,7 +677,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		var pageId = queryParams["pageId"];
 
 		if (pageId) {
-			return openPage(server, bu, pageId);
+			return openMicropage(server, bu, pageId);
 		}
 		else {
 			return openTvHomePage(server, bu);
@@ -805,12 +805,12 @@ function openSection(server, bu, sectionId) {
 	return buildBuUri(bu, "section", sectionId, options);
 }
 
-function openPage(server, bu, pageId) {
+function openMicropage(server, bu, pageId) {
 	var options = {};
 	if (server) {
 		options['server'] = server;
 	}
-	return buildBuUri(bu, "page", pageId, options);
+	return buildBuUri(bu, "micropage", pageId, options);
 }
 
 function openTvHomePage(server, bu) {
