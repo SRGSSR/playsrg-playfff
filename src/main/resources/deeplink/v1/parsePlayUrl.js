@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 38;
+var parsePlayUrlVersion = 39;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -10,6 +10,8 @@ if (!console) {
 }
 
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
+	originalPathname = pathname;
+
 	// fix path issue
 	pathname = pathname.replace("//", "/");
 
@@ -122,7 +124,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 				break;
 		}
 		if (redirectBu) {
-			return openURL(server, redirectBu, scheme, hostname, pathname, queryParams, anchor);
+			return openURL(server, redirectBu, scheme, hostname, originalPathname, queryParams, anchor);
 		}
 	}
 
@@ -741,11 +743,12 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rtr.ch/play/tv/agid
 	 *  Ex: https://www.rtr.ch/play/tv/agid/geo-blocking
 	 *  Ex: https://play.swissinfo.ch/play/tv/help
+	 *  Ex: https://play-mmf.herokuapp.com/srf/play/tv/hilfe
 	 *
 	 *  Ex: playsrf://www.srf.ch/play/tv/hilfe
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
-		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
+		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
 	}
 
 	/**
@@ -756,7 +759,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 * Ex: playsrf://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
 	 */
 	if (pathname.includes("/micropages/")) {
-		return openURL(server, bu, scheme, hostname, pathname, queryParams, anchor);
+		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
 	}
 
 	/**
