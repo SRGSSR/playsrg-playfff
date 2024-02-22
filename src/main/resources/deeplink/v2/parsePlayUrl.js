@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 39;
+var parsePlayUrlVersion = 40;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -667,7 +667,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 * Catch play micro pages urls
+	 * Catch micro page urls
 	 *
 	 * Ex: https://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
 	 *
@@ -715,7 +715,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch play help urls
+	 *  Catch help page urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/hilfe
 	 *  Ex: https://www.srf.ch/play/tv/hilfe/geoblock
@@ -735,7 +735,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch play parameters urls
+	 *  Catch parameters page urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv/einstellungen
 	 *  Ex: https://www.rts.ch/play/tv/parametres
