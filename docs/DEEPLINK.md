@@ -24,7 +24,7 @@ The conversion is done with a javascript function, included in the `parsePlayUrl
 
 * Function is: `parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, supportedAppHostnames)`
 	* Parameters: the web url to parse, splitted in variables.
-	* `supportedAppHostnames `: an optional array to share the supported application url hostnames. Required to support the new `micropage` hostname conversion.
+	* `supportedAppHostnames`: an optional array to share the supported application url hostnames. Required to support the new `micropage` hostname conversion.
 	* It returns an application url, conform to [Play iOS custom URL](https://github.com/SRGSSR/playsrg-apple/blob/develop/docs/CUSTOM_URLS_AND_UNIVERSAL_LINKS.md) and [Play Android custom URL](https://github.com/SRGSSR/playsrg-android/blob/main/doc/schemeUrl.md) specifications.
 	* If the JS script returns the `unsupported` hostname, application can share it to the server using [the POST API](README.md#deep-link).
 
