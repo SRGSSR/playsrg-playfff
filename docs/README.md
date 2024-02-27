@@ -77,6 +77,8 @@ A wide list of parameters are available.
   * `jsVersion` (integer): the `parsePlayUrl.js` value of `parsePlayUrlVersion` variable. 
   * `url` (string): the unparsing url.
 
+For more informations, see the [deep link documentation](DEEP_LINK.md).
+
 #### Recommendation for a media
 
 * `/api/v2/playlist/recommendation/continuousPlayback/{urn}` : get recommended medias for a continuous playback purpose.
