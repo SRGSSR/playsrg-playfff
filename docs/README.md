@@ -77,7 +77,7 @@ A wide list of parameters are available.
   * `jsVersion` (integer): the `parsePlayUrl.js` value of `parsePlayUrlVersion` variable. 
   * `url` (string): the unparsing url.
 
-For more informations, see the [deeplink documentation](DEEPLINK.md).
+For more informations, see the [deep link documentation](DEEP_LINK.md).
 
 #### Recommendation for a media
 
