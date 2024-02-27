@@ -10,7 +10,13 @@ if (!console) {
 }
 
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
-	originalPathname = pathname;
+	originalUrl = {
+		"scheme": scheme,
+		"hostname": hostname,
+		"pathname": pathname,
+		"queryParams": queryParams,
+		"anchor": anchor
+	};
 
 	// fix path issue
 	pathname = pathname.replace("//", "/");
@@ -124,7 +130,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 				break;
 		}
 		if (redirectBu) {
-			return openURL(server, redirectBu, scheme, hostname, originalPathname, queryParams, anchor);
+			return openURL(server, redirectBu, originalUrl);
 		}
 	}
 
@@ -748,7 +754,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: playsrf://www.srf.ch/play/tv/hilfe
 	 */
 	if (pathname.endsWith("/hilfe") || pathname.includes("/hilfe/") || pathname.endsWith("/aide") || pathname.includes("/aide/") || pathname.endsWith("/guida") || pathname.includes("/guida/") || pathname.endsWith("/agid") || pathname.includes("/agid/") || pathname.endsWith("/help") || pathname.includes("/help/")) {
-		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
+		return openURL(server, bu, originalUrl);
 	}
 
 	/**
@@ -759,7 +765,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 * Ex: playsrf://www.srf.ch/play/tv/micropages/test-?pageId=3c2674b9-37a7-4e76-9398-bb710bd135ee
 	 */
 	if (pathname.includes("/micropages/")) {
-		return openURL(server, bu, scheme, hostname, originalPathname, queryParams, anchor);
+		return openURL(server, bu, originalUrl);
 	}
 
 	/**
@@ -861,7 +867,8 @@ function openPage(server, bu, page, channelId, options) {
 	return redirect;
 }
 
-function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
+function openURL(server, bu, originalUrl) {
+	var scheme = originalUrl.scheme;
 	if (!scheme) {
 		scheme = "http";
 	}
@@ -870,9 +877,9 @@ function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	var queryParamsString = "";
-	if (queryParams) {
-		for (var key in queryParams) {
-			queryParamsString = queryParamsString + "&" + key + "=" + encodeURIComponent(queryParams[key]);
+	if (originalUrl.queryParams) {
+		for (var key in originalUrl.queryParams) {
+			queryParamsString = queryParamsString + "&" + key + "=" + encodeURIComponent(originalUrl.queryParams[key]);
 		}
 	}
 	if (queryParamsString.length > 0) {
@@ -880,11 +887,11 @@ function openURL(server, bu, scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	var anchorString = "";
-	if (anchor) {
-		anchorString = "#" + anchor;
+	if (originalUrl.anchor) {
+		anchorString = "#" + originalUrl.anchor;
 	}
 
-	var url = scheme + "://" + hostname + pathname + queryParamsString + anchorString;
+	var url = scheme + "://" + originalUrl.hostname + originalUrl.pathname + queryParamsString + anchorString;
 
 	var redirect = schemeForBu(bu) + "://open?url=" + encodeURIComponent(url);
 	if (server) {
