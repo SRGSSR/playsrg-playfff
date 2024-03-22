@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 40;
+var parsePlayUrlVersion = 41;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -18,7 +18,7 @@ var hostnameMedia = "media";
 var hostnameMicropage = "micropage";
 var hostnameSearch = "search";
 var hostnameSection = "section";
-var hostnameShow = "show"; 
+var hostnameShow = "show";
 var hostnameTopic = "topic";
 
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, supportedAppHostnames) {
@@ -445,8 +445,9 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://www.rtr.ch/play/tv/rtr-livestreams
 	 *  Ex: https://www.rts.ch/play/tv/rts-livestreams
 	 *  Ex: https://www.srf.ch/play/tv/sport-livestreams
+	 *  Ex: https://www.rsi.ch/play/tv/streaming
 	 */
-	if (pathname.endsWith("-livestreams")) {
+	if (pathname.endsWith("-livestreams") || pathname.endsWith("streaming")) {
 		// Returns livestreams homepage
 		return openLivestreamsHomePage(server, bu);
 	}
