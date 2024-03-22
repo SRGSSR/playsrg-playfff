@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 40;
+var parsePlayUrlVersion = 41;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -456,8 +456,9 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rtr.ch/play/tv/rtr-livestreams
 	 *  Ex: https://www.rts.ch/play/tv/rts-livestreams
 	 *  Ex: https://www.srf.ch/play/tv/sport-livestreams
+	 *  Ex: https://www.rsi.ch/play/tv/streaming
 	 */
-	if (pathname.endsWith("-livestreams")) {
+	if (pathname.endsWith("-livestreams") || pathname.endsWith("streaming")) {
 		// Returns livestreams homepage
 		return openPage(server, bu, "livestreams", null, null);
 	}
