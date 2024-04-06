@@ -1,0 +1,8 @@
+deployments:
+  environmentMapping:
+    testing:
+      - 'playfff-pr-*'
+    staging:
+      - 'playfff-dev'
+    production:
+      - 'playfff'
