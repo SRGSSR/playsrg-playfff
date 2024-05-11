@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 41;
+var parsePlayUrlVersion = 42;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -566,7 +566,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch by date TV urls
+	 *  Catch old by date TV urls
 	 *
 	 *  Ex: https://www.rtr.ch/play/tv/emissiuns-tenor-data?date=07-03-2019
 	 */
@@ -587,13 +587,15 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	/**
-	 *  Catch new by date TV urls
+	 *  Catch new by date TV urls and TV program urls
 	 *
 	 *  Ex: https://www.rts.ch/play/tv/emissions-par-dates/2021-06-21
 	 *  Ex: https://www.srf.ch/play/tv/programm/2021-07-03
+	 *  Ex: https://www.rsi.ch/play/tv/guidatv-per-canale/la-2/2024-05-11?channelUrn=urn%3Arsi%3Achannel%3Atv%3Ala2
 	 */
 	if (pathname.includes("/tv/sendungen-nach-datum") || pathname.includes("/tv/emissions-par-dates") || pathname.includes("/tv/programmi-per-data") || pathname.includes("/tv/emissiuns-tenor-data") ||
-		pathname.includes("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program")) {
+		pathname.includes("/tv/programm") || pathname.includes("/tv/programme") || pathname.includes("/tv/guida-programmi") || pathname.includes("/tv/program") ||
+		pathname.includes("/tv/programm-nach-sender") || pathname.includes("/tv/programme-par-chaine") || pathname.includes("/tv/guidatv-per-canale") || pathname.includes("/tv/tenor-program-tv")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
 
 		var date = null;
