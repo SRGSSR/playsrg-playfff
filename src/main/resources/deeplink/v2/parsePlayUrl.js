@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 42;
+var parsePlayUrlVersion = 43;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -16,6 +16,7 @@ var hostnameLink = "link";
 var hostnameLivestreams = "livestreams";
 var hostnameMedia = "media";
 var hostnameMicropage = "micropage";
+var hostnamePage = "page";
 var hostnameSearch = "search";
 var hostnameSection = "section";
 var hostnameShow = "show";
@@ -56,6 +57,9 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 
 	// Get server
 	var server = serverForUrl(hostname, pathname, queryParams);
+
+	// Get preview
+	var preview = (queryParams["preview"] == "true");
 
 	/**
 	 *  Catch special case: Player web
@@ -136,7 +140,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		}
 
 		// Returns default TV homepage
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 
 	if (hostname.includes("play-mmf") && !pathname.startsWith("/mmf/")) {
@@ -145,6 +149,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 
 	if (hostname.includes("play-web") || hostname.includes("play-staging")) {
 		pathname = pathname.substring(4);
+		pathname = pathname.replace("/production/play", "/play");
 		pathname = pathname.replace("/stage/play", "/play");
 		pathname = pathname.replace("/test/play", "/play");
 	}
@@ -170,7 +175,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		}
 		else if (pathname.startsWith("/video")) {
 			// Returns default TV homepage
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 		else {
 			var channelId = null;
@@ -303,7 +308,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		}
 		else {
 			// Returns default TV homepage
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 	}
 
@@ -419,7 +424,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		}
 		else {
 			// Returns default TV homepage
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 	}
 
@@ -470,7 +475,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	if (showTransmission) {
 		var showId = queryParams["id"];
 		if (showId) {
-			return openShow(server, bu, showTransmission, showId);
+			return openShow(server, bu, showTransmission, showId, preview);
 		}
 		else {
 			showTransmission = null;
@@ -497,7 +502,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	if (showTransmission) {
 		var showId = pathname.split("/").slice(-1)[0];
 		if (showId) {
-			return openShow(server, bu, showTransmission, showId);
+			return openShow(server, bu, showTransmission, showId, preview);
 		}
 		else {
 			showTransmission = null;
@@ -505,12 +510,19 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	}
 
 	/**
-	 *  Catch home TV urls
+	 *  Catch home TV urls and root pages
 	 *
 	 *  Ex: https://www.srf.ch/play/tv
+	 *  Ex: https://www.srf.ch/play/tv?pageId=b2f5173a-da2c-4451-9101-fedc76e6c3bc
 	 */
 	if (pathname.endsWith("/tv")) {
-		return openTvHomePage(server, bu);
+		var pageId = queryParams["pageId"];
+		if (pageId) {
+			return openPage(server, bu, pageId, originalUrl, preview);
+		}
+		else {
+			return openTvHomePage(server, bu, preview);
+		}
 	}
 
 	/**
@@ -640,7 +652,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://www.rts.ch/play/tv/categories/info
 	 */
 	if (pathname.endsWith("/tv/themen") || pathname.endsWith("/tv/categories") || pathname.endsWith("/tv/categorie") || pathname.endsWith("/tv/tematicas") || pathname.endsWith("/tv/topics")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 	else if (pathname.includes("/tv/themen") || pathname.includes("/tv/categories") || pathname.includes("/tv/categorie") || pathname.includes("/tv/tematicas") || pathname.includes("/tv/topics")) {
 		var lastPathComponent = pathname.split("/").slice(-1)[0];
@@ -654,10 +666,10 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		}
 
 		if (topicId) {
-			return openTopic(server, bu, "tv", topicId);
+			return openTopic(server, bu, "tv", topicId, preview);
 		}
 		else {
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 	}
 
@@ -668,7 +680,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://www.rsi.ch/play/tv/event/event-playrsi-8858482
 	 */
 	if (pathname.endsWith("/tv/event") || pathname.includes("/tv/event")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 
 	/**
@@ -678,16 +690,16 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://www.rsi.ch/play/tv/detail/il-giardino-di-albert-lis?id=bd8d8352-4512-4f24-86b0-c380f94ab701
 	 */
 	if (pathname.endsWith("/tv/detail")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 	else if (pathname.includes("/tv/detail")) {
 		var sectionId = queryParams["id"];
 
 		if (sectionId) {
-			return openSection(server, bu, sectionId);
+			return openSection(server, bu, sectionId, preview);
 		}
 		else {
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 	}
 
@@ -702,10 +714,10 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 		var pageId = queryParams["pageId"];
 
 		if (pageId) {
-			return openMicropage(server, bu, pageId, originalUrl);
+			return openMicropage(server, bu, pageId, originalUrl, preview);
 		}
 		else {
-			return openTvHomePage(server, bu);
+			return openTvHomePage(server, bu, preview);
 		}
 	}
 
@@ -716,7 +728,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://www.rsi.ch/play
 	 */
 	if (pathname.endsWith("/play/") || pathname.endsWith("/play")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 
 	/**
@@ -726,7 +738,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *. Ex: https://www.rsi.ch/play/legacy-browser
 	 */
 	if (pathname.endsWith("/legacy-browser")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 
 	/**
@@ -736,7 +748,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *. Ex: https://www.rts.ch/play/sitemap/tv/pages
 	 */
 	if (pathname.includes("/play/sitemap/")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
 	}
 
 	/**
@@ -769,7 +781,42 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 	 *  Ex: https://play.swissinfo.ch/play/tv/settings
 	 */
 	if (pathname.endsWith("/einstellungen") || pathname.endsWith("/parametres") || pathname.endsWith("/impostazioni") || pathname.endsWith("/configuraziuns") || pathname.endsWith("/settings")) {
-		return openTvHomePage(server, bu);
+		return openTvHomePage(server, bu, preview);
+	}
+
+	/**
+	 * Catch PAC preview urls
+	 * 
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=b2f5173a-da2c-4451-9101-fedc76e6c3bc&type=LANDING_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=758a8e8d-5f27-49a5-bcdc-384cf7f68d2e&topicUrn=urn%3Arts%3Atopic%3Atv%3A2743&type=TOPIC_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=09cf1258-054d-4318-866f-c826e3d0c209&showUrn=urn%3Arts%3Ashow%3Atv%3A9356413&type=SHOW_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=09cf1258-054d-4318-866f-c826e3d0c209&showUrn=urn%3Arts%3Ashow%3Atv%3A9356413&type=DEFAULT_SHOW_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=307bb901-9f17-487e-bd1e-d51ccf5c8eb2&type=MICRO_PAGE
+	*/
+	if (pathname.endsWith("/tv/pac")) {
+		var pageId = queryParams["pageId"];
+		var type = queryParams["type"];
+		if (pageId && type) {
+			switch (type) {
+				case "LANDING_PAGE":
+					return openPage(server, bu, pageId, originalUrl, true);
+				case "TOPIC_PAGE":
+					var topicUrn = queryParams["topicUrn"];
+					if (topicUrn) {
+						return openTopicUrn(server, bu, topicUrn, true);
+					}
+					break;
+				case "SHOW_PAGE":
+				case "DEFAULT_SHOW_PAGE":
+					var showUrn = queryParams["showUrn"];
+					if (showUrn) {
+						return openShowUrn(server, bu, showUrn, true);
+					}
+					break;
+				case "MICRO_PAGE":
+					return openMicropage(server, bu, pageId, originalUrl, true);
+			}
+		}
 	}
 
 	// Redirect fallback.
@@ -780,8 +827,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor, suppor
 // ---- Open functions
 
 function openMedia(server, bu, mediaType, mediaId, startTime) {
-	var urn = "urn:" + bu + ":" + mediaType + ":" + mediaId;
-	return openMediaUrn(server, bu, urn, startTime);
+	var mediaUrn = "urn:" + bu + ":" + mediaType + ":" + mediaId;
+	return openMediaUrn(server, bu, mediaUrn, startTime);
 }
 
 function openMediaUrn(server, bu, mediaUrn, startTime) {
@@ -795,20 +842,34 @@ function openMediaUrn(server, bu, mediaUrn, startTime) {
 	return buildBuUri(bu, hostnameMedia, mediaUrn, options);
 }
 
-function openShow(server, bu, showTransmission, showId) {
+function openShow(server, bu, showTransmission, showId, preview) {
 	var showUrn = "urn:" + bu + ":show:" + showTransmission + ":" + showId;
+	return openShowUrn(server, bu, showUrn, preview);
+}
+
+function openShowUrn(server, bu, showUrn, preview) {
 	var options = {};
 	if (server) {
 		options['server'] = server;
 	}
+	if (preview) {
+		options['preview'] = preview;
+	}
 	return buildBuUri(bu, hostnameShow, showUrn, options);
 }
 
-function openTopic(server, bu, topicTransmission, topicId) {
+function openTopic(server, bu, topicTransmission, topicId, preview) {
 	var topicUrn = "urn:" + bu + ":topic:" + topicTransmission + ":" + topicId;
+	return openTopicUrn(server, bu, topicUrn, preview);
+}
+
+function openTopicUrn(server, bu, topicUrn, preview) {
 	var options = {};
 	if (server) {
 		options['server'] = server;
+	}
+	if (preview) {
+		options['preview'] = preview;
 	}
 	return buildBuUri(bu, hostnameTopic, topicUrn, options);
 }
@@ -822,15 +883,33 @@ function openModule(server, bu, moduleType, moduleId) {
 	return buildBuUri(bu, "module", topicUrn, options);
 }
 
-function openSection(server, bu, sectionId) {
+function openSection(server, bu, sectionId, preview) {
 	var options = {};
 	if (server) {
 		options['server'] = server;
 	}
+	if (preview) {
+		options['preview'] = preview;
+	}
 	return buildBuUri(bu, hostnameSection, sectionId, options);
 }
 
-function openMicropage(server, bu, pageId, originalUrl) {
+function openPage(server, bu, pageId, originalUrl, preview) {
+	if (!originalUrl.supportedAppHostnames.includes(hostnamePage)) {
+		return openMicropage(server, bu, pageId, originalUrl, preview);
+	}
+
+	var options = {};
+	if (server) {
+		options['server'] = server;
+	}
+	if (preview) {
+		options['preview'] = preview;
+	}
+	return buildBuUri(bu, hostnamePage, pageId, options);
+}
+
+function openMicropage(server, bu, pageId, originalUrl, preview) {
 	if (!originalUrl.supportedAppHostnames.includes(hostnameMicropage)) {
 		return openURL(server, bu, originalUrl);
 	}
@@ -839,13 +918,19 @@ function openMicropage(server, bu, pageId, originalUrl) {
 	if (server) {
 		options['server'] = server;
 	}
+	if (preview) {
+		options['preview'] = preview;
+	}
 	return buildBuUri(bu, hostnameMicropage, pageId, options);
 }
 
-function openTvHomePage(server, bu) {
+function openTvHomePage(server, bu, preview) {
 	var options = {};
 	if (server) {
 		options['server'] = server;
+	}
+	if (preview) {
+		options['preview'] = preview;
 	}
 	return buildBuUri(bu, hostnameHome, null, options);
 }
