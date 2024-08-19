@@ -19,7 +19,7 @@
 
     <groupId>ch.srgssr</groupId>
     <artifactId>playfff</artifactId>
-    <version>57</version>
+    <version>58</version>
     <packaging>jar</packaging>
 
     <name>pfff</name>
