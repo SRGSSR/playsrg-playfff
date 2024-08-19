@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 42;
+var parsePlayUrlVersion = 43;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -156,6 +156,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 
 	if (hostname.includes("play-web") || hostname.includes("play-staging")) {
 		pathname = pathname.substring(4);
+		pathname = pathname.replace("/production/play", "/play");
 		pathname = pathname.replace("/stage/play", "/play");
 		pathname = pathname.replace("/test/play", "/play");
 	}
@@ -519,9 +520,16 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Catch home TV urls
 	 *
 	 *  Ex: https://www.srf.ch/play/tv
+	 *  Ex: https://www.srf.ch/play/tv?pageId=b2f5173a-da2c-4451-9101-fedc76e6c3bc
 	 */
 	if (pathname.endsWith("/tv")) {
-		return openPage(server, bu, "tv:home", null, null);
+		var pageId = queryParams["pageId"];
+		if (pageId) {
+			return openURL(server, bu, originalUrl);
+		}
+		else {
+			return openPage(server, bu, "tv:home", null, null);
+		}
 	}
 
 	/**
@@ -784,19 +792,48 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		return openPage(server, bu, "tv:home", null, null);
 	}
 
+	/**
+	 * Catch PAC preview urls
+	 * 
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=b2f5173a-da2c-4451-9101-fedc76e6c3bc&type=LANDING_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=758a8e8d-5f27-49a5-bcdc-384cf7f68d2e&topicUrn=urn%3Arts%3Atopic%3Atv%3A2743&type=TOPIC_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=09cf1258-054d-4318-866f-c826e3d0c209&showUrn=urn%3Arts%3Ashow%3Atv%3A9356413&type=SHOW_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=09cf1258-054d-4318-866f-c826e3d0c209&showUrn=urn%3Arts%3Ashow%3Atv%3A9356413&type=DEFAULT_SHOW_PAGE
+	 * https://play-web.herokuapp.com/rts/production/play/tv/pac?pageId=307bb901-9f17-487e-bd1e-d51ccf5c8eb2&type=MICRO_PAGE
+	*/
+	if (pathname.endsWith("/tv/pac")) {
+		var pageId = queryParams["pageId"];
+		var type = queryParams["type"];
+		if (pageId && type) {
+			switch (type) {
+				case "LANDING_PAGE":
+					return openURL(server, bu, originalUrl);
+				case "TOPIC_PAGE":
+					var topicUrn = queryParams["topicUrn"];
+					if (topicUrn) {
+						return openTopicUrn(server, bu, topicUrn);
+					}
+					break;
+				case "SHOW_PAGE":
+				case "DEFAULT_SHOW_PAGE":
+					var showUrn = queryParams["showUrn"];
+					if (showUrn) {
+						return openShowUrn(server, bu, showUrn);
+					}
+					break;
+				case "MICRO_PAGE":
+					return openURL(server, bu, originalUrl);
+			}
+		}
+	}
+
 	// Redirect fallback.
 	console.log("Can't parse Play URL. Unsupported URL.");
 	return schemeForBu(bu) + "://unsupported?server=" + server;
 };
 function openMedia(server, bu, mediaType, mediaId, startTime) {
-	var redirect = schemeForBu(bu) + "://open?media=urn:" + bu + ":" + mediaType + ":" + mediaId;
-	if (startTime) {
-		redirect = redirect + "&start-time=" + startTime;
-	}
-	if (server) {
-		redirect = redirect + "&server=" + encodeURIComponent(server);
-	}
-	return redirect;
+	var mediaUrn = "urn:" + bu + ":" + mediaType + ":" + mediaId;
+	return openMediaUrn(server, bu, mediaUrn, startTime);
 }
 
 function openMediaUrn(server, bu, mediaUrn, startTime) {
@@ -811,7 +848,12 @@ function openMediaUrn(server, bu, mediaUrn, startTime) {
 }
 
 function openShow(server, bu, showTransmission, showId) {
-	var redirect = schemeForBu(bu) + "://open?show=urn:" + bu + ":show:" + showTransmission + ":" + showId;
+	var showUrn = "urn:" + bu + ":show:" + showTransmission + ":" + showId;
+	return openShowUrn(server, bu, showUrn);
+}
+
+function openShowUrn(server, bu, showUrn) {
+	var redirect = schemeForBu(bu) + "://open?show=" + showUrn;
 	if (server) {
 		redirect = redirect + "&server=" + encodeURIComponent(server);
 	}
@@ -819,7 +861,12 @@ function openShow(server, bu, showTransmission, showId) {
 }
 
 function openTopic(server, bu, topicTransmission, topicId) {
-	var redirect = schemeForBu(bu) + "://open?topic=urn:" + bu + ":topic:" + topicTransmission + ":" + topicId;
+	var topicUrn = "urn:" + bu + ":topic:" + topicTransmission + ":" + topicId;
+	return openTopicUrn(server, bu, topicUrn);
+}
+
+function openTopicUrn(server, bu, topicUrn) {
+	var redirect = schemeForBu(bu) + "://open?topic=" + topicUrn;
 	if (server) {
 		redirect = redirect + "&server=" + encodeURIComponent(server);
 	}
