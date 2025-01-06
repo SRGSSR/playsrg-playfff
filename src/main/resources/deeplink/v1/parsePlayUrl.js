@@ -27,8 +27,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		pathname = pathname.slice(0, -1)
 	}
 
-    hostnameCaseSensitive = hostname
-    pathnameCaseSensitive = pathname
+    originalPathname = pathname
 
 	// Case insensitive
 	hostname = hostname.toLowerCase();
@@ -265,7 +264,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	if (mediaType) {
-		var mediaId = pathnameCaseSensitive.split("/").slice(-1)[0];
+		var mediaId = originalPathname.split("/").slice(-1)[0];
 		if (mediaId) {
 			var startTime = queryParams["startTime"];
 			return openMedia(server, bu, mediaType, mediaId, startTime);
