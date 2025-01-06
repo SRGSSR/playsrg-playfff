@@ -33,7 +33,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	// Case insensitive
 	hostname = hostname.toLowerCase();
 	pathname = pathname.toLowerCase();
-www
+
 	// Get BU
 	var bu = null;
 	switch (true) {
