@@ -8,7 +8,7 @@ if (!console) {
 		log: function () { }
 	}
 }
-
+d
 function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	originalUrl = {
 		"scheme": scheme,
