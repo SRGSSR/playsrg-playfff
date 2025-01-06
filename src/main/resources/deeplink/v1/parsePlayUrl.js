@@ -26,7 +26,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	if (slashCount > 2 && pathname.endsWith("/")) {
 		pathname = pathname.slice(0, -1)
 	}
-
+d
     hostnameCaseSensitive = hostname
     pathnameCaseSensitive = pathname
 
