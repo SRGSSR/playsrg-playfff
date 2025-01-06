@@ -17,7 +17,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 		"queryParams": queryParams,
 		"anchor": anchor
 	};
-www
+
 	// fix path issue
 	pathname = pathname.replace("//", "/");
 
