@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 43;
+var parsePlayUrlVersion = 44;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -26,6 +26,8 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	if (slashCount > 2 && pathname.endsWith("/")) {
 		pathname = pathname.slice(0, -1)
 	}
+
+    originalPathname = pathname
 
 	// Case insensitive
 	hostname = hostname.toLowerCase();
@@ -262,7 +264,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	if (mediaType) {
-		var mediaId = pathname.split("/").slice(-1)[0];
+		var mediaId = originalPathname.split("/").slice(-1)[0];
 		if (mediaId) {
 			var startTime = queryParams["startTime"];
 			return openMedia(server, bu, mediaType, mediaId, startTime);
