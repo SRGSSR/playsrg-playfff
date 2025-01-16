@@ -43,6 +43,7 @@ public class RecommendationController {
         }
     }
 
+    @CrossOrigin
     @RequestMapping({"/api/v2/playlist/recommendation/{purpose}/{urn}", "/api/v2/playlist/recommendation/{purpose}/{urn}.json"})
     @ResponseBody
     RecommendedList recommendationV2(
