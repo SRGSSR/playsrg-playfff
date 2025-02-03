@@ -1,6 +1,6 @@
 // parsePlayUrl
 
-var parsePlayUrlVersion = 44;
+var parsePlayUrlVersion = 45;
 var parsePlayUrlBuild = "mmf";
 
 if (!console) {
@@ -253,6 +253,7 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	 *  Ex: https://www.rts.ch/play/tv/redirect/detail/9938530
 	 *  Ex: https://www.srf.ch/play/tv/redirect/Detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1
 	 *  Ex: https://www.srf.ch/play/tv/redirect/detail/99f040e9-b1e6-4d7a-bc08-d5639d600aa1/
+	 *  Ex: https://www.srf.ch/play/tv/redirect/detail/urn:srf:video:96705d59-c9d5-40c2-99c1-89ef5756ef24
 	 */
 	switch (true) {
 		case pathname.includes("/tv/redirect/detail/"):
@@ -264,10 +265,13 @@ function parseForPlayApp(scheme, hostname, pathname, queryParams, anchor) {
 	}
 
 	if (mediaType) {
-		var mediaId = originalPathname.split("/").slice(-1)[0];
-		if (mediaId) {
-			var startTime = queryParams["startTime"];
-			return openMedia(server, bu, mediaType, mediaId, startTime);
+		var mediaIdentifier = originalPathname.split("/").slice(-1)[0];
+		var startTime = queryParams["startTime"];
+		if (mediaIdentifier.startsWith("urn:")) {
+			return openMediaUrn(server, bu, mediaIdentifier, startTime);
+		}
+		else if (mediaIdentifier) {
+			return openMedia(server, bu, mediaType, mediaIdentifier, startTime);
 		}
 		else {
 			mediaType = null;
